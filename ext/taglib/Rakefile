@@ -1,0 +1,19 @@
+require 'rake/clean'
+
+CLEAN.include '*.o', 'Makefile', 'mkmf.log'
+CLOBBER.include 'taglib.so'
+
+task :swig => ['taglib_wrap.cxx']
+
+task 'default' => ['taglib_wrap.cxx', 'Makefile'] do
+  sh "make"
+end
+
+file 'taglib_wrap.cxx' => ['taglib.i'] do
+  sh "swig -c++ -ruby -I/usr/include taglib.i"
+end
+
+file 'Makefile' => ['extconf.rb'] do
+  ruby "extconf.rb"
+end
+
