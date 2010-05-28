@@ -10,7 +10,7 @@ task 'default' => ['taglib_wrap.cxx', 'Makefile'] do
 end
 
 file 'taglib_wrap.cxx' => ['taglib.i'] do
-  sh "swig -c++ -ruby -I/usr/include taglib.i"
+  sh "swig -c++ -ruby -initname taglib -I/usr/include taglib.i"
 end
 
 file 'Makefile' => ['extconf.rb'] do
