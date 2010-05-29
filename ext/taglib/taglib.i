@@ -7,6 +7,8 @@
 #include <taglib/tag.h>
 %}
 
+#pragma SWIG nowarn=SWIGWARN_PARSE_NESTED_CLASS
+
 // Undefine macro
 #define TAGLIB_EXPORT
 
@@ -27,8 +29,13 @@ namespace TagLib {
 */
 
 %include <taglib/taglib.h>
+
 %include <taglib/tfile.h>
+
+%ignore TagLib::FileRef::operator=;
+%ignore TagLib::FileRef::operator!=;
 %include <taglib/fileref.h>
+
 %include <taglib/tag.h>
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
