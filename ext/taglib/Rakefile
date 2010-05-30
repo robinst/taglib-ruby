@@ -3,19 +3,39 @@ require 'rake/clean'
 CLEAN.include '*.o', 'Makefile', 'mkmf.log'
 CLOBBER.include 'taglib.so'
 
+modules = ["base", "mpeg", "id3v2"]
+
 task 'default' => [:swig, 'Makefile'] do
   sh "make"
 end
 
-task :swig => ['taglib_wrap.cxx', 'taglib_mpeg_wrap.cxx']
+# task :swig => ['taglib_wrap.cxx']
+
+task :swig do
+  modules.each do |mod|
+    sh "cd #{mod} && swig -c++ -ruby -initname #{mod} -I/usr/include #{mod}.i"
+  end
+end
+
+task :extconf do
+  modules.each do |mod|
+    sh "cd #{mod} && ruby extconf.rb"
+  end
+end
+
+task :make do
+  modules.each do |mod|
+    sh "cd #{mod} && make"
+  end
+end
 
 file 'taglib_wrap.cxx' => ['taglib.i'] do
   sh "swig -c++ -ruby -initname taglib -I/usr/include taglib.i"
 end
 
-file 'taglib_mpeg_wrap.cxx' => ['taglib_mpeg.i'] do
-  sh "swig -c++ -ruby -initname taglib -I/usr/include taglib_mpeg.i"
-end
+#file 'taglib_mpeg_wrap.cxx' => ['taglib_mpeg.i'] do
+#  sh "swig -c++ -ruby -initname taglib -I/usr/include taglib_mpeg.i"
+#end
 
 file 'Makefile' => ['extconf.rb'] do
   ruby "extconf.rb"

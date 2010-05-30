@@ -6,7 +6,7 @@
 #include <taglib/mpegfile.h>
 %}
 
-%import "taglib.i"
+%import(module="taglib/base") "../base/base.i"
 
 namespace TagLib {
   namespace MPEG {

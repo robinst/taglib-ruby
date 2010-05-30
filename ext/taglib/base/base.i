@@ -1,4 +1,4 @@
-%module TagLib
+%module "TagLib"
 %{
 #include <taglib/taglib.h>
 #include <taglib/tstring.h>
