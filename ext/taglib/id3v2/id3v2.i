@@ -14,7 +14,9 @@ namespace TagLib {
   }
 }
 
+%ignore TagLib::ID3v2::Frame::Header;
 %include <taglib/id3v2frame.h>
+
 %include <taglib/id3v2tag.h>
 
 %extend TagLib::ID3v2::Tag {
