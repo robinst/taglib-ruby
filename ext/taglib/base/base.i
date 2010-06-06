@@ -9,8 +9,6 @@
 #include <taglib/tag.h>
 %}
 
-#pragma SWIG nowarn=SWIGWARN_PARSE_NESTED_CLASS
-
 // Undefine macro
 #define TAGLIB_EXPORT
 
@@ -31,15 +29,22 @@ namespace TagLib {
 
 %include <taglib/taglib.h>
 
+%ignore TagLib::ByteVector::operator[];
+%ignore TagLib::ByteVector::operator=;
+%ignore TagLib::ByteVector::operator!=;
+%ignore operator<<;
 %include <taglib/tbytevector.h>
 
 %include <std_list.i>
+%ignore TagLib::List::operator[];
+%ignore TagLib::List::operator=;
 %include <taglib/tlist.h>
 
 %include <taglib/tfile.h>
 
 %ignore TagLib::FileRef::operator=;
 %ignore TagLib::FileRef::operator!=;
+%warnfilter(SWIGWARN_PARSE_NAMED_NESTED_CLASS) TagLib::FileRef::FileTypeResolver;
 %include <taglib/fileref.h>
 
 %rename("empty?") TagLib::Tag::isEmpty;
