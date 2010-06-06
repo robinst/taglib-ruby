@@ -15,7 +15,7 @@ class TestTag < Test::Unit::TestCase
       assert_equal 'Pop', @tag.genre
       assert_equal 2000, @tag.year
       assert_equal 1, @tag.track
-      assert_equal false, @tag.isEmpty
+      assert_equal false, @tag.empty?
     end
   end
 end

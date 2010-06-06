@@ -9,7 +9,7 @@ task 'default' => [:swig, :make]
 
 task :swig do
   modules.each do |mod|
-    sh "cd #{mod} && swig -c++ -ruby -initname #{mod} -I/usr/include #{mod}.i"
+    sh "cd #{mod} && swig -c++ -ruby -autorename -initname #{mod} -I/usr/include #{mod}.i"
   end
 end
 

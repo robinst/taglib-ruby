@@ -16,6 +16,10 @@ namespace TagLib {
   }
 }
 
+%rename(id3v1_tag) TagLib::MPEG::File::ID3v1Tag;
+%rename(id3v2_tag) TagLib::MPEG::File::ID3v2Tag;
+%rename(set_id3v2_frame_factory) TagLib::MPEG::File::setID3v2FrameFactory;
+
 %include <taglib/mpegfile.h>
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

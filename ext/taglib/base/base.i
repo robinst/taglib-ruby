@@ -42,6 +42,7 @@ namespace TagLib {
 %ignore TagLib::FileRef::operator!=;
 %include <taglib/fileref.h>
 
+%rename("empty?") TagLib::Tag::isEmpty;
 %include <taglib/tag.h>
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
