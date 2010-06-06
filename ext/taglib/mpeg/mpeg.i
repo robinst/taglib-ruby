@@ -6,6 +6,8 @@
 #include <taglib/mpegfile.h>
 %}
 
+%include <std_list.i>
+
 %import(module="taglib/base") "../base/base.i"
 
 namespace TagLib {
@@ -15,3 +17,5 @@ namespace TagLib {
 }
 
 %include <taglib/mpegfile.h>
+
+// vim: set filetype=cpp sw=2 ts=2 expandtab:

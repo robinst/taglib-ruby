@@ -5,11 +5,7 @@ CLOBBER.include 'taglib.so'
 
 modules = ["base", "mpeg", "id3v2"]
 
-task 'default' => [:swig, 'Makefile'] do
-  sh "make"
-end
-
-# task :swig => ['taglib_wrap.cxx']
+task 'default' => [:swig, :make]
 
 task :swig do
   modules.each do |mod|
@@ -23,21 +19,8 @@ task :extconf do
   end
 end
 
-task :make do
+task :make => [:extconf] do
   modules.each do |mod|
     sh "cd #{mod} && make"
   end
 end
-
-file 'taglib_wrap.cxx' => ['taglib.i'] do
-  sh "swig -c++ -ruby -initname taglib -I/usr/include taglib.i"
-end
-
-#file 'taglib_mpeg_wrap.cxx' => ['taglib_mpeg.i'] do
-#  sh "swig -c++ -ruby -initname taglib -I/usr/include taglib_mpeg.i"
-#end
-
-file 'Makefile' => ['extconf.rb'] do
-  ruby "extconf.rb"
-end
-

@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestTaglibRuby < Test::Unit::TestCase
+class TestTag < Test::Unit::TestCase
   context "The sample.mp3 file" do
     setup do
       fileref = TagLib::FileRef.new("test/data/sample.mp3", false)
