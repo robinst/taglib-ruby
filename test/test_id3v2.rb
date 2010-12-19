@@ -37,9 +37,20 @@ class TestID3v2 < Test::Unit::TestCase
         assert_equal "Dummy Title", frame.to_string
       end
 
-      should "have a TXXX frame" do
-        frames = @tag.frame_list('TXXX')
-        assert_equal 1, frames.size
+      context "TXXX frame" do
+        setup do
+          @txxx_frames = @tag.frame_list('TXXX')
+        end
+
+        should "should exist" do
+          assert_equal 1, @txxx_frames.size
+        end
+
+        should "be convertable to its concrete type" do
+          frame = @txxx_frames.begin.value
+          txxx = frame.to_user_text_identification_frame
+          assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
+        end
       end
     end
   end

@@ -2,6 +2,7 @@
 %{
 #include <taglib/id3v2frame.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/textidentificationframe.h>
 %}
 
 %include <std_list.i>
@@ -23,6 +24,14 @@ namespace TagLib {
   const FrameList &frameList(const char *frameID) const {
     // Triggers the implicit conversion to ByteVector in C++.
     return $self->frameList(frameID);
+  }
+}
+
+%include <taglib/textidentificationframe.h>
+
+%extend TagLib::ID3v2::Frame {
+  TagLib::ID3v2::UserTextIdentificationFrame *toUserTextIdentificationFrame() {
+    return static_cast<TagLib::ID3v2::UserTextIdentificationFrame *>($self);
   }
 }
 
