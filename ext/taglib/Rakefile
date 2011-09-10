@@ -5,11 +5,17 @@ CLOBBER.include 'taglib.so'
 
 modules = ["base", "mpeg", "id3v2"]
 
+swig = `which swig2.0`
+if swig.empty?
+  swig = `which swig`
+end
+swig.chomp!
+
 task 'default' => [:swig, :make]
 
 task :swig do
   modules.each do |mod|
-    sh "cd #{mod} && swig -c++ -ruby -autorename -initname #{mod} -I/usr/include #{mod}.i"
+    sh "cd #{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} -I/usr/include #{mod}.i"
   end
 end
 
