@@ -17,6 +17,9 @@ module TagLib
       end
     end
     class Frame
+      def to_s
+        to_string
+      end
       def cast
         case frame_id
         when "APIC" then to_attached_picture_frame

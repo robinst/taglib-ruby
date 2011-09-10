@@ -61,16 +61,20 @@ class TestID3v2Frames < Test::Unit::TestCase
 
     context "TXXX frame" do
       setup do
-        @txxx_frames = @tag.frame_list('TXXX')
+        @txxx_frame = @tag.frame_list('TXXX').first
       end
 
       should "exist" do
-        assert_equal 1, @txxx_frames.size
+        assert_not_nil @txxx_frame
+      end
+
+      should "have to_s" do
+        expected = "[MusicBrainz Album Id] MusicBrainz Album Id 992dc19a-5631-40f5-b252-fbfedbc328a9"
+        assert_equal expected, @txxx_frame.to_s
       end
 
       should "be convertable to its concrete type" do
-        frame = @txxx_frames.begin.value
-        txxx = frame.to_user_text_identification_frame
+        txxx = @txxx_frame.to_user_text_identification_frame
         assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
       end
     end
