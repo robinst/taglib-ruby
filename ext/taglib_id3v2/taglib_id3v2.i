@@ -29,7 +29,9 @@ namespace TagLib {
 %ignore TagLib::ID3v2::Frame::Header;
 %include <taglib/id3v2frame.h>
 
+%apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
 %include <taglib/id3v2tag.h>
+%clear TagLib::ID3v2::Frame *;
 
 %extend TagLib::ID3v2::Tag {
   const FrameList &frameList(const char *frameID) const {

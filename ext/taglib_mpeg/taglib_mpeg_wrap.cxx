@@ -1816,29 +1816,27 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_ConstIterator swig_types[0]
-#define SWIGTYPE_p_Iterator swig_types[1]
-#define SWIGTYPE_p_TagLib__APE__Tag swig_types[2]
-#define SWIGTYPE_p_TagLib__File swig_types[3]
-#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[4]
-#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[5]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[6]
-#define SWIGTYPE_p_TagLib__MPEG__File swig_types[7]
-#define SWIGTYPE_p_TagLib__MPEG__Properties swig_types[8]
-#define SWIGTYPE_p_TagLib__MPEG__Properties__ReadStyle swig_types[9]
-#define SWIGTYPE_p_TagLib__Tag swig_types[10]
-#define SWIGTYPE_p_char swig_types[11]
-#define SWIGTYPE_p_p_void swig_types[12]
-#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[13]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[14]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[15]
-#define SWIGTYPE_p_swig__Iterator swig_types[16]
-#define SWIGTYPE_p_unsigned_char swig_types[17]
-#define SWIGTYPE_p_unsigned_int swig_types[18]
-#define SWIGTYPE_p_unsigned_long swig_types[19]
-#define SWIGTYPE_p_wchar_t swig_types[20]
-static swig_type_info *swig_types[22];
-static swig_module_info swig_module = {swig_types, 21, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__APE__Tag swig_types[0]
+#define SWIGTYPE_p_TagLib__File swig_types[1]
+#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[2]
+#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[3]
+#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[4]
+#define SWIGTYPE_p_TagLib__MPEG__File swig_types[5]
+#define SWIGTYPE_p_TagLib__MPEG__Properties swig_types[6]
+#define SWIGTYPE_p_TagLib__MPEG__Properties__ReadStyle swig_types[7]
+#define SWIGTYPE_p_TagLib__Tag swig_types[8]
+#define SWIGTYPE_p_char swig_types[9]
+#define SWIGTYPE_p_p_void swig_types[10]
+#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[11]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[12]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[13]
+#define SWIGTYPE_p_swig__Iterator swig_types[14]
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -5089,8 +5087,6 @@ static void *_p_TagLib__MPEG__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM
 static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
 }
-static swig_type_info _swigt__p_ConstIterator = {"_p_ConstIterator", "ConstIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Iterator = {"_p_Iterator", "Iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__APE__Tag = {"_p_TagLib__APE__Tag", "TagLib::APE::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "TagLib::ID3v1::Tag *", 0, 0, (void*)0, 0};
@@ -5112,8 +5108,6 @@ static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ul
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_ConstIterator,
-  &_swigt__p_Iterator,
   &_swigt__p_TagLib__APE__Tag,
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__ID3v1__Tag,
@@ -5135,8 +5129,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
-static swig_cast_info _swigc__p_ConstIterator[] = {  {&_swigt__p_ConstIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Iterator[] = {  {&_swigt__p_Iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__APE__Tag[] = {  {&_swigt__p_TagLib__APE__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__MPEG__File, _p_TagLib__MPEG__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID3v1__Tag, 0, 0, 0},{0, 0, 0, 0}};
@@ -5158,8 +5150,6 @@ static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_ConstIterator,
-  _swigc__p_Iterator,
   _swigc__p_TagLib__APE__Tag,
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__ID3v1__Tag,

@@ -1816,32 +1816,28 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_ConstIterator swig_types[0]
-#define SWIGTYPE_p_Iterator swig_types[1]
-#define SWIGTYPE_p_TagLib__AudioProperties swig_types[2]
-#define SWIGTYPE_p_TagLib__AudioProperties__ReadStyle swig_types[3]
-#define SWIGTYPE_p_TagLib__ByteVector swig_types[4]
-#define SWIGTYPE_p_TagLib__File swig_types[5]
-#define SWIGTYPE_p_TagLib__FileRef swig_types[6]
-#define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[7]
-#define SWIGTYPE_p_TagLib__RefCounter swig_types[8]
-#define SWIGTYPE_p_TagLib__String swig_types[9]
-#define SWIGTYPE_p_TagLib__StringList swig_types[10]
-#define SWIGTYPE_p_TagLib__Tag swig_types[11]
-#define SWIGTYPE_p_char swig_types[12]
-#define SWIGTYPE_p_p_void swig_types[13]
-#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[14]
-#define SWIGTYPE_p_std__vectorT_char_t__const_iterator swig_types[15]
-#define SWIGTYPE_p_std__vectorT_char_t__iterator swig_types[16]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[17]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[18]
-#define SWIGTYPE_p_swig__Iterator swig_types[19]
-#define SWIGTYPE_p_unsigned_char swig_types[20]
-#define SWIGTYPE_p_unsigned_int swig_types[21]
-#define SWIGTYPE_p_unsigned_long swig_types[22]
-#define SWIGTYPE_p_wchar_t swig_types[23]
-static swig_type_info *swig_types[25];
-static swig_module_info swig_module = {swig_types, 24, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__AudioProperties swig_types[0]
+#define SWIGTYPE_p_TagLib__AudioProperties__ReadStyle swig_types[1]
+#define SWIGTYPE_p_TagLib__ByteVector swig_types[2]
+#define SWIGTYPE_p_TagLib__File swig_types[3]
+#define SWIGTYPE_p_TagLib__FileRef swig_types[4]
+#define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[5]
+#define SWIGTYPE_p_TagLib__RefCounter swig_types[6]
+#define SWIGTYPE_p_TagLib__String swig_types[7]
+#define SWIGTYPE_p_TagLib__StringList swig_types[8]
+#define SWIGTYPE_p_TagLib__Tag swig_types[9]
+#define SWIGTYPE_p_char swig_types[10]
+#define SWIGTYPE_p_p_void swig_types[11]
+#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[12]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[13]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[14]
+#define SWIGTYPE_p_swig__Iterator swig_types[15]
+#define SWIGTYPE_p_unsigned_char swig_types[16]
+#define SWIGTYPE_p_unsigned_int swig_types[17]
+#define SWIGTYPE_p_unsigned_long swig_types[18]
+#define SWIGTYPE_p_wchar_t swig_types[19]
+static swig_type_info *swig_types[21];
+static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1900,324 +1896,6 @@ SWIGINTERNINLINE VALUE
 SWIG_From_bool  (bool value)
 {
   return value ? Qtrue : Qfalse;
-}
-
-
-SWIGINTERN VALUE
-SWIG_ruby_failed(void)
-{
-  return Qnil;
-} 
-
-
-/*@SWIG:/usr/share/swig2.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
-{
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  unsigned long *res = (unsigned long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2ULONG(obj) : rb_big2ulong(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_unsigned_SS_long (VALUE obj, unsigned long *val) 
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    unsigned long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2ULONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
-{
-  unsigned long v;
-  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v > UINT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< unsigned int >(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERN swig_type_info*
-SWIG_pchar_descriptor(void)
-{
-  static int init = 0;
-  static swig_type_info* info = 0;
-  if (!init) {
-    info = SWIG_TypeQuery("_p_char");
-    init = 1;
-  }
-  return info;
-}
-
-
-SWIGINTERN int
-SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
-{
-  if (TYPE(obj) == T_STRING) {
-    #if defined(StringValuePtr)
-    char *cstr = StringValuePtr(obj); 
-    #else
-    char *cstr = STR2CSTR(obj);
-    #endif
-    size_t size = RSTRING_LEN(obj) + 1;
-    if (cptr)  {
-      if (alloc) {
-	if (*alloc == SWIG_NEWOBJ) {
-	  *cptr = reinterpret_cast< char* >(memcpy((new char[size]), cstr, sizeof(char)*(size)));
-	} else {
-	  *cptr = cstr;
-	  *alloc = SWIG_OLDOBJ;
-	}
-      }
-    }
-    if (psize) *psize = size;
-    return SWIG_OK;
-  } else {
-    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-    if (pchar_descriptor) {
-      void* vptr = 0;
-      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
-	if (cptr) *cptr = (char *)vptr;
-	if (psize) *psize = vptr ? (strlen((char*)vptr) + 1) : 0;
-	if (alloc) *alloc = SWIG_OLDOBJ;
-	return SWIG_OK;
-      }
-    }
-  }  
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsCharArray(VALUE obj, char *val, size_t size)
-{ 
-  char* cptr = 0; size_t csize = 0; int alloc = SWIG_OLDOBJ;
-  int res = SWIG_AsCharPtrAndSize(obj, &cptr, &csize, &alloc);
-  if (SWIG_IsOK(res)) {
-    if ((csize == size + 1) && cptr && !(cptr[csize-1])) --csize;
-    if (csize <= size) {
-      if (val) {
-	if (csize) memcpy(val, cptr, csize*sizeof(char));
-	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
-      }
-      if (alloc == SWIG_NEWOBJ) {
-	delete[] cptr;
-	res = SWIG_DelNewMask(res);
-      }      
-      return res;
-    }
-    if (alloc == SWIG_NEWOBJ) delete[] cptr;
-  }
-  return SWIG_TypeError;
-}
-
-
-/*@SWIG:/usr/share/swig2.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
-{
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  long *res = (long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_long (VALUE obj, long* val)
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2LONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_char (VALUE obj, char *val)
-{    
-  int res = SWIG_AsCharArray(obj, val, 1);
-  if (!SWIG_IsOK(res)) {
-    long v;
-    res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
-    if (SWIG_IsOK(res)) {
-      if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
-	if (val) *val = static_cast< char >(v);
-      } else {
-	res = SWIG_OverflowError;
-      }
-    }
-  }
-  return res;
-}
-
-
-
-
-
-SWIGINTERNINLINE VALUE 
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > LONG_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_NewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : Qnil;
-    } else {
-      return rb_str_new(carray, static_cast< long >(size));
-    }
-  } else {
-    return Qnil;
-  }
-}
-
-
-SWIGINTERNINLINE VALUE 
-SWIG_FromCharPtr(const char *cptr)
-{ 
-  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_char  (char c) 
-{ 
-  return SWIG_FromCharPtrAndSize(&c,1);
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_int (VALUE obj, int *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< int >(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_long  (unsigned long value)
-{
-  return ULONG2NUM(value); 
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_int  (unsigned int value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_bool (VALUE obj, bool *val)
-{
-  if (obj == Qtrue) {
-    if (val) *val = true;
-    return SWIG_OK;
-  } else if (obj == Qfalse) {
-    if (val) *val = false;
-    return SWIG_OK;
-  } else {
-    int res = 0;
-    if (SWIG_AsVal_int (obj, &res) == SWIG_OK) {    
-      if (val) *val = res ? true : false;
-      return SWIG_OK;
-    }
-  }  
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_short  (short value)
-{    
-  return SWIG_From_long  (value);
-}
-
-
-SWIGINTERNINLINE VALUE 
-SWIG_From_long_SS_long  (long long value)
-{
-  return LL2NUM(value);
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_short (VALUE obj, short *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < SHRT_MIN || v > SHRT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< short >(v);
-    }
-  }  
-  return res;
-}
-
-
-/*@SWIG:/usr/share/swig2.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2LL(VALUE *args)
-{
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  long long *res = (long long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2LL(obj) : rb_big2ll(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_long_SS_long (VALUE obj, long long *val)
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    long long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2LL), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
 }
 
 
@@ -2761,6 +2439,42 @@ namespace swig {
 }
 
 
+SWIGINTERN VALUE
+SWIG_ruby_failed(void)
+{
+  return Qnil;
+} 
+
+
+/*@SWIG:/usr/share/swig2.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
+{
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  unsigned long *res = (unsigned long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2ULONG(obj) : rb_big2ulong(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long (VALUE obj, unsigned long *val) 
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    unsigned long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2ULONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
 SWIGINTERNINLINE int
 SWIG_AsVal_size_t (VALUE obj, size_t *val)
 {
@@ -2768,6 +2482,35 @@ SWIG_AsVal_size_t (VALUE obj, size_t *val)
   int res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
   if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
   return res;
+}
+
+
+/*@SWIG:/usr/share/swig2.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
+{
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long *res = (long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_long (VALUE obj, long* val)
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2LONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
 }
 
 
@@ -2795,6 +2538,189 @@ SWIG_From_ptrdiff_t  (ptrdiff_t value)
 
 
 #include <list>
+
+
+SWIGINTERN swig_type_info*
+SWIG_pchar_descriptor(void)
+{
+  static int init = 0;
+  static swig_type_info* info = 0;
+  if (!init) {
+    info = SWIG_TypeQuery("_p_char");
+    init = 1;
+  }
+  return info;
+}
+
+
+SWIGINTERNINLINE VALUE 
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > LONG_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_NewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : Qnil;
+    } else {
+      return rb_str_new(carray, static_cast< long >(size));
+    }
+  } else {
+    return Qnil;
+  }
+}
+
+
+SWIGINTERNINLINE VALUE 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_int (VALUE obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERN int
+SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
+{
+  if (TYPE(obj) == T_STRING) {
+    #if defined(StringValuePtr)
+    char *cstr = StringValuePtr(obj); 
+    #else
+    char *cstr = STR2CSTR(obj);
+    #endif
+    size_t size = RSTRING_LEN(obj) + 1;
+    if (cptr)  {
+      if (alloc) {
+	if (*alloc == SWIG_NEWOBJ) {
+	  *cptr = reinterpret_cast< char* >(memcpy((new char[size]), cstr, sizeof(char)*(size)));
+	} else {
+	  *cptr = cstr;
+	  *alloc = SWIG_OLDOBJ;
+	}
+      }
+    }
+    if (psize) *psize = size;
+    return SWIG_OK;
+  } else {
+    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+    if (pchar_descriptor) {
+      void* vptr = 0;
+      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
+	if (cptr) *cptr = (char *)vptr;
+	if (psize) *psize = vptr ? (strlen((char*)vptr) + 1) : 0;
+	if (alloc) *alloc = SWIG_OLDOBJ;
+	return SWIG_OK;
+      }
+    }
+  }  
+  return SWIG_TypeError;
+}
+
+
+
+
+
+SWIGINTERN int
+SWIG_AsVal_bool (VALUE obj, bool *val)
+{
+  if (obj == Qtrue) {
+    if (val) *val = true;
+    return SWIG_OK;
+  } else if (obj == Qfalse) {
+    if (val) *val = false;
+    return SWIG_OK;
+  } else {
+    int res = 0;
+    if (SWIG_AsVal_int (obj, &res) == SWIG_OK) {    
+      if (val) *val = res ? true : false;
+      return SWIG_OK;
+    }
+  }  
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_long  (unsigned long value)
+{
+  return ULONG2NUM(value); 
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_int  (unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UINT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< unsigned int >(v);
+    }
+  }  
+  return res;
+}
+
+swig_class SwigClassString;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_String_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_String_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__String);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_String(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (TagLib::String *)new TagLib::String();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_TagLib_String(TagLib::String *arg1) {
+    delete arg1;
+}
 
 swig_class SwigClassRefCounter;
 
@@ -2903,2997 +2829,6 @@ SWIGINTERN void
 free_TagLib_RefCounter(TagLib::RefCounter *arg1) {
     delete arg1;
 }
-
-swig_class SwigClassByteVector;
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::ByteVector *)new TagLib::ByteVector();
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint arg1 ;
-  char arg2 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  char val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::uint >(val1);
-  ecode2 = SWIG_AsVal_char(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "char","TagLib::ByteVector", 2, argv[1] ));
-  } 
-  arg2 = static_cast< char >(val2);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector(arg1,arg2);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint arg1 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::uint >(val1);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector(arg1);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_3(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","TagLib::ByteVector", 1, argv[0] )); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","TagLib::ByteVector", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector((TagLib::ByteVector const &)*arg1);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_4(int argc, VALUE *argv, VALUE self) {
-  char arg1 ;
-  char val1 ;
-  int ecode1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_char(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "char","TagLib::ByteVector", 1, argv[0] ));
-  } 
-  arg1 = static_cast< char >(val1);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector(arg1);
-  DATA_PTR(self) = result;
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_5(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  TagLib::uint arg2 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::ByteVector", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector", 2, argv[1] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector((char const *)arg1,arg2);
-  DATA_PTR(self) = result;
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return self;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_ByteVector_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_ByteVector_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ByteVector);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_ByteVector__SWIG_6(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::ByteVector", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = (TagLib::ByteVector *)new TagLib::ByteVector((char const *)arg1);
-  DATA_PTR(self) = result;
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return self;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_new_ByteVector(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 0) {
-    return _wrap_new_ByteVector__SWIG_0(nargs, args, self);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_ByteVector__SWIG_3(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_ByteVector__SWIG_2(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_char(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_ByteVector__SWIG_4(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_ByteVector__SWIG_6(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_char(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_ByteVector__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_ByteVector__SWIG_5(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.new", 
-    "    ByteVector.new()\n"
-    "    ByteVector.new(TagLib::uint size, char value)\n"
-    "    ByteVector.new(TagLib::uint size)\n"
-    "    ByteVector.new(TagLib::ByteVector const &v)\n"
-    "    ByteVector.new(char c)\n"
-    "    ByteVector.new(char const *data, TagLib::uint length)\n"
-    "    ByteVector.new(char const *data)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_TagLib_ByteVector(TagLib::ByteVector *arg1) {
-    delete arg1;
-}
-
-SWIGINTERN VALUE
-_wrap_ByteVector_set_data__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  char *arg2 = (char *) 0 ;
-  TagLib::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","setData", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "char const *","setData", 2, argv[0] ));
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","setData", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  result = (TagLib::ByteVector *) &(arg1)->setData((char const *)arg2,arg3);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return vresult;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_set_data__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","setData", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "char const *","setData", 2, argv[0] ));
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  result = (TagLib::ByteVector *) &(arg1)->setData((char const *)arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return vresult;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_set_data(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVector_set_data__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_set_data__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "ByteVector.set_data", 
-    "    TagLib::ByteVector & ByteVector.set_data(char const *data, TagLib::uint length)\n"
-    "    TagLib::ByteVector & ByteVector.set_data(char const *data)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_data__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  char *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","data", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (char *)(arg1)->data();
-  vresult = SWIG_FromCharPtr((const char *)result);
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_data__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  char *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","data", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (char *)((TagLib::ByteVector const *)arg1)->data();
-  vresult = SWIG_FromCharPtr((const char *)result);
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_data(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 2) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_data__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_data__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.data", 
-    "    char const * ByteVector.data()\n"
-    "    char const * ByteVector.data()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_mid__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::uint arg2 ;
-  TagLib::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","mid", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","mid", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","mid", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  result = ((TagLib::ByteVector const *)arg1)->mid(arg2,arg3);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_mid__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","mid", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","mid", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  result = ((TagLib::ByteVector const *)arg1)->mid(arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_mid(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_mid__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_mid__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "ByteVector.mid", 
-    "    TagLib::ByteVector ByteVector.mid(TagLib::uint index, TagLib::uint length)\n"
-    "    TagLib::ByteVector ByteVector.mid(TagLib::uint index)\n");
-  
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.at
-
-  call-seq:
-    at(index) -> char
-
-Return element at a certain index.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector_at(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  char result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","at", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","at", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  result = (char)((TagLib::ByteVector const *)arg1)->at(arg2);
-  vresult = SWIG_From_char(static_cast< char >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.find
-
-  call-seq:
-    find(pattern, offset=0, byteAlign=1) -> int
-    find(pattern, offset=0) -> int
-    find(pattern) -> int
-
-Find an element in the class.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","find", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","find", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  ecode4 = SWIG_AsVal_int(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int","find", 4, argv[2] ));
-  } 
-  arg4 = static_cast< int >(val4);
-  result = (int)((TagLib::ByteVector const *)arg1)->find((TagLib::ByteVector const &)*arg2,arg3,arg4);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","find", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","find", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  result = (int)((TagLib::ByteVector const *)arg1)->find((TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","find", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (int)((TagLib::ByteVector const *)arg1)->find((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_find(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[5];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 5) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVector_find__SWIG_2(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_find__SWIG_1(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_ByteVector_find__SWIG_0(nargs, args, self);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 5, "ByteVector.find", 
-    "    int ByteVector.find(TagLib::ByteVector const &pattern, TagLib::uint offset, int byteAlign)\n"
-    "    int ByteVector.find(TagLib::ByteVector const &pattern, TagLib::uint offset)\n"
-    "    int ByteVector.find(TagLib::ByteVector const &pattern)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","rfind", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","rfind", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  ecode4 = SWIG_AsVal_int(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int","rfind", 4, argv[2] ));
-  } 
-  arg4 = static_cast< int >(val4);
-  result = (int)((TagLib::ByteVector const *)arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,arg4);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","rfind", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","rfind", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  result = (int)((TagLib::ByteVector const *)arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","rfind", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (int)((TagLib::ByteVector const *)arg1)->rfind((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_rfind(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[5];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 5) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVector_rfind__SWIG_2(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_rfind__SWIG_1(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_ByteVector_rfind__SWIG_0(nargs, args, self);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 5, "ByteVector.rfind", 
-    "    int ByteVector.rfind(TagLib::ByteVector const &pattern, TagLib::uint offset, int byteAlign)\n"
-    "    int ByteVector.rfind(TagLib::ByteVector const &pattern, TagLib::uint offset)\n"
-    "    int ByteVector.rfind(TagLib::ByteVector const &pattern)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_contains_at__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  TagLib::uint arg4 ;
-  TagLib::uint arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  unsigned int val5 ;
-  int ecode5 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 4) || (argc > 4)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","containsAt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","containsAt", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","containsAt", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 4, argv[2] ));
-  } 
-  arg4 = static_cast< TagLib::uint >(val4);
-  ecode5 = SWIG_AsVal_unsigned_SS_int(argv[3], &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 5, argv[3] ));
-  } 
-  arg5 = static_cast< TagLib::uint >(val5);
-  result = (bool)((TagLib::ByteVector const *)arg1)->containsAt((TagLib::ByteVector const &)*arg2,arg3,arg4,arg5);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_contains_at__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  TagLib::uint arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  unsigned int val4 ;
-  int ecode4 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","containsAt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","containsAt", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","containsAt", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_int(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 4, argv[2] ));
-  } 
-  arg4 = static_cast< TagLib::uint >(val4);
-  result = (bool)((TagLib::ByteVector const *)arg1)->containsAt((TagLib::ByteVector const &)*arg2,arg3,arg4);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_contains_at__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  unsigned int val3 ;
-  int ecode3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","containsAt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","containsAt", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","containsAt", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","containsAt", 3, argv[1] ));
-  } 
-  arg3 = static_cast< TagLib::uint >(val3);
-  result = (bool)((TagLib::ByteVector const *)arg1)->containsAt((TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_contains_at(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[6];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 6) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_contains_at__SWIG_2(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_ByteVector_contains_at__SWIG_1(nargs, args, self);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              return _wrap_ByteVector_contains_at__SWIG_0(nargs, args, self);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 6, "ByteVector.contains_at", 
-    "    bool ByteVector.contains_at(TagLib::ByteVector const &pattern, TagLib::uint offset, TagLib::uint patternOffset, TagLib::uint patternLength)\n"
-    "    bool ByteVector.contains_at(TagLib::ByteVector const &pattern, TagLib::uint offset, TagLib::uint patternOffset)\n"
-    "    bool ByteVector.contains_at(TagLib::ByteVector const &pattern, TagLib::uint offset)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_starts_with(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","startsWith", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","startsWith", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","startsWith", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->startsWith((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_ends_with(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","endsWith", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","endsWith", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","endsWith", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->endsWith((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_replace(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::ByteVector *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","replace", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","replace", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","replace", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","replace", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","replace", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< TagLib::ByteVector * >(argp3);
-  result = (TagLib::ByteVector *) &(arg1)->replace((TagLib::ByteVector const &)*arg2,(TagLib::ByteVector const &)*arg3);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_ends_with_partial_match(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","endsWithPartialMatch", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","endsWithPartialMatch", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","endsWithPartialMatch", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (int)((TagLib::ByteVector const *)arg1)->endsWithPartialMatch((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_append(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","append", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","append", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","append", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (TagLib::ByteVector *) &(arg1)->append((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_clear(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","clear", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (TagLib::ByteVector *) &(arg1)->clear();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.size
-
-  call-seq:
-    size -> uint
-
-Size or Length of the ByteVector.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector_size(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","size", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (TagLib::uint)((TagLib::ByteVector const *)arg1)->size();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_resize__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::uint arg2 ;
-  char arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  char val3 ;
-  int ecode3 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","resize", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","resize", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  ecode3 = SWIG_AsVal_char(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "char","resize", 3, argv[1] ));
-  } 
-  arg3 = static_cast< char >(val3);
-  result = (TagLib::ByteVector *) &(arg1)->resize(arg2,arg3);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_resize__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::uint arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","resize", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","resize", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  result = (TagLib::ByteVector *) &(arg1)->resize(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_resize(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_resize__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_char(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVector_resize__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "ByteVector.resize", 
-    "    TagLib::ByteVector & ByteVector.resize(TagLib::uint size, char padding)\n"
-    "    TagLib::ByteVector & ByteVector.resize(TagLib::uint size)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_begin__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector::Iterator result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","begin", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (arg1)->begin();
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector::Iterator(static_cast< const TagLib::ByteVector::Iterator& >(result))), SWIGTYPE_p_std__vectorT_char_t__iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_begin__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector::ConstIterator result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","begin", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = ((TagLib::ByteVector const *)arg1)->begin();
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector::ConstIterator(static_cast< const TagLib::ByteVector::ConstIterator& >(result))), SWIGTYPE_p_std__vectorT_char_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_begin(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 2) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_begin__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_begin__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.begin", 
-    "    TagLib::ByteVector::ConstIterator ByteVector.begin()\n"
-    "    TagLib::ByteVector::ConstIterator ByteVector.begin()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_end__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector::Iterator result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector *","end", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (arg1)->end();
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector::Iterator(static_cast< const TagLib::ByteVector::Iterator& >(result))), SWIGTYPE_p_std__vectorT_char_t__iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_end__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector::ConstIterator result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","end", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = ((TagLib::ByteVector const *)arg1)->end();
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector::ConstIterator(static_cast< const TagLib::ByteVector::ConstIterator& >(result))), SWIGTYPE_p_std__vectorT_char_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_end(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 2) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_end__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_end__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.end", 
-    "    TagLib::ByteVector::ConstIterator ByteVector.end()\n"
-    "    TagLib::ByteVector::ConstIterator ByteVector.end()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_is_null(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","isNull", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (bool)((TagLib::ByteVector const *)arg1)->isNull();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_is_empty(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","isEmpty", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (bool)((TagLib::ByteVector const *)arg1)->isEmpty();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_checksum(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","checksum", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (TagLib::uint)((TagLib::ByteVector const *)arg1)->checksum();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_uint__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toUInt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","toUInt", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::uint)((TagLib::ByteVector const *)arg1)->toUInt(arg2);
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_uint__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toUInt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (TagLib::uint)((TagLib::ByteVector const *)arg1)->toUInt();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_to_uint(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_to_uint__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_to_uint__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ByteVector.to_uint", 
-    "    TagLib::uint ByteVector.to_uint(bool mostSignificantByteFirst)\n"
-    "    TagLib::uint ByteVector.to_uint()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_short__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  short result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toShort", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","toShort", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (short)((TagLib::ByteVector const *)arg1)->toShort(arg2);
-  vresult = SWIG_From_short(static_cast< short >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_short__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  short result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toShort", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (short)((TagLib::ByteVector const *)arg1)->toShort();
-  vresult = SWIG_From_short(static_cast< short >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_to_short(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_to_short__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_to_short__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ByteVector.to_short", 
-    "    short ByteVector.to_short(bool mostSignificantByteFirst)\n"
-    "    short ByteVector.to_short()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_long_long__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  long long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toLongLong", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","toLongLong", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (long long)((TagLib::ByteVector const *)arg1)->toLongLong(arg2);
-  vresult = SWIG_From_long_SS_long(static_cast< long long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_to_long_long__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  long long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","toLongLong", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  result = (long long)((TagLib::ByteVector const *)arg1)->toLongLong();
-  vresult = SWIG_From_long_SS_long(static_cast< long long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_to_long_long(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_to_long_long__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_to_long_long__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ByteVector.to_long_long", 
-    "    long long ByteVector.to_long_long(bool mostSignificantByteFirst)\n"
-    "    long long ByteVector.to_long_long()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_uint__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint arg1 ;
-  bool arg2 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector::fromUInt", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::uint >(val1);
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::ByteVector::fromUInt", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = TagLib::ByteVector::fromUInt(arg1,arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_uint__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint arg1 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector::fromUInt", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::uint >(val1);
-  result = TagLib::ByteVector::fromUInt(arg1);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_from_uint(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_ByteVector_from_uint__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_from_uint__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.from_uint", 
-    "    TagLib::ByteVector ByteVector.from_uint(TagLib::uint value, bool mostSignificantByteFirst)\n"
-    "    TagLib::ByteVector ByteVector.from_uint(TagLib::uint value)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_short__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  short arg1 ;
-  bool arg2 ;
-  short val1 ;
-  int ecode1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_short(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "short","TagLib::ByteVector::fromShort", 1, argv[0] ));
-  } 
-  arg1 = static_cast< short >(val1);
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::ByteVector::fromShort", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = TagLib::ByteVector::fromShort(arg1,arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_short__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  short arg1 ;
-  short val1 ;
-  int ecode1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_short(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "short","TagLib::ByteVector::fromShort", 1, argv[0] ));
-  } 
-  arg1 = static_cast< short >(val1);
-  result = TagLib::ByteVector::fromShort(arg1);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_from_short(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_short(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_ByteVector_from_short__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_short(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_from_short__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.from_short", 
-    "    TagLib::ByteVector ByteVector.from_short(short value, bool mostSignificantByteFirst)\n"
-    "    TagLib::ByteVector ByteVector.from_short(short value)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_long_long__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  long long arg1 ;
-  bool arg2 ;
-  long long val1 ;
-  int ecode1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_long_SS_long(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "long long","TagLib::ByteVector::fromLongLong", 1, argv[0] ));
-  } 
-  arg1 = static_cast< long long >(val1);
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::ByteVector::fromLongLong", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = TagLib::ByteVector::fromLongLong(arg1,arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_long_long__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  long long arg1 ;
-  long long val1 ;
-  int ecode1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_long_SS_long(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "long long","TagLib::ByteVector::fromLongLong", 1, argv[0] ));
-  } 
-  arg1 = static_cast< long long >(val1);
-  result = TagLib::ByteVector::fromLongLong(arg1);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_from_long_long(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_long_SS_long(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_ByteVector_from_long_long__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_long_SS_long(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_from_long_long__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.from_long_long", 
-    "    TagLib::ByteVector ByteVector.from_long_long(long long value, bool mostSignificantByteFirst)\n"
-    "    TagLib::ByteVector ByteVector.from_long_long(long long value)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_cstring__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  TagLib::uint arg2 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  unsigned int val2 ;
-  int ecode2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::ByteVector::fromCString", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ByteVector::fromCString", 2, argv[1] ));
-  } 
-  arg2 = static_cast< TagLib::uint >(val2);
-  result = TagLib::ByteVector::fromCString((char const *)arg1,arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return vresult;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_from_cstring__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::ByteVector::fromCString", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = TagLib::ByteVector::fromCString((char const *)arg1);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return vresult;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector_from_cstring(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVector_from_cstring__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ByteVector_from_cstring__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ByteVector.from_cstring", 
-    "    TagLib::ByteVector ByteVector.from_cstring(char const *s, TagLib::uint length)\n"
-    "    TagLib::ByteVector ByteVector.from_cstring(char const *s)\n");
-  
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.==
-
-  call-seq:
-    ==(v) -> bool
-    ==(s) -> bool
-
-Equality comparison operator.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector___eq____SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","operator ==", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","operator ==", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","operator ==", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->operator ==((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector___eq____SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","operator ==", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(argv[0], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "char const *","operator ==", 2, argv[0] ));
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->operator ==((char const *)arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return vresult;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVector___eq__(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVector___eq____SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVector___eq____SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ByteVector.__eq__", 
-    "    bool ByteVector.__eq__(TagLib::ByteVector const &v)\n"
-    "    bool ByteVector.__eq__(char const *s)\n");
-  
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.<
-
-  call-seq:
-    <(v) -> bool
-
-Lower than comparison operator.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector___lt__(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","operator <", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","operator <", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","operator <", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->operator <((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.>
-
-  call-seq:
-    >(v) -> bool
-
-Higher than comparison operator.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector___gt__(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","operator >", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","operator >", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","operator >", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = (bool)((TagLib::ByteVector const *)arg1)->operator >((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::ByteVector.+
-
-  call-seq:
-    +(v) -> ByteVector
-
-Add operator.
-*/
-SWIGINTERN VALUE
-_wrap_ByteVector___add__(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = (TagLib::ByteVector *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVector, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVector const *","operator +", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVector * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","operator +", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","operator +", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
-  result = ((TagLib::ByteVector const *)arg1)->operator +((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVector(static_cast< const TagLib::ByteVector& >(result))), SWIGTYPE_p_TagLib__ByteVector, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_null_get(VALUE self) {
-  VALUE _val;
-  
-  _val = SWIG_NewPointerObj(SWIG_as_voidptr(&TagLib::ByteVector::null), SWIGTYPE_p_TagLib__ByteVector,  0 );
-  return _val;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVector_null_set(VALUE self, VALUE _val) {
-  {
-    void *argp = 0;
-    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_TagLib__ByteVector,  0 );
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""TagLib::ByteVector::null""' of type '""TagLib::ByteVector""'");
-    }
-    if (!argp) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""TagLib::ByteVector::null""' of type '""TagLib::ByteVector""'");
-    } else {
-      TagLib::ByteVector::null = *(reinterpret_cast< TagLib::ByteVector * >(argp));
-    }
-  }
-  return _val;
-fail:
-  return Qnil;
-}
-
 
 swig_class SwigClassGCVALUE;
 
@@ -7288,8 +4223,6 @@ _wrap_File_write_block(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -7299,14 +4232,9 @@ _wrap_File_write_block(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","writeBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","writeBlock", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","writeBlock", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   (arg1)->writeBlock((TagLib::ByteVector const &)*arg2);
   return Qnil;
 fail:
@@ -7319,7 +4247,7 @@ fail:
   Document-method: TagLib::File.find
 
   call-seq:
-    find(pattern, fromOffset=0, before=null) -> long
+    find(pattern, fromOffset=0, before=ByteVector::null) -> long
     find(pattern, fromOffset=0) -> long
     find(pattern) -> long
 
@@ -7333,12 +4261,8 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long val3 ;
   int ecode3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
   long result;
   VALUE vresult = Qnil;
   
@@ -7350,27 +4274,17 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","find", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","find", 3, argv[1] ));
   } 
   arg3 = static_cast< long >(val3);
-  res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 4, argv[2] )); 
+  {
+    arg4 = new TagLib::ByteVector(StringValuePtr(argv[2]), NUM2UINT(rb_str_length(argv[2])));
   }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 4, argv[2])); 
-  }
-  arg4 = reinterpret_cast< TagLib::ByteVector * >(argp4);
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
   vresult = SWIG_From_long(static_cast< long >(result));
   return vresult;
@@ -7386,8 +4300,6 @@ _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
   long arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long val3 ;
   int ecode3 = 0 ;
   long result;
@@ -7401,14 +4313,9 @@ _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","find", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","find", 3, argv[1] ));
@@ -7428,8 +4335,6 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long result;
   VALUE vresult = Qnil;
   
@@ -7441,14 +4346,9 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","find", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","find", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","find", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_From_long(static_cast< long >(result));
   return vresult;
@@ -7543,7 +4443,7 @@ fail:
   Document-method: TagLib::File.rfind
 
   call-seq:
-    rfind(pattern, fromOffset=0, before=null) -> long
+    rfind(pattern, fromOffset=0, before=ByteVector::null) -> long
     rfind(pattern, fromOffset=0) -> long
     rfind(pattern) -> long
 
@@ -7557,12 +4457,8 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long val3 ;
   int ecode3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
   long result;
   VALUE vresult = Qnil;
   
@@ -7574,27 +4470,17 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","rfind", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","rfind", 3, argv[1] ));
   } 
   arg3 = static_cast< long >(val3);
-  res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 4, argv[2] )); 
+  {
+    arg4 = new TagLib::ByteVector(StringValuePtr(argv[2]), NUM2UINT(rb_str_length(argv[2])));
   }
-  if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 4, argv[2])); 
-  }
-  arg4 = reinterpret_cast< TagLib::ByteVector * >(argp4);
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
   vresult = SWIG_From_long(static_cast< long >(result));
   return vresult;
@@ -7610,8 +4496,6 @@ _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
   long arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long val3 ;
   int ecode3 = 0 ;
   long result;
@@ -7625,14 +4509,9 @@ _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","rfind", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","rfind", 3, argv[1] ));
@@ -7652,8 +4531,6 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   long result;
   VALUE vresult = Qnil;
   
@@ -7665,14 +4542,9 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","rfind", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","rfind", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","rfind", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_From_long(static_cast< long >(result));
   return vresult;
@@ -7781,8 +4653,6 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::ulong arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   unsigned long val3 ;
   int ecode3 = 0 ;
   unsigned long val4 ;
@@ -7796,14 +4666,9 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","insert", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","insert", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","insert", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::ulong","insert", 3, argv[1] ));
@@ -7828,8 +4693,6 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ulong arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   unsigned long val3 ;
   int ecode3 = 0 ;
   
@@ -7841,14 +4704,9 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","insert", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","insert", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","insert", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::ulong","insert", 3, argv[1] ));
@@ -7867,8 +4725,6 @@ _wrap_File_insert__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -7878,14 +4734,9 @@ _wrap_File_insert__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","insert", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ByteVector,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ByteVector const &","insert", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVector const &","insert", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::ByteVector * >(argp2);
   (arg1)->insert((TagLib::ByteVector const &)*arg2);
   return Qnil;
 fail:
@@ -9149,7 +6000,7 @@ _wrap_Tag_title(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->title();
   {
-    vresult = rb_str_new2((&result)->to8Bit(true).c_str());
+    vresult = rb_tainted_str_new2((&result)->toCString(true));
   }
   return vresult;
 fail:
@@ -9175,7 +6026,7 @@ _wrap_Tag_artist(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->artist();
   {
-    vresult = rb_str_new2((&result)->to8Bit(true).c_str());
+    vresult = rb_tainted_str_new2((&result)->toCString(true));
   }
   return vresult;
 fail:
@@ -9201,7 +6052,7 @@ _wrap_Tag_album(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->album();
   {
-    vresult = rb_str_new2((&result)->to8Bit(true).c_str());
+    vresult = rb_tainted_str_new2((&result)->toCString(true));
   }
   return vresult;
 fail:
@@ -9227,7 +6078,7 @@ _wrap_Tag_comment(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->comment();
   {
-    vresult = rb_str_new2((&result)->to8Bit(true).c_str());
+    vresult = rb_tainted_str_new2((&result)->toCString(true));
   }
   return vresult;
 fail:
@@ -9253,7 +6104,7 @@ _wrap_Tag_genre(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->genre();
   {
-    vresult = rb_str_new2((&result)->to8Bit(true).c_str());
+    vresult = rb_tainted_str_new2((&result)->toCString(true));
   }
   return vresult;
 fail:
@@ -9310,13 +6161,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_title(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9326,14 +6175,9 @@ _wrap_Tag_set_title(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Tag *","setTitle", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__String,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::String const &","setTitle", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","setTitle", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::String * >(argp2);
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
 fail:
@@ -9342,13 +6186,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_artist(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9358,14 +6200,9 @@ _wrap_Tag_set_artist(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Tag *","setArtist", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__String,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::String const &","setArtist", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","setArtist", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::String * >(argp2);
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
 fail:
@@ -9374,13 +6211,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_album(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9390,14 +6225,9 @@ _wrap_Tag_set_album(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Tag *","setAlbum", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__String,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::String const &","setAlbum", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","setAlbum", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::String * >(argp2);
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
 fail:
@@ -9406,13 +6236,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_comment(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9422,14 +6250,9 @@ _wrap_Tag_set_comment(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Tag *","setComment", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__String,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::String const &","setComment", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","setComment", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::String * >(argp2);
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
 fail:
@@ -9438,13 +6261,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_genre(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9454,14 +6275,9 @@ _wrap_Tag_set_genre(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Tag *","setGenre", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__String,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::String const &","setGenre", 2, argv[0] )); 
+  {
+    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","setGenre", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::String * >(argp2);
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;
 fail:
@@ -9470,7 +6286,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_year(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_yeare___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::uint arg2 ;
   void *argp1 = 0 ;
@@ -9499,7 +6315,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Tag_set_track(int argc, VALUE *argv, VALUE self) {
+_wrap_Tag_tracke___(int argc, VALUE *argv, VALUE self) {
   TagLib::Tag *arg1 = (TagLib::Tag *) 0 ;
   TagLib::uint arg2 ;
   void *argp1 = 0 ;
@@ -9677,8 +6493,6 @@ fail:
 static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
 }
-static swig_type_info _swigt__p_ConstIterator = {"_p_ConstIterator", "ConstIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Iterator = {"_p_Iterator", "Iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__AudioProperties__ReadStyle = {"_p_TagLib__AudioProperties__ReadStyle", "TagLib::AudioProperties::ReadStyle *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ByteVector = {"_p_TagLib__ByteVector", "TagLib::ByteVector *", 0, 0, (void*)0, 0};
@@ -9692,8 +6506,6 @@ static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *"
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **|VALUE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__basic_stringT_wchar_t_t = {"_p_std__basic_stringT_wchar_t_t", "std::basic_string< wchar_t > *|TagLib::wstring *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_char_t__const_iterator = {"_p_std__vectorT_char_t__const_iterator", "std::vector< char >::const_iterator *|TagLib::ByteVector::ConstIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_char_t__iterator = {"_p_std__vectorT_char_t__iterator", "std::vector< char >::iterator *|TagLib::ByteVector::Iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__ConstIterator = {"_p_swig__ConstIterator", "swig::ConstIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__GC_VALUE = {"_p_swig__GC_VALUE", "swig::GC_VALUE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__Iterator = {"_p_swig__Iterator", "swig::Iterator *", 0, 0, (void*)0, 0};
@@ -9703,8 +6515,6 @@ static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ul
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_ConstIterator,
-  &_swigt__p_Iterator,
   &_swigt__p_TagLib__AudioProperties,
   &_swigt__p_TagLib__AudioProperties__ReadStyle,
   &_swigt__p_TagLib__ByteVector,
@@ -9718,8 +6528,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
   &_swigt__p_p_void,
   &_swigt__p_std__basic_stringT_wchar_t_t,
-  &_swigt__p_std__vectorT_char_t__const_iterator,
-  &_swigt__p_std__vectorT_char_t__iterator,
   &_swigt__p_swig__ConstIterator,
   &_swigt__p_swig__GC_VALUE,
   &_swigt__p_swig__Iterator,
@@ -9729,8 +6537,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
-static swig_cast_info _swigc__p_ConstIterator[] = {  {&_swigt__p_ConstIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Iterator[] = {  {&_swigt__p_Iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__AudioProperties__ReadStyle[] = {  {&_swigt__p_TagLib__AudioProperties__ReadStyle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ByteVector[] = {  {&_swigt__p_TagLib__ByteVector, 0, 0, 0},{0, 0, 0, 0}};
@@ -9744,8 +6550,6 @@ static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__basic_stringT_wchar_t_t[] = {  {&_swigt__p_std__basic_stringT_wchar_t_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_char_t__const_iterator[] = {  {&_swigt__p_std__vectorT_char_t__const_iterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_char_t__iterator[] = {  {&_swigt__p_std__vectorT_char_t__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__ConstIterator[] = {  {&_swigt__p_swig__ConstIterator, 0, 0, 0},  {&_swigt__p_swig__Iterator, _p_swig__IteratorTo_p_swig__ConstIterator, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__GC_VALUE[] = {  {&_swigt__p_swig__GC_VALUE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__Iterator[] = {  {&_swigt__p_swig__Iterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -9755,8 +6559,6 @@ static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_ConstIterator,
-  _swigc__p_Iterator,
   _swigc__p_TagLib__AudioProperties,
   _swigc__p_TagLib__AudioProperties__ReadStyle,
   _swigc__p_TagLib__ByteVector,
@@ -9770,8 +6572,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
   _swigc__p_p_void,
   _swigc__p_std__basic_stringT_wchar_t_t,
-  _swigc__p_std__vectorT_char_t__const_iterator,
-  _swigc__p_std__vectorT_char_t__iterator,
   _swigc__p_swig__ConstIterator,
   _swigc__p_swig__GC_VALUE,
   _swigc__p_swig__Iterator,
@@ -10039,6 +6839,19 @@ SWIGEXPORT void Init_taglib_base(void) {
   }
   
   SWIG_RubyInitializeTrackings();
+  
+  SwigClassString.klass = rb_define_class_under(mTagLib, "String", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__String, (void *) &SwigClassString);
+  rb_define_alloc_func(SwigClassString.klass, _wrap_String_allocate);
+  rb_define_method(SwigClassString.klass, "initialize", VALUEFUNC(_wrap_new_String), -1);
+  rb_define_const(SwigClassString.klass, "Latin1", SWIG_From_int(static_cast< int >(TagLib::String::Latin1)));
+  rb_define_const(SwigClassString.klass, "UTF16", SWIG_From_int(static_cast< int >(TagLib::String::UTF16)));
+  rb_define_const(SwigClassString.klass, "UTF16BE", SWIG_From_int(static_cast< int >(TagLib::String::UTF16BE)));
+  rb_define_const(SwigClassString.klass, "UTF8", SWIG_From_int(static_cast< int >(TagLib::String::UTF8)));
+  rb_define_const(SwigClassString.klass, "UTF16LE", SWIG_From_int(static_cast< int >(TagLib::String::UTF16LE)));
+  SwigClassString.mark = 0;
+  SwigClassString.destroy = (void (*)(void *)) free_TagLib_String;
+  SwigClassString.trackObjects = 0;
   rb_define_const(mTagLib, "TAGLIB_MAJOR_VERSION", SWIG_From_int(static_cast< int >(1)));
   rb_define_const(mTagLib, "TAGLIB_MINOR_VERSION", SWIG_From_int(static_cast< int >(6)));
   rb_define_const(mTagLib, "TAGLIB_PATCH_VERSION", SWIG_From_int(static_cast< int >(3)));
@@ -10053,47 +6866,6 @@ SWIGEXPORT void Init_taglib_base(void) {
   SwigClassRefCounter.mark = 0;
   SwigClassRefCounter.destroy = (void (*)(void *)) free_TagLib_RefCounter;
   SwigClassRefCounter.trackObjects = 0;
-  
-  SwigClassByteVector.klass = rb_define_class_under(mTagLib, "ByteVector", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ByteVector, (void *) &SwigClassByteVector);
-  rb_define_alloc_func(SwigClassByteVector.klass, _wrap_ByteVector_allocate);
-  rb_define_method(SwigClassByteVector.klass, "initialize", VALUEFUNC(_wrap_new_ByteVector), -1);
-  rb_define_method(SwigClassByteVector.klass, "set_data", VALUEFUNC(_wrap_ByteVector_set_data), -1);
-  rb_define_method(SwigClassByteVector.klass, "data", VALUEFUNC(_wrap_ByteVector_data), -1);
-  rb_define_method(SwigClassByteVector.klass, "mid", VALUEFUNC(_wrap_ByteVector_mid), -1);
-  rb_define_method(SwigClassByteVector.klass, "at", VALUEFUNC(_wrap_ByteVector_at), -1);
-  rb_define_method(SwigClassByteVector.klass, "find", VALUEFUNC(_wrap_ByteVector_find), -1);
-  rb_define_method(SwigClassByteVector.klass, "rfind", VALUEFUNC(_wrap_ByteVector_rfind), -1);
-  rb_define_method(SwigClassByteVector.klass, "contains_at", VALUEFUNC(_wrap_ByteVector_contains_at), -1);
-  rb_define_method(SwigClassByteVector.klass, "starts_with", VALUEFUNC(_wrap_ByteVector_starts_with), -1);
-  rb_define_method(SwigClassByteVector.klass, "ends_with", VALUEFUNC(_wrap_ByteVector_ends_with), -1);
-  rb_define_method(SwigClassByteVector.klass, "replace", VALUEFUNC(_wrap_ByteVector_replace), -1);
-  rb_define_method(SwigClassByteVector.klass, "ends_with_partial_match", VALUEFUNC(_wrap_ByteVector_ends_with_partial_match), -1);
-  rb_define_method(SwigClassByteVector.klass, "append", VALUEFUNC(_wrap_ByteVector_append), -1);
-  rb_define_method(SwigClassByteVector.klass, "clear", VALUEFUNC(_wrap_ByteVector_clear), -1);
-  rb_define_method(SwigClassByteVector.klass, "size", VALUEFUNC(_wrap_ByteVector_size), -1);
-  rb_define_method(SwigClassByteVector.klass, "resize", VALUEFUNC(_wrap_ByteVector_resize), -1);
-  rb_define_method(SwigClassByteVector.klass, "begin", VALUEFUNC(_wrap_ByteVector_begin), -1);
-  rb_define_method(SwigClassByteVector.klass, "end", VALUEFUNC(_wrap_ByteVector_end), -1);
-  rb_define_method(SwigClassByteVector.klass, "is_null", VALUEFUNC(_wrap_ByteVector_is_null), -1);
-  rb_define_method(SwigClassByteVector.klass, "is_empty", VALUEFUNC(_wrap_ByteVector_is_empty), -1);
-  rb_define_method(SwigClassByteVector.klass, "checksum", VALUEFUNC(_wrap_ByteVector_checksum), -1);
-  rb_define_method(SwigClassByteVector.klass, "to_uint", VALUEFUNC(_wrap_ByteVector_to_uint), -1);
-  rb_define_method(SwigClassByteVector.klass, "to_short", VALUEFUNC(_wrap_ByteVector_to_short), -1);
-  rb_define_method(SwigClassByteVector.klass, "to_long_long", VALUEFUNC(_wrap_ByteVector_to_long_long), -1);
-  rb_define_singleton_method(SwigClassByteVector.klass, "from_uint", VALUEFUNC(_wrap_ByteVector_from_uint), -1);
-  rb_define_singleton_method(SwigClassByteVector.klass, "from_short", VALUEFUNC(_wrap_ByteVector_from_short), -1);
-  rb_define_singleton_method(SwigClassByteVector.klass, "from_long_long", VALUEFUNC(_wrap_ByteVector_from_long_long), -1);
-  rb_define_singleton_method(SwigClassByteVector.klass, "from_cstring", VALUEFUNC(_wrap_ByteVector_from_cstring), -1);
-  rb_define_method(SwigClassByteVector.klass, "==", VALUEFUNC(_wrap_ByteVector___eq__), -1);
-  rb_define_method(SwigClassByteVector.klass, "<", VALUEFUNC(_wrap_ByteVector___lt__), -1);
-  rb_define_method(SwigClassByteVector.klass, ">", VALUEFUNC(_wrap_ByteVector___gt__), -1);
-  rb_define_method(SwigClassByteVector.klass, "+", VALUEFUNC(_wrap_ByteVector___add__), -1);
-  rb_define_singleton_method(SwigClassByteVector.klass, "null", VALUEFUNC(_wrap_ByteVector_null_get), 0);
-  rb_define_singleton_method(SwigClassByteVector.klass, "null=", VALUEFUNC(_wrap_ByteVector_null_set), 1);
-  SwigClassByteVector.mark = 0;
-  SwigClassByteVector.destroy = (void (*)(void *)) free_TagLib_ByteVector;
-  SwigClassByteVector.trackObjects = 0;
   
   SwigClassGCVALUE.klass = rb_define_class_under(mTagLib, "GCVALUE", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGCVALUE);
@@ -10194,13 +6966,13 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassTag.klass, "genre", VALUEFUNC(_wrap_Tag_genre), -1);
   rb_define_method(SwigClassTag.klass, "year", VALUEFUNC(_wrap_Tag_year), -1);
   rb_define_method(SwigClassTag.klass, "track", VALUEFUNC(_wrap_Tag_track), -1);
-  rb_define_method(SwigClassTag.klass, "set_title", VALUEFUNC(_wrap_Tag_set_title), -1);
-  rb_define_method(SwigClassTag.klass, "set_artist", VALUEFUNC(_wrap_Tag_set_artist), -1);
-  rb_define_method(SwigClassTag.klass, "set_album", VALUEFUNC(_wrap_Tag_set_album), -1);
-  rb_define_method(SwigClassTag.klass, "set_comment", VALUEFUNC(_wrap_Tag_set_comment), -1);
-  rb_define_method(SwigClassTag.klass, "set_genre", VALUEFUNC(_wrap_Tag_set_genre), -1);
-  rb_define_method(SwigClassTag.klass, "set_year", VALUEFUNC(_wrap_Tag_set_year), -1);
-  rb_define_method(SwigClassTag.klass, "set_track", VALUEFUNC(_wrap_Tag_set_track), -1);
+  rb_define_method(SwigClassTag.klass, "title=", VALUEFUNC(_wrap_Tag_titlee___), -1);
+  rb_define_method(SwigClassTag.klass, "artist=", VALUEFUNC(_wrap_Tag_artiste___), -1);
+  rb_define_method(SwigClassTag.klass, "album=", VALUEFUNC(_wrap_Tag_albume___), -1);
+  rb_define_method(SwigClassTag.klass, "comment=", VALUEFUNC(_wrap_Tag_commente___), -1);
+  rb_define_method(SwigClassTag.klass, "genre=", VALUEFUNC(_wrap_Tag_genree___), -1);
+  rb_define_method(SwigClassTag.klass, "year=", VALUEFUNC(_wrap_Tag_yeare___), -1);
+  rb_define_method(SwigClassTag.klass, "track=", VALUEFUNC(_wrap_Tag_tracke___), -1);
   rb_define_method(SwigClassTag.klass, "empty?", VALUEFUNC(_wrap_Tag_emptyq___), -1);
   rb_define_singleton_method(SwigClassTag.klass, "duplicate", VALUEFUNC(_wrap_Tag_duplicate), -1);
   SwigClassTag.mark = 0;

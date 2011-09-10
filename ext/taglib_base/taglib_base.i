@@ -14,10 +14,12 @@
 
 namespace TagLib {
   class StringList;
-}
+  class ByteVector;
 
-%typemap(out) TagLib::String {
-  $result = rb_str_new2($1.to8Bit(true).c_str());
+  class String {
+    public:
+    enum Type { Latin1 = 0, UTF16 = 1, UTF16BE = 2, UTF8 = 3, UTF16LE = 4 };
+  };
 }
 
 /*
@@ -27,20 +29,29 @@ namespace TagLib {
 %typemap(typecheck) FileName = char *;
 */
 
+// Rename setters to Ruby convention (combining SWIG rename functions
+// doesn't seem to be possible, thus resort to some magic)
+%rename("%(command: ruby -e 'print(ARGV[0][3..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"=\")' )s",
+        regexmatch$name="^set[A-Z]") "";
+
 %include <taglib/taglib.h>
 
 // ByteVector
-%ignore TagLib::ByteVector::operator[];
-%ignore TagLib::ByteVector::operator=;
-%ignore TagLib::ByteVector::operator!=;
-%ignore operator<<;
-%include <taglib/tbytevector.h>
 %typemap(out) TagLib::ByteVector {
   $result = rb_str_new($1.data(), $1.size());
 }
-%typemap(in) TagLib::ByteVector {
-  $1 = new ByteVector(rb_string_value_ptr($input), NUM2UINT(rb_str_length($input)));
+%typemap(in) TagLib::ByteVector & {
+  $1 = new TagLib::ByteVector(StringValuePtr($input), NUM2UINT(rb_str_length($input)));
 }
+
+// String
+%typemap(out) TagLib::String {
+  $result = rb_tainted_str_new2($1.toCString(true));
+}
+%typemap(in) TagLib::String {
+  $1 = new TagLib::String(StringValuePtr($input), TagLib::String::UTF8);
+}
+%apply TagLib::String { TagLib::String &, const TagLib::String & };
 
 %include <std_list.i>
 %ignore TagLib::List::operator[];
