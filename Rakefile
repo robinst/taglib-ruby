@@ -23,12 +23,17 @@ Jeweler::Tasks.new do |gem|
   gem.email = "robin@nibor.org"
   gem.homepage = "http://github.com/robinst/taglib-ruby"
   gem.authors = ["Robin Stocker"]
-  gem.extensions = FileList['ext/taglib/*/extconf.rb'].to_a
+  gem.extensions = ['ext/taglib_base/extconf.rb',
+                    'ext/taglib_mpeg/extconf.rb',
+                    'ext/taglib_id3v2/extconf.rb']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-end
+require 'rake/extensiontask'
+Rake::ExtensionTask.new("taglib_base")
+Rake::ExtensionTask.new("taglib_mpeg")
+Rake::ExtensionTask.new("taglib_id3v2")
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|

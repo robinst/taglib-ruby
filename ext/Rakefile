@@ -1,9 +1,9 @@
 require 'rake/clean'
 
-CLEAN.include '*.o', 'Makefile', 'mkmf.log'
-CLOBBER.include 'taglib.so'
+CLEAN.include 'taglib_*/*.o', 'taglib_*/Makefile', 'taglib_*/mkmf.log'
+CLOBBER.include 'taglib_*/*.so'
 
-modules = ["base", "mpeg", "id3v2"]
+modules = ["taglib_base", "taglib_mpeg", "taglib_id3v2"]
 
 swig = `which swig2.0`
 if swig.empty?

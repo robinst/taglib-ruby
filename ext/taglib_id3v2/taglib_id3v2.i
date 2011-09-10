@@ -7,7 +7,7 @@
 
 %include <std_list.i>
 
-%import(module="taglib/base") "../base/base.i"
+%import(module="taglib_base") "../taglib_base/taglib_base.i"
 
 namespace TagLib {
   namespace ID3v2 {
