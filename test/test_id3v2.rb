@@ -28,13 +28,24 @@ class TestID3v2 < Test::Unit::TestCase
         assert_equal false, @tag.empty?
       end
 
-      should "have frames" do
-        frames = @tag.frame_list
-        assert_not_nil frames
-        assert_equal 9, frames.size
-        iterator = frames.begin
-        frame = iterator.value
-        assert_equal "Dummy Title", frame.to_string
+      context "frames" do
+        setup do
+          @frames = @tag.frame_list
+        end
+
+        should "be complete" do
+          assert_not_nil @frames
+          assert_equal 9, @frames.size
+          iterator = @frames.begin
+          frame = iterator.value
+          assert_equal "Dummy Title", frame.to_string
+        end
+
+        should "be enumerable" do
+          ids = @frames.collect{ |frame| frame.id }
+          assert_equal ["TIT2", "TPE1", "TALB", "TRCK", "TDRC",
+                        "COMM", "COMM", "TCON", "TXXX"], ids
+        end
       end
 
       context "TXXX frame" do
