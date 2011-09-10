@@ -12,6 +12,9 @@ Ruby interface for the complete taglib C++ library.
 * Commit, do not mess with rakefile, version, or history.
 * Send me a pull request. Bonus points for topic branches.
 
-### Copyright
+### License
 
-Copyright (c) 2010, 2011 Robin Stocker. See LICENSE for details.
+taglib-ruby is distributed under the MIT License,
+see LICENSE.txt for details.
+
+Copyright (c) 2010, 2011 Robin Stocker.
