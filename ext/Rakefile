@@ -11,7 +11,7 @@ if swig.empty?
 end
 swig.chomp!
 
-task 'default' => [:swig, :make]
+task 'default' => [:swig]
 
 task :swig do
   modules.each do |mod|

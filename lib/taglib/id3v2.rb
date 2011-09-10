@@ -10,14 +10,29 @@ module TagLib
         it_end = self.end
         while it != it_end
           frame = it.value
-          yield frame
+          casted_frame = frame.cast
+          yield casted_frame
           it = it.next
         end
       end
     end
     class Frame
-      def id
-        frame_id.data[0, frame_id.size]
+      def cast
+        case frame_id
+        when "APIC" then to_attached_picture_frame
+        when "COMM" then to_comments_frame
+        when "GEOB" then to_general_encapsulated_object_frame
+        when "POPM" then to_popularimeter_frame
+        when "PRIV" then to_private_frame
+        when "RVAD" then to_relative_volume_frame
+        when "TXXX" then to_user_text_identification_frame
+        when /T.../ then to_text_identification_frame
+        when "UFID" then to_unique_file_identifier_frame
+        when "USLT" then to_unsynchronized_lyrics_frame
+        when "WXXX" then to_user_url_link_frame
+        when /W.../ then to_url_link_frame
+        else self
+        end
       end
     end
   end

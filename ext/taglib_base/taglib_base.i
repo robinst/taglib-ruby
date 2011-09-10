@@ -29,11 +29,18 @@ namespace TagLib {
 
 %include <taglib/taglib.h>
 
+// ByteVector
 %ignore TagLib::ByteVector::operator[];
 %ignore TagLib::ByteVector::operator=;
 %ignore TagLib::ByteVector::operator!=;
 %ignore operator<<;
 %include <taglib/tbytevector.h>
+%typemap(out) TagLib::ByteVector {
+  $result = rb_str_new($1.data(), $1.size());
+}
+%typemap(in) TagLib::ByteVector {
+  $1 = new ByteVector(rb_string_value_ptr($input), NUM2UINT(rb_str_length($input)));
+}
 
 %include <std_list.i>
 %ignore TagLib::List::operator[];
