@@ -1,7 +1,37 @@
 taglib-ruby
 ===========
 
-Ruby interface for the complete taglib C++ library.
+Ruby interface for the [TagLib C++ library][taglib].
+
+In contrast to other libraries, this one wraps the full C++ API using
+SWIG, not only the minimal C API. This means that all tags can be
+accessed.
+
+Usage
+-----
+
+    require 'taglib'
+
+    # Load an ID3v2 tag from a file
+    file = TagLib::MPEG::File.new("wake_up.mp3")
+    tag = file.id3v2_tag
+
+    # Read basic attributes
+    tag.title  #=> "Wake Up"
+    tag.artist  #=> "Arcade Fire"
+    tag.track  #=> 7
+
+    # Access all frames
+    tag.frame_list.size  #=> 13
+
+    # Track frame
+    track = tag.frame_list("TRCK").first
+    track.to_s  #=> "7/10"
+
+    # Attached picture frame
+    cover = tag.frame_list("APIC").first
+    cover.mime_type  #=> "image/jpeg"
+    cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
 
 Contributing
 ------------
@@ -27,3 +57,5 @@ taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
 
 Copyright (c) 2010, 2011 Robin Stocker.
+
+[taglib]: http://developer.kde.org/~wheeler/taglib.html
