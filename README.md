@@ -1,8 +1,9 @@
-= taglib-ruby
+taglib-ruby
+===========
 
 Ruby interface for the complete taglib C++ library.
 
-== Note on Patches/Pull Requests
+### Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -11,6 +12,6 @@ Ruby interface for the complete taglib C++ library.
 * Commit, do not mess with rakefile, version, or history.
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+### Copyright
 
-Copyright (c) 2010 Robin Stocker. See LICENSE for details.
+Copyright (c) 2010, 2011 Robin Stocker. See LICENSE for details.
