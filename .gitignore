@@ -1,6 +1,10 @@
+# Output from compiling extension
 *.o
 *.so
 mkmf.log
 Makefile
 
+.*.swp
+
 /pkg
+/tmp
