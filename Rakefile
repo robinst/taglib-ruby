@@ -1,33 +1,33 @@
+# encoding: utf-8
+
 require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
 
-FILES = FileList[
-  'Rakefile',
-  'ext/taglib/Rakefile',
-  'ext/taglib/*.rb',
-  'ext/taglib/*/*.{rb,i,cxx}',
-  'lib/**/*.rb',
-  'test/*.rb'
-]
+require 'jeweler'
+require './lib/taglib/version.rb'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "taglib-ruby"
+  gem.summary = %Q{Ruby interface for the complete taglib C++ library}
+  gem.description = File.read('README.md')
+  gem.version = TagLib::Version::STRING
+  gem.license = "MIT"
+  gem.email = "robin@nibor.org"
+  gem.homepage = "http://github.com/robinst/taglib-ruby"
+  gem.authors = ["Robin Stocker"]
+  gem.extensions = FileList['ext/taglib/*/extconf.rb'].to_a
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
 
-VERSION = File.read('lib/taglib.rb')[/VERSION = '(.*)'/, 1]
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "taglib-ruby"
-    gem.summary = %Q{Ruby interface for the complete taglib C++ library}
-    gem.description = File.read('README.rdoc')
-    gem.version = VERSION
-    gem.email = "robin@nibor.org"
-    gem.homepage = "http://github.com/robinst/taglib-ruby"
-    gem.authors = ["Robin Stocker"]
-    gem.add_development_dependency "shoulda", ">= 0"
-    gem.extensions = FileList['ext/taglib/*/extconf.rb'].to_a
-    gem.files = FILES.to_a
-  end
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
 require 'rake/testtask'
@@ -37,26 +37,19 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
+require 'rcov/rcovtask'
+Rcov::RcovTask.new do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+  test.rcov_opts << '--exclude "gems/*"'
 end
-
-task :test => :check_dependencies
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
-  version = VERSION
+  version = TagLib::Version::STRING
 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "taglib-ruby #{version}"
