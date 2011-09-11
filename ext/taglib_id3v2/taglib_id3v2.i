@@ -44,6 +44,10 @@ namespace TagLib {
   }
 }
 
+// Resolve overloading conflict with setText(String)
+%rename("field_list=") TagLib::ID3v2::TextIdentificationFrame::setText(const StringList &);
+%rename("from_data") TagLib::ID3v2::TextIdentificationFrame::TextIdentificationFrame(const ByteVector &);
+
 %include <taglib/attachedpictureframe.h>
 %include <taglib/commentsframe.h>
 %include <taglib/generalencapsulatedobjectframe.h>

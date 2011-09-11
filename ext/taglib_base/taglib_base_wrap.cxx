@@ -1824,20 +1824,19 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[5]
 #define SWIGTYPE_p_TagLib__RefCounter swig_types[6]
 #define SWIGTYPE_p_TagLib__String swig_types[7]
-#define SWIGTYPE_p_TagLib__StringList swig_types[8]
-#define SWIGTYPE_p_TagLib__Tag swig_types[9]
-#define SWIGTYPE_p_char swig_types[10]
-#define SWIGTYPE_p_p_void swig_types[11]
-#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[12]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[13]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[14]
-#define SWIGTYPE_p_swig__Iterator swig_types[15]
-#define SWIGTYPE_p_unsigned_char swig_types[16]
-#define SWIGTYPE_p_unsigned_int swig_types[17]
-#define SWIGTYPE_p_unsigned_long swig_types[18]
-#define SWIGTYPE_p_wchar_t swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__Tag swig_types[8]
+#define SWIGTYPE_p_char swig_types[9]
+#define SWIGTYPE_p_p_void swig_types[10]
+#define SWIGTYPE_p_std__basic_stringT_wchar_t_t swig_types[11]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[12]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[13]
+#define SWIGTYPE_p_swig__Iterator swig_types[14]
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1880,6 +1879,36 @@ static VALUE mTagLib;
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
 # define CONVERT_TO_UTF8(value) value
 #endif
+
+VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
+  VALUE result = rb_tainted_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
+}
+
+TagLib::String * ruby_string_to_taglib_string(VALUE s) {
+  return new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+}
+
+VALUE taglib_string_list_to_ruby_array(const TagLib::StringList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  TagLib::StringList::ConstIterator it;
+  for (it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_string_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::StringList * ruby_array_to_taglib_string_list(VALUE ary) {
+  TagLib::StringList * result = new TagLib::StringList();
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::String * s = ruby_string_to_taglib_string(e);
+    result->append(*s);
+  }
+  return result;
+}
 
 
 #include <limits.h>
@@ -5737,7 +5766,9 @@ _wrap_FileRef_default_file_extensions(int argc, VALUE *argv, VALUE self) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
   result = TagLib::FileRef::defaultFileExtensions();
-  vresult = SWIG_NewPointerObj((new TagLib::StringList(static_cast< const TagLib::StringList& >(result))), SWIGTYPE_p_TagLib__StringList, SWIG_POINTER_OWN |  0 );
+  {
+    vresult = taglib_string_list_to_ruby_array(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -6010,8 +6041,7 @@ _wrap_Tag_title(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->title();
   {
-    vresult = rb_tainted_str_new2((&result)->toCString(true));
-    ASSOCIATE_UTF8_ENCODING(vresult);
+    vresult = taglib_string_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -6037,8 +6067,7 @@ _wrap_Tag_artist(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->artist();
   {
-    vresult = rb_tainted_str_new2((&result)->toCString(true));
-    ASSOCIATE_UTF8_ENCODING(vresult);
+    vresult = taglib_string_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -6064,8 +6093,7 @@ _wrap_Tag_album(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->album();
   {
-    vresult = rb_tainted_str_new2((&result)->toCString(true));
-    ASSOCIATE_UTF8_ENCODING(vresult);
+    vresult = taglib_string_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -6091,8 +6119,7 @@ _wrap_Tag_comment(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->comment();
   {
-    vresult = rb_tainted_str_new2((&result)->toCString(true));
-    ASSOCIATE_UTF8_ENCODING(vresult);
+    vresult = taglib_string_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -6118,8 +6145,7 @@ _wrap_Tag_genre(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   result = ((TagLib::Tag const *)arg1)->genre();
   {
-    vresult = rb_tainted_str_new2((&result)->toCString(true));
-    ASSOCIATE_UTF8_ENCODING(vresult);
+    vresult = taglib_string_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -6191,7 +6217,7 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
+    arg2 = ruby_string_to_taglib_string(argv[0]);
   }
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
@@ -6216,7 +6242,7 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
+    arg2 = ruby_string_to_taglib_string(argv[0]);
   }
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
@@ -6241,7 +6267,7 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
+    arg2 = ruby_string_to_taglib_string(argv[0]);
   }
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
@@ -6266,7 +6292,7 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
+    arg2 = ruby_string_to_taglib_string(argv[0]);
   }
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
@@ -6291,7 +6317,7 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
+    arg2 = ruby_string_to_taglib_string(argv[0]);
   }
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;
@@ -6516,7 +6542,6 @@ static swig_type_info _swigt__p_TagLib__FileRef = {"_p_TagLib__FileRef", "TagLib
 static swig_type_info _swigt__p_TagLib__FileRef__FileTypeResolver = {"_p_TagLib__FileRef__FileTypeResolver", "TagLib::FileRef::FileTypeResolver *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__RefCounter = {"_p_TagLib__RefCounter", "TagLib::RefCounter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__StringList = {"_p_TagLib__StringList", "TagLib::StringList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **|VALUE *", 0, 0, (void*)0, 0};
@@ -6538,7 +6563,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__FileRef__FileTypeResolver,
   &_swigt__p_TagLib__RefCounter,
   &_swigt__p_TagLib__String,
-  &_swigt__p_TagLib__StringList,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
   &_swigt__p_p_void,
@@ -6560,7 +6584,6 @@ static swig_cast_info _swigc__p_TagLib__FileRef[] = {  {&_swigt__p_TagLib__FileR
 static swig_cast_info _swigc__p_TagLib__FileRef__FileTypeResolver[] = {  {&_swigt__p_TagLib__FileRef__FileTypeResolver, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__RefCounter[] = {  {&_swigt__p_TagLib__RefCounter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__StringList[] = {  {&_swigt__p_TagLib__StringList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
@@ -6582,7 +6605,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__FileRef__FileTypeResolver,
   _swigc__p_TagLib__RefCounter,
   _swigc__p_TagLib__String,
-  _swigc__p_TagLib__StringList,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
   _swigc__p_p_void,

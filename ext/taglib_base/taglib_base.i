@@ -48,13 +48,21 @@ namespace TagLib {
 
 // String
 %typemap(out) TagLib::String {
-  $result = rb_tainted_str_new2($1.toCString(true));
-  ASSOCIATE_UTF8_ENCODING($result);
+  $result = taglib_string_to_ruby_string($1);
 }
 %typemap(in) TagLib::String {
-  $1 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8($input)), TagLib::String::UTF8);
+  $1 = ruby_string_to_taglib_string($input);
 }
 %apply TagLib::String { TagLib::String &, const TagLib::String & };
+
+// StringList
+%typemap(out) TagLib::StringList {
+  $result = taglib_string_list_to_ruby_array($1);
+}
+%typemap(in) TagLib::StringList {
+  $1 = ruby_array_to_taglib_string_list($input);
+}
+%apply TagLib::StringList { TagLib::StringList &, const TagLib::StringList & };
 
 %include <std_list.i>
 %ignore TagLib::List::operator[];

@@ -56,6 +56,16 @@ class TestID3v2Write < Test::Unit::TestCase
         assert_equal picture_data, written_apic.picture
       end
 
+      should "be able to set field_list" do
+        tit2 = TagLib::ID3v2::TextIdentificationFrame.new("TIT2", TagLib::String::UTF8)
+        texts = ["one", "two"]
+        tit2.field_list = texts
+        assert_equal texts, tit2.field_list
+        @tag.add_frame(tit2)
+        success = @file.save
+        assert success
+      end
+
       if HAVE_ENCODING
         should "be able to set unicode fields" do
           # Hello, Unicode Snowman (not in Latin1)

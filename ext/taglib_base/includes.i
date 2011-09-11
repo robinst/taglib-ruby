@@ -7,4 +7,34 @@
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
 # define CONVERT_TO_UTF8(value) value
 #endif
+
+VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
+  VALUE result = rb_tainted_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
+}
+
+TagLib::String * ruby_string_to_taglib_string(VALUE s) {
+  return new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+}
+
+VALUE taglib_string_list_to_ruby_array(const TagLib::StringList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  TagLib::StringList::ConstIterator it;
+  for (it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_string_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::StringList * ruby_array_to_taglib_string_list(VALUE ary) {
+  TagLib::StringList * result = new TagLib::StringList();
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::String * s = ruby_string_to_taglib_string(e);
+    result->append(*s);
+  }
+  return result;
+}
 %}

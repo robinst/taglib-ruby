@@ -79,6 +79,10 @@ class TestID3v2Frames < Test::Unit::TestCase
         txxx = @txxx_frame.to_user_text_identification_frame
         assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
       end
+
+      should "have field_list" do
+        assert_equal ["MusicBrainz Album Id", "992dc19a-5631-40f5-b252-fbfedbc328a9"], @txxx_frame.field_list
+      end
     end
   end
 end
