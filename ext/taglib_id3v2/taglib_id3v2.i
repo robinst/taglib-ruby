@@ -1,6 +1,7 @@
 %module "TagLib::ID3v2"
 %{
 #include <taglib/id3v2frame.h>
+#include <taglib/id3v2framefactory.h>
 #include <taglib/id3v2tag.h>
 
 #include <taglib/attachedpictureframe.h>
@@ -33,6 +34,8 @@ namespace TagLib {
 %apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
 %include <taglib/id3v2tag.h>
 %clear TagLib::ID3v2::Frame *;
+
+%include <taglib/id3v2framefactory.h>
 
 %extend TagLib::ID3v2::Tag {
   const FrameList &frameList(const char *frameID) const {

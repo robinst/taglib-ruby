@@ -55,6 +55,23 @@ class TestID3v2Write < Test::Unit::TestCase
         assert_equal "desc", written_apic.description
         assert_equal picture_data, written_apic.picture
       end
+
+      if HAVE_ENCODING
+        should "be able to set unicode fields" do
+          # Hello, Unicode Snowman (not in Latin1)
+          text = "Hello, \u{2603}"
+
+          # If we don't set the default text encoding to UTF-8, taglib
+          # will print a warning
+          frame_factory = TagLib::ID3v2::FrameFactory.instance
+          frame_factory.default_text_encoding = TagLib::String::UTF8
+
+          @tag.title = text
+          @file.save
+
+          assert_equal text, @tag.title
+        end
+      end
     end
 
     teardown do

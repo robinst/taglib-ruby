@@ -16,6 +16,8 @@ to do (contributors very welcome):
 Usage
 -----
 
+Here's an example reading an ID3v2 tag:
+
     require 'taglib'
 
     # Load an ID3v2 tag from a file
@@ -31,13 +33,34 @@ Usage
     tag.frame_list.size  #=> 13
 
     # Track frame
-    track = tag.frame_list("TRCK").first
+    track = tag.frame_list('TRCK').first
     track.to_s  #=> "7/10"
 
     # Attached picture frame
-    cover = tag.frame_list("APIC").first
+    cover = tag.frame_list('APIC').first
     cover.mime_type  #=> "image/jpeg"
     cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+
+And here's an example for writing one:
+
+    file = TagLib::MPEG::File.new("joga.mp3")
+    tag = file.id3v2_tag
+
+    tag.artist = "Björk"
+    tag.title = "Jóga"
+
+    file.save
+
+By default, taglib stores text frames as ISO-8859-1 (Latin-1), if the
+text contains only characters that are available in that encoding. If
+not (e.g. with Cyrillic, Chinese, Japanese), it prints a warning and
+stores the text as UTF-8.
+
+When you already know that you want to store the text as UTF-8, you can
+change the default text encoding:
+
+    frame_factory = TagLib::ID3v2::FrameFactory.instance
+    frame_factory.default_text_encoding = TagLib::String::UTF8
 
 Contributing
 ------------
