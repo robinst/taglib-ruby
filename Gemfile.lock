@@ -10,6 +10,7 @@ GEM
     rake-compiler (0.7.9)
       rake
     rcov (0.9.10)
+    rdoc (3.9.4)
     shoulda (2.11.3)
 
 PLATFORMS
@@ -20,4 +21,5 @@ DEPENDENCIES
   jeweler (~> 1.6.4)
   rake-compiler (~> 0.7)
   rcov
+  rdoc (~> 3.9)
   shoulda (~> 2.11)
