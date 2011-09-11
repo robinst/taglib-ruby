@@ -54,7 +54,9 @@ class TestID3v2Frames < Test::Unit::TestCase
 
       should "have picture bytes" do
         assert_equal 61649, @apic.picture.size
-        assert_equal @picture_data.encoding, @apic.picture.encoding
+        if HAVE_ENCODING
+          assert_equal @picture_data.encoding, @apic.picture.encoding
+        end
         assert_equal @picture_data, @apic.picture
       end
     end

@@ -9,6 +9,8 @@
 #include <taglib/tag.h>
 %}
 
+%include "includes.i"
+
 // Undefine macro
 #define TAGLIB_EXPORT
 
@@ -41,15 +43,17 @@ namespace TagLib {
   $result = rb_str_new($1.data(), $1.size());
 }
 %typemap(in) TagLib::ByteVector & {
-  $1 = new TagLib::ByteVector(StringValuePtr($input), NUM2UINT(rb_str_length($input)));
+  $1 = new TagLib::ByteVector(RSTRING_PTR($input), RSTRING_LEN($input));
 }
 
 // String
 %typemap(out) TagLib::String {
   $result = rb_tainted_str_new2($1.toCString(true));
+  ASSOCIATE_UTF8_ENCODING($result);
+  //rb_enc_associate($result, rb_utf8_encoding());
 }
 %typemap(in) TagLib::String {
-  $1 = new TagLib::String(StringValuePtr($input), TagLib::String::UTF8);
+  $1 = new TagLib::String(RSTRING_PTR($input), TagLib::String::UTF8);
 }
 %apply TagLib::String { TagLib::String &, const TagLib::String & };
 

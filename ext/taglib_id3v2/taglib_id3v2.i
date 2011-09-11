@@ -18,6 +18,7 @@
 
 %include <std_list.i>
 
+%include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
 namespace TagLib {

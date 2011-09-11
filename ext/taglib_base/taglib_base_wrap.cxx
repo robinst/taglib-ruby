@@ -1872,6 +1872,14 @@ static VALUE mTagLib;
 #include <taglib/tag.h>
 
 
+#if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
+# include <ruby/encoding.h>
+# define ASSOCIATE_UTF8_ENCODING(value) rb_enc_associate(value, rb_utf8_encoding());
+#else
+# define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
+#endif
+
+
 #include <limits.h>
 #if !defined(SWIG_NO_LLONG_MAX)
 # if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
@@ -4233,7 +4241,7 @@ _wrap_File_write_block(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   (arg1)->writeBlock((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -4275,7 +4283,7 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4283,7 +4291,7 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< long >(val3);
   {
-    arg4 = new TagLib::ByteVector(StringValuePtr(argv[2]), NUM2UINT(rb_str_length(argv[2])));
+    arg4 = new TagLib::ByteVector(RSTRING_PTR(argv[2]), RSTRING_LEN(argv[2]));
   }
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
   vresult = SWIG_From_long(static_cast< long >(result));
@@ -4314,7 +4322,7 @@ _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4347,7 +4355,7 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_From_long(static_cast< long >(result));
@@ -4471,7 +4479,7 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4479,7 +4487,7 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< long >(val3);
   {
-    arg4 = new TagLib::ByteVector(StringValuePtr(argv[2]), NUM2UINT(rb_str_length(argv[2])));
+    arg4 = new TagLib::ByteVector(RSTRING_PTR(argv[2]), RSTRING_LEN(argv[2]));
   }
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
   vresult = SWIG_From_long(static_cast< long >(result));
@@ -4510,7 +4518,7 @@ _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4543,7 +4551,7 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_From_long(static_cast< long >(result));
@@ -4667,7 +4675,7 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4705,7 +4713,7 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -4735,7 +4743,7 @@ _wrap_File_insert__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(StringValuePtr(argv[0]), NUM2UINT(rb_str_length(argv[0])));
+    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
   }
   (arg1)->insert((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -6001,6 +6009,8 @@ _wrap_Tag_title(int argc, VALUE *argv, VALUE self) {
   result = ((TagLib::Tag const *)arg1)->title();
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
+    ASSOCIATE_UTF8_ENCODING(vresult);
+    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6027,6 +6037,8 @@ _wrap_Tag_artist(int argc, VALUE *argv, VALUE self) {
   result = ((TagLib::Tag const *)arg1)->artist();
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
+    ASSOCIATE_UTF8_ENCODING(vresult);
+    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6053,6 +6065,8 @@ _wrap_Tag_album(int argc, VALUE *argv, VALUE self) {
   result = ((TagLib::Tag const *)arg1)->album();
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
+    ASSOCIATE_UTF8_ENCODING(vresult);
+    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6079,6 +6093,8 @@ _wrap_Tag_comment(int argc, VALUE *argv, VALUE self) {
   result = ((TagLib::Tag const *)arg1)->comment();
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
+    ASSOCIATE_UTF8_ENCODING(vresult);
+    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6105,6 +6121,8 @@ _wrap_Tag_genre(int argc, VALUE *argv, VALUE self) {
   result = ((TagLib::Tag const *)arg1)->genre();
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
+    ASSOCIATE_UTF8_ENCODING(vresult);
+    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6176,7 +6194,7 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
   }
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
@@ -6201,7 +6219,7 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
   }
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
@@ -6226,7 +6244,7 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
   }
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
@@ -6251,7 +6269,7 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
   }
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
@@ -6276,7 +6294,7 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(StringValuePtr(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
   }
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;

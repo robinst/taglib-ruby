@@ -8,7 +8,7 @@ class TestID3v2Tag < Test::Unit::TestCase
       @file = file
     end
 
-    should "have a ID3v2 tag" do
+    should "have an ID3v2 tag" do
       assert_not_nil @file.id3v2_tag
     end
 
