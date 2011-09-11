@@ -7,6 +7,12 @@ In contrast to other libraries, this one wraps the full C++ API using
 SWIG, not only the minimal C API. This means that all tags can be
 accessed.
 
+taglib-ruby is work in progress, here are some of the things still left
+to do (contributors very welcome):
+
+* Pre-compiled Gem for Windows
+* More coverage of the library besides ID3v2
+
 Usage
 -----
 
