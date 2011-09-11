@@ -2588,8 +2588,10 @@ SWIG_From_ptrdiff_t  (ptrdiff_t value)
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
 # define ASSOCIATE_UTF8_ENCODING(value) rb_enc_associate(value, rb_utf8_encoding());
+# define CONVERT_TO_UTF8(value) rb_str_export_to_enc(value, rb_utf8_encoding())
 #else
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
+# define CONVERT_TO_UTF8(value) value
 #endif
 
 
@@ -5929,7 +5931,7 @@ _wrap_Frame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -5958,7 +5960,6 @@ _wrap_Frame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6518,7 +6519,6 @@ _wrap_Tag_title(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6546,7 +6546,6 @@ _wrap_Tag_artist(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6574,7 +6573,6 @@ _wrap_Tag_album(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6602,7 +6600,6 @@ _wrap_Tag_comment(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6630,7 +6627,6 @@ _wrap_Tag_genre(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6702,7 +6698,7 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
@@ -6727,7 +6723,7 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
@@ -6752,7 +6748,7 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
@@ -6777,7 +6773,7 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
@@ -6802,7 +6798,7 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;
@@ -7439,7 +7435,6 @@ _wrap_AttachedPictureFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7520,7 +7515,6 @@ _wrap_AttachedPictureFrame_mime_type(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7544,7 +7538,7 @@ _wrap_AttachedPictureFrame_mime_typee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setMimeType((TagLib::String const &)*arg2);
   return Qnil;
@@ -7626,7 +7620,6 @@ _wrap_AttachedPictureFrame_description(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7650,7 +7643,7 @@ _wrap_AttachedPictureFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -7861,7 +7854,6 @@ _wrap_CommentsFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7915,7 +7907,6 @@ _wrap_CommentsFrame_description(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7943,7 +7934,6 @@ _wrap_CommentsFrame_text(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -7992,7 +7982,7 @@ _wrap_CommentsFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -8017,7 +8007,7 @@ _wrap_CommentsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -8097,7 +8087,7 @@ _wrap_CommentsFrame_find_by_description(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[1]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[1])), TagLib::String::UTF8);
   }
   result = (TagLib::ID3v2::CommentsFrame *)TagLib::ID3v2::CommentsFrame::findByDescription((TagLib::ID3v2::Tag const *)arg1,(TagLib::String const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__CommentsFrame, 0 |  0 );
@@ -8217,7 +8207,6 @@ _wrap_GeneralEncapsulatedObjectFrame_to_string(int argc, VALUE *argv, VALUE self
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8298,7 +8287,6 @@ _wrap_GeneralEncapsulatedObjectFrame_mime_type(int argc, VALUE *argv, VALUE self
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8322,7 +8310,7 @@ _wrap_GeneralEncapsulatedObjectFrame_mime_typee___(int argc, VALUE *argv, VALUE 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setMimeType((TagLib::String const &)*arg2);
   return Qnil;
@@ -8351,7 +8339,6 @@ _wrap_GeneralEncapsulatedObjectFrame_file_name(int argc, VALUE *argv, VALUE self
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8375,7 +8362,7 @@ _wrap_GeneralEncapsulatedObjectFrame_file_namee___(int argc, VALUE *argv, VALUE 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setFileName((TagLib::String const &)*arg2);
   return Qnil;
@@ -8404,7 +8391,6 @@ _wrap_GeneralEncapsulatedObjectFrame_description(int argc, VALUE *argv, VALUE se
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8428,7 +8414,7 @@ _wrap_GeneralEncapsulatedObjectFrame_descriptione___(int argc, VALUE *argv, VALU
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -8598,7 +8584,6 @@ _wrap_PopularimeterFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8626,7 +8611,6 @@ _wrap_PopularimeterFrame_email(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8650,7 +8634,7 @@ _wrap_PopularimeterFrame_emaile___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PopularimeterFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setEmail((TagLib::String const &)*arg2);
   return Qnil;
@@ -8875,7 +8859,6 @@ _wrap_PrivateFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8903,7 +8886,6 @@ _wrap_PrivateFrame_owner(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -8953,7 +8935,7 @@ _wrap_PrivateFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PrivateFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setOwner((TagLib::String const &)*arg2);
   return Qnil;
@@ -9097,7 +9079,6 @@ _wrap_RelativeVolumeFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -9878,7 +9859,6 @@ _wrap_RelativeVolumeFrame_identification(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -9902,7 +9882,7 @@ _wrap_RelativeVolumeFrame_identificatione___(int argc, VALUE *argv, VALUE self) 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setIdentification((TagLib::String const &)*arg2);
   return Qnil;
@@ -10073,7 +10053,7 @@ _wrap_TextIdentificationFrame_texte_____SWIG_1(int argc, VALUE *argv, VALUE self
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::TextIdentificationFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -10151,7 +10131,6 @@ _wrap_TextIdentificationFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -10375,7 +10354,6 @@ _wrap_UserTextIdentificationFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -10403,7 +10381,6 @@ _wrap_UserTextIdentificationFrame_description(int argc, VALUE *argv, VALUE self)
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -10427,7 +10404,7 @@ _wrap_UserTextIdentificationFrame_descriptione___(int argc, VALUE *argv, VALUE s
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserTextIdentificationFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -10476,7 +10453,7 @@ _wrap_UserTextIdentificationFrame_texte_____SWIG_0(int argc, VALUE *argv, VALUE 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserTextIdentificationFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -10593,7 +10570,7 @@ _wrap_UserTextIdentificationFrame_find(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[1]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[1])), TagLib::String::UTF8);
   }
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)TagLib::ID3v2::UserTextIdentificationFrame::find(arg1,(TagLib::String const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame, 0 |  0 );
@@ -10656,7 +10633,7 @@ _wrap_new_UniqueFileIdentifierFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg1 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   {
     arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[1]), RSTRING_LEN(argv[1]));
@@ -10737,7 +10714,6 @@ _wrap_UniqueFileIdentifierFrame_owner(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -10787,7 +10763,7 @@ _wrap_UniqueFileIdentifierFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UniqueFileIdentifierFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setOwner((TagLib::String const &)*arg2);
   return Qnil;
@@ -10841,7 +10817,6 @@ _wrap_UniqueFileIdentifierFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -10912,7 +10887,6 @@ _wrap_UnknownFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11090,7 +11064,6 @@ _wrap_UnsynchronizedLyricsFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11144,7 +11117,6 @@ _wrap_UnsynchronizedLyricsFrame_description(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11172,7 +11144,6 @@ _wrap_UnsynchronizedLyricsFrame_text(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11221,7 +11192,7 @@ _wrap_UnsynchronizedLyricsFrame_descriptione___(int argc, VALUE *argv, VALUE sel
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -11246,7 +11217,7 @@ _wrap_UnsynchronizedLyricsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -11371,7 +11342,6 @@ _wrap_UrlLinkFrame_url(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11395,7 +11365,7 @@ _wrap_UrlLinkFrame_urle___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UrlLinkFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setUrl((TagLib::String const &)*arg2);
   return Qnil;
@@ -11420,7 +11390,7 @@ _wrap_UrlLinkFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UrlLinkFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -11449,7 +11419,6 @@ _wrap_UrlLinkFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11601,7 +11570,6 @@ _wrap_UserUrlLinkFrame_to_string(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11682,7 +11650,6 @@ _wrap_UserUrlLinkFrame_description(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -11706,7 +11673,7 @@ _wrap_UserUrlLinkFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserUrlLinkFrame * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;

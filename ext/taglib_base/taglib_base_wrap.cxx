@@ -1875,8 +1875,10 @@ static VALUE mTagLib;
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
 # define ASSOCIATE_UTF8_ENCODING(value) rb_enc_associate(value, rb_utf8_encoding());
+# define CONVERT_TO_UTF8(value) rb_str_export_to_enc(value, rb_utf8_encoding())
 #else
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
+# define CONVERT_TO_UTF8(value) value
 #endif
 
 
@@ -6010,7 +6012,6 @@ _wrap_Tag_title(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6038,7 +6039,6 @@ _wrap_Tag_artist(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6066,7 +6066,6 @@ _wrap_Tag_album(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6094,7 +6093,6 @@ _wrap_Tag_comment(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6122,7 +6120,6 @@ _wrap_Tag_genre(int argc, VALUE *argv, VALUE self) {
   {
     vresult = rb_tainted_str_new2((&result)->toCString(true));
     ASSOCIATE_UTF8_ENCODING(vresult);
-    //rb_enc_associate(vresult, rb_utf8_encoding());
   }
   return vresult;
 fail:
@@ -6194,7 +6191,7 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
@@ -6219,7 +6216,7 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
@@ -6244,7 +6241,7 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
@@ -6269,7 +6266,7 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
@@ -6294,7 +6291,7 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::Tag * >(argp1);
   {
-    arg2 = new TagLib::String(RSTRING_PTR(argv[0]), TagLib::String::UTF8);
+    arg2 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(argv[0])), TagLib::String::UTF8);
   }
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;

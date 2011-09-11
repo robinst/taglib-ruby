@@ -50,10 +50,9 @@ namespace TagLib {
 %typemap(out) TagLib::String {
   $result = rb_tainted_str_new2($1.toCString(true));
   ASSOCIATE_UTF8_ENCODING($result);
-  //rb_enc_associate($result, rb_utf8_encoding());
 }
 %typemap(in) TagLib::String {
-  $1 = new TagLib::String(RSTRING_PTR($input), TagLib::String::UTF8);
+  $1 = new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8($input)), TagLib::String::UTF8);
 }
 %apply TagLib::String { TagLib::String &, const TagLib::String & };
 
