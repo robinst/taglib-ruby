@@ -46,12 +46,20 @@ class TestID3v2Write < Test::Unit::TestCase
         apic.picture = picture_data
 
         @tag.add_frame(apic)
+
+        # TODO: Without this, we're getting an error about a
+        # non-contiguous buffer passed to fread(). Must somehow be
+        # related to SWIG and disowning. Also, read more about
+        # %trackobjects and friends.
+        apic = nil
+
         success = @file.save
         assert success
+        @file = nil
 
         written_file = TagLib::MPEG::File.new(OUTPUT_FILE, false)
         written_apic = written_file.id3v2_tag.frame_list("APIC").first
-        assert_equal "image/jpeg", apic.mime_type
+        assert_equal "image/jpeg", written_apic.mime_type
         assert_equal "desc", written_apic.description
         assert_equal picture_data, written_apic.picture
       end
@@ -62,6 +70,7 @@ class TestID3v2Write < Test::Unit::TestCase
         tit2.field_list = texts
         assert_equal texts, tit2.field_list
         @tag.add_frame(tit2)
+        tit2 = nil
         success = @file.save
         assert success
       end
@@ -85,6 +94,7 @@ class TestID3v2Write < Test::Unit::TestCase
     end
 
     teardown do
+      @file = nil
       FileUtils.rm OUTPUT_FILE
     end
   end

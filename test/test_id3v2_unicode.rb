@@ -4,8 +4,7 @@ class TestID3v2Unicode < Test::Unit::TestCase
   context "The unicode.mp3 file" do
     setup do
       read_properties = false
-      file = TagLib::MPEG::File.new("test/data/unicode.mp3", read_properties)
-      @file = file
+      @file = TagLib::MPEG::File.new("test/data/unicode.mp3", read_properties)
     end
 
     should "have an ID3v2 tag" do

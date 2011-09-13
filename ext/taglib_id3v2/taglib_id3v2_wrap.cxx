@@ -2601,26 +2601,25 @@ VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
   return result;
 }
 
-TagLib::String * ruby_string_to_taglib_string(VALUE s) {
-  return new TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+TagLib::String ruby_string_to_taglib_string(VALUE s) {
+  return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
 }
 
 VALUE taglib_string_list_to_ruby_array(const TagLib::StringList & list) {
   VALUE ary = rb_ary_new2(list.size());
-  TagLib::StringList::ConstIterator it;
-  for (it = list.begin(); it != list.end(); it++) {
+  for (TagLib::StringList::ConstIterator it = list.begin(); it != list.end(); it++) {
     VALUE s = taglib_string_to_ruby_string(*it);
     rb_ary_push(ary, s);
   }
   return ary;
 }
 
-TagLib::StringList * ruby_array_to_taglib_string_list(VALUE ary) {
-  TagLib::StringList * result = new TagLib::StringList();
+TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
+  TagLib::StringList result = TagLib::StringList();
   for (long i = 0; i < RARRAY_LEN(ary); i++) {
     VALUE e = RARRAY_PTR(ary)[i];
-    TagLib::String * s = ruby_string_to_taglib_string(e);
-    result->append(*s);
+    TagLib::String s = ruby_string_to_taglib_string(e);
+    result.append(s);
   }
   return result;
 }
@@ -5794,6 +5793,7 @@ _wrap_Frame_frame_id(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Frame *arg1 = (TagLib::ID3v2::Frame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -5807,7 +5807,8 @@ _wrap_Frame_frame_id(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
   result = ((TagLib::ID3v2::Frame const *)arg1)->frameID();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -5927,6 +5928,7 @@ _wrap_Frame_datae___(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -5937,7 +5939,8 @@ _wrap_Frame_datae___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setData((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -5952,6 +5955,7 @@ _wrap_Frame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -5962,7 +5966,8 @@ _wrap_Frame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -6002,6 +6007,7 @@ _wrap_Frame_render(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Frame *arg1 = (TagLib::ID3v2::Frame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -6015,7 +6021,8 @@ _wrap_Frame_render(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
   result = ((TagLib::ID3v2::Frame const *)arg1)->render();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -6028,6 +6035,7 @@ _wrap_Frame_text_delimiter(int argc, VALUE *argv, VALUE self) {
   TagLib::String::Type arg1 ;
   int val1 ;
   int ecode1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -6041,7 +6049,8 @@ _wrap_Frame_text_delimiter(int argc, VALUE *argv, VALUE self) {
   arg1 = static_cast< TagLib::String::Type >(val1);
   result = TagLib::ID3v2::Frame::textDelimiter(arg1);
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -6713,6 +6722,7 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -6723,7 +6733,8 @@ _wrap_Tag_titlee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setTitle((TagLib::String const &)*arg2);
   return Qnil;
@@ -6738,6 +6749,7 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -6748,7 +6760,8 @@ _wrap_Tag_artiste___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setArtist((TagLib::String const &)*arg2);
   return Qnil;
@@ -6763,6 +6776,7 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -6773,7 +6787,8 @@ _wrap_Tag_albume___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setAlbum((TagLib::String const &)*arg2);
   return Qnil;
@@ -6788,6 +6803,7 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -6798,7 +6814,8 @@ _wrap_Tag_commente___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setComment((TagLib::String const &)*arg2);
   return Qnil;
@@ -6813,6 +6830,7 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -6823,7 +6841,8 @@ _wrap_Tag_genree___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setGenre((TagLib::String const &)*arg2);
   return Qnil;
@@ -7040,6 +7059,7 @@ _wrap_Tag_frame_list__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   TagLib::ID3v2::FrameList *result = 0 ;
   VALUE vresult = Qnil;
   
@@ -7052,7 +7072,8 @@ _wrap_Tag_frame_list__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   result = (TagLib::ID3v2::FrameList *) &((TagLib::ID3v2::Tag const *)arg1)->frameList((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t, 0 |  0 );
@@ -7212,6 +7233,7 @@ _wrap_Tag_remove_frames(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -7222,7 +7244,8 @@ _wrap_Tag_remove_frames(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->removeFrames((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -7236,6 +7259,7 @@ _wrap_Tag_render(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -7249,7 +7273,8 @@ _wrap_Tag_render(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   result = ((TagLib::ID3v2::Tag const *)arg1)->render();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -7375,6 +7400,7 @@ _wrap_FrameFactory_create_frame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   bool arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   bool val3 ;
   int ecode3 = 0 ;
   TagLib::ID3v2::Frame *result = 0 ;
@@ -7389,7 +7415,8 @@ _wrap_FrameFactory_create_frame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_bool(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -7411,6 +7438,7 @@ _wrap_FrameFactory_create_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::uint arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   unsigned int val3 ;
   int ecode3 = 0 ;
   TagLib::ID3v2::Frame *result = 0 ;
@@ -7425,7 +7453,8 @@ _wrap_FrameFactory_create_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -7446,6 +7475,7 @@ _wrap_FrameFactory_create_frame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   TagLib::ID3v2::Frame *result = 0 ;
   VALUE vresult = Qnil;
   
@@ -7458,7 +7488,8 @@ _wrap_FrameFactory_create_frame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   result = (TagLib::ID3v2::Frame *)((TagLib::ID3v2::FrameFactory const *)arg1)->createFrame((TagLib::ByteVector const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__Frame, 0 |  0 );
@@ -7475,6 +7506,7 @@ _wrap_FrameFactory_create_frame__SWIG_3(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg3 = (TagLib::ID3v2::Header *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
   TagLib::ID3v2::Frame *result = 0 ;
@@ -7489,7 +7521,8 @@ _wrap_FrameFactory_create_frame__SWIG_3(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   res3 = SWIG_ConvertPtr(argv[1], &argp3,SWIGTYPE_p_TagLib__ID3v2__Header, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
@@ -7690,13 +7723,15 @@ _wrap_AttachedPictureFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_AttachedPictureFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::AttachedPictureFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::AttachedPictureFrame *)new TagLib::ID3v2::AttachedPictureFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -7854,6 +7889,7 @@ _wrap_AttachedPictureFrame_mime_typee___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -7864,7 +7900,8 @@ _wrap_AttachedPictureFrame_mime_typee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setMimeType((TagLib::String const &)*arg2);
   return Qnil;
@@ -7958,6 +7995,7 @@ _wrap_AttachedPictureFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -7968,7 +8006,8 @@ _wrap_AttachedPictureFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -7982,6 +8021,7 @@ _wrap_AttachedPictureFrame_picture(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::AttachedPictureFrame *arg1 = (TagLib::ID3v2::AttachedPictureFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -7995,7 +8035,8 @@ _wrap_AttachedPictureFrame_picture(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   result = ((TagLib::ID3v2::AttachedPictureFrame const *)arg1)->picture();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -8009,6 +8050,7 @@ _wrap_AttachedPictureFrame_picturee___(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8019,7 +8061,8 @@ _wrap_AttachedPictureFrame_picturee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::AttachedPictureFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setPicture((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -8095,13 +8138,15 @@ _wrap_CommentsFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_CommentsFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::CommentsFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::CommentsFrame *)new TagLib::ID3v2::CommentsFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -8190,6 +8235,7 @@ _wrap_CommentsFrame_language(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::CommentsFrame *arg1 = (TagLib::ID3v2::CommentsFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -8203,7 +8249,8 @@ _wrap_CommentsFrame_language(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   result = ((TagLib::ID3v2::CommentsFrame const *)arg1)->language();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -8269,6 +8316,7 @@ _wrap_CommentsFrame_languagee___(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8279,7 +8327,8 @@ _wrap_CommentsFrame_languagee___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setLanguage((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -8294,6 +8343,7 @@ _wrap_CommentsFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8304,7 +8354,8 @@ _wrap_CommentsFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -8319,6 +8370,7 @@ _wrap_CommentsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8329,7 +8381,8 @@ _wrap_CommentsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::CommentsFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -8397,6 +8450,7 @@ _wrap_CommentsFrame_find_by_description(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   TagLib::ID3v2::CommentsFrame *result = 0 ;
   VALUE vresult = Qnil;
   
@@ -8409,7 +8463,8 @@ _wrap_CommentsFrame_find_by_description(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[1]);
+    tmp2 = ruby_string_to_taglib_string(argv[1]);
+    arg2 = &tmp2;
   }
   result = (TagLib::ID3v2::CommentsFrame *)TagLib::ID3v2::CommentsFrame::findByDescription((TagLib::ID3v2::Tag const *)arg1,(TagLib::String const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__CommentsFrame, 0 |  0 );
@@ -8456,13 +8511,15 @@ _wrap_GeneralEncapsulatedObjectFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_GeneralEncapsulatedObjectFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::GeneralEncapsulatedObjectFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::GeneralEncapsulatedObjectFrame *)new TagLib::ID3v2::GeneralEncapsulatedObjectFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -8620,6 +8677,7 @@ _wrap_GeneralEncapsulatedObjectFrame_mime_typee___(int argc, VALUE *argv, VALUE 
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8630,7 +8688,8 @@ _wrap_GeneralEncapsulatedObjectFrame_mime_typee___(int argc, VALUE *argv, VALUE 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setMimeType((TagLib::String const &)*arg2);
   return Qnil;
@@ -8671,6 +8730,7 @@ _wrap_GeneralEncapsulatedObjectFrame_file_namee___(int argc, VALUE *argv, VALUE 
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8681,7 +8741,8 @@ _wrap_GeneralEncapsulatedObjectFrame_file_namee___(int argc, VALUE *argv, VALUE 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setFileName((TagLib::String const &)*arg2);
   return Qnil;
@@ -8722,6 +8783,7 @@ _wrap_GeneralEncapsulatedObjectFrame_descriptione___(int argc, VALUE *argv, VALU
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8732,7 +8794,8 @@ _wrap_GeneralEncapsulatedObjectFrame_descriptione___(int argc, VALUE *argv, VALU
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -8746,6 +8809,7 @@ _wrap_GeneralEncapsulatedObjectFrame_object(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::GeneralEncapsulatedObjectFrame *arg1 = (TagLib::ID3v2::GeneralEncapsulatedObjectFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -8759,7 +8823,8 @@ _wrap_GeneralEncapsulatedObjectFrame_object(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   result = ((TagLib::ID3v2::GeneralEncapsulatedObjectFrame const *)arg1)->object();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -8773,6 +8838,7 @@ _wrap_GeneralEncapsulatedObjectFrame_objecte___(int argc, VALUE *argv, VALUE sel
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8783,7 +8849,8 @@ _wrap_GeneralEncapsulatedObjectFrame_objecte___(int argc, VALUE *argv, VALUE sel
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::GeneralEncapsulatedObjectFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setObject((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -8829,13 +8896,15 @@ _wrap_PopularimeterFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_PopularimeterFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::PopularimeterFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::PopularimeterFrame *)new TagLib::ID3v2::PopularimeterFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -8940,6 +9009,7 @@ _wrap_PopularimeterFrame_emaile___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -8950,7 +9020,8 @@ _wrap_PopularimeterFrame_emaile___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PopularimeterFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setEmail((TagLib::String const &)*arg2);
   return Qnil;
@@ -9102,13 +9173,15 @@ _wrap_PrivateFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_PrivateFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::PrivateFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::PrivateFrame *)new TagLib::ID3v2::PrivateFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -9212,6 +9285,7 @@ _wrap_PrivateFrame_data(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::PrivateFrame *arg1 = (TagLib::ID3v2::PrivateFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -9225,7 +9299,8 @@ _wrap_PrivateFrame_data(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::PrivateFrame * >(argp1);
   result = ((TagLib::ID3v2::PrivateFrame const *)arg1)->data();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -9239,6 +9314,7 @@ _wrap_PrivateFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9249,7 +9325,8 @@ _wrap_PrivateFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PrivateFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setOwner((TagLib::String const &)*arg2);
   return Qnil;
@@ -9264,6 +9341,7 @@ _wrap_PrivateFrame_datae___(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -9274,7 +9352,8 @@ _wrap_PrivateFrame_datae___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PrivateFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setData((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -9320,13 +9399,15 @@ _wrap_RelativeVolumeFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_RelativeVolumeFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::RelativeVolumeFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::RelativeVolumeFrame *)new TagLib::ID3v2::RelativeVolumeFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -10184,6 +10265,7 @@ _wrap_RelativeVolumeFrame_identificatione___(int argc, VALUE *argv, VALUE self) 
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10194,7 +10276,8 @@ _wrap_RelativeVolumeFrame_identificatione___(int argc, VALUE *argv, VALUE self) 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setIdentification((TagLib::String const &)*arg2);
   return Qnil;
@@ -10226,6 +10309,7 @@ SWIGINTERN VALUE
 _wrap_new_TextIdentificationFrame(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
   TagLib::String::Type arg2 ;
+  TagLib::ByteVector tmp1 ;
   int val2 ;
   int ecode2 = 0 ;
   TagLib::ID3v2::TextIdentificationFrame *result = 0 ;
@@ -10234,7 +10318,8 @@ _wrap_new_TextIdentificationFrame(int argc, VALUE *argv, VALUE self) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   ecode2 = SWIG_AsVal_int(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
@@ -10269,13 +10354,15 @@ _wrap_from_data_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_from_data(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::TextIdentificationFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::TextIdentificationFrame *)new TagLib::ID3v2::TextIdentificationFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -10296,6 +10383,7 @@ _wrap_TextIdentificationFrame_field_liste___(int argc, VALUE *argv, VALUE self) 
   TagLib::StringList *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::StringList tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10306,7 +10394,8 @@ _wrap_TextIdentificationFrame_field_liste___(int argc, VALUE *argv, VALUE self) 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::TextIdentificationFrame * >(argp1);
   {
-    arg2 = ruby_array_to_taglib_string_list(argv[0]);
+    tmp2 = ruby_array_to_taglib_string_list(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::StringList const &)*arg2);
   return Qnil;
@@ -10321,6 +10410,7 @@ _wrap_TextIdentificationFrame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10331,7 +10421,8 @@ _wrap_TextIdentificationFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::TextIdentificationFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -10505,13 +10596,15 @@ _wrap_UserTextIdentificationFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_UserTextIdentificationFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UserTextIdentificationFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -10622,6 +10715,7 @@ _wrap_UserTextIdentificationFrame_descriptione___(int argc, VALUE *argv, VALUE s
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10632,7 +10726,8 @@ _wrap_UserTextIdentificationFrame_descriptione___(int argc, VALUE *argv, VALUE s
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserTextIdentificationFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -10673,6 +10768,7 @@ _wrap_UserTextIdentificationFrame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10683,7 +10779,8 @@ _wrap_UserTextIdentificationFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserTextIdentificationFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -10698,6 +10795,7 @@ _wrap_UserTextIdentificationFrame_field_liste___(int argc, VALUE *argv, VALUE se
   TagLib::StringList *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::StringList tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10708,7 +10806,8 @@ _wrap_UserTextIdentificationFrame_field_liste___(int argc, VALUE *argv, VALUE se
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserTextIdentificationFrame * >(argp1);
   {
-    arg2 = ruby_array_to_taglib_string_list(argv[0]);
+    tmp2 = ruby_array_to_taglib_string_list(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::StringList const &)*arg2);
   return Qnil;
@@ -10732,6 +10831,7 @@ _wrap_UserTextIdentificationFrame_find(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   TagLib::ID3v2::UserTextIdentificationFrame *result = 0 ;
   VALUE vresult = Qnil;
   
@@ -10744,7 +10844,8 @@ _wrap_UserTextIdentificationFrame_find(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[1]);
+    tmp2 = ruby_string_to_taglib_string(argv[1]);
+    arg2 = &tmp2;
   }
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)TagLib::ID3v2::UserTextIdentificationFrame::find(arg1,(TagLib::String const &)*arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame, 0 |  0 );
@@ -10764,13 +10865,15 @@ swig_class SwigClassUniqueFileIdentifierFrame;
 SWIGINTERN VALUE
 _wrap_new_UniqueFileIdentifierFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UniqueFileIdentifierFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UniqueFileIdentifierFrame *)new TagLib::ID3v2::UniqueFileIdentifierFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -10801,16 +10904,20 @@ SWIGINTERN VALUE
 _wrap_new_UniqueFileIdentifierFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg1 = 0 ;
   TagLib::ByteVector *arg2 = 0 ;
+  TagLib::String tmp1 ;
+  TagLib::ByteVector tmp2 ;
   TagLib::ID3v2::UniqueFileIdentifierFrame *result = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
   {
-    arg1 = ruby_string_to_taglib_string(argv[0]);
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
   }
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[1]), RSTRING_LEN(argv[1]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[1]), RSTRING_LEN(argv[1]));
+    arg2 = &tmp2;
   }
   result = (TagLib::ID3v2::UniqueFileIdentifierFrame *)new TagLib::ID3v2::UniqueFileIdentifierFrame((TagLib::String const &)*arg1,(TagLib::ByteVector const &)*arg2);
   DATA_PTR(self) = result;
@@ -10899,6 +11006,7 @@ _wrap_UniqueFileIdentifierFrame_identifier(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::UniqueFileIdentifierFrame *arg1 = (TagLib::ID3v2::UniqueFileIdentifierFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -10912,7 +11020,8 @@ _wrap_UniqueFileIdentifierFrame_identifier(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::UniqueFileIdentifierFrame * >(argp1);
   result = ((TagLib::ID3v2::UniqueFileIdentifierFrame const *)arg1)->identifier();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -10926,6 +11035,7 @@ _wrap_UniqueFileIdentifierFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10936,7 +11046,8 @@ _wrap_UniqueFileIdentifierFrame_ownere___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UniqueFileIdentifierFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setOwner((TagLib::String const &)*arg2);
   return Qnil;
@@ -10951,6 +11062,7 @@ _wrap_UniqueFileIdentifierFrame_identifiere___(int argc, VALUE *argv, VALUE self
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -10961,7 +11073,8 @@ _wrap_UniqueFileIdentifierFrame_identifiere___(int argc, VALUE *argv, VALUE self
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UniqueFileIdentifierFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setIdentifier((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -11018,13 +11131,15 @@ _wrap_UnknownFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_UnknownFrame(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UnknownFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UnknownFrame *)new TagLib::ID3v2::UnknownFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -11070,6 +11185,7 @@ _wrap_UnknownFrame_data(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::UnknownFrame *arg1 = (TagLib::ID3v2::UnknownFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -11083,7 +11199,8 @@ _wrap_UnknownFrame_data(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::UnknownFrame * >(argp1);
   result = ((TagLib::ID3v2::UnknownFrame const *)arg1)->data();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -11151,13 +11268,15 @@ _wrap_UnsynchronizedLyricsFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_UnsynchronizedLyricsFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UnsynchronizedLyricsFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UnsynchronizedLyricsFrame *)new TagLib::ID3v2::UnsynchronizedLyricsFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -11246,6 +11365,7 @@ _wrap_UnsynchronizedLyricsFrame_language(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::UnsynchronizedLyricsFrame *arg1 = (TagLib::ID3v2::UnsynchronizedLyricsFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -11259,7 +11379,8 @@ _wrap_UnsynchronizedLyricsFrame_language(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   result = ((TagLib::ID3v2::UnsynchronizedLyricsFrame const *)arg1)->language();
   {
-    vresult = rb_str_new((&result)->data(), (&result)->size());
+    data = ((const TagLib::ByteVector) result).data();
+    vresult = rb_tainted_str_new(data, (&result)->size());
   }
   return vresult;
 fail:
@@ -11325,6 +11446,7 @@ _wrap_UnsynchronizedLyricsFrame_languagee___(int argc, VALUE *argv, VALUE self) 
   TagLib::ByteVector *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11335,7 +11457,8 @@ _wrap_UnsynchronizedLyricsFrame_languagee___(int argc, VALUE *argv, VALUE self) 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   {
-    arg2 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg2 = &tmp2;
   }
   (arg1)->setLanguage((TagLib::ByteVector const &)*arg2);
   return Qnil;
@@ -11350,6 +11473,7 @@ _wrap_UnsynchronizedLyricsFrame_descriptione___(int argc, VALUE *argv, VALUE sel
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11360,7 +11484,8 @@ _wrap_UnsynchronizedLyricsFrame_descriptione___(int argc, VALUE *argv, VALUE sel
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;
@@ -11375,6 +11500,7 @@ _wrap_UnsynchronizedLyricsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11385,7 +11511,8 @@ _wrap_UnsynchronizedLyricsFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UnsynchronizedLyricsFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -11469,13 +11596,15 @@ _wrap_UrlLinkFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_UrlLinkFrame(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UrlLinkFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UrlLinkFrame *)new TagLib::ID3v2::UrlLinkFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -11522,6 +11651,7 @@ _wrap_UrlLinkFrame_urle___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11532,7 +11662,8 @@ _wrap_UrlLinkFrame_urle___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UrlLinkFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setUrl((TagLib::String const &)*arg2);
   return Qnil;
@@ -11547,6 +11678,7 @@ _wrap_UrlLinkFrame_texte___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11557,7 +11689,8 @@ _wrap_UrlLinkFrame_texte___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UrlLinkFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setText((TagLib::String const &)*arg2);
   return Qnil;
@@ -11652,13 +11785,15 @@ _wrap_UserUrlLinkFrame_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_UserUrlLinkFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
   TagLib::ID3v2::UserUrlLinkFrame *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   {
-    arg1 = new TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp1 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    arg1 = &tmp1;
   }
   result = (TagLib::ID3v2::UserUrlLinkFrame *)new TagLib::ID3v2::UserUrlLinkFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
@@ -11827,6 +11962,7 @@ _wrap_UserUrlLinkFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -11837,7 +11973,8 @@ _wrap_UserUrlLinkFrame_descriptione___(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::UserUrlLinkFrame * >(argp1);
   {
-    arg2 = ruby_string_to_taglib_string(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
   (arg1)->setDescription((TagLib::String const &)*arg2);
   return Qnil;

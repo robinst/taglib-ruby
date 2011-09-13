@@ -4,11 +4,16 @@ class TestID3v2Frames < Test::Unit::TestCase
   context "The sample.mp3 file's frames" do
     setup do
       read_properties = false
-      file = TagLib::MPEG::File.new("test/data/sample.mp3", read_properties)
+      # It's important that file is an instance variable, otherwise the
+      # tag would get garbage collected along with the file, even if tag
+      # itself would still be reachable. The reason is because
+      # TagLib::MPEG::File owns the TagLib::ID3v2::Tag and automatically
+      # deletes it in its destructor.
+      @file = TagLib::MPEG::File.new("test/data/sample.mp3", read_properties)
       picture_file = File.open("test/data/globe_east_540.jpg", "rb") do |f|
         @picture_data = f.read
       end
-      @tag = file.id3v2_tag
+      @tag = @file.id3v2_tag
       @frames = @tag.frame_list
     end
 

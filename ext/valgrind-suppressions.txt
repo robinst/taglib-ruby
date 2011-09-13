@@ -1,0 +1,103 @@
+{
+   taglib_base SWIG_InitializeModule
+   exp-ptrcheck:SorG
+   fun:Init_taglib_base
+   fun:dln_load
+}
+{
+   taglib_id3v2 SWIG_InitializeModule
+   exp-ptrcheck:SorG
+   fun:Init_taglib_id3v2
+   fun:dln_load
+}
+{
+   taglib_mpeg SWIG_InitializeModule
+   exp-ptrcheck:SorG
+   fun:Init_taglib_mpeg
+   fun:dln_load
+}
+# Ruby 1.9 VM supressions
+{
+   r1
+   Memcheck:Cond
+   fun:gc_mark
+}
+{
+   r2
+   Memcheck:Cond
+   fun:gc_mark_children
+}
+{
+   r3
+   Memcheck:Cond
+   fun:mark_current_machine_context
+}
+{
+   r4
+   Memcheck:Value8
+   fun:gc_mark
+}
+{
+   r5
+   Memcheck:Value8
+   fun:gc_mark_children
+}
+{
+   r6
+   Memcheck:Value8
+   fun:mark_current_machine_context
+}
+{
+   r7
+   Memcheck:Value8
+   fun:vm_exec_core
+}
+{
+   r8
+   Memcheck:Value4
+   fun:find_derivation
+}
+{
+   r9
+   Memcheck:Value8
+   fun:__gconv_read_conf
+}
+{
+   r10
+   Memcheck:Leak
+   fun:malloc
+   fun:vm_xmalloc
+   fun:ruby_strdup
+}
+{
+   r11
+   Memcheck:Leak
+   fun:malloc
+   fun:vm_xmalloc
+   fun:rb_include_module
+}
+{
+   r20
+   exp-ptrcheck:SorG
+   fun:insert_module
+}
+{
+   r21
+   exp-ptrcheck:SorG
+   fun:find_derivation
+}
+{
+   r22
+   exp-ptrcheck:SorG
+   fun:vm_exec_core
+}
+{
+   r23
+   exp-ptrcheck:SorG
+   fun:__gconv_read_conf
+}
+{
+   r24
+   exp-ptrcheck:SorG
+   fun:mark_current_machine_context
+}

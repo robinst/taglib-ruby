@@ -24,12 +24,6 @@ namespace TagLib {
   };
 }
 
-/*
-%typemap(in) FileName {
-  $1 = rb_string_value_cstr(&$input);
-}
-%typemap(typecheck) FileName = char *;
-*/
 
 // Rename setters to Ruby convention (combining SWIG rename functions
 // doesn't seem to be possible, thus resort to some magic)
@@ -39,19 +33,25 @@ namespace TagLib {
 %include <taglib/taglib.h>
 
 // ByteVector
-%typemap(out) TagLib::ByteVector {
-  $result = rb_str_new($1.data(), $1.size());
+// The cast is used to be sure that we get the const version of data().
+%typemap(out) TagLib::ByteVector (const char * data) {
+  data = ((const TagLib::ByteVector) $1).data();
+  $result = rb_tainted_str_new(data, $1.size());
 }
-%typemap(in) TagLib::ByteVector & {
-  $1 = new TagLib::ByteVector(RSTRING_PTR($input), RSTRING_LEN($input));
+%typemap(in) TagLib::ByteVector & (TagLib::ByteVector tmp) {
+  tmp = TagLib::ByteVector(RSTRING_PTR($input), RSTRING_LEN($input));
+  $1 = &tmp;
 }
 
 // String
 %typemap(out) TagLib::String {
   $result = taglib_string_to_ruby_string($1);
 }
-%typemap(in) TagLib::String {
-  $1 = ruby_string_to_taglib_string($input);
+// tmp is used for having a local variable that is destroyed at the end
+// of the function. Doing "new TagLib::String" would be a big no-no.
+%typemap(in) TagLib::String (TagLib::String tmp) {
+  tmp = ruby_string_to_taglib_string($input);
+  $1 = &tmp;
 }
 %apply TagLib::String { TagLib::String &, const TagLib::String & };
 
@@ -59,8 +59,9 @@ namespace TagLib {
 %typemap(out) TagLib::StringList {
   $result = taglib_string_list_to_ruby_array($1);
 }
-%typemap(in) TagLib::StringList {
-  $1 = ruby_array_to_taglib_string_list($input);
+%typemap(in) TagLib::StringList (TagLib::StringList tmp) {
+  tmp = ruby_array_to_taglib_string_list($input);
+  $1 = &tmp;
 }
 %apply TagLib::StringList { TagLib::StringList &, const TagLib::StringList & };
 

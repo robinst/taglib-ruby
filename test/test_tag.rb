@@ -3,8 +3,8 @@ require 'helper'
 class TestTag < Test::Unit::TestCase
   context "The sample.mp3 file" do
     setup do
-      fileref = TagLib::FileRef.new("test/data/sample.mp3", false)
-      @tag = fileref.tag
+      @fileref = TagLib::FileRef.new("test/data/sample.mp3", false)
+      @tag = @fileref.tag
     end
 
     should "have basic tag information" do
