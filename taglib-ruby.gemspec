@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "taglib-ruby"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robin Stocker"]
   s.date = "2011-09-17"
-  s.description = "taglib-ruby\n===========\n\nRuby interface for the [TagLib C++ library][taglib].\n\nIn contrast to other libraries, this one wraps the full C++ API using\nSWIG, not only the minimal C API. This means that all tags can be\naccessed.\n\ntaglib-ruby is work in progress, here are some of the things still left\nto do (contributors very welcome):\n\n* Wrap TagLib::MPEG::Properties\n* Pre-compiled Gem for Windows\n* More coverage of the library besides ID3v2\n\nUsage\n-----\n\nHere's an example for reading an ID3v2 tag:\n\n    require 'taglib'\n\n    # Load an ID3v2 tag from a file\n    file = TagLib::MPEG::File.new(\"wake_up.mp3\")\n    tag = file.id3v2_tag\n\n    # Read basic attributes\n    tag.title  #=> \"Wake Up\"\n    tag.artist  #=> \"Arcade Fire\"\n    tag.track  #=> 7\n\n    # Access all frames\n    tag.frame_list.size  #=> 13\n\n    # Track frame\n    track = tag.frame_list('TRCK').first\n    track.to_s  #=> \"7/10\"\n\n    # Attached picture frame\n    cover = tag.frame_list('APIC').first\n    cover.mime_type  #=> \"image/jpeg\"\n    cover.picture  #=> \"\\xFF\\xD8\\xFF\\xE0\\x00\\x10JFIF...\"\n\nAnd here's an example for writing one:\n\n    file = TagLib::MPEG::File.new(\"joga.mp3\")\n    tag = file.id3v2_tag\n\n    # Write basic attributes\n    tag.artist = \"Bj\303\266rk\"\n    tag.title = \"J\303\263ga\"\n\n    # Add attached picture frame\n    apic = TagLib::ID3v2::AttachedPictureFrame.new\n    apic.mime_type = \"image/jpeg\"\n    apic.description = \"Cover\"\n    apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover\n    apic.picture = File.open(\"cover.jpg\", 'rb'){ |f| f.read }\n\n    tag.add_frame(apic)\n\n    file.save\n\n### Encoding\n\nBy default, taglib stores text frames as ISO-8859-1 (Latin-1), if the\ntext contains only characters that are available in that encoding. If\nnot (e.g. with Cyrillic, Chinese, Japanese), it prints a warning and\nstores the text as UTF-8.\n\nWhen you already know that you want to store the text as UTF-8, you can\nchange the default text encoding:\n\n    frame_factory = TagLib::ID3v2::FrameFactory.instance\n    frame_factory.default_text_encoding = TagLib::String::UTF8\n\nAnother option is using the advanced API:\n\n    title = tag.frame_list('TIT2').first\n    title.text = \"J\303\263ga\"\n    title.text_encoding = TagLib::String::UTF8\n\nContributing\n------------\n\n* Check out the latest master to make sure the feature hasn't been\n  implemented or the bug hasn't been fixed yet\n* Check out the issue tracker to make sure someone already hasn't\n  requested it and/or contributed it\n* Fork the project\n* Start a feature/bugfix branch\n* Commit and push until you are happy with your contribution\n* Make sure to add tests for it. This is important so I don't break it\n  in a future version unintentionally.\n* Please try not to mess with the Rakefile, version, or history. If you\n  want to have your own version, or is otherwise necessary, that is\n  fine, but please isolate to its own commit so I can cherry-pick around\n  it.\n\nLicense\n-------\n\ntaglib-ruby is distributed under the MIT License,\nsee LICENSE.txt for details.\n\nCopyright (c) 2010, 2011 Robin Stocker.\n\n[taglib]: http://developer.kde.org/~wheeler/taglib.html\n"
+  s.description = "Ruby interface for the taglib C++ library.\n\nIn contrast to other libraries, this one wraps the C++ API using SWIG,\nnot only the minimal C API. This means that all tags can be accessed.\n"
   s.email = "robin@nibor.org"
   s.extensions = ["ext/taglib_base/extconf.rb", "ext/taglib_mpeg/extconf.rb", "ext/taglib_id3v2/extconf.rb"]
   s.extra_rdoc_files = [
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "lib/taglib/id3v2.rb",
     "lib/taglib/mpeg.rb",
     "lib/taglib/version.rb",
+    "taglib-ruby.gemspec",
     "test/data/globe_east_540.jpg",
     "test/data/sample.mp3",
     "test/data/unicode.mp3",
@@ -55,8 +56,9 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/robinst/taglib-ruby"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
+  s.requirements = ["taglib (libtag1-dev in Debian/Ubuntu, taglib-devel in Fedora/RHEL)"]
   s.rubygems_version = "1.8.10"
-  s.summary = "Ruby interface for the complete taglib C++ library"
+  s.summary = "Ruby interface for the taglib C++ library"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
