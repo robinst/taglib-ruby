@@ -14,6 +14,21 @@ to do (contributors very welcome):
 * Pre-compiled Gem for Windows
 * More coverage of the library besides ID3v2
 
+Installation
+------------
+
+Before you install the gem, make sure to have [taglib][taglib] installed
+with header files (and a C++ compiler of course):
+
+* Debian/Ubuntu: `sudo apt-get install libtag1-dev`
+* Fedora/RHEL: `sudo yum install taglib-devel`
+* Brew: `brew install taglib`
+* MacPorts: `sudo port install taglib`
+
+Then do:
+
+    gem install taglib-ruby
+
 Usage
 -----
 

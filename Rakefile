@@ -23,6 +23,7 @@ Ruby interface for the taglib C++ library.
 In contrast to other libraries, this one wraps the C++ API using SWIG,
 not only the minimal C API. This means that all tags can be accessed.
   DESC
+  gem.requirements = 'taglib (libtag1-dev in Debian/Ubuntu, taglib-devel in Fedora/RHEL)'
   gem.version = TagLib::Version::STRING
   gem.license = "MIT"
   gem.email = "robin@nibor.org"
