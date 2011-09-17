@@ -47,12 +47,6 @@ class TestID3v2Write < Test::Unit::TestCase
 
         @tag.add_frame(apic)
 
-        # TODO: Without this, we're getting an error about a
-        # non-contiguous buffer passed to fread(). Must somehow be
-        # related to SWIG and disowning. Also, read more about
-        # %trackobjects and friends.
-        apic = nil
-
         success = @file.save
         assert success
         @file = nil
@@ -70,7 +64,6 @@ class TestID3v2Write < Test::Unit::TestCase
         tit2.field_list = texts
         assert_equal texts, tit2.field_list
         @tag.add_frame(tit2)
-        tit2 = nil
         success = @file.save
         assert success
       end
