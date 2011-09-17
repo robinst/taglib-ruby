@@ -44,6 +44,7 @@ class TestID3v2Write < Test::Unit::TestCase
         apic.description = "desc"
         apic.text_encoding = TagLib::String::UTF8
         apic.picture = picture_data
+        apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
 
         @tag.add_frame(apic)
 
