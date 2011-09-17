@@ -77,6 +77,13 @@
    fun:rb_include_module
 }
 {
+   r12
+   Memcheck:Leak
+   ...
+   fun:ruby_init
+   fun:main
+}
+{
    r20
    exp-ptrcheck:SorG
    fun:insert_module
@@ -100,4 +107,64 @@
    r24
    exp-ptrcheck:SorG
    fun:mark_current_machine_context
+}
+# Ruby 1.8 suppressions
+{
+   r18_1
+   Memcheck:Cond
+   fun:mark_locations_array
+   ...
+   fun:yycompile
+}
+{
+   r18_2
+   Memcheck:Cond
+   fun:mark_locations_array
+   ...
+   fun:rb_eval
+}
+{
+   r18_3
+   Memcheck:Leak
+   fun:malloc
+   fun:ruby_xmalloc
+   fun:scope_dup
+}
+{
+   r18_4
+   Memcheck:Leak
+   fun:malloc
+   ...
+   fun:yycompile
+}
+{
+   r18_5
+   exp-ptrcheck:SorG
+   fun:mark_locations_array
+   fun:garbage_collect
+   ...
+   fun:yycompile
+}
+{
+   r18_6
+   exp-ptrcheck:Heap
+   ...
+   fun:rb_intern
+   fun:rb_str_intern
+   fun:rb_to_id
+   fun:rb_mod_alias_method
+}
+{
+   r18_7
+   exp-ptrcheck:SorG
+   fun:ruby_yyparse
+   fun:yycompile
+}
+{
+   r18_8
+   exp-ptrcheck:SorG
+   fun:ruby_re_compile_pattern
+   fun:rb_reg_initialize
+   ...
+   fun:rb_class_new_instance
 }
