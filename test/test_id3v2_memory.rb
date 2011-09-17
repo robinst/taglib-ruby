@@ -36,5 +36,19 @@ class TestID3v2Memory < Test::Unit::TestCase
         txxx.field_list = ["one", "two", "three"]
       end
     end
+
+    should "not segfault when tag is deleted along with file" do
+      @file = nil
+      begin
+        N.times do
+          GC.start
+          @tag.title
+        end
+      rescue => e
+        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      else
+        raise "GC did not delete file, unsure if test was successful."
+      end
+    end
   end
 end

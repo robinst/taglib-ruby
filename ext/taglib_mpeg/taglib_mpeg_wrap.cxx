@@ -1866,6 +1866,7 @@ static VALUE mMPEG;
 #include <taglib/tfile.h>
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
+#include <taglib/id3v2tag.h>
 
 
 #include <iostream>
@@ -2624,6 +2625,34 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
   }  
   return SWIG_TypeError;
 }
+
+
+  static void free_taglib_mpeg_file(void *ptr) {
+    TagLib::MPEG::File *file = (TagLib::MPEG::File *) ptr;
+
+    TagLib::ID3v1::Tag *id3v1tag = file->ID3v1Tag(false);
+    if (id3v1tag) {
+      SWIG_RubyUnlinkObjects(id3v1tag);
+      SWIG_RubyRemoveTracking(id3v1tag);
+    }
+
+    TagLib::ID3v2::Tag *id3v2tag = file->ID3v2Tag(false);
+    if (id3v2tag) {
+      TagLib::ID3v2::FrameList frames = id3v2tag->frameList();
+      for (TagLib::ID3v2::FrameList::ConstIterator it = frames.begin(); it != frames.end(); it++) {
+        TagLib::ID3v2::Frame *frame = (*it);
+        SWIG_RubyUnlinkObjects(frame);
+        SWIG_RubyRemoveTracking(frame);
+      }
+
+      SWIG_RubyUnlinkObjects(id3v2tag);
+      SWIG_RubyRemoveTracking(id3v2tag);
+    }
+
+    SWIG_RubyRemoveTracking(ptr);
+
+    delete file;
+  }
 
 swig_class SwigClassGCVALUE;
 
@@ -3917,6 +3946,7 @@ _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -3951,6 +3981,7 @@ _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< bool >(val2);
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -3977,6 +4008,7 @@ _wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::FileName >(buf1);
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -4033,6 +4065,7 @@ _wrap_new_File__SWIG_3(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3,arg4);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -4075,6 +4108,7 @@ _wrap_new_File__SWIG_4(int argc, VALUE *argv, VALUE self) {
   arg3 = static_cast< bool >(val3);
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -4126,6 +4160,7 @@ _wrap_new_File__SWIG_5(int argc, VALUE *argv, VALUE self) {
   arg2 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp2);
   result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -4254,11 +4289,6 @@ fail:
   return Qnil;
 }
 
-
-SWIGINTERN void
-free_TagLib_MPEG_File(TagLib::MPEG::File *arg1) {
-    delete arg1;
-}
 
 SWIGINTERN VALUE
 _wrap_File_tag(int argc, VALUE *argv, VALUE self) {
@@ -5497,7 +5527,7 @@ SWIGEXPORT void Init_taglib_mpeg(void) {
   rb_define_method(SwigClassFile.klass, "previous_frame_offset", VALUEFUNC(_wrap_File_previous_frame_offset), -1);
   rb_define_method(SwigClassFile.klass, "last_frame_offset", VALUEFUNC(_wrap_File_last_frame_offset), -1);
   SwigClassFile.mark = 0;
-  SwigClassFile.destroy = (void (*)(void *)) free_TagLib_MPEG_File;
-  SwigClassFile.trackObjects = 0;
+  SwigClassFile.destroy = (void (*)(void *)) free_taglib_mpeg_file;
+  SwigClassFile.trackObjects = 1;
 }
 

@@ -2749,6 +2749,7 @@ _wrap_new_String(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::String *)new TagLib::String();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -2757,6 +2758,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_String(TagLib::String *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -2788,6 +2790,7 @@ _wrap_new_RefCounter(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::RefCounter *)new TagLib::RefCounter();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -2865,6 +2868,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_RefCounter(TagLib::RefCounter *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -2940,6 +2944,7 @@ swig_class SwigClassConstIterator;
 
 SWIGINTERN void
 free_swig_ConstIterator(swig::ConstIterator *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -4115,6 +4120,7 @@ fail:
 
 SWIGINTERN void
 free_swig_Iterator(swig::Iterator *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -4122,6 +4128,7 @@ swig_class SwigClassFile;
 
 SWIGINTERN void
 free_TagLib_File(TagLib::File *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -5391,6 +5398,7 @@ _wrap_new_FileRef__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::FileRef *)new TagLib::FileRef();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -5437,6 +5445,7 @@ _wrap_new_FileRef__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1,arg2,arg3);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -5471,6 +5480,7 @@ _wrap_new_FileRef__SWIG_2(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< bool >(val2);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -5497,6 +5507,7 @@ _wrap_new_FileRef__SWIG_3(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::FileName >(buf1);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return self;
 fail:
@@ -5522,6 +5533,7 @@ _wrap_new_FileRef__SWIG_4(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -5565,6 +5577,7 @@ _wrap_new_FileRef__SWIG_5(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
   result = (TagLib::FileRef *)new TagLib::FileRef((TagLib::FileRef const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -5659,6 +5672,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_FileRef(TagLib::FileRef *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -6045,6 +6059,7 @@ swig_class SwigClassTag;
 
 SWIGINTERN void
 free_TagLib_Tag(TagLib::Tag *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -6923,7 +6938,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_const(SwigClassString.klass, "UTF16LE", SWIG_From_int(static_cast< int >(TagLib::String::UTF16LE)));
   SwigClassString.mark = 0;
   SwigClassString.destroy = (void (*)(void *)) free_TagLib_String;
-  SwigClassString.trackObjects = 0;
+  SwigClassString.trackObjects = 1;
   rb_define_const(mTagLib, "TAGLIB_MAJOR_VERSION", SWIG_From_int(static_cast< int >(1)));
   rb_define_const(mTagLib, "TAGLIB_MINOR_VERSION", SWIG_From_int(static_cast< int >(6)));
   rb_define_const(mTagLib, "TAGLIB_PATCH_VERSION", SWIG_From_int(static_cast< int >(3)));
@@ -6937,7 +6952,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassRefCounter.klass, "count", VALUEFUNC(_wrap_RefCounter_count), -1);
   SwigClassRefCounter.mark = 0;
   SwigClassRefCounter.destroy = (void (*)(void *)) free_TagLib_RefCounter;
-  SwigClassRefCounter.trackObjects = 0;
+  SwigClassRefCounter.trackObjects = 1;
   
   SwigClassGCVALUE.klass = rb_define_class_under(mTagLib, "GCVALUE", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGCVALUE);
@@ -6945,7 +6960,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassGCVALUE.klass, "inspect", VALUEFUNC(_wrap_GCVALUE_inspect), -1);
   rb_define_method(SwigClassGCVALUE.klass, "to_s", VALUEFUNC(_wrap_GCVALUE_to_s), -1);
   SwigClassGCVALUE.mark = 0;
-  SwigClassGCVALUE.trackObjects = 0;
+  SwigClassGCVALUE.trackObjects = 1;
   
   swig::GC_VALUE::initialize();
   
@@ -6964,7 +6979,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassConstIterator.klass, "-", VALUEFUNC(_wrap_ConstIterator___sub__), -1);
   SwigClassConstIterator.mark = 0;
   SwigClassConstIterator.destroy = (void (*)(void *)) free_swig_ConstIterator;
-  SwigClassConstIterator.trackObjects = 0;
+  SwigClassConstIterator.trackObjects = 1;
   
   SwigClassIterator.klass = rb_define_class_under(mTagLib, "Iterator", ((swig_class *) SWIGTYPE_p_swig__ConstIterator->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_swig__Iterator, (void *) &SwigClassIterator);
@@ -6980,7 +6995,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassIterator.klass, "-", VALUEFUNC(_wrap_Iterator___sub__), -1);
   SwigClassIterator.mark = 0;
   SwigClassIterator.destroy = (void (*)(void *)) free_swig_Iterator;
-  SwigClassIterator.trackObjects = 0;
+  SwigClassIterator.trackObjects = 1;
   
   SwigClassFile.klass = rb_define_class_under(mTagLib, "File", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__File, (void *) &SwigClassFile);
@@ -7009,7 +7024,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_singleton_method(SwigClassFile.klass, "is_writable", VALUEFUNC(_wrap_File_is_writable), -1);
   SwigClassFile.mark = 0;
   SwigClassFile.destroy = (void (*)(void *)) free_TagLib_File;
-  SwigClassFile.trackObjects = 0;
+  SwigClassFile.trackObjects = 1;
   
   SwigClassFileRef.klass = rb_define_class_under(mTagLib, "FileRef", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__FileRef, (void *) &SwigClassFileRef);
@@ -7026,7 +7041,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_singleton_method(SwigClassFileRef.klass, "create", VALUEFUNC(_wrap_FileRef_create), -1);
   SwigClassFileRef.mark = 0;
   SwigClassFileRef.destroy = (void (*)(void *)) free_TagLib_FileRef;
-  SwigClassFileRef.trackObjects = 0;
+  SwigClassFileRef.trackObjects = 1;
   
   SwigClassTag.klass = rb_define_class_under(mTagLib, "Tag", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__Tag, (void *) &SwigClassTag);
@@ -7049,6 +7064,6 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_singleton_method(SwigClassTag.klass, "duplicate", VALUEFUNC(_wrap_Tag_duplicate), -1);
   SwigClassTag.mark = 0;
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_Tag;
-  SwigClassTag.trackObjects = 0;
+  SwigClassTag.trackObjects = 1;
 }
 

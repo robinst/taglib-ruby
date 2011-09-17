@@ -1,3 +1,5 @@
+%trackobjects;
+
 %{
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>

@@ -5785,6 +5785,7 @@ swig_class SwigClassFrame;
 
 SWIGINTERN void
 free_TagLib_ID3v2_Frame(TagLib::ID3v2::Frame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -6381,6 +6382,7 @@ _wrap_new_Tag__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::Tag *)new TagLib::ID3v2::Tag();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -6420,6 +6422,7 @@ _wrap_new_Tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg3 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp3);
   result = (TagLib::ID3v2::Tag *)new TagLib::ID3v2::Tag(arg1,arg2,(TagLib::ID3v2::FrameFactory const *)arg3);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -6468,6 +6471,7 @@ _wrap_new_Tag__SWIG_2(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< long >(val2);
   result = (TagLib::ID3v2::Tag *)new TagLib::ID3v2::Tag(arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -6535,6 +6539,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_Tag(TagLib::ID3v2::Tag *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -7697,6 +7702,7 @@ _wrap_new_AttachedPictureFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::AttachedPictureFrame *)new TagLib::ID3v2::AttachedPictureFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -7735,6 +7741,7 @@ _wrap_new_AttachedPictureFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::AttachedPictureFrame *)new TagLib::ID3v2::AttachedPictureFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -7775,6 +7782,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_AttachedPictureFrame(TagLib::ID3v2::AttachedPictureFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -8075,6 +8083,7 @@ swig_class SwigClassAttachedPictureFrameV22;
 
 SWIGINTERN void
 free_TagLib_ID3v2_AttachedPictureFrameV22(TagLib::ID3v2::AttachedPictureFrameV22 *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -8097,6 +8106,7 @@ _wrap_new_CommentsFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   arg1 = static_cast< TagLib::String::Type >(val1);
   result = (TagLib::ID3v2::CommentsFrame *)new TagLib::ID3v2::CommentsFrame(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8112,6 +8122,7 @@ _wrap_new_CommentsFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::CommentsFrame *)new TagLib::ID3v2::CommentsFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8150,6 +8161,7 @@ _wrap_new_CommentsFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::CommentsFrame *)new TagLib::ID3v2::CommentsFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8201,6 +8213,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_CommentsFrame(TagLib::ID3v2::CommentsFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -8485,6 +8498,7 @@ _wrap_new_GeneralEncapsulatedObjectFrame__SWIG_0(int argc, VALUE *argv, VALUE se
   }
   result = (TagLib::ID3v2::GeneralEncapsulatedObjectFrame *)new TagLib::ID3v2::GeneralEncapsulatedObjectFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8523,6 +8537,7 @@ _wrap_new_GeneralEncapsulatedObjectFrame__SWIG_1(int argc, VALUE *argv, VALUE se
   }
   result = (TagLib::ID3v2::GeneralEncapsulatedObjectFrame *)new TagLib::ID3v2::GeneralEncapsulatedObjectFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8563,6 +8578,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_GeneralEncapsulatedObjectFrame(TagLib::ID3v2::GeneralEncapsulatedObjectFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -8870,6 +8886,7 @@ _wrap_new_PopularimeterFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::PopularimeterFrame *)new TagLib::ID3v2::PopularimeterFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8908,6 +8925,7 @@ _wrap_new_PopularimeterFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::PopularimeterFrame *)new TagLib::ID3v2::PopularimeterFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -8948,6 +8966,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_PopularimeterFrame(TagLib::ID3v2::PopularimeterFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -9147,6 +9166,7 @@ _wrap_new_PrivateFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::PrivateFrame *)new TagLib::ID3v2::PrivateFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -9185,6 +9205,7 @@ _wrap_new_PrivateFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::PrivateFrame *)new TagLib::ID3v2::PrivateFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -9225,6 +9246,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_PrivateFrame(TagLib::ID3v2::PrivateFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -9373,6 +9395,7 @@ _wrap_new_RelativeVolumeFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::RelativeVolumeFrame *)new TagLib::ID3v2::RelativeVolumeFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -9411,6 +9434,7 @@ _wrap_new_RelativeVolumeFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::RelativeVolumeFrame *)new TagLib::ID3v2::RelativeVolumeFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -9451,6 +9475,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_RelativeVolumeFrame(TagLib::ID3v2::RelativeVolumeFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -10328,6 +10353,7 @@ _wrap_new_TextIdentificationFrame(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< TagLib::String::Type >(val2);
   result = (TagLib::ID3v2::TextIdentificationFrame *)new TagLib::ID3v2::TextIdentificationFrame((TagLib::ByteVector const &)*arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10366,6 +10392,7 @@ _wrap_new_from_data(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::TextIdentificationFrame *)new TagLib::ID3v2::TextIdentificationFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10374,6 +10401,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_TextIdentificationFrame(TagLib::ID3v2::TextIdentificationFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -10555,6 +10583,7 @@ _wrap_new_UserTextIdentificationFrame__SWIG_0(int argc, VALUE *argv, VALUE self)
   arg1 = static_cast< TagLib::String::Type >(val1);
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10570,6 +10599,7 @@ _wrap_new_UserTextIdentificationFrame__SWIG_1(int argc, VALUE *argv, VALUE self)
   }
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10608,6 +10638,7 @@ _wrap_new_UserTextIdentificationFrame__SWIG_2(int argc, VALUE *argv, VALUE self)
   }
   result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10857,6 +10888,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UserTextIdentificationFrame(TagLib::ID3v2::UserTextIdentificationFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -10877,6 +10909,7 @@ _wrap_new_UniqueFileIdentifierFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UniqueFileIdentifierFrame *)new TagLib::ID3v2::UniqueFileIdentifierFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10921,6 +10954,7 @@ _wrap_new_UniqueFileIdentifierFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UniqueFileIdentifierFrame *)new TagLib::ID3v2::UniqueFileIdentifierFrame((TagLib::String const &)*arg1,(TagLib::ByteVector const &)*arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -10972,6 +11006,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UniqueFileIdentifierFrame(TagLib::ID3v2::UniqueFileIdentifierFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -11143,6 +11178,7 @@ _wrap_new_UnknownFrame(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UnknownFrame *)new TagLib::ID3v2::UnknownFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11151,6 +11187,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UnknownFrame(TagLib::ID3v2::UnknownFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -11227,6 +11264,7 @@ _wrap_new_UnsynchronizedLyricsFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   arg1 = static_cast< TagLib::String::Type >(val1);
   result = (TagLib::ID3v2::UnsynchronizedLyricsFrame *)new TagLib::ID3v2::UnsynchronizedLyricsFrame(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11242,6 +11280,7 @@ _wrap_new_UnsynchronizedLyricsFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UnsynchronizedLyricsFrame *)new TagLib::ID3v2::UnsynchronizedLyricsFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11280,6 +11319,7 @@ _wrap_new_UnsynchronizedLyricsFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UnsynchronizedLyricsFrame *)new TagLib::ID3v2::UnsynchronizedLyricsFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11331,6 +11371,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UnsynchronizedLyricsFrame(TagLib::ID3v2::UnsynchronizedLyricsFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -11608,6 +11649,7 @@ _wrap_new_UrlLinkFrame(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UrlLinkFrame *)new TagLib::ID3v2::UrlLinkFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11616,6 +11658,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UrlLinkFrame(TagLib::ID3v2::UrlLinkFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -11744,6 +11787,7 @@ _wrap_new_UserUrlLinkFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
   arg1 = static_cast< TagLib::String::Type >(val1);
   result = (TagLib::ID3v2::UserUrlLinkFrame *)new TagLib::ID3v2::UserUrlLinkFrame(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11759,6 +11803,7 @@ _wrap_new_UserUrlLinkFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UserUrlLinkFrame *)new TagLib::ID3v2::UserUrlLinkFrame();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11797,6 +11842,7 @@ _wrap_new_UserUrlLinkFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::ID3v2::UserUrlLinkFrame *)new TagLib::ID3v2::UserUrlLinkFrame((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -11848,6 +11894,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_ID3v2_UserUrlLinkFrame(TagLib::ID3v2::UserUrlLinkFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -12852,6 +12899,7 @@ _wrap_new_FrameStdList__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (std::list< TagLib::ID3v2::Frame * > *)new std::list< TagLib::ID3v2::Frame * >();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -12880,6 +12928,7 @@ _wrap_new_FrameStdList__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   result = (std::list< TagLib::ID3v2::Frame * > *)new std::list< TagLib::ID3v2::Frame * >((std::list< TagLib::ID3v2::Frame * > const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   if (SWIG_IsNewObj(res1)) delete arg1;
   return self;
 fail:
@@ -13197,6 +13246,7 @@ _wrap_new_FrameStdList__SWIG_2(int argc, VALUE *argv, VALUE self) {
   arg1 = static_cast< std::list< TagLib::ID3v2::Frame * >::size_type >(val1);
   result = (std::list< TagLib::ID3v2::Frame * > *)new std::list< TagLib::ID3v2::Frame * >(arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -13443,6 +13493,7 @@ _wrap_new_FrameStdList__SWIG_3(int argc, VALUE *argv, VALUE self) {
   arg2 = reinterpret_cast< std::list< TagLib::ID3v2::Frame * >::value_type >(argp2);
   result = (std::list< TagLib::ID3v2::Frame * > *)new std::list< TagLib::ID3v2::Frame * >(arg1,arg2);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -14088,6 +14139,7 @@ fail:
 
 SWIGINTERN void
 free_std_list_Sl_TagLib_ID3v2_Frame_Sm__Sg_(std::list< TagLib::ID3v2::Frame * > *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -14102,6 +14154,7 @@ _wrap_new_FrameList__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   result = (TagLib::List< TagLib::ID3v2::Frame * > *)new TagLib::List< TagLib::ID3v2::Frame * >();
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -14145,6 +14198,7 @@ _wrap_new_FrameList__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::List< TagLib::ID3v2::Frame * > * >(argp1);
   result = (TagLib::List< TagLib::ID3v2::Frame * > *)new TagLib::List< TagLib::ID3v2::Frame * >((TagLib::List< TagLib::ID3v2::Frame * > const &)*arg1);
   DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
   return self;
 fail:
   return Qnil;
@@ -14185,6 +14239,7 @@ fail:
 
 SWIGINTERN void
 free_TagLib_List_Sl_TagLib_ID3v2_Frame_Sm__Sg_(TagLib::List< TagLib::ID3v2::Frame * > *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
@@ -16087,7 +16142,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassFrame.klass, "to_user_url_link_frame", VALUEFUNC(_wrap_Frame_to_user_url_link_frame), -1);
   SwigClassFrame.mark = 0;
   SwigClassFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_Frame;
-  SwigClassFrame.trackObjects = 0;
+  SwigClassFrame.trackObjects = 1;
   
   SwigClassTag.klass = rb_define_class_under(mID3v2, "Tag", ((swig_class *) SWIGTYPE_p_TagLib__Tag->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__Tag, (void *) &SwigClassTag);
@@ -16119,7 +16174,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassTag.klass, "frame_list", VALUEFUNC(_wrap_Tag_frame_list), -1);
   SwigClassTag.mark = 0;
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_ID3v2_Tag;
-  SwigClassTag.trackObjects = 0;
+  SwigClassTag.trackObjects = 1;
   
   SwigClassFrameFactory.klass = rb_define_class_under(mID3v2, "FrameFactory", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__FrameFactory, (void *) &SwigClassFrameFactory);
@@ -16129,7 +16184,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassFrameFactory.klass, "default_text_encoding", VALUEFUNC(_wrap_FrameFactory_default_text_encoding), -1);
   rb_define_method(SwigClassFrameFactory.klass, "default_text_encoding=", VALUEFUNC(_wrap_FrameFactory_default_text_encodinge___), -1);
   SwigClassFrameFactory.mark = 0;
-  SwigClassFrameFactory.trackObjects = 0;
+  SwigClassFrameFactory.trackObjects = 1;
   
   SwigClassAttachedPictureFrame.klass = rb_define_class_under(mID3v2, "AttachedPictureFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame, (void *) &SwigClassAttachedPictureFrame);
@@ -16169,14 +16224,14 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassAttachedPictureFrame.klass, "picture=", VALUEFUNC(_wrap_AttachedPictureFrame_picturee___), -1);
   SwigClassAttachedPictureFrame.mark = 0;
   SwigClassAttachedPictureFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_AttachedPictureFrame;
-  SwigClassAttachedPictureFrame.trackObjects = 0;
+  SwigClassAttachedPictureFrame.trackObjects = 1;
   
   SwigClassAttachedPictureFrameV22.klass = rb_define_class_under(mID3v2, "AttachedPictureFrameV22", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrameV22, (void *) &SwigClassAttachedPictureFrameV22);
   rb_undef_alloc_func(SwigClassAttachedPictureFrameV22.klass);
   SwigClassAttachedPictureFrameV22.mark = 0;
   SwigClassAttachedPictureFrameV22.destroy = (void (*)(void *)) free_TagLib_ID3v2_AttachedPictureFrameV22;
-  SwigClassAttachedPictureFrameV22.trackObjects = 0;
+  SwigClassAttachedPictureFrameV22.trackObjects = 1;
   
   SwigClassCommentsFrame.klass = rb_define_class_under(mID3v2, "CommentsFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__CommentsFrame, (void *) &SwigClassCommentsFrame);
@@ -16194,7 +16249,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_singleton_method(SwigClassCommentsFrame.klass, "find_by_description", VALUEFUNC(_wrap_CommentsFrame_find_by_description), -1);
   SwigClassCommentsFrame.mark = 0;
   SwigClassCommentsFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_CommentsFrame;
-  SwigClassCommentsFrame.trackObjects = 0;
+  SwigClassCommentsFrame.trackObjects = 1;
   
   SwigClassGeneralEncapsulatedObjectFrame.klass = rb_define_class_under(mID3v2, "GeneralEncapsulatedObjectFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame, (void *) &SwigClassGeneralEncapsulatedObjectFrame);
@@ -16213,7 +16268,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassGeneralEncapsulatedObjectFrame.klass, "object=", VALUEFUNC(_wrap_GeneralEncapsulatedObjectFrame_objecte___), -1);
   SwigClassGeneralEncapsulatedObjectFrame.mark = 0;
   SwigClassGeneralEncapsulatedObjectFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_GeneralEncapsulatedObjectFrame;
-  SwigClassGeneralEncapsulatedObjectFrame.trackObjects = 0;
+  SwigClassGeneralEncapsulatedObjectFrame.trackObjects = 1;
   
   SwigClassPopularimeterFrame.klass = rb_define_class_under(mID3v2, "PopularimeterFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame, (void *) &SwigClassPopularimeterFrame);
@@ -16228,7 +16283,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassPopularimeterFrame.klass, "counter=", VALUEFUNC(_wrap_PopularimeterFrame_countere___), -1);
   SwigClassPopularimeterFrame.mark = 0;
   SwigClassPopularimeterFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_PopularimeterFrame;
-  SwigClassPopularimeterFrame.trackObjects = 0;
+  SwigClassPopularimeterFrame.trackObjects = 1;
   
   SwigClassPrivateFrame.klass = rb_define_class_under(mID3v2, "PrivateFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__PrivateFrame, (void *) &SwigClassPrivateFrame);
@@ -16241,7 +16296,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassPrivateFrame.klass, "data=", VALUEFUNC(_wrap_PrivateFrame_datae___), -1);
   SwigClassPrivateFrame.mark = 0;
   SwigClassPrivateFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_PrivateFrame;
-  SwigClassPrivateFrame.trackObjects = 0;
+  SwigClassPrivateFrame.trackObjects = 1;
   
   SwigClassRelativeVolumeFrame.klass = rb_define_class_under(mID3v2, "RelativeVolumeFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame, (void *) &SwigClassRelativeVolumeFrame);
@@ -16270,7 +16325,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassRelativeVolumeFrame.klass, "identification=", VALUEFUNC(_wrap_RelativeVolumeFrame_identificatione___), -1);
   SwigClassRelativeVolumeFrame.mark = 0;
   SwigClassRelativeVolumeFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_RelativeVolumeFrame;
-  SwigClassRelativeVolumeFrame.trackObjects = 0;
+  SwigClassRelativeVolumeFrame.trackObjects = 1;
   
   SwigClassTextIdentificationFrame.klass = rb_define_class_under(mID3v2, "TextIdentificationFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame, (void *) &SwigClassTextIdentificationFrame);
@@ -16284,7 +16339,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassTextIdentificationFrame.klass, "field_list", VALUEFUNC(_wrap_TextIdentificationFrame_field_list), -1);
   SwigClassTextIdentificationFrame.mark = 0;
   SwigClassTextIdentificationFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_TextIdentificationFrame;
-  SwigClassTextIdentificationFrame.trackObjects = 0;
+  SwigClassTextIdentificationFrame.trackObjects = 1;
   
   SwigClassUserTextIdentificationFrame.klass = rb_define_class_under(mID3v2, "UserTextIdentificationFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame, (void *) &SwigClassUserTextIdentificationFrame);
@@ -16299,7 +16354,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_singleton_method(SwigClassUserTextIdentificationFrame.klass, "find", VALUEFUNC(_wrap_UserTextIdentificationFrame_find), -1);
   SwigClassUserTextIdentificationFrame.mark = 0;
   SwigClassUserTextIdentificationFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UserTextIdentificationFrame;
-  SwigClassUserTextIdentificationFrame.trackObjects = 0;
+  SwigClassUserTextIdentificationFrame.trackObjects = 1;
   
   SwigClassUniqueFileIdentifierFrame.klass = rb_define_class_under(mID3v2, "UniqueFileIdentifierFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame, (void *) &SwigClassUniqueFileIdentifierFrame);
@@ -16312,7 +16367,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassUniqueFileIdentifierFrame.klass, "to_string", VALUEFUNC(_wrap_UniqueFileIdentifierFrame_to_string), -1);
   SwigClassUniqueFileIdentifierFrame.mark = 0;
   SwigClassUniqueFileIdentifierFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UniqueFileIdentifierFrame;
-  SwigClassUniqueFileIdentifierFrame.trackObjects = 0;
+  SwigClassUniqueFileIdentifierFrame.trackObjects = 1;
   
   SwigClassUnknownFrame.klass = rb_define_class_under(mID3v2, "UnknownFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UnknownFrame, (void *) &SwigClassUnknownFrame);
@@ -16322,7 +16377,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassUnknownFrame.klass, "data", VALUEFUNC(_wrap_UnknownFrame_data), -1);
   SwigClassUnknownFrame.mark = 0;
   SwigClassUnknownFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UnknownFrame;
-  SwigClassUnknownFrame.trackObjects = 0;
+  SwigClassUnknownFrame.trackObjects = 1;
   
   SwigClassUnsynchronizedLyricsFrame.klass = rb_define_class_under(mID3v2, "UnsynchronizedLyricsFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame, (void *) &SwigClassUnsynchronizedLyricsFrame);
@@ -16339,7 +16394,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassUnsynchronizedLyricsFrame.klass, "text_encoding=", VALUEFUNC(_wrap_UnsynchronizedLyricsFrame_text_encodinge___), -1);
   SwigClassUnsynchronizedLyricsFrame.mark = 0;
   SwigClassUnsynchronizedLyricsFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UnsynchronizedLyricsFrame;
-  SwigClassUnsynchronizedLyricsFrame.trackObjects = 0;
+  SwigClassUnsynchronizedLyricsFrame.trackObjects = 1;
   
   SwigClassUrlLinkFrame.klass = rb_define_class_under(mID3v2, "UrlLinkFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame, (void *) &SwigClassUrlLinkFrame);
@@ -16351,7 +16406,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassUrlLinkFrame.klass, "to_string", VALUEFUNC(_wrap_UrlLinkFrame_to_string), -1);
   SwigClassUrlLinkFrame.mark = 0;
   SwigClassUrlLinkFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UrlLinkFrame;
-  SwigClassUrlLinkFrame.trackObjects = 0;
+  SwigClassUrlLinkFrame.trackObjects = 1;
   
   SwigClassUserUrlLinkFrame.klass = rb_define_class_under(mID3v2, "UserUrlLinkFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame, (void *) &SwigClassUserUrlLinkFrame);
@@ -16364,7 +16419,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassUserUrlLinkFrame.klass, "description=", VALUEFUNC(_wrap_UserUrlLinkFrame_descriptione___), -1);
   SwigClassUserUrlLinkFrame.mark = 0;
   SwigClassUserUrlLinkFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_UserUrlLinkFrame;
-  SwigClassUserUrlLinkFrame.trackObjects = 0;
+  SwigClassUserUrlLinkFrame.trackObjects = 1;
   
   SwigClassFrameStdList.klass = rb_define_class_under(mID3v2, "FrameStdList", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_std__listT_TagLib__ID3v2__Frame_p_std__allocatorT_TagLib__ID3v2__Frame_p_t_t, (void *) &SwigClassFrameStdList);
@@ -16412,7 +16467,7 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassFrameStdList.klass, "merge", VALUEFUNC(_wrap_FrameStdList_merge), -1);
   SwigClassFrameStdList.mark = 0;
   SwigClassFrameStdList.destroy = (void (*)(void *)) free_std_list_Sl_TagLib_ID3v2_Frame_Sm__Sg_;
-  SwigClassFrameStdList.trackObjects = 0;
+  SwigClassFrameStdList.trackObjects = 1;
   
   SwigClassFrameList.klass = rb_define_class_under(mID3v2, "FrameList", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t, (void *) &SwigClassFrameList);
@@ -16436,6 +16491,6 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassFrameList.klass, "==", VALUEFUNC(_wrap_FrameList___eq__), -1);
   SwigClassFrameList.mark = 0;
   SwigClassFrameList.destroy = (void (*)(void *)) free_TagLib_List_Sl_TagLib_ID3v2_Frame_Sm__Sg_;
-  SwigClassFrameList.trackObjects = 0;
+  SwigClassFrameList.trackObjects = 1;
 }
 

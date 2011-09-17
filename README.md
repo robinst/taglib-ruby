@@ -10,7 +10,6 @@ accessed.
 taglib-ruby is work in progress, here are some of the things still left
 to do (contributors very welcome):
 
-* Use more SWIG magic to improve GC/destructor interaction
 * Pre-compiled Gem for Windows
 * More coverage of the library besides ID3v2
 
