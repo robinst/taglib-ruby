@@ -16,8 +16,13 @@ require './lib/taglib/version.rb'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "taglib-ruby"
-  gem.summary = %Q{Ruby interface for the complete taglib C++ library}
-  gem.description = File.read('README.md')
+  gem.summary = %Q{Ruby interface for the taglib C++ library}
+  gem.description = <<-DESC
+Ruby interface for the taglib C++ library.
+
+In contrast to other libraries, this one wraps the C++ API using SWIG,
+not only the minimal C API. This means that all tags can be accessed.
+  DESC
   gem.version = TagLib::Version::STRING
   gem.license = "MIT"
   gem.email = "robin@nibor.org"
