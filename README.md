@@ -16,7 +16,7 @@ to do (contributors very welcome):
 Usage
 -----
 
-Here's an example reading an ID3v2 tag:
+Here's an example for reading an ID3v2 tag:
 
     require 'taglib'
 
@@ -46,10 +46,22 @@ And here's an example for writing one:
     file = TagLib::MPEG::File.new("joga.mp3")
     tag = file.id3v2_tag
 
+    # Write basic attributes
     tag.artist = "Björk"
     tag.title = "Jóga"
 
+    # Add attached picture frame
+    apic = TagLib::ID3v2::AttachedPictureFrame.new
+    apic.mime_type = "image/jpeg"
+    apic.description = "Cover"
+    apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
+    apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
+
+    tag.add_frame(apic)
+
     file.save
+
+### Encoding
 
 By default, taglib stores text frames as ISO-8859-1 (Latin-1), if the
 text contains only characters that are available in that encoding. If
@@ -61,6 +73,12 @@ change the default text encoding:
 
     frame_factory = TagLib::ID3v2::FrameFactory.instance
     frame_factory.default_text_encoding = TagLib::String::UTF8
+
+Another option is using the advanced API:
+
+    title = tag.frame_list('TIT2').first
+    title.text = "Jóga"
+    title.text_encoding = TagLib::String::UTF8
 
 Contributing
 ------------
