@@ -58,12 +58,8 @@ end
 
 task :default => :test
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
+require 'yard'
+YARD::Rake::YardocTask.new do |t|
   version = TagLib::Version::STRING
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "taglib-ruby #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  t.options = ['--title', "taglib-ruby #{version}"]
 end

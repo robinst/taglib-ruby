@@ -6,5 +6,7 @@ Makefile
 
 .*.swp
 
+/.yardoc
+/doc
 /pkg
 /tmp
