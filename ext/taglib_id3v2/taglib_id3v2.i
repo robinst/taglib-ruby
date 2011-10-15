@@ -79,6 +79,7 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 %apply TagLib::ID3v2::FrameList & { const TagLib::ID3v2::FrameList & };
 
 %apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
+%ignore TagLib::ID3v2::Tag::removeFrame(Frame *, bool);
 %include <taglib/id3v2tag.h>
 %clear TagLib::ID3v2::Frame *;
 
