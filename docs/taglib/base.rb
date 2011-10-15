@@ -1,3 +1,13 @@
+# ## String Encodings
+#
+# Sometimes, it is necessary to specify which encoding should be used to
+# store strings in tags. For this, the following constants are defined:
+#
+# * `TagLib::String::Latin1`
+# * `TagLib::String::UTF16`
+# * `TagLib::String::UTF16BE`
+# * `TagLib::String::UTF8`
+# * `TagLib::String::UTF16LE`
 module TagLib
   # Abstract tag base class.
   class Tag
