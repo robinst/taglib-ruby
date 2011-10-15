@@ -4,16 +4,23 @@ module TagLib::ID3v2
     # Get a list of frames. Note that the frames returned are subclasses
     # of {TagLib::ID3v2::Frame}, depending on the frame ID.
     #
-    # @param [:String] frame_id Specify this parameter to get only the
-    #   frames matching a frame ID (e.g. "TIT2"). For all frames, call
-    #   this method without the parameter.
+    # @overload frame_list()
+    #   Returns all frames.
+    #
+    # @overload frame_list(frame_id)
+    #   Returns frames matching ID.
+    #
+    #   @param [String] frame_id Specify this parameter to get only the
+    #     frames matching a frame ID (e.g. "TIT2").
+    #
     # @return [Array<TagLib::ID3v2::Frame>]
-    def frame_list(frame_id=nil)
+    def frame_list
     end
 
     # Add a frame to the tag.
     #
     # @param [Frame]
+    # @return [void]
     def add_frame(frame)
     end
   end
