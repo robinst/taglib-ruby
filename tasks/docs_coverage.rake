@@ -8,7 +8,7 @@ task :docs_coverage do |t|
   ext_codeobjects = sort(YARD::Registry.all)
   YARD::Registry.clear
   YARD.parse("docs/**/*.rb")
-  docs_codeobjects = sort(YARD::Registry.all)
+  docs_codeobjects = sort(YARD::Registry.all(:module, :class, :method))
 
   only_in_ext = (ext_codeobjects - docs_codeobjects)
   only_in_docs = (docs_codeobjects - ext_codeobjects)
