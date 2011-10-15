@@ -1,8 +1,6 @@
 %module "TagLib::MPEG"
 %{
 #include <taglib/taglib.h>
-#include <taglib/tfile.h>
-#include <taglib/tstringlist.h>
 #include <taglib/xingheader.h>
 #include <taglib/mpegheader.h>
 #include <taglib/mpegproperties.h>

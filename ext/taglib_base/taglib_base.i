@@ -1,10 +1,8 @@
 %module "TagLib"
 %{
 #include <taglib/taglib.h>
-#include <taglib/tstring.h>
 #include <taglib/tbytevector.h>
 #include <taglib/tlist.h>
-#include <taglib/tfile.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 %}

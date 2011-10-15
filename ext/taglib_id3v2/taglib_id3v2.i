@@ -3,7 +3,6 @@
 #include <taglib/id3v2frame.h>
 #include <taglib/id3v2framefactory.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/tfile.h>
 
 #include <taglib/attachedpictureframe.h>
 #include <taglib/commentsframe.h>
