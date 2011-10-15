@@ -11,9 +11,6 @@
 
 %include "includes.i"
 
-// Undefine macro
-#define TAGLIB_EXPORT
-
 namespace TagLib {
   class StringList;
   class ByteVector;

@@ -1,5 +1,8 @@
 %trackobjects;
 
+// Undefine macro
+#define TAGLIB_EXPORT
+
 %{
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
