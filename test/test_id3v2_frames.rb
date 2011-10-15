@@ -41,6 +41,27 @@ class TestID3v2Frames < Test::Unit::TestCase
       assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
     end
 
+    should "be removable" do
+      assert_equal 11, @tag.frame_list.size
+      tit2 = @tag.frame_list('TIT2').first
+      @tag.remove_frame(tit2)
+      assert_equal 10, @tag.frame_list.size
+      begin
+        tit2.to_string
+        flunk("Should have raised ObjectPreviouslyDeleted.")
+      rescue => e
+        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      end
+    end
+
+    should "be removable by ID" do
+      frames = @tag.frame_list
+      @tag.remove_frames('COMM')
+      tit2 = frames.find{ |f| f.frame_id == 'TIT2' }
+      # Other frames should still be accessible
+      assert_equal "Dummy Title", tit2.to_s
+    end
+
     context "APIC frame" do
       setup do
         @apic = @tag.frame_list('APIC').first
@@ -78,7 +99,7 @@ class TestID3v2Frames < Test::Unit::TestCase
 
       should "have to_s" do
         expected = "[MusicBrainz Album Id] MusicBrainz Album Id 992dc19a-5631-40f5-b252-fbfedbc328a9"
-        assert_equal expected, @txxx_frame.to_s
+        assert_equal expected, @txxx_frame.to_string
       end
 
       should "have field_list" do

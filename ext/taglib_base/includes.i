@@ -3,6 +3,17 @@
 // Undefine macro
 #define TAGLIB_EXPORT
 
+// Replaces the typemap from swigtype.swg and just adds the line
+// SWIG_RubyUnlinkObjects. This is done to be safe in the case when a
+// disowned object is deleted by C++ (e.g. with remove_frame).
+%typemap(in, noblock=1) SWIGTYPE *DISOWN (int res = 0) {
+  res = SWIG_ConvertPtr($input, %as_voidptrptr(&$1), $descriptor, SWIG_POINTER_DISOWN | %convertptr_flags);
+  if (!SWIG_IsOK(res)) {
+    %argument_fail(res,"$type", $symname, $argnum);
+  }
+  SWIG_RubyUnlinkObjects(%as_voidptr($1));
+}
+
 %{
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -46,3 +57,5 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
   return result;
 }
 %}
+
+// vim: set filetype=cpp sw=2 ts=2 expandtab:
