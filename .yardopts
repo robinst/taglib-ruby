@@ -1,6 +1,7 @@
 --markup markdown
 --markup-provider redcarpet
 --charset UTF-8
+--template-path docs
 docs/**/*.rb
 -
 README.md
