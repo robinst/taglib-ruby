@@ -7,8 +7,6 @@
 #include <taglib/id3v2tag.h>
 %}
 
-%include <std_list.i>
-
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
 namespace TagLib {

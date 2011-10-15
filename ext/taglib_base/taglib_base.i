@@ -62,7 +62,6 @@ namespace TagLib {
 }
 %apply TagLib::StringList { TagLib::StringList &, const TagLib::StringList & };
 
-%include <std_list.i>
 %ignore TagLib::List::operator[];
 %ignore TagLib::List::operator=;
 %include <taglib/tlist.h>
