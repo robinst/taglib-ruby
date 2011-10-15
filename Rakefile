@@ -63,3 +63,5 @@ YARD::Rake::YardocTask.new do |t|
   version = TagLib::Version::STRING
   t.options = ['--title', "taglib-ruby #{version}"]
 end
+
+FileList['tasks/**/*.rake'].each { |task| import task }
