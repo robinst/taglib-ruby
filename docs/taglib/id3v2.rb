@@ -23,6 +23,28 @@ module TagLib::ID3v2
     # @return [void]
     def add_frame(frame)
     end
+
+    # Remove the passed frame from the tag.
+    #
+    # **Note:** You can and shall not call any methods on the frame
+    # object after you have passed it to this method, because the
+    # underlying C++ object has been deleted.
+    #
+    # @param [Frame] frame to remove
+    # @return [void]
+    def remove_frame(frame)
+    end
+
+    # Remove all frames with the specified ID from the tag.
+    #
+    # **Note:** If you have obtained any frame objects with the same ID
+    # from the tag before calling this method, you should not touch them
+    # anymore. The reason is that the C++ objects may have been deleted.
+    #
+    # @param [String] id
+    # @return [void]
+    def remove_frames(id)
+    end
   end
 
   # The base class for all ID3v2 frames.
