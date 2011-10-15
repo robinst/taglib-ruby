@@ -17,8 +17,6 @@
 #include <taglib/urllinkframe.h>
 %}
 
-%include <std_list.i>
-
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
@@ -28,8 +26,57 @@ namespace TagLib {
   }
 }
 
+%{
+VALUE taglib_id3v2_frame_to_ruby_object(const TagLib::ID3v2::Frame *frame) {
+  TagLib::ByteVector id = frame->frameID();
+  void *f = SWIG_as_voidptr(frame);
+  swig_type_info *ti;
+  if (id == "APIC")
+    ti = SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame;
+  else if (id == "COMM")
+    ti = SWIGTYPE_p_TagLib__ID3v2__CommentsFrame;
+  else if (id == "GEOB")
+    ti = SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame;
+  else if (id == "POPM")
+    ti = SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame;
+  else if (id == "PRIV")
+    ti = SWIGTYPE_p_TagLib__ID3v2__PrivateFrame;
+  else if (id == "RVAD")
+    ti = SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame;
+  else if (id == "TXXX")
+    ti = SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame;
+  else if (id.startsWith("T"))
+    ti = SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame;
+  else if (id == "UFID")
+    ti = SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame;
+  else if (id == "USLT")
+    ti = SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame;
+  else if (id == "WXXX")
+    ti = SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame;
+  else if (id.startsWith("W"))
+    ti = SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame;
+  else
+    ti = SWIGTYPE_p_TagLib__ID3v2__Frame;
+  return SWIG_NewPointerObj(f, ti, 0);
+}
+
+VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
+  VALUE ary = rb_ary_new2(list->size());
+  for (TagLib::ID3v2::FrameList::ConstIterator it = list->begin(); it != list->end(); it++) {
+    VALUE s = taglib_id3v2_frame_to_ruby_object(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+%}
+
 %ignore TagLib::ID3v2::Frame::Header;
 %include <taglib/id3v2frame.h>
+
+%typemap(out) TagLib::ID3v2::FrameList & {
+  $result = taglib_id3v2_framelist_to_ruby_array($1);
+}
+%apply TagLib::ID3v2::FrameList & { const TagLib::ID3v2::FrameList & };
 
 %apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
 %include <taglib/id3v2tag.h>
@@ -38,8 +85,9 @@ namespace TagLib {
 %include <taglib/id3v2framefactory.h>
 
 %extend TagLib::ID3v2::Tag {
+  // clarify overload resolution
   const FrameList &frameList(const char *frameID) const {
-    // Triggers the implicit conversion to ByteVector in C++.
+    // triggers implicit conversion to ByteVector
     return $self->frameList(frameID);
   }
 }
@@ -59,53 +107,5 @@ namespace TagLib {
 %include <taglib/unknownframe.h>
 %include <taglib/unsynchronizedlyricsframe.h>
 %include <taglib/urllinkframe.h>
-
-%extend TagLib::ID3v2::Frame {
-  TagLib::ID3v2::AttachedPictureFrame *toAttachedPictureFrame() {
-    return static_cast<TagLib::ID3v2::AttachedPictureFrame *>($self);
-  }
-  TagLib::ID3v2::CommentsFrame *toCommentsFrame() {
-    return static_cast<TagLib::ID3v2::CommentsFrame *>($self);
-  }
-  TagLib::ID3v2::GeneralEncapsulatedObjectFrame *toGeneralEncapsulatedObjectFrame() {
-    return static_cast<TagLib::ID3v2::GeneralEncapsulatedObjectFrame *>($self);
-  }
-  TagLib::ID3v2::PopularimeterFrame *toPopularimeterFrame() {
-    return static_cast<TagLib::ID3v2::PopularimeterFrame *>($self);
-  }
-  TagLib::ID3v2::PrivateFrame *toPrivateFrame() {
-    return static_cast<TagLib::ID3v2::PrivateFrame *>($self);
-  }
-  TagLib::ID3v2::RelativeVolumeFrame *toRelativeVolumeFrame() {
-    return static_cast<TagLib::ID3v2::RelativeVolumeFrame *>($self);
-  }
-  TagLib::ID3v2::TextIdentificationFrame *toTextIdentificationFrame() {
-    return static_cast<TagLib::ID3v2::TextIdentificationFrame *>($self);
-  }
-  TagLib::ID3v2::UserTextIdentificationFrame *toUserTextIdentificationFrame() {
-    return static_cast<TagLib::ID3v2::UserTextIdentificationFrame *>($self);
-  }
-  TagLib::ID3v2::UniqueFileIdentifierFrame *toUniqueFileIdentifierFrame() {
-    return static_cast<TagLib::ID3v2::UniqueFileIdentifierFrame *>($self);
-  }
-  TagLib::ID3v2::UnknownFrame *toUnknownFrame() {
-    return static_cast<TagLib::ID3v2::UnknownFrame *>($self);
-  }
-  TagLib::ID3v2::UnsynchronizedLyricsFrame *toUnsynchronizedLyricsFrame() {
-    return static_cast<TagLib::ID3v2::UnsynchronizedLyricsFrame *>($self);
-  }
-  TagLib::ID3v2::UrlLinkFrame *toUrlLinkFrame() {
-    return static_cast<TagLib::ID3v2::UrlLinkFrame *>($self);
-  }
-  TagLib::ID3v2::UserUrlLinkFrame *toUserUrlLinkFrame() {
-    return static_cast<TagLib::ID3v2::UserUrlLinkFrame *>($self);
-  }
-}
-
-// Needed so that SWIG correctly wraps TagLib::List::Iterator,
-// which is a std::list::iterator.
-%template(FrameStdList) std::list<TagLib::ID3v2::Frame *>;
-
-%template(FrameList) TagLib::List<TagLib::ID3v2::Frame *>;
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

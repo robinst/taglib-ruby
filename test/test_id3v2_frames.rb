@@ -20,8 +20,7 @@ class TestID3v2Frames < Test::Unit::TestCase
     should "be complete" do
       assert_not_nil @frames
       assert_equal 11, @frames.size
-      iterator = @frames.begin
-      frame = iterator.value
+      frame = @frames.first
       assert_equal "Dummy Title", frame.to_string
     end
 
@@ -35,9 +34,11 @@ class TestID3v2Frames < Test::Unit::TestCase
       apic = @tag.frame_list('APIC').first
       comm = @tag.frame_list('COMM').first
       tit2 = @tag.frame_list('TIT2').first
+      txxx = @tag.frame_list('TXXX').first
       assert_equal TagLib::ID3v2::AttachedPictureFrame, apic.class
       assert_equal TagLib::ID3v2::CommentsFrame, comm.class
       assert_equal TagLib::ID3v2::TextIdentificationFrame, tit2.class
+      assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
     end
 
     context "APIC frame" do
@@ -78,11 +79,6 @@ class TestID3v2Frames < Test::Unit::TestCase
       should "have to_s" do
         expected = "[MusicBrainz Album Id] MusicBrainz Album Id 992dc19a-5631-40f5-b252-fbfedbc328a9"
         assert_equal expected, @txxx_frame.to_s
-      end
-
-      should "be convertable to its concrete type" do
-        txxx = @txxx_frame.to_user_text_identification_frame
-        assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
       end
 
       should "have field_list" do
