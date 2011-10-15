@@ -67,14 +67,14 @@ namespace TagLib {
 %ignore TagLib::List::operator=;
 %include <taglib/tlist.h>
 
+%rename("empty?") TagLib::Tag::isEmpty;
+%include <taglib/tag.h>
+
 %include <taglib/tfile.h>
 
 %ignore TagLib::FileRef::operator=;
 %ignore TagLib::FileRef::operator!=;
 %warnfilter(SWIGWARN_PARSE_NAMED_NESTED_CLASS) TagLib::FileRef::FileTypeResolver;
 %include <taglib/fileref.h>
-
-%rename("empty?") TagLib::Tag::isEmpty;
-%include <taglib/tag.h>
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
