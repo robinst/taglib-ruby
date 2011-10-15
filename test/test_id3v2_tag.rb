@@ -28,4 +28,27 @@ class TestID3v2Tag < Test::Unit::TestCase
       end
     end
   end
+
+  context "A new ID3v2::Tag" do
+    setup do
+      @tag = TagLib::ID3v2::Tag.new
+    end
+
+    should "be empty" do
+      assert @tag.empty?
+    end
+
+    should "have nil for string attributes" do
+      assert_nil @tag.title
+      assert_nil @tag.artist
+      assert_nil @tag.album
+      assert_nil @tag.comment
+      assert_nil @tag.genre
+    end
+
+    should "have 0 for numeric attributes" do
+      assert_equal 0, @tag.track
+      assert_equal 0, @tag.year
+    end
+  end
 end

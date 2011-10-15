@@ -14,9 +14,13 @@
 #endif
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  VALUE result = rb_tainted_str_new2(string.toCString(true));
-  ASSOCIATE_UTF8_ENCODING(result);
-  return result;
+  if (string.isNull()) {
+    return Qnil;
+  } else {
+    VALUE result = rb_tainted_str_new2(string.toCString(true));
+    ASSOCIATE_UTF8_ENCODING(result);
+    return result;
+  }
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
