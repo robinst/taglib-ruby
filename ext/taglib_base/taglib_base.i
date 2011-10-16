@@ -19,6 +19,8 @@ namespace TagLib {
     public:
     enum Type { Latin1 = 0, UTF16 = 1, UTF16BE = 2, UTF8 = 3, UTF16LE = 4 };
   };
+
+  typedef unsigned int uint;
 }
 
 
@@ -26,8 +28,6 @@ namespace TagLib {
 // doesn't seem to be possible, thus resort to some magic)
 %rename("%(command: ruby -e 'print(ARGV[0][3..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"=\")' )s",
         regexmatch$name="^set[A-Z]") "";
-
-%include <taglib/taglib.h>
 
 // ByteVector
 // The cast is used to be sure that we get the const version of data().
