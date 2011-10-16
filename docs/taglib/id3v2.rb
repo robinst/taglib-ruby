@@ -19,7 +19,7 @@ module TagLib::ID3v2
 
     # Add a frame to the tag.
     #
-    # @param [Frame]
+    # @param [Frame] frame
     # @return [void]
     def add_frame(frame)
     end
