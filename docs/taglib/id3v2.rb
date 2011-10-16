@@ -49,9 +49,9 @@ module TagLib::ID3v2
 
   # The base class for all ID3v2 frames.
   #
-  # In ID3v2 all frames are identified by a frame ID, such as `TIT2` or
-  # `APIC`. The data in the frames is different depending on the frame
-  # type, which is why there is a subclass for each type.
+  # In ID3v2 all frames are identified by a {#frame_id frame ID}, such
+  # as `TIT2` or `APIC`. The data in the frames is different depending
+  # on the frame type, which is why there is a subclass for each type.
   #
   # The most common frame type is the text identification frame. All
   # frame IDs of this type begin with `T`, for example `TALB` for the
@@ -75,6 +75,9 @@ module TagLib::ID3v2
   # * `WXXX`: {UserUrlLinkFrame}
   #
   class Frame
+    # @return [String] frame ID
+    attr_reader :frame_id
+
     # @return [String] a subclass-specific string representation
     def to_string
     end
