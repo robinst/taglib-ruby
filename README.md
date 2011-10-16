@@ -34,48 +34,52 @@ Usage
 
 Here's an example for reading an ID3v2 tag:
 
-    require 'taglib'
+```ruby
+require 'taglib'
 
-    # Load an ID3v2 tag from a file
-    file = TagLib::MPEG::File.new("wake_up.mp3")
-    tag = file.id3v2_tag
+# Load an ID3v2 tag from a file
+file = TagLib::MPEG::File.new("wake_up.mp3")
+tag = file.id3v2_tag
 
-    # Read basic attributes
-    tag.title  #=> "Wake Up"
-    tag.artist  #=> "Arcade Fire"
-    tag.track  #=> 7
+# Read basic attributes
+tag.title  #=> "Wake Up"
+tag.artist  #=> "Arcade Fire"
+tag.track  #=> 7
 
-    # Access all frames
-    tag.frame_list.size  #=> 13
+# Access all frames
+tag.frame_list.size  #=> 13
 
-    # Track frame
-    track = tag.frame_list('TRCK').first
-    track.to_s  #=> "7/10"
+# Track frame
+track = tag.frame_list('TRCK').first
+track.to_s  #=> "7/10"
 
-    # Attached picture frame
-    cover = tag.frame_list('APIC').first
-    cover.mime_type  #=> "image/jpeg"
-    cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+# Attached picture frame
+cover = tag.frame_list('APIC').first
+cover.mime_type  #=> "image/jpeg"
+cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+```
 
 And here's an example for writing one:
 
-    file = TagLib::MPEG::File.new("joga.mp3")
-    tag = file.id3v2_tag
+```ruby
+file = TagLib::MPEG::File.new("joga.mp3")
+tag = file.id3v2_tag
 
-    # Write basic attributes
-    tag.artist = "Björk"
-    tag.title = "Jóga"
+# Write basic attributes
+tag.artist = "Björk"
+tag.title = "Jóga"
 
-    # Add attached picture frame
-    apic = TagLib::ID3v2::AttachedPictureFrame.new
-    apic.mime_type = "image/jpeg"
-    apic.description = "Cover"
-    apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
-    apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
+# Add attached picture frame
+apic = TagLib::ID3v2::AttachedPictureFrame.new
+apic.mime_type = "image/jpeg"
+apic.description = "Cover"
+apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
+apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
 
-    tag.add_frame(apic)
+tag.add_frame(apic)
 
-    file.save
+file.save
+```
 
 ### Encoding
 
@@ -87,14 +91,18 @@ stores the text as UTF-8.
 When you already know that you want to store the text as UTF-8, you can
 change the default text encoding:
 
-    frame_factory = TagLib::ID3v2::FrameFactory.instance
-    frame_factory.default_text_encoding = TagLib::String::UTF8
+```ruby
+frame_factory = TagLib::ID3v2::FrameFactory.instance
+frame_factory.default_text_encoding = TagLib::String::UTF8
+```
 
 Another option is using the advanced API:
 
-    title = tag.frame_list('TIT2').first
-    title.text = "Jóga"
-    title.text_encoding = TagLib::String::UTF8
+```ruby
+title = tag.frame_list('TIT2').first
+title.text = "Jóga"
+title.text_encoding = TagLib::String::UTF8
+```
 
 Contributing
 ------------
