@@ -9,10 +9,10 @@ GEM
     rake (0.9.2)
     rake-compiler (0.7.9)
       rake
-    rcov (0.9.10)
+    rcov (0.9.11)
     redcarpet (1.17.2)
     shoulda (2.11.3)
-    yard (0.7.2)
+    yard (0.7.3)
 
 PLATFORMS
   ruby
@@ -24,4 +24,4 @@ DEPENDENCIES
   rcov
   redcarpet
   shoulda (~> 2.11)
-  yard
+  yard (~> 0.7)
