@@ -1,5 +1,5 @@
 module TagLib::MPEG
-  class File
+  class File < TagLib::File
     # Load an MPEG file.
     #
     # @param [String] filename

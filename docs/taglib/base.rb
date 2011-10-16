@@ -9,7 +9,16 @@
 # * `TagLib::String::UTF8`
 # * `TagLib::String::UTF16LE`
 module TagLib
-  # Abstract tag base class.
+
+  # @abstract Base class for files, see subclasses.
+  class File
+  end
+
+  # @abstract Base class for tags.
+  #
+  # This is a unified view which provides basic tag information, which
+  # is common in all tag formats. See subclasses for functionality that
+  # goes beyond this interface.
   class Tag
     # @return [String] the album
     # @return [nil] if not present
