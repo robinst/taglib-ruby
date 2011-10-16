@@ -1,4 +1,5 @@
 module TagLib::MPEG
+  # The file class for `.mp3` and other MPEG files.
   class File < TagLib::File
     # Load an MPEG file.
     #
