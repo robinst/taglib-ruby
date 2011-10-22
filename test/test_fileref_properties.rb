@@ -3,7 +3,7 @@ require 'helper'
 class TestFileRefProperties < Test::Unit::TestCase
   context "The crash.mp3 file audio properties" do
     setup do
-      @fileref = TagLib::FileRef.new("test/data/crash.mp3")
+      @fileref = TagLib::FileRef.new("test/data/crash.mp3", true, TagLib::AudioProperties::Average)
       @properties = @fileref.audio_properties
     end
 
