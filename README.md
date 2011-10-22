@@ -31,7 +31,12 @@ Then do:
 Usage
 -----
 
-Here's an example for reading an ID3v2 tag:
+Complete API documentation can be found here:
+
+http://rubydoc.info/gems/taglib-ruby/frames
+
+What follows are some examples of how to use taglib-ruby. Here's how to
+read an ID3v2 tag:
 
 ```ruby
 require 'taglib'
