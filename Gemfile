@@ -9,4 +9,5 @@ group :development do
   gem 'rcov', '>= 0'
   gem 'yard', '~> 0.7'
   gem 'redcarpet'
+  gem 'guard-test', '~> 0.4.0'
 end

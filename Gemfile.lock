@@ -2,6 +2,11 @@ GEM
   remote: http://rubygems.org/
   specs:
     git (1.2.5)
+    guard (0.8.4)
+      thor (~> 0.14.6)
+    guard-test (0.4.0)
+      guard (>= 0.4)
+      test-unit (~> 2.2)
     jeweler (1.6.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
@@ -12,6 +17,8 @@ GEM
     rcov (0.9.11)
     redcarpet (1.17.2)
     shoulda (2.11.3)
+    test-unit (2.4.0)
+    thor (0.14.6)
     yard (0.7.3)
 
 PLATFORMS
@@ -19,6 +26,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0.0)
+  guard-test (~> 0.4.0)
   jeweler (~> 1.6.4)
   rake-compiler (~> 0.7)
   rcov
