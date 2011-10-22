@@ -83,7 +83,7 @@ module TagLib::ID3v2
     end
   end
 
-  # Attached picture frame (APIC), e.g. for cover art.
+  # Attached picture frame (`APIC`), e.g. for cover art.
   #
   # The constants in this class are used for the {#type} attribute.
   class AttachedPictureFrame < Frame
@@ -136,7 +136,7 @@ module TagLib::ID3v2
     attr_accessor :type
   end
 
-  # Comments frame (COMM) for full text information that doesn't fit in
+  # Comments frame (`COMM`) for full text information that doesn't fit in
   # any other frame.
   class CommentsFrame < Frame
     # @return [String] content description, which together with language
@@ -156,7 +156,7 @@ module TagLib::ID3v2
     attr_accessor :text_encoding
   end
 
-  # General encapsulated object frame (GEOB).
+  # General encapsulated object frame (`GEOB`).
   class GeneralEncapsulatedObjectFrame < Frame
     # @return [String] content description
     attr_accessor :description
@@ -182,7 +182,7 @@ module TagLib::ID3v2
     attr_accessor :text_encoding
   end
 
-  # Popularimeter frame (POPM).
+  # Popularimeter frame (`POPM`).
   class PopularimeterFrame < Frame
     # @return [Integer] play counter
     attr_accessor :counter
@@ -194,7 +194,7 @@ module TagLib::ID3v2
     attr_accessor :rating
   end
 
-  # Private frame (PRIV).
+  # Private frame (`PRIV`).
   class PrivateFrame < Frame
     # {include:GeneralEncapsulatedObjectFrame#object}
     #
@@ -205,7 +205,7 @@ module TagLib::ID3v2
     attr_accessor :owner
   end
 
-  # Relative volume adjustment frame (RVAD).
+  # Relative volume adjustment frame (`RVAD` or `RVA2`).
   class RelativeVolumeFrame < Frame
     Other        = 0x00
     MasterVolume = 0x01
@@ -297,7 +297,7 @@ module TagLib::ID3v2
     attr_accessor :peak_volume
   end
 
-  # Text identification frame (T???).
+  # Text identification frame (`T???`).
   class TextIdentificationFrame < Frame
     # Encoding for storing the text in the tag, e.g.
     # `TagLib::String::UTF8`. See the section _String Encodings_ in
@@ -313,13 +313,13 @@ module TagLib::ID3v2
     attr_writer :text
   end
 
-  # User text identification frame (TXXX).
+  # User text identification frame (`TXXX`).
   class UserTextIdentificationFrame < TextIdentificationFrame
     # @return [String] description of content
     attr_accessor :description
   end
 
-  # Unique file identifier frame (UFID).
+  # Unique file identifier frame (`UFID`).
   class UniqueFileIdentifierFrame < Frame
     # @return [String] identifier
     attr_accessor :identifier
@@ -328,7 +328,7 @@ module TagLib::ID3v2
     attr_accessor :owner
   end
 
-  # Unsynchronized lyrics frame (USLT).
+  # Unsynchronized lyrics frame (`USLT`).
   class UnsynchronizedLyricsFrame < Frame
     # @return [String] frame description
     attr_accessor :description
@@ -346,7 +346,7 @@ module TagLib::ID3v2
     attr_accessor :text_encoding
   end
 
-  # URL link frame (W???), e.g. WOAR for "official artist/performer
+  # URL link frame (`W???`), e.g. `WOAR` for "official artist/performer
   # webpage".
   class UrlLinkFrame < Frame
     # @param [String] text simple text to set
@@ -356,7 +356,7 @@ module TagLib::ID3v2
     attr_accessor :url
   end
 
-  # User URL link frame (WXXX).
+  # User URL link frame (`WXXX`).
   class UserUrlLinkFrame < UrlLinkFrame
     # @return [String] description
     attr_accessor :description
