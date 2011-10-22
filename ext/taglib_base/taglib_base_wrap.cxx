@@ -1814,18 +1814,17 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_TagLib__AudioProperties swig_types[0]
-#define SWIGTYPE_p_TagLib__AudioProperties__ReadStyle swig_types[1]
-#define SWIGTYPE_p_TagLib__ByteVector swig_types[2]
-#define SWIGTYPE_p_TagLib__File swig_types[3]
-#define SWIGTYPE_p_TagLib__FileRef swig_types[4]
-#define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[5]
-#define SWIGTYPE_p_TagLib__String swig_types[6]
-#define SWIGTYPE_p_TagLib__Tag swig_types[7]
-#define SWIGTYPE_p_char swig_types[8]
-#define SWIGTYPE_p_ulong swig_types[9]
-#define SWIGTYPE_p_unsigned_int swig_types[10]
-static swig_type_info *swig_types[12];
-static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__ByteVector swig_types[1]
+#define SWIGTYPE_p_TagLib__File swig_types[2]
+#define SWIGTYPE_p_TagLib__FileRef swig_types[3]
+#define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[4]
+#define SWIGTYPE_p_TagLib__String swig_types[5]
+#define SWIGTYPE_p_TagLib__Tag swig_types[6]
+#define SWIGTYPE_p_char swig_types[7]
+#define SWIGTYPE_p_ulong swig_types[8]
+#define SWIGTYPE_p_unsigned_int swig_types[9]
+static swig_type_info *swig_types[11];
+static swig_module_info swig_module = {swig_types, 10, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1868,6 +1867,18 @@ static VALUE mTagLib;
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
 # define CONVERT_TO_UTF8(value) value
 #endif
+
+VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
+  if (byteVector.isNull()) {
+    return Qnil;
+  } else {
+    return rb_tainted_str_new(byteVector.data(), byteVector.size());
+  }
+}
+
+TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
+  return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+}
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
   if (string.isNull()) {
@@ -2702,6 +2713,110 @@ fail:
 }
 
 
+swig_class SwigClassAudioProperties;
+
+SWIGINTERN void
+free_TagLib_AudioProperties(TagLib::AudioProperties *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_AudioProperties_length(int argc, VALUE *argv, VALUE self) {
+  TagLib::AudioProperties *arg1 = (TagLib::AudioProperties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__AudioProperties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::AudioProperties const *","length", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::AudioProperties * >(argp1);
+  result = (int)((TagLib::AudioProperties const *)arg1)->length();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AudioProperties_bitrate(int argc, VALUE *argv, VALUE self) {
+  TagLib::AudioProperties *arg1 = (TagLib::AudioProperties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__AudioProperties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::AudioProperties const *","bitrate", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::AudioProperties * >(argp1);
+  result = (int)((TagLib::AudioProperties const *)arg1)->bitrate();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AudioProperties_sample_rate(int argc, VALUE *argv, VALUE self) {
+  TagLib::AudioProperties *arg1 = (TagLib::AudioProperties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__AudioProperties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::AudioProperties const *","sampleRate", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::AudioProperties * >(argp1);
+  result = (int)((TagLib::AudioProperties const *)arg1)->sampleRate();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_AudioProperties_channels(int argc, VALUE *argv, VALUE self) {
+  TagLib::AudioProperties *arg1 = (TagLib::AudioProperties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__AudioProperties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::AudioProperties const *","channels", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::AudioProperties * >(argp1);
+  result = (int)((TagLib::AudioProperties const *)arg1)->channels();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 swig_class SwigClassFile;
 
 SWIGINTERN void
@@ -2814,7 +2929,6 @@ _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  char const *data ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -2839,8 +2953,7 @@ _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
   }
   result = (arg1)->readBlock(arg2);
   {
-    data = ((const TagLib::ByteVector) result).data();
-    vresult = rb_tainted_str_new(data, (&result)->size());
+    vresult = taglib_bytevector_to_ruby_string(result);
   }
   return vresult;
 fail:
@@ -2865,7 +2978,7 @@ _wrap_File_write_block(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   (arg1)->writeBlock((TagLib::ByteVector const &)*arg2);
@@ -2910,7 +3023,7 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
@@ -2919,7 +3032,7 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< long >(val3);
   {
-    tmp4 = TagLib::ByteVector(RSTRING_PTR(argv[2]), RSTRING_LEN(argv[2]));
+    tmp4 = ruby_string_to_taglib_bytevector(argv[2]);
     arg4 = &tmp4;
   }
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
@@ -2952,7 +3065,7 @@ _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
@@ -2987,7 +3100,7 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2);
@@ -3103,7 +3216,7 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
@@ -3112,7 +3225,7 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< long >(val3);
   {
-    tmp4 = TagLib::ByteVector(RSTRING_PTR(argv[2]), RSTRING_LEN(argv[2]));
+    tmp4 = ruby_string_to_taglib_bytevector(argv[2]);
     arg4 = &tmp4;
   }
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
@@ -3145,7 +3258,7 @@ _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   ecode3 = SWIG_AsVal_long(argv[1], &val3);
@@ -3180,7 +3293,7 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2);
@@ -3306,7 +3419,7 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   {
@@ -3358,7 +3471,7 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   {
@@ -3396,7 +3509,7 @@ _wrap_File_insert__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   {
-    tmp2 = TagLib::ByteVector(RSTRING_PTR(argv[0]), RSTRING_LEN(argv[0]));
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
   (arg1)->insert((TagLib::ByteVector const &)*arg2);
@@ -3679,7 +3792,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_is_open(int argc, VALUE *argv, VALUE self) {
+_wrap_File_openq___(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -3703,7 +3816,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_is_valid(int argc, VALUE *argv, VALUE self) {
+_wrap_File_validq___(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -3919,7 +4032,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_is_readable(int argc, VALUE *argv, VALUE self) {
+_wrap_File_readableq___(int argc, VALUE *argv, VALUE self) {
   char *arg1 = (char *) 0 ;
   int res1 ;
   char *buf1 = 0 ;
@@ -3946,7 +4059,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_is_writable(int argc, VALUE *argv, VALUE self) {
+_wrap_File_writableq___(int argc, VALUE *argv, VALUE self) {
   char *arg1 = (char *) 0 ;
   int res1 ;
   char *buf1 = 0 ;
@@ -4000,8 +4113,8 @@ _wrap_new_FileRef__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int alloc1 = 0 ;
   bool val2 ;
   int ecode2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
   TagLib::FileRef *result = 0 ;
   
   if ((argc < 3) || (argc > 3)) {
@@ -4017,17 +4130,11 @@ _wrap_new_FileRef__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
-  {
-    res3 = SWIG_ConvertPtr(argv[2], &argp3, SWIGTYPE_p_TagLib__AudioProperties__ReadStyle,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef", 3, argv[2] )); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef", 3, argv[2]));
-    } else {
-      arg3 = *(reinterpret_cast< TagLib::AudioProperties::ReadStyle * >(argp3));
-    }
-  }
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef", 3, argv[2] ));
+  } 
+  arg3 = static_cast< TagLib::AudioProperties::ReadStyle >(val3);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1,arg2,arg3);
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
@@ -4232,9 +4339,10 @@ SWIGINTERN VALUE _wrap_new_FileRef(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_TagLib__AudioProperties__ReadStyle, 0);
-        _v = SWIG_CheckState(res);
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
         if (_v) {
           return _wrap_new_FileRef__SWIG_1(nargs, args, self);
         }
@@ -4400,7 +4508,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_FileRef_is_null(int argc, VALUE *argv, VALUE self) {
+_wrap_FileRef_nullq___(int argc, VALUE *argv, VALUE self) {
   TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -4477,8 +4585,8 @@ _wrap_FileRef_create__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int alloc1 = 0 ;
   bool val2 ;
   int ecode2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
   TagLib::File *result = 0 ;
   VALUE vresult = Qnil;
   
@@ -4495,17 +4603,11 @@ _wrap_FileRef_create__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef::create", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
-  {
-    res3 = SWIG_ConvertPtr(argv[2], &argp3, SWIGTYPE_p_TagLib__AudioProperties__ReadStyle,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef::create", 3, argv[2] )); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef::create", 3, argv[2]));
-    } else {
-      arg3 = *(reinterpret_cast< TagLib::AudioProperties::ReadStyle * >(argp3));
-    }
-  }
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef::create", 3, argv[2] ));
+  } 
+  arg3 = static_cast< TagLib::AudioProperties::ReadStyle >(val3);
   result = (TagLib::File *)TagLib::FileRef::create((char const *)arg1,arg2,arg3);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__File, 0 |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
@@ -4620,9 +4722,10 @@ SWIGINTERN VALUE _wrap_FileRef_create(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_TagLib__AudioProperties__ReadStyle, 0);
-        _v = SWIG_CheckState(res);
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
         if (_v) {
           return _wrap_FileRef_create__SWIG_0(nargs, args, self);
         }
@@ -4644,7 +4747,6 @@ fail:
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__AudioProperties__ReadStyle = {"_p_TagLib__AudioProperties__ReadStyle", "TagLib::AudioProperties::ReadStyle *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ByteVector = {"_p_TagLib__ByteVector", "TagLib::ByteVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FileRef = {"_p_TagLib__FileRef", "TagLib::FileRef *", 0, 0, (void*)0, 0};
@@ -4657,7 +4759,6 @@ static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__AudioProperties,
-  &_swigt__p_TagLib__AudioProperties__ReadStyle,
   &_swigt__p_TagLib__ByteVector,
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__FileRef,
@@ -4670,7 +4771,6 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__AudioProperties__ReadStyle[] = {  {&_swigt__p_TagLib__AudioProperties__ReadStyle, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ByteVector[] = {  {&_swigt__p_TagLib__ByteVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FileRef[] = {  {&_swigt__p_TagLib__FileRef, 0, 0, 0},{0, 0, 0, 0}};
@@ -4683,7 +4783,6 @@ static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0,
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__AudioProperties,
-  _swigc__p_TagLib__AudioProperties__ReadStyle,
   _swigc__p_TagLib__ByteVector,
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__FileRef,
@@ -4990,6 +5089,20 @@ SWIGEXPORT void Init_taglib_base(void) {
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_Tag;
   SwigClassTag.trackObjects = 1;
   
+  SwigClassAudioProperties.klass = rb_define_class_under(mTagLib, "AudioProperties", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__AudioProperties, (void *) &SwigClassAudioProperties);
+  rb_undef_alloc_func(SwigClassAudioProperties.klass);
+  rb_define_const(SwigClassAudioProperties.klass, "Fast", SWIG_From_int(static_cast< int >(TagLib::AudioProperties::Fast)));
+  rb_define_const(SwigClassAudioProperties.klass, "Average", SWIG_From_int(static_cast< int >(TagLib::AudioProperties::Average)));
+  rb_define_const(SwigClassAudioProperties.klass, "Accurate", SWIG_From_int(static_cast< int >(TagLib::AudioProperties::Accurate)));
+  rb_define_method(SwigClassAudioProperties.klass, "length", VALUEFUNC(_wrap_AudioProperties_length), -1);
+  rb_define_method(SwigClassAudioProperties.klass, "bitrate", VALUEFUNC(_wrap_AudioProperties_bitrate), -1);
+  rb_define_method(SwigClassAudioProperties.klass, "sample_rate", VALUEFUNC(_wrap_AudioProperties_sample_rate), -1);
+  rb_define_method(SwigClassAudioProperties.klass, "channels", VALUEFUNC(_wrap_AudioProperties_channels), -1);
+  SwigClassAudioProperties.mark = 0;
+  SwigClassAudioProperties.destroy = (void (*)(void *)) free_TagLib_AudioProperties;
+  SwigClassAudioProperties.trackObjects = 1;
+  
   SwigClassFile.klass = rb_define_class_under(mTagLib, "File", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__File, (void *) &SwigClassFile);
   rb_undef_alloc_func(SwigClassFile.klass);
@@ -5007,14 +5120,14 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassFile.klass, "insert", VALUEFUNC(_wrap_File_insert), -1);
   rb_define_method(SwigClassFile.klass, "remove_block", VALUEFUNC(_wrap_File_remove_block), -1);
   rb_define_method(SwigClassFile.klass, "read_only", VALUEFUNC(_wrap_File_read_only), -1);
-  rb_define_method(SwigClassFile.klass, "is_open", VALUEFUNC(_wrap_File_is_open), -1);
-  rb_define_method(SwigClassFile.klass, "is_valid", VALUEFUNC(_wrap_File_is_valid), -1);
+  rb_define_method(SwigClassFile.klass, "open?", VALUEFUNC(_wrap_File_openq___), -1);
+  rb_define_method(SwigClassFile.klass, "valid?", VALUEFUNC(_wrap_File_validq___), -1);
   rb_define_method(SwigClassFile.klass, "seek", VALUEFUNC(_wrap_File_seek), -1);
   rb_define_method(SwigClassFile.klass, "clear", VALUEFUNC(_wrap_File_clear), -1);
   rb_define_method(SwigClassFile.klass, "tell", VALUEFUNC(_wrap_File_tell), -1);
   rb_define_method(SwigClassFile.klass, "length", VALUEFUNC(_wrap_File_length), -1);
-  rb_define_singleton_method(SwigClassFile.klass, "is_readable", VALUEFUNC(_wrap_File_is_readable), -1);
-  rb_define_singleton_method(SwigClassFile.klass, "is_writable", VALUEFUNC(_wrap_File_is_writable), -1);
+  rb_define_singleton_method(SwigClassFile.klass, "readable?", VALUEFUNC(_wrap_File_readableq___), -1);
+  rb_define_singleton_method(SwigClassFile.klass, "writable?", VALUEFUNC(_wrap_File_writableq___), -1);
   SwigClassFile.mark = 0;
   SwigClassFile.destroy = (void (*)(void *)) free_TagLib_File;
   SwigClassFile.trackObjects = 1;
@@ -5029,7 +5142,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassFileRef.klass, "save", VALUEFUNC(_wrap_FileRef_save), -1);
   rb_define_singleton_method(SwigClassFileRef.klass, "add_file_type_resolver", VALUEFUNC(_wrap_FileRef_add_file_type_resolver), -1);
   rb_define_singleton_method(SwigClassFileRef.klass, "default_file_extensions", VALUEFUNC(_wrap_FileRef_default_file_extensions), -1);
-  rb_define_method(SwigClassFileRef.klass, "is_null", VALUEFUNC(_wrap_FileRef_is_null), -1);
+  rb_define_method(SwigClassFileRef.klass, "null?", VALUEFUNC(_wrap_FileRef_nullq___), -1);
   rb_define_method(SwigClassFileRef.klass, "==", VALUEFUNC(_wrap_FileRef___eq__), -1);
   rb_define_singleton_method(SwigClassFileRef.klass, "create", VALUEFUNC(_wrap_FileRef_create), -1);
   SwigClassFileRef.mark = 0;
