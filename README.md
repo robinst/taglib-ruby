@@ -103,6 +103,11 @@ title.text = "Jóga"
 title.text_encoding = TagLib::String::UTF8
 ```
 
+Release Notes
+-------------
+
+See {file:CHANGES.md}.
+
 Contributing
 ------------
 
