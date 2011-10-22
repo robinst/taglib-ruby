@@ -10,6 +10,45 @@
 # * `TagLib::String::UTF16LE`
 module TagLib
 
+  # This class allows to read basic tagging and audio properties from
+  # files, without having to know what the file type is. Thus, it works
+  # for all tagging formats that taglib supports, but only provides a
+  # minimal API.
+  #
+  # Should you need more, use the file type specific classes, see
+  # subclasses of {TagLib::File}.
+  class FileRef
+    # Create a FileRef from a file name.
+    #
+    # @param [String] filename
+    # @param [Boolean] read_audio_properties
+    #   true if audio properties should be read
+    # @param [TagLib::AudioProperties constants] audio_properties_style
+    #   how accurately the audio properties should be read, e.g.
+    #   {TagLib::AudioProperties::Average}
+    def initialize(filename, read_audio_properties=true,
+                   audio_properties_style=TagLib::AudioProperties::Average)
+    end
+
+    # @return [TagLib::AudioProperties] the audio properties
+    def audio_properties
+    end
+
+    # @return [Boolean] if the file is null (i.e. it could not be read)
+    def null?
+    end
+
+    # Saves the file
+    #
+    # @return [Boolean] whether saving was successful
+    def save
+    end
+
+    # @return [TagLib::Tag] the tag
+    def tag
+    end
+  end
+
   # @abstract Base class for files, see subclasses.
   class File
   end
@@ -54,6 +93,11 @@ module TagLib
 
   # @abstract Base class for audio properties.
   class AudioProperties
+
+    Fast = 0
+    Average = 1
+    Accurate = 2
+
     # @return [Integer] length of the file in seconds
     def length
     end
