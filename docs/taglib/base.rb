@@ -18,6 +18,9 @@
 # * `TagLib::String::UTF16BE`
 # * `TagLib::String::UTF8`
 # * `TagLib::String::UTF16LE`
+#
+# For ID3v2 frames, you can also set a default text encoding globally
+# using the {TagLib::ID3v2::FrameFactory}.
 module TagLib
 
   # This class allows to read basic tagging and audio properties from

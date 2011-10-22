@@ -47,6 +47,20 @@ module TagLib::ID3v2
     end
   end
 
+  # Frame factory for ID3v2 frames. Useful for setting the default text
+  # encoding.
+  class FrameFactory
+    # @return [FrameFactory] the default frame factory
+    def self.instance
+    end
+
+    # Get/set the default text encoding for new ID3v2 frames. See the
+    # section _String Encodings_ in {TagLib}.
+    #
+    # @return [TagLib::String constant] default text encoding
+    attr_accessor :default_text_encoding
+  end
+
   # The base class for all ID3v2 frames.
   #
   # In ID3v2 all frames are identified by a {#frame_id frame ID}, such
