@@ -297,6 +297,7 @@ module TagLib::ID3v2
     attr_accessor :peak_volume
   end
 
+  # Text identification frame (T???).
   class TextIdentificationFrame < Frame
     # Encoding for storing the text in the tag, e.g.
     # `TagLib::String::UTF8`. See the section _String Encodings_ in
@@ -304,20 +305,65 @@ module TagLib::ID3v2
     #
     # @return [TagLib::String constant]
     attr_accessor :text_encoding
+
+    # @return [Array<String>] list of text strings in this frame
+    attr_accessor :field_list
+
+    # @param [String] text simple text to set
+    attr_writer :text
   end
 
+  # User text identification frame (TXXX).
   class UserTextIdentificationFrame < TextIdentificationFrame
+    # @return [String] description of content
+    attr_accessor :description
   end
 
+  # Unique file identifier frame (UFID).
   class UniqueFileIdentifierFrame < Frame
+    # @return [String] identifier
+    attr_accessor :identifier
+
+    # @return [String] owner
+    attr_accessor :owner
   end
 
+  # Unsynchronized lyrics frame (USLT).
   class UnsynchronizedLyricsFrame < Frame
+    # @return [String] frame description
+    attr_accessor :description
+
+    # @return [String] alpha-3 language code of text (ISO-639-2),
+    #   e.g. "eng"
+    attr_accessor :language
+
+    # @return [String] text
+    attr_accessor :text
+
+    # {include:TextIdentificationFrame#text_encoding}
+    #
+    # @return [String]
+    attr_accessor :text_encoding
   end
 
+  # URL link frame (W???), e.g. WOAR for "official artist/performer
+  # webpage".
   class UrlLinkFrame < Frame
+    # @param [String] text simple text to set
+    attr_writer :text
+
+    # @param [String] URL
+    attr_accessor :url
   end
 
+  # User URL link frame (WXXX).
   class UserUrlLinkFrame < UrlLinkFrame
+    # @return [String] description
+    attr_accessor :description
+
+    # {include:TextIdentificationFrame#text_encoding}
+    #
+    # @return [String]
+    attr_accessor :text_encoding
   end
 end
