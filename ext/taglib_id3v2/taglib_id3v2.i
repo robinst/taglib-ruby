@@ -41,7 +41,7 @@ VALUE taglib_id3v2_frame_to_ruby_object(const TagLib::ID3v2::Frame *frame) {
     ti = SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame;
   else if (id == "PRIV")
     ti = SWIGTYPE_p_TagLib__ID3v2__PrivateFrame;
-  else if (id == "RVAD")
+  else if (id == "RVAD" || id == "RVA2")
     ti = SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame;
   else if (id == "TXXX")
     ti = SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame;
@@ -97,12 +97,13 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 %rename("field_list=") TagLib::ID3v2::TextIdentificationFrame::setText(const StringList &);
 %rename("from_data") TagLib::ID3v2::TextIdentificationFrame::TextIdentificationFrame(const ByteVector &);
 
+%include "relativevolumeframe.i"
+
 %include <taglib/attachedpictureframe.h>
 %include <taglib/commentsframe.h>
 %include <taglib/generalencapsulatedobjectframe.h>
 %include <taglib/popularimeterframe.h>
 %include <taglib/privateframe.h>
-%include <taglib/relativevolumeframe.h>
 %include <taglib/textidentificationframe.h>
 %include <taglib/uniquefileidentifierframe.h>
 %include <taglib/unknownframe.h>

@@ -205,7 +205,96 @@ module TagLib::ID3v2
     attr_accessor :owner
   end
 
+  # Relative volume adjustment frame (RVAD).
   class RelativeVolumeFrame < Frame
+    Other        = 0x00
+    MasterVolume = 0x01
+    FrontRight   = 0x02
+    FrontLeft    = 0x03
+    BackRight    = 0x04
+    BackLeft     = 0x05
+    FrontCentre  = 0x06
+    BackCentre   = 0x07
+    Subwoofer    = 0x08
+
+    # @return [Array<TagLib::ID3v2::RelativeVolumeFrame constant>]
+    #   the channel types for which volume adjustment information is
+    #   stored in this frame
+    def channels
+    end
+
+    # @return [String] relative volume identification
+    attr_accessor :identification
+
+    # Returns peak volume for channel type.
+    #
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [TagLib::ID3v2::PeakVolume]
+    def peak_volume(type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+
+    # Sets peak volume for channel type.
+    #
+    # @param [TagLib::ID3v2::PeakVolume] peak peak volume
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [void]
+    def set_peak_volume(peak, type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+
+    # Returns volume adjustment in decibels for a specific channel type.
+    # Internally, this is stored as an index, see
+    # {#volume_adjustment_index}.
+    #
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [Float]
+    def volume_adjustment(type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+
+    # Sets volume adjustment in decibels for a specific channel type.
+    # Internally, this is stored as an index, see
+    # {#set_volume_adjustment_index}.
+    #
+    # @param [Float] adjustment
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [void]
+    def set_volume_adjustment(adjustment, type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+
+    # Returns volume adjustment index for a specific channel type. When
+    # dividing the index by 512, it corresponds to the volume adjustment
+    # in decibel.
+    #
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [Integer]
+    def volume_adjustment_index(type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+
+    # Sets volume adjustment index for a specific channel type. When
+    # dividing the index by 512, it corresponds to the volume adjustment
+    # in decibel.
+    #
+    # @param [Integer] index
+    # @param [TagLib::ID3v2::RelativeVolumeFrame constant] type
+    # @return [void]
+    def set_volume_adjustment_index(index, type=TagLib::ID3v2::RelativeVolumeFrame::MasterVolume)
+    end
+  end
+
+  # Peak volume used for {RelativeVolumeFrame}. The two attributes of
+  # this class must always read/written together, as they are used to
+  # describe one concept, the peak volume number.
+  #
+  # Note that due to how SWIG works, this is not a nested class of
+  # RelativeVolumeFrame as in taglib. That doesn't affect its usage
+  # though.
+  class PeakVolume
+    # @return [Integer] the number of bits of the {#peak_volume} that
+    #   represent the peak volume (0 to 255)
+    attr_accessor :bits_representing_peak
+
+    # @return [binary String] the (byte-padded) bits used for the peak
+    #   volume
+    attr_accessor :peak_volume
   end
 
   class TextIdentificationFrame < Frame
