@@ -51,4 +51,23 @@ module TagLib
     # @return [Boolean]
     def empty?; end
   end
+
+  # @abstract Base class for audio properties.
+  class AudioProperties
+    # @return [Integer] length of the file in seconds
+    def length
+    end
+
+    # @return [Integer] bit rate in kb/s (kilobit per second)
+    def bitrate
+    end
+
+    # @return [Integer] sample rate in Hz
+    def sample_rate
+    end
+
+    # @return [Integer] number of channels
+    def channels
+    end
+  end
 end

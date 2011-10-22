@@ -72,6 +72,8 @@ namespace TagLib {
 
 %include <taglib/tag.h>
 
+%include <taglib/audioproperties.h>
+
 %include <taglib/tfile.h>
 
 %ignore TagLib::FileRef::operator=;

@@ -2,6 +2,8 @@
 %{
 #include <taglib/taglib.h>
 #include <taglib/tfile.h>
+#include <taglib/xingheader.h>
+#include <taglib/mpegheader.h>
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
@@ -9,11 +11,10 @@
 
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
-namespace TagLib {
-  namespace MPEG {
-    class Properties;
-  }
-}
+%ignore TagLib::MPEG::Header::operator=;
+%include <taglib/xingheader.h>
+%include <taglib/mpegheader.h>
+%include <taglib/mpegproperties.h>
 
 %rename(id3v1_tag) TagLib::MPEG::File::ID3v1Tag;
 %rename(id3v2_tag) TagLib::MPEG::File::ID3v2Tag;
