@@ -83,7 +83,7 @@ module TagLib::ID3v2
     end
   end
 
-  # Attached picture frame, e.g. for cover art.
+  # Attached picture frame (APIC), e.g. for cover art.
   #
   # The constants in this class are used for the {#type} attribute.
   class AttachedPictureFrame < Frame
@@ -121,16 +121,12 @@ module TagLib::ID3v2
     # @return [String]
     attr_accessor :mime_type
 
-    # Binary picture data string. Be sure to use a binary string when
-    # setting this attribute. In Ruby 1.9, this means reading from a
-    # file with `"b"` mode to get a string with encoding
-    # `BINARY` / `ASCII-8BIT`.
+    # {include:GeneralEncapsulatedObjectFrame#object}
     #
-    # @return [String]
+    # @return [binary String]
     attr_accessor :picture
 
-    # Text encoding for storing the description in the tag, see the
-    # section _String Encodings_ in {TagLib}.
+    # {include:TextIdentificationFrame#text_encoding}
     #
     # @return [TagLib::String constant]
     attr_accessor :text_encoding
@@ -140,22 +136,85 @@ module TagLib::ID3v2
     attr_accessor :type
   end
 
+  # Comments frame (COMM) for full text information that doesn't fit in
+  # any other frame.
   class CommentsFrame < Frame
+    # @return [String] content description, which together with language
+    #   should be unique per tag
+    attr_accessor :description
+
+    # @return [String] alpha-3 language code of text (ISO-639-2),
+    #   e.g. "eng"
+    attr_accessor :language
+
+    # @return [String] the actual comment text
+    attr_accessor :text
+
+    # {include:TextIdentificationFrame#text_encoding}
+    #
+    # @return [TagLib::String constant]
+    attr_accessor :text_encoding
   end
 
+  # General encapsulated object frame (GEOB).
   class GeneralEncapsulatedObjectFrame < Frame
+    # @return [String] content description
+    attr_accessor :description
+
+    # @return [String] file name
+    attr_accessor :file_name
+
+    # @return [String] MIME type
+    attr_accessor :mime_type
+
+    # Binary data string.
+    #
+    # Be sure to use a binary string when setting this attribute. In
+    # Ruby 1.9, this means reading from a file with `"b"` mode to get a
+    # string with encoding `BINARY` / `ASCII-8BIT`.
+    #
+    # @return [binary String]
+    attr_accessor :object
+
+    # {include:TextIdentificationFrame#text_encoding}
+    #
+    # @return [String]
+    attr_accessor :text_encoding
   end
 
+  # Popularimeter frame (POPM).
   class PopularimeterFrame < Frame
+    # @return [Integer] play counter
+    attr_accessor :counter
+
+    # @return [String] e-mail address
+    attr_accessor :email
+
+    # @return [Integer] rating
+    attr_accessor :rating
   end
 
+  # Private frame (PRIV).
   class PrivateFrame < Frame
+    # {include:GeneralEncapsulatedObjectFrame#object}
+    #
+    # @return [binary String]
+    attr_accessor :data
+
+    # @return [String] owner identifier
+    attr_accessor :owner
   end
 
   class RelativeVolumeFrame < Frame
   end
 
   class TextIdentificationFrame < Frame
+    # Encoding for storing the text in the tag, e.g.
+    # `TagLib::String::UTF8`. See the section _String Encodings_ in
+    # {TagLib}.
+    #
+    # @return [TagLib::String constant]
+    attr_accessor :text_encoding
   end
 
   class UserTextIdentificationFrame < TextIdentificationFrame
