@@ -34,13 +34,18 @@ namespace TagLib {
         regexmatch$name="^is[A-Z]") "";
 
 // ByteVector
-// The cast is used to be sure that we get the const version of data().
-%typemap(out) TagLib::ByteVector (const char * data) {
-  data = ((const TagLib::ByteVector) $1).data();
-  $result = rb_tainted_str_new(data, $1.size());
+%typemap(out) TagLib::ByteVector {
+  $result = taglib_bytevector_to_ruby_string($1);
+}
+%typemap(out) TagLib::ByteVector * {
+  $result = taglib_bytevector_to_ruby_string(*($1));
 }
 %typemap(in) TagLib::ByteVector & (TagLib::ByteVector tmp) {
-  tmp = TagLib::ByteVector(RSTRING_PTR($input), RSTRING_LEN($input));
+  tmp = ruby_string_to_taglib_bytevector($input);
+  $1 = &tmp;
+}
+%typemap(in) TagLib::ByteVector * (TagLib::ByteVector tmp) {
+  tmp = ruby_string_to_taglib_bytevector($input);
   $1 = &tmp;
 }
 

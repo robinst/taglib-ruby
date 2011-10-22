@@ -2,6 +2,7 @@
 %{
 #include <taglib/taglib.h>
 #include <taglib/tfile.h>
+#include <taglib/tstringlist.h>
 #include <taglib/xingheader.h>
 #include <taglib/mpegheader.h>
 #include <taglib/mpegproperties.h>
@@ -9,6 +10,7 @@
 #include <taglib/id3v2tag.h>
 %}
 
+%include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
 %ignore TagLib::MPEG::Header::operator=;

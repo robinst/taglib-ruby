@@ -24,6 +24,18 @@
 # define CONVERT_TO_UTF8(value) value
 #endif
 
+VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
+  if (byteVector.isNull()) {
+    return Qnil;
+  } else {
+    return rb_tainted_str_new(byteVector.data(), byteVector.size());
+  }
+}
+
+TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
+  return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+}
+
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
   if (string.isNull()) {
     return Qnil;
