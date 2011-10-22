@@ -1,7 +1,7 @@
 Changes in Releases of taglib-ruby
 ==================================
 
-## 0.2.0
+## 0.2.0 (2011-10-22)
 
 * API documentation
 * Add support for:
