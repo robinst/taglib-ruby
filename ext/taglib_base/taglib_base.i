@@ -29,6 +29,10 @@ namespace TagLib {
 %rename("%(command: ruby -e 'print(ARGV[0][3..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"=\")' )s",
         regexmatch$name="^set[A-Z]") "";
 
+// isFoo -> foo?
+%rename("%(command: ruby -e 'print(ARGV[0][2..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"?\")' )s",
+        regexmatch$name="^is[A-Z]") "";
+
 // ByteVector
 // The cast is used to be sure that we get the const version of data().
 %typemap(out) TagLib::ByteVector (const char * data) {
@@ -66,7 +70,6 @@ namespace TagLib {
 %ignore TagLib::List::operator=;
 %include <taglib/tlist.h>
 
-%rename("empty?") TagLib::Tag::isEmpty;
 %include <taglib/tag.h>
 
 %include <taglib/tfile.h>
