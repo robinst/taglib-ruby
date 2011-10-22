@@ -5,7 +5,7 @@ Changes in Releases of taglib-ruby
 
 * API documentation
 * Add support for:
-  * TagLib::AudioProperties and TagLib::MPEG::Properties
+  * TagLib::AudioProperties and TagLib::MPEG::Properties (#4)
   * TagLib::ID3v2::RelativeVolumeFrame
 
 ## 0.1.1 (2011-09-17)
