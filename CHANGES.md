@@ -1,6 +1,10 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.2.1 (2011-11-05)
+
+* Fix compilation error due to missing typedef on some systems (#5)
+
 ## 0.2.0 (2011-10-22)
 
 * API documentation
