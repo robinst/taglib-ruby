@@ -1821,10 +1821,12 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__String swig_types[5]
 #define SWIGTYPE_p_TagLib__Tag swig_types[6]
 #define SWIGTYPE_p_char swig_types[7]
-#define SWIGTYPE_p_ulong swig_types[8]
+#define SWIGTYPE_p_unsigned_char swig_types[8]
 #define SWIGTYPE_p_unsigned_int swig_types[9]
-static swig_type_info *swig_types[11];
-static swig_module_info swig_module = {swig_types, 10, 0, 0, 0, 0};
+#define SWIGTYPE_p_unsigned_long swig_types[10]
+#define SWIGTYPE_p_wchar_t swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2924,11 +2926,11 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  ulong arg2 ;
+  TagLib::ulong arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
@@ -2940,17 +2942,11 @@ _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","readBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "ulong","readBlock", 2, argv[0] )); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","readBlock", 2, argv[0]));
-    } else {
-      arg2 = *(reinterpret_cast< ulong * >(argp2));
-    }
-  }
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::ulong","readBlock", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::ulong >(val2);
   result = (arg1)->readBlock(arg2);
   {
     vresult = taglib_bytevector_to_ruby_string(result);
@@ -3400,15 +3396,15 @@ SWIGINTERN VALUE
 _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  ulong arg3 ;
-  ulong arg4 ;
+  TagLib::ulong arg3 ;
+  TagLib::ulong arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  void *argp3 ;
-  int res3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
+  unsigned long val3 ;
+  int ecode3 = 0 ;
+  unsigned long val4 ;
+  int ecode4 = 0 ;
   
   if ((argc < 3) || (argc > 3)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
@@ -3422,28 +3418,16 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  {
-    res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "ulong","insert", 3, argv[1] )); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","insert", 3, argv[1]));
-    } else {
-      arg3 = *(reinterpret_cast< ulong * >(argp3));
-    }
-  }
-  {
-    res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "ulong","insert", 4, argv[2] )); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","insert", 4, argv[2]));
-    } else {
-      arg4 = *(reinterpret_cast< ulong * >(argp4));
-    }
-  }
+  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::ulong","insert", 3, argv[1] ));
+  } 
+  arg3 = static_cast< TagLib::ulong >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_long(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::ulong","insert", 4, argv[2] ));
+  } 
+  arg4 = static_cast< TagLib::ulong >(val4);
   (arg1)->insert((TagLib::ByteVector const &)*arg2,arg3,arg4);
   return Qnil;
 fail:
@@ -3455,12 +3439,12 @@ SWIGINTERN VALUE
 _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  ulong arg3 ;
+  TagLib::ulong arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  void *argp3 ;
-  int res3 = 0 ;
+  unsigned long val3 ;
+  int ecode3 = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
@@ -3474,17 +3458,11 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  {
-    res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "ulong","insert", 3, argv[1] )); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","insert", 3, argv[1]));
-    } else {
-      arg3 = *(reinterpret_cast< ulong * >(argp3));
-    }
-  }
+  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::ulong","insert", 3, argv[1] ));
+  } 
+  arg3 = static_cast< TagLib::ulong >(val3);
   (arg1)->insert((TagLib::ByteVector const &)*arg2,arg3);
   return Qnil;
 fail:
@@ -3554,9 +3532,10 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_ulong, 0);
-        _v = SWIG_CheckState(res);
+        {
+          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
         if (_v) {
           return _wrap_File_insert__SWIG_1(nargs, args, self);
         }
@@ -3573,13 +3552,15 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVector, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_ulong, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_ulong, 0);
+        {
+          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_unsigned_SS_long(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
           if (_v) {
             return _wrap_File_insert__SWIG_0(nargs, args, self);
           }
@@ -3590,8 +3571,8 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "File.insert", 
-    "    void File.insert(TagLib::ByteVector const &data, ulong start, ulong replace)\n"
-    "    void File.insert(TagLib::ByteVector const &data, ulong start)\n"
+    "    void File.insert(TagLib::ByteVector const &data, TagLib::ulong start, TagLib::ulong replace)\n"
+    "    void File.insert(TagLib::ByteVector const &data, TagLib::ulong start)\n"
     "    void File.insert(TagLib::ByteVector const &data)\n");
   
   return Qnil;
@@ -3601,14 +3582,14 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_remove_block__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  ulong arg2 ;
-  ulong arg3 ;
+  TagLib::ulong arg2 ;
+  TagLib::ulong arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  void *argp3 ;
-  int res3 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
+  unsigned long val3 ;
+  int ecode3 = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
@@ -3618,28 +3599,16 @@ _wrap_File_remove_block__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","removeBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "ulong","removeBlock", 2, argv[0] )); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","removeBlock", 2, argv[0]));
-    } else {
-      arg2 = *(reinterpret_cast< ulong * >(argp2));
-    }
-  }
-  {
-    res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "ulong","removeBlock", 3, argv[1] )); 
-    }  
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","removeBlock", 3, argv[1]));
-    } else {
-      arg3 = *(reinterpret_cast< ulong * >(argp3));
-    }
-  }
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::ulong","removeBlock", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::ulong >(val2);
+  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::ulong","removeBlock", 3, argv[1] ));
+  } 
+  arg3 = static_cast< TagLib::ulong >(val3);
   (arg1)->removeBlock(arg2,arg3);
   return Qnil;
 fail:
@@ -3650,11 +3619,11 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_remove_block__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  ulong arg2 ;
+  TagLib::ulong arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  unsigned long val2 ;
+  int ecode2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -3664,17 +3633,11 @@ _wrap_File_remove_block__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","removeBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  {
-    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_ulong,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "ulong","removeBlock", 2, argv[0] )); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "ulong","removeBlock", 2, argv[0]));
-    } else {
-      arg2 = *(reinterpret_cast< ulong * >(argp2));
-    }
-  }
+  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::ulong","removeBlock", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::ulong >(val2);
   (arg1)->removeBlock(arg2);
   return Qnil;
 fail:
@@ -3729,9 +3692,10 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__File, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_ulong, 0);
-      _v = SWIG_CheckState(res);
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
       if (_v) {
         return _wrap_File_remove_block__SWIG_1(nargs, args, self);
       }
@@ -3743,13 +3707,15 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__File, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_ulong, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_ulong, 0);
+      {
+        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
         _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
         if (_v) {
           return _wrap_File_remove_block__SWIG_0(nargs, args, self);
         }
@@ -3759,8 +3725,8 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "File.remove_block", 
-    "    void File.remove_block(ulong start, ulong length)\n"
-    "    void File.remove_block(ulong start)\n"
+    "    void File.remove_block(TagLib::ulong start, TagLib::ulong length)\n"
+    "    void File.remove_block(TagLib::ulong start)\n"
     "    void File.remove_block()\n");
   
   return Qnil;
@@ -4754,8 +4720,10 @@ static swig_type_info _swigt__p_TagLib__FileRef__FileTypeResolver = {"_p_TagLib_
 static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ulong = {"_p_ulong", "ulong *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|TagLib::uint *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__AudioProperties,
@@ -4766,8 +4734,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__String,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
-  &_swigt__p_ulong,
+  &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
+  &_swigt__p_unsigned_long,
+  &_swigt__p_wchar_t,
 };
 
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},{0, 0, 0, 0}};
@@ -4778,8 +4748,10 @@ static swig_cast_info _swigc__p_TagLib__FileRef__FileTypeResolver[] = {  {&_swig
 static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ulong[] = {  {&_swigt__p_ulong, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__AudioProperties,
@@ -4790,8 +4762,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__String,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
-  _swigc__p_ulong,
+  _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
+  _swigc__p_unsigned_long,
+  _swigc__p_wchar_t,
 };
 
 

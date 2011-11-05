@@ -1842,9 +1842,12 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__StringList swig_types[26]
 #define SWIGTYPE_p_TagLib__Tag swig_types[27]
 #define SWIGTYPE_p_char swig_types[28]
-#define SWIGTYPE_p_unsigned_int swig_types[29]
-static swig_type_info *swig_types[31];
-static swig_module_info swig_module = {swig_types, 30, 0, 0, 0, 0};
+#define SWIGTYPE_p_unsigned_char swig_types[29]
+#define SWIGTYPE_p_unsigned_int swig_types[30]
+#define SWIGTYPE_p_unsigned_long swig_types[31]
+#define SWIGTYPE_p_wchar_t swig_types[32]
+static swig_type_info *swig_types[34];
+static swig_module_info swig_module = {swig_types, 33, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -8385,7 +8388,10 @@ static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::
 static swig_type_info _swigt__p_TagLib__StringList = {"_p_TagLib__StringList", "TagLib::StringList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|TagLib::uint *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t,
@@ -8417,7 +8423,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__StringList,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
+  &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
+  &_swigt__p_unsigned_long,
+  &_swigt__p_wchar_t,
 };
 
 static swig_cast_info _swigc__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t[] = {  {&_swigt__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -8449,7 +8458,10 @@ static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String
 static swig_cast_info _swigc__p_TagLib__StringList[] = {  {&_swigt__p_TagLib__StringList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, _p_TagLib__ID3v2__TagTo_p_TagLib__Tag, 0, 0},  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t,
@@ -8481,7 +8493,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__StringList,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
+  _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
+  _swigc__p_unsigned_long,
+  _swigc__p_wchar_t,
 };
 
 

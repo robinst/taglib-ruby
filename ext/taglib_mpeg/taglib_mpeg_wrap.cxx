@@ -1826,9 +1826,12 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__MPEG__XingHeader swig_types[10]
 #define SWIGTYPE_p_TagLib__Tag swig_types[11]
 #define SWIGTYPE_p_char swig_types[12]
-#define SWIGTYPE_p_unsigned_int swig_types[13]
-static swig_type_info *swig_types[15];
-static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
+#define SWIGTYPE_p_unsigned_char swig_types[13]
+#define SWIGTYPE_p_unsigned_int swig_types[14]
+#define SWIGTYPE_p_unsigned_long swig_types[15]
+#define SWIGTYPE_p_wchar_t swig_types[16]
+static swig_type_info *swig_types[18];
+static swig_module_info swig_module = {swig_types, 17, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4269,7 +4272,10 @@ static swig_type_info _swigt__p_TagLib__MPEG__Properties = {"_p_TagLib__MPEG__Pr
 static swig_type_info _swigt__p_TagLib__MPEG__XingHeader = {"_p_TagLib__MPEG__XingHeader", "TagLib::MPEG::XingHeader *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|TagLib::uint *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__APE__Tag,
@@ -4285,7 +4291,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__MPEG__XingHeader,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
+  &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
+  &_swigt__p_unsigned_long,
+  &_swigt__p_wchar_t,
 };
 
 static swig_cast_info _swigc__p_TagLib__APE__Tag[] = {  {&_swigt__p_TagLib__APE__Tag, 0, 0, 0},{0, 0, 0, 0}};
@@ -4301,7 +4310,10 @@ static swig_cast_info _swigc__p_TagLib__MPEG__Properties[] = {  {&_swigt__p_TagL
 static swig_cast_info _swigc__p_TagLib__MPEG__XingHeader[] = {  {&_swigt__p_TagLib__MPEG__XingHeader, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__APE__Tag,
@@ -4317,7 +4329,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__MPEG__XingHeader,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
+  _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
+  _swigc__p_unsigned_long,
+  _swigc__p_wchar_t,
 };
 
 
