@@ -20,7 +20,10 @@ namespace TagLib {
     enum Type { Latin1 = 0, UTF16 = 1, UTF16BE = 2, UTF8 = 3, UTF16LE = 4 };
   };
 
-  typedef unsigned int uint;
+  typedef wchar_t wchar;
+  typedef unsigned char uchar;
+  typedef unsigned int  uint;
+  typedef unsigned long ulong;
 }
 
 
