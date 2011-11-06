@@ -39,7 +39,7 @@ class TestMPEGFile < Test::Unit::TestCase
         end
 
         should "contain information" do
-          assert_true @xing_header.valid?
+          assert @xing_header.valid?
           assert_equal 88, @xing_header.total_frames
           assert_equal 45140, @xing_header.total_size
         end
