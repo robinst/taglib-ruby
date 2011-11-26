@@ -68,6 +68,25 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
   }
   return result;
 }
+
+VALUE taglib_filename_to_ruby_string(TagLib::FileName filename) {
+#ifdef _WIN32
+  const char *s = (const char *) filename;
+  return rb_tainted_str_new2(s);
+#else
+  return rb_tainted_str_new2(filename);
+#endif
+}
+
+TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
+#ifdef _WIN32
+  const char *filename = StringValuePtr(s);
+  return TagLib::FileName(filename);
+#else
+  return StringValuePtr(s);
+#endif
+}
+
 %}
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

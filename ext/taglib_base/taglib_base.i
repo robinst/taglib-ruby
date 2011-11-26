@@ -20,6 +20,8 @@ namespace TagLib {
     enum Type { Latin1 = 0, UTF16 = 1, UTF16BE = 2, UTF8 = 3, UTF16LE = 4 };
   };
 
+  class FileName;
+
   typedef wchar_t wchar;
   typedef unsigned char uchar;
   typedef unsigned int  uint;
@@ -74,6 +76,15 @@ namespace TagLib {
 }
 %apply TagLib::StringList { TagLib::StringList &, const TagLib::StringList & };
 
+%typemap(out) TagLib::FileName {
+  $result = taglib_filename_to_ruby_string($1);
+}
+%typemap(in) TagLib::FileName {
+  $1 = ruby_string_to_taglib_filename($input);
+}
+%typemap(typecheck) TagLib::FileName = char *;
+%feature("valuewrapper") TagLib::FileName;
+
 %ignore TagLib::List::operator[];
 %ignore TagLib::List::operator=;
 %include <taglib/tlist.h>
@@ -82,6 +93,7 @@ namespace TagLib {
 
 %include <taglib/audioproperties.h>
 
+%ignore TagLib::FileName;
 %include <taglib/tfile.h>
 
 %ignore TagLib::FileRef::operator=;
