@@ -10,7 +10,9 @@ accessed.
 taglib-ruby is work in progress, here are some of the things still left
 to do (contributors very welcome):
 
-* Pre-compiled Gem for Windows
+* Pre-compiled Gem for Windows:
+  * Unicode filename support
+  * TagLib::File#close to release lock
 * More coverage of the library besides ID3v2
 
 Installation
