@@ -106,5 +106,10 @@ class TestID3v2Frames < Test::Unit::TestCase
         assert_equal ["MusicBrainz Album Id", "992dc19a-5631-40f5-b252-fbfedbc328a9"], @txxx_frame.field_list
       end
     end
+
+    teardown do
+      @file.close
+      @file = nil
+    end
   end
 end

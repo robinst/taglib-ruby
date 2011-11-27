@@ -50,6 +50,7 @@ class TestID3v2Write < Test::Unit::TestCase
 
         success = @file.save
         assert success
+        @file.close
         @file = nil
 
         written_file = TagLib::MPEG::File.new(OUTPUT_FILE, false)
@@ -57,6 +58,7 @@ class TestID3v2Write < Test::Unit::TestCase
         assert_equal "image/jpeg", written_apic.mime_type
         assert_equal "desc", written_apic.description
         assert_equal picture_data, written_apic.picture
+        written_file.close
       end
 
       should "be able to set field_list" do
@@ -88,7 +90,10 @@ class TestID3v2Write < Test::Unit::TestCase
     end
 
     teardown do
-      @file = nil
+      if @file
+        @file.close
+        @file = nil
+      end
       FileUtils.rm OUTPUT_FILE
     end
   end

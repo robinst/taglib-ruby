@@ -53,5 +53,10 @@ class TestID3v2RelativeVolumeFrame < Test::Unit::TestCase
       assert_equal 6, pv2.bits_representing_peak
       assert_equal 0b110111.chr, pv2.peak_volume
     end
+
+    teardown do
+      @file.close
+      @file = nil
+    end
   end
 end

@@ -50,5 +50,12 @@ class TestID3v2Memory < Test::Unit::TestCase
         raise "GC did not delete file, unsure if test was successful."
       end
     end
+
+    teardown do
+      if @file
+        @file.close
+        @file = nil
+      end
+    end
   end
 end

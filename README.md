@@ -63,6 +63,9 @@ track.to_s  #=> "7/10"
 cover = tag.frame_list('APIC').first
 cover.mime_type  #=> "image/jpeg"
 cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+
+# Close file to release resources
+file.close
 ```
 
 And here's an example for writing one:
@@ -85,6 +88,7 @@ apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
 tag.add_frame(apic)
 
 file.save
+file.close
 ```
 
 ### Encoding

@@ -60,10 +60,36 @@ module TagLib
     # @return [TagLib::Tag] the tag
     def tag
     end
+
+    # Closes the file and releases all objects that were read from the
+    # file.
+    #
+    # @see TagLib::File#close
+    #
+    # @return [void]
+    def close
+    end
   end
 
   # @abstract Base class for files, see subclasses.
   class File
+    # Closes the file and releases all objects that were read from the
+    # file.
+    #
+    # After this method has been called, no other methods on this object
+    # may be called. So it's a good idea to always use it like this:
+    #
+    #     file.close
+    #     file = nil
+    #
+    # This method should always be called as soon as you're finished
+    # with a file. Otherwise the file will only be closed when GC is
+    # run, which may be much later. On Windows, this is especially
+    # important as the file is locked until it is closed.
+    #
+    # @return [void]
+    def close
+    end
   end
 
   # @abstract Base class for tags.

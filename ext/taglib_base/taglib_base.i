@@ -101,4 +101,30 @@ namespace TagLib {
 %warnfilter(SWIGWARN_PARSE_NAMED_NESTED_CLASS) TagLib::FileRef::FileTypeResolver;
 %include <taglib/fileref.h>
 
+%begin %{
+  static void free_taglib_fileref(void *ptr);
+%}
+%header %{
+  static void free_taglib_fileref(void *ptr) {
+    TagLib::FileRef *fileref = (TagLib::FileRef *) ptr;
+
+    TagLib::Tag *tag = fileref->tag();
+    if (tag) {
+      SWIG_RubyUnlinkObjects(tag);
+      SWIG_RubyRemoveTracking(tag);
+    }
+
+    SWIG_RubyUnlinkObjects(ptr);
+    SWIG_RubyRemoveTracking(ptr);
+
+    delete fileref;
+  }
+%}
+
+%extend TagLib::FileRef {
+  void close() {
+    free_taglib_fileref($self);
+  }
+}
+
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

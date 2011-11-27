@@ -45,5 +45,10 @@ class TestMPEGFile < Test::Unit::TestCase
         end
       end
     end
+
+    teardown do
+      @file.close
+      @file = nil
+    end
   end
 end

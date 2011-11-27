@@ -27,6 +27,11 @@ class TestID3v2Tag < Test::Unit::TestCase
         assert_equal false, @tag.empty?
       end
     end
+
+    teardown do
+      @file.close
+      @file = nil
+    end
   end
 
   context "A new ID3v2::Tag" do

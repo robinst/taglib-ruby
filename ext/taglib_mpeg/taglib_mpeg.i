@@ -28,6 +28,9 @@
 
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
 // that calls a method on a tag after the file is deleted segfaults.
+%begin %{
+  static void free_taglib_mpeg_file(void *ptr);
+%}
 %header %{
   static void free_taglib_mpeg_file(void *ptr) {
     TagLib::MPEG::File *file = (TagLib::MPEG::File *) ptr;
@@ -51,11 +54,18 @@
       SWIG_RubyRemoveTracking(id3v2tag);
     }
 
+    SWIG_RubyUnlinkObjects(ptr);
     SWIG_RubyRemoveTracking(ptr);
 
     delete file;
   }
 %}
+
+%extend TagLib::MPEG::File {
+  void close() {
+    free_taglib_mpeg_file($self);
+  }
+}
 
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
