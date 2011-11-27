@@ -12,7 +12,6 @@ to do (contributors very welcome):
 
 * Pre-compiled Gem for Windows:
   * Unicode filename support
-  * TagLib::File#close to release lock
 * More coverage of the library besides ID3v2
 
 Installation
