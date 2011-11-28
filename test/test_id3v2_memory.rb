@@ -51,6 +51,22 @@ class TestID3v2Memory < Test::Unit::TestCase
       end
     end
 
+    should "not segfault when audio properties are deleted along with file" do
+      file = TagLib::MPEG::File.new("test/data/crash.mp3", true)
+      properties = file.audio_properties
+      file.close
+      begin
+        N.times do
+          GC.start
+          properties.bitrate
+        end
+      rescue => e
+        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      else
+        raise "GC did not delete file, unsure if test was successful."
+      end
+    end
+
     teardown do
       if @file
         @file.close

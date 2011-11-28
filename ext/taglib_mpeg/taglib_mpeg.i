@@ -54,6 +54,12 @@
       SWIG_RubyRemoveTracking(id3v2tag);
     }
 
+    TagLib::MPEG::Properties *properties = file->audioProperties();
+    if (properties) {
+      SWIG_RubyUnlinkObjects(properties);
+      SWIG_RubyRemoveTracking(properties);
+    }
+
     SWIG_RubyUnlinkObjects(ptr);
     SWIG_RubyRemoveTracking(ptr);
 

@@ -114,6 +114,12 @@ namespace TagLib {
       SWIG_RubyRemoveTracking(tag);
     }
 
+    TagLib::AudioProperties *properties = fileref->audioProperties();
+    if (properties) {
+      SWIG_RubyUnlinkObjects(properties);
+      SWIG_RubyRemoveTracking(properties);
+    }
+
     SWIG_RubyUnlinkObjects(ptr);
     SWIG_RubyRemoveTracking(ptr);
 
