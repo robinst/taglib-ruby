@@ -1,9 +1,9 @@
 # Tasks for generating SWIG wrappers in ext
 
 def run_swig(mod)
-  swig = `which swig2.0`.chomp
+  swig = `which swig`.chomp
   if swig.empty?
-    swig = `which swig`.chomp
+    swig = `which swig2.0`.chomp
   end
   sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} -I/usr/include #{mod}.i"
 end
