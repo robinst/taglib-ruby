@@ -7,6 +7,18 @@ class TestMPEGFile < Test::Unit::TestCase
       @file = TagLib::MPEG::File.new("test/data/crash.mp3", read_properties)
     end
 
+    should "have a basic tag" do
+      tag = @file.tag
+      assert_not_nil tag
+      assert_equal TagLib::Tag, tag.class
+    end
+
+    should "have an ID3v2 tag" do
+      tag = @file.id3v2_tag(false)
+      assert_not_nil tag
+      assert_equal TagLib::ID3v2::Tag, tag.class
+    end
+
     context "audio properties" do
       setup do
         @properties = @file.audio_properties
