@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
     "docs/taglib/base.rb",
     "docs/taglib/id3v2.rb",
     "docs/taglib/mpeg.rb",
-    "ext/Rakefile",
     "ext/extconf_common.rb",
     "ext/taglib_base/extconf.rb",
     "ext/taglib_base/includes.i",
