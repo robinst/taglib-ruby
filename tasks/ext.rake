@@ -28,6 +28,9 @@ end
 Rake::ExtensionTask.new("taglib_mpeg", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
+Rake::ExtensionTask.new("taglib_id3v1", $gemspec) do |ext|
+  configure_cross_compile(ext)
+end
 Rake::ExtensionTask.new("taglib_id3v2", $gemspec) do |ext|
   configure_cross_compile(ext)
 end

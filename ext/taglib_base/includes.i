@@ -1,7 +1,8 @@
 %trackobjects;
 
-// Undefine macro
+// Undefine macros we don't need for wrapping
 #define TAGLIB_EXPORT
+#define TAGLIB_IGNORE_MISSING_DESTRUCTOR
 
 // Replaces the typemap from swigtype.swg and just adds the line
 // SWIG_RubyUnlinkObjects. This is done to be safe in the case when a

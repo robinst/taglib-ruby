@@ -8,4 +8,5 @@ end
 require 'taglib/version'
 require 'taglib/base'
 require 'taglib/mpeg'
+require 'taglib/id3v1'
 require 'taglib/id3v2'

@@ -11,16 +11,23 @@ end
 task :swig =>
   ['ext/taglib_base/taglib_base_wrap.cxx',
    'ext/taglib_mpeg/taglib_mpeg_wrap.cxx',
+   'ext/taglib_id3v1/taglib_id3v1_wrap.cxx',
    'ext/taglib_id3v2/taglib_id3v2_wrap.cxx']
 
-file 'ext/taglib_base/taglib_base_wrap.cxx' => 'ext/taglib_base/taglib_base.i' do
+base_dependencies = ['ext/taglib_base/taglib_base.i', 'ext/taglib_base/includes.i']
+
+file 'ext/taglib_base/taglib_base_wrap.cxx' => base_dependencies do
   run_swig('taglib_base')
 end
 
-file 'ext/taglib_mpeg/taglib_mpeg_wrap.cxx' => 'ext/taglib_mpeg/taglib_mpeg.i' do
+file 'ext/taglib_mpeg/taglib_mpeg_wrap.cxx' => ['ext/taglib_mpeg/taglib_mpeg.i'] + base_dependencies do
   run_swig('taglib_mpeg')
 end
 
-file 'ext/taglib_id3v2/taglib_id3v2_wrap.cxx' => 'ext/taglib_id3v2/taglib_id3v2.i' do
+file 'ext/taglib_id3v1/taglib_id3v1_wrap.cxx' => ['ext/taglib_id3v1/taglib_id3v1.i'] + base_dependencies do
+  run_swig('taglib_id3v1')
+end
+
+file 'ext/taglib_id3v2/taglib_id3v2_wrap.cxx' => ['ext/taglib_id3v2/taglib_id3v2.i'] + base_dependencies do
   run_swig('taglib_id3v2')
 end
