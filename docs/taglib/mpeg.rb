@@ -17,6 +17,14 @@ module TagLib::MPEG
     def tag
     end
 
+    # Returns the ID3v1 tag.
+    #
+    # @param create if a new tag should be created when none exists
+    # @return [TagLib::ID3v1::Tag]
+    # @return [nil] if not present
+    def id3v1_tag(create=false)
+    end
+
     # Returns the ID3v2 tag.
     #
     # @param create if a new tag should be created when none exists
