@@ -14,6 +14,8 @@ to do (contributors very welcome):
   * Unicode filename support
 * More coverage of the library besides ID3v2
 
+[![flattr this project][flattr-img]][flattr-link]
+
 Installation
 ------------
 
@@ -144,3 +146,5 @@ see LICENSE.txt for details.
 Copyright (c) 2010, 2011 Robin Stocker.
 
 [taglib]: http://developer.kde.org/~wheeler/taglib.html
+[flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
+[flattr-link]: https://flattr.com/submit/auto?user_id=robinst&url=https://github.com/robinst/taglib-ruby&title=taglib-ruby&tags=github&category=software
