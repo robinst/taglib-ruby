@@ -85,14 +85,6 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 
 %include <taglib/id3v2framefactory.h>
 
-%extend TagLib::ID3v2::Tag {
-  // clarify overload resolution
-  const FrameList &frameList(const char *frameID) const {
-    // triggers implicit conversion to ByteVector
-    return $self->frameList(frameID);
-  }
-}
-
 // Resolve overloading conflict with setText(String)
 %rename("field_list=") TagLib::ID3v2::TextIdentificationFrame::setText(const StringList &);
 %rename("from_data") TagLib::ID3v2::TextIdentificationFrame::TextIdentificationFrame(const ByteVector &);

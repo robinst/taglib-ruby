@@ -51,6 +51,7 @@ namespace TagLib {
   tmp = ruby_string_to_taglib_bytevector($input);
   $1 = &tmp;
 }
+%typemap(typecheck) const TagLib::ByteVector & = char *;
 
 // String
 %typemap(out) TagLib::String {
@@ -62,6 +63,7 @@ namespace TagLib {
   tmp = ruby_string_to_taglib_string($input);
   $1 = &tmp;
 }
+%typemap(typecheck) TagLib::String = char *;
 %apply TagLib::String { TagLib::String &, const TagLib::String & };
 
 // StringList
