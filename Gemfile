@@ -7,6 +7,6 @@ group :development do
   gem 'bundler', '~> 1.0.0'
   gem 'jeweler', '~> 1.6.4'
   gem 'yard', '~> 0.7'
-  gem 'redcarpet'
+  gem 'redcarpet', '~> 1.0'
   gem 'guard-test', '~> 0.4.0'
 end
