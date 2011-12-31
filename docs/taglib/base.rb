@@ -139,19 +139,15 @@ module TagLib
     Accurate = 2
 
     # @return [Integer] length of the file in seconds
-    def length
-    end
+    attr_reader :length
 
     # @return [Integer] bit rate in kb/s (kilobit per second)
-    def bitrate
-    end
+    attr_reader :bitrate
 
     # @return [Integer] sample rate in Hz
-    def sample_rate
-    end
+    attr_reader :sample_rate
 
     # @return [Integer] number of channels
-    def channels
-    end
+    attr_reader :channels
   end
 end
