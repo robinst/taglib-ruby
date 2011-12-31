@@ -11,3 +11,7 @@ Makefile
 /doc
 /pkg
 /tmp
+
+/test/data/add-relative-volume
+/test/data/id3v1-create
+/test/data/vorbis-create
