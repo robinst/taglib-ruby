@@ -3,16 +3,22 @@ taglib-ruby
 
 Ruby interface for the [TagLib C++ library][taglib].
 
-In contrast to other libraries, this one wraps the full C++ API using
-SWIG, not only the minimal C API. This means that all tags can be
-accessed.
+In contrast to other libraries, this one wraps the full C++ API, not
+only the minimal C API. This means that all tag data can be accessed,
+e.g. cover art of ID3v2 or custom fields of Ogg Vorbis comments.
 
-taglib-ruby is work in progress, here are some of the things still left
-to do (contributors very welcome):
+taglib-ruby is work in progress, but the following is already available:
+
+* Reading/writing common tag data of all formats that TagLib supports
+* Reading/writing ID3v1 and ID3v2 including ID3v2.4 and Unicode
+* Reading/writing Ogg Vorbis comments
+* Reading audio properties (e.g. bitrate) of the above formats
+
+Some things are still left to do (contributors very welcome):
 
 * Pre-compiled Gem for Windows:
   * Unicode filename support
-* More coverage of the library besides ID3v2
+* More coverage of the library
 
 [![flattr this project][flattr-img]][flattr-link]
 
