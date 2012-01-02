@@ -1,6 +1,13 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.3.0 (2012-01-02)
+
+* Add support for Ogg Vorbis
+* Add support for ID3v1 (#2)
+* Add #close to File classes for explicitly releasing resources
+* Fix compilation on Windows
+
 ## 0.2.1 (2011-11-05)
 
 * Fix compilation error due to missing typedef on some systems (#5)
