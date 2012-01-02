@@ -8,9 +8,6 @@
  * interface file instead. 
  * ----------------------------------------------------------------------------- */
 
-  static void free_taglib_mpeg_file(void *ptr);
-
-
 #define SWIGRUBY
 
 
@@ -1816,33 +1813,28 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_TagLib__APE__Tag swig_types[0]
-#define SWIGTYPE_p_TagLib__AudioProperties swig_types[1]
-#define SWIGTYPE_p_TagLib__File swig_types[2]
-#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[3]
-#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[4]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[5]
-#define SWIGTYPE_p_TagLib__MPEG__File swig_types[6]
-#define SWIGTYPE_p_TagLib__MPEG__Header swig_types[7]
-#define SWIGTYPE_p_TagLib__MPEG__Properties swig_types[8]
-#define SWIGTYPE_p_TagLib__MPEG__XingHeader swig_types[9]
-#define SWIGTYPE_p_TagLib__Tag swig_types[10]
-#define SWIGTYPE_p_char swig_types[11]
-#define SWIGTYPE_p_unsigned_char swig_types[12]
-#define SWIGTYPE_p_unsigned_int swig_types[13]
-#define SWIGTYPE_p_unsigned_long swig_types[14]
-#define SWIGTYPE_p_wchar_t swig_types[15]
-static swig_type_info *swig_types[17];
-static swig_module_info swig_module = {swig_types, 16, 0, 0, 0, 0};
+#define SWIGTYPE_p_MapT_TagLib__String_TagLib__StringList_t swig_types[0]
+#define SWIGTYPE_p_TagLib__File swig_types[1]
+#define SWIGTYPE_p_TagLib__Ogg__File swig_types[2]
+#define SWIGTYPE_p_TagLib__Ogg__PageHeader swig_types[3]
+#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[4]
+#define SWIGTYPE_p_TagLib__Tag swig_types[5]
+#define SWIGTYPE_p_char swig_types[6]
+#define SWIGTYPE_p_unsigned_char swig_types[7]
+#define SWIGTYPE_p_unsigned_int swig_types[8]
+#define SWIGTYPE_p_unsigned_long swig_types[9]
+#define SWIGTYPE_p_wchar_t swig_types[10]
+static swig_type_info *swig_types[12];
+static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_init    Init_taglib_mpeg
-#define SWIG_name    "TagLib::MPEG"
+#define SWIG_init    Init_taglib_ogg
+#define SWIG_name    "TagLib::Ogg"
 
-static VALUE mMPEG;
+static VALUE mOgg;
 
 #define SWIG_RUBY_THREAD_BEGIN_BLOCK
 #define SWIG_RUBY_THREAD_END_BLOCK
@@ -1860,11 +1852,8 @@ static VALUE mMPEG;
 
 
 #include <taglib/taglib.h>
-#include <taglib/xingheader.h>
-#include <taglib/mpegheader.h>
-#include <taglib/mpegproperties.h>
-#include <taglib/mpegfile.h>
-#include <taglib/id3v2tag.h>
+#include <taglib/oggfile.h>
+#include <taglib/xiphcomment.h>
 
 
 #include <taglib/tstring.h>
@@ -1945,6 +1934,68 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 
 
 
+#include <limits.h>
+#if !defined(SWIG_NO_LLONG_MAX)
+# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#   define LLONG_MAX __LONG_LONG_MAX__
+#   define LLONG_MIN (-LLONG_MAX - 1LL)
+#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+# endif
+#endif
+
+
+SWIGINTERN VALUE
+SWIG_ruby_failed(void)
+{
+  return Qnil;
+} 
+
+
+/*@SWIG:/usr/local/share/swig/2.0.5/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
+{
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  unsigned long *res = (unsigned long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2ULONG(obj) : rb_big2ulong(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long (VALUE obj, unsigned long *val) 
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    unsigned long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2ULONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UINT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< unsigned int >(v);
+    }
+  }  
+  return res;
+}
+
+
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -2006,16 +2057,6 @@ SWIG_From_bool  (bool value)
 }
 
 
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
-
-
   #define SWIG_From_long   LONG2NUM 
 
 
@@ -2031,13 +2072,6 @@ SWIG_From_unsigned_SS_int  (unsigned int value)
 {    
   return SWIG_From_unsigned_SS_long  (value);
 }
-
-
-SWIGINTERN VALUE
-SWIG_ruby_failed(void)
-{
-  return Qnil;
-} 
 
 
 /*@SWIG:/usr/local/share/swig/2.0.5/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
@@ -2085,13 +2119,6 @@ SWIG_AsVal_int (VALUE obj, int *val)
 }
 
 
-SWIGINTERNINLINE VALUE
-SWIG_From_int  (int value)
-{    
-  return SWIG_From_long  (value);
-}
-
-
 SWIGINTERN int
 SWIG_AsVal_bool (VALUE obj, bool *val)
 {
@@ -2111,94 +2138,147 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
   return SWIG_TypeError;
 }
 
-SWIGINTERN void TagLib_MPEG_File_close(TagLib::MPEG::File *self){
-    free_taglib_mpeg_file(self);
-  }
 
-  static void free_taglib_mpeg_file(void *ptr) {
-    TagLib::MPEG::File *file = (TagLib::MPEG::File *) ptr;
-
-    TagLib::ID3v1::Tag *id3v1tag = file->ID3v1Tag(false);
-    if (id3v1tag) {
-      SWIG_RubyUnlinkObjects(id3v1tag);
-      SWIG_RubyRemoveTracking(id3v1tag);
+  VALUE taglib_ogg_fieldlistmap_to_ruby_hash(const TagLib::Ogg::FieldListMap & map) {
+    VALUE hash = rb_hash_new();
+    for (TagLib::Ogg::FieldListMap::ConstIterator it = map.begin(); it != map.end(); it++) {
+      TagLib::String key = (*it).first;
+      TagLib::StringList value = (*it).second;
+      VALUE k = taglib_string_to_ruby_string(key);
+      VALUE v = taglib_string_list_to_ruby_array(value);
+      rb_hash_aset(hash, k, v);
     }
-
-    TagLib::ID3v2::Tag *id3v2tag = file->ID3v2Tag(false);
-    if (id3v2tag) {
-      TagLib::ID3v2::FrameList frames = id3v2tag->frameList();
-      for (TagLib::ID3v2::FrameList::ConstIterator it = frames.begin(); it != frames.end(); it++) {
-        TagLib::ID3v2::Frame *frame = (*it);
-        SWIG_RubyUnlinkObjects(frame);
-        SWIG_RubyRemoveTracking(frame);
-      }
-
-      SWIG_RubyUnlinkObjects(id3v2tag);
-      SWIG_RubyRemoveTracking(id3v2tag);
-    }
-
-    TagLib::MPEG::Properties *properties = file->audioProperties();
-    if (properties) {
-      SWIG_RubyUnlinkObjects(properties);
-      SWIG_RubyRemoveTracking(properties);
-    }
-
-    SWIG_RubyUnlinkObjects(ptr);
-    SWIG_RubyRemoveTracking(ptr);
-
-    delete file;
+    return hash;
   }
 
-static swig_class SwigClassXingHeader;
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_XingHeader_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_XingHeader_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__MPEG__XingHeader);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_XingHeader(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::MPEG::XingHeader *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  result = (TagLib::MPEG::XingHeader *)new TagLib::MPEG::XingHeader((TagLib::ByteVector const &)*arg1);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
+static swig_class SwigClassFile;
 
 SWIGINTERN void
-free_TagLib_MPEG_XingHeader(TagLib::MPEG::XingHeader *arg1) {
+free_TagLib_Ogg_File(TagLib::Ogg::File *arg1) {
     SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
 SWIGINTERN VALUE
-_wrap_XingHeader_validq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::XingHeader *arg1 = (TagLib::MPEG::XingHeader *) 0 ;
+_wrap_File_packet(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
+  TagLib::uint arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  TagLib::ByteVector result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::File *","packet", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","packet", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::uint >(val2);
+  result = (arg1)->packet(arg2);
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_packete___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
+  TagLib::uint arg2 ;
+  TagLib::ByteVector *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  TagLib::ByteVector tmp3 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::File *","setPacket", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setPacket", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::uint >(val2);
+  {
+    tmp3 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg3 = &tmp3;
+  }
+  (arg1)->setPacket(arg2,(TagLib::ByteVector const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_first_page_header(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::Ogg::PageHeader *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::File *","firstPageHeader", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
+  result = (TagLib::Ogg::PageHeader *)(arg1)->firstPageHeader();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__Ogg__PageHeader, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_last_page_header(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::Ogg::PageHeader *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::File *","lastPageHeader", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
+  result = (TagLib::Ogg::PageHeader *)(arg1)->lastPageHeader();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__Ogg__PageHeader, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_save(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   bool result;
@@ -2207,12 +2287,12 @@ _wrap_XingHeader_validq___(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__XingHeader, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__File, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::XingHeader const *","isValid", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::File *","save", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::XingHeader * >(argp1);
-  result = (bool)((TagLib::MPEG::XingHeader const *)arg1)->isValid();
+  arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
+  result = (bool)(arg1)->save();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -2220,102 +2300,16 @@ fail:
 }
 
 
+static swig_class SwigClassXiphComment;
+
 SWIGINTERN VALUE
-_wrap_XingHeader_total_frames(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::XingHeader *arg1 = (TagLib::MPEG::XingHeader *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
+_wrap_new_XiphComment__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__XingHeader, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::XingHeader const *","totalFrames", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::XingHeader * >(argp1);
-  result = (TagLib::uint)((TagLib::MPEG::XingHeader const *)arg1)->totalFrames();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XingHeader_total_size(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::XingHeader *arg1 = (TagLib::MPEG::XingHeader *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__XingHeader, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::XingHeader const *","totalSize", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::XingHeader * >(argp1);
-  result = (TagLib::uint)((TagLib::MPEG::XingHeader const *)arg1)->totalSize();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XingHeader_xing_header_offset(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header::Version arg1 ;
-  TagLib::MPEG::Header::ChannelMode arg2 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header::Version","TagLib::MPEG::XingHeader::xingHeaderOffset", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::MPEG::Header::Version >(val1);
-  ecode2 = SWIG_AsVal_int(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::MPEG::Header::ChannelMode","TagLib::MPEG::XingHeader::xingHeaderOffset", 2, argv[1] ));
-  } 
-  arg2 = static_cast< TagLib::MPEG::Header::ChannelMode >(val2);
-  result = (int)TagLib::MPEG::XingHeader::xingHeaderOffset(arg1,arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-static swig_class SwigClassHeader;
-
-SWIGINTERN VALUE
-_wrap_new_Header__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::MPEG::Header *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  result = (TagLib::MPEG::Header *)new TagLib::MPEG::Header((TagLib::ByteVector const &)*arg1);
+  result = (TagLib::Ogg::XiphComment *)new TagLib::Ogg::XiphComment();
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
   return self;
@@ -2326,14 +2320,14 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Header_allocate(VALUE self) {
+_wrap_XiphComment_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Header_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_XiphComment_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__MPEG__Header);
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__Ogg__XiphComment);
 #ifndef HAVE_RB_DEFINE_ALLOC_FUNC
     rb_obj_call_init(vresult, argc, argv);
 #endif
@@ -2342,24 +2336,19 @@ _wrap_Header_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Header__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  TagLib::MPEG::Header *result = 0 ;
+_wrap_new_XiphComment__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
+  TagLib::Ogg::XiphComment *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__MPEG__Header,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const &","TagLib::MPEG::Header", 1, argv[0] )); 
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::MPEG::Header const &","TagLib::MPEG::Header", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (TagLib::MPEG::Header *)new TagLib::MPEG::Header((TagLib::MPEG::Header const &)*arg1);
+  result = (TagLib::Ogg::XiphComment *)new TagLib::Ogg::XiphComment((TagLib::ByteVector const &)*arg1);
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
   return self;
@@ -2368,7 +2357,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_new_Header(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_new_XiphComment(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[1];
   int ii;
@@ -2378,57 +2367,53 @@ SWIGINTERN VALUE _wrap_new_Header(int nargs, VALUE *args, VALUE self) {
   for (ii = 0; (ii < argc); ++ii) {
     argv[ii] = args[ii];
   }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__Header, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Header__SWIG_1(nargs, args, self);
-    }
+  if (argc == 0) {
+    return _wrap_new_XiphComment__SWIG_0(nargs, args, self);
   }
   if (argc == 1) {
     int _v;
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Header__SWIG_0(nargs, args, self);
+      return _wrap_new_XiphComment__SWIG_1(nargs, args, self);
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 1, "Header.new", 
-    "    Header.new(TagLib::ByteVector const &data)\n"
-    "    Header.new(TagLib::MPEG::Header const &h)\n");
+  Ruby_Format_OverloadedError( argc, 1, "XiphComment.new", 
+    "    XiphComment.new()\n"
+    "    XiphComment.new(TagLib::ByteVector const &data)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN void
-free_TagLib_MPEG_Header(TagLib::MPEG::Header *arg1) {
+free_TagLib_Ogg_XiphComment(TagLib::Ogg::XiphComment *arg1) {
     SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
 
 SWIGINTERN VALUE
-_wrap_Header_validq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_title(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool result;
+  TagLib::String result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","isValid", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","title", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (bool)((TagLib::MPEG::Header const *)arg1)->isValid();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->title();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -2436,23 +2421,25 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_version(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_artist(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::MPEG::Header::Version result;
+  TagLib::String result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","version", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","artist", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (TagLib::MPEG::Header::Version)((TagLib::MPEG::Header const *)arg1)->version();
-  vresult = SWIG_From_int(static_cast< int >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->artist();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -2460,23 +2447,25 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_layer(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_album(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int result;
+  TagLib::String result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","layer", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","album", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (int)((TagLib::MPEG::Header const *)arg1)->layer();
-  vresult = SWIG_From_int(static_cast< int >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->album();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -2484,23 +2473,25 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_protection_enabled(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_comment(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool result;
+  TagLib::String result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","protectionEnabled", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","comment", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (bool)((TagLib::MPEG::Header const *)arg1)->protectionEnabled();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->comment();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -2508,23 +2499,25 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_bitrate(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_genre(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int result;
+  TagLib::String result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","bitrate", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","genre", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (int)((TagLib::MPEG::Header const *)arg1)->bitrate();
-  vresult = SWIG_From_int(static_cast< int >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->genre();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -2532,23 +2525,23 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_sample_rate(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_year(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int result;
+  TagLib::uint result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","sampleRate", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","year", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (int)((TagLib::MPEG::Header const *)arg1)->sampleRate();
-  vresult = SWIG_From_int(static_cast< int >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->year();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
   return Qnil;
@@ -2556,23 +2549,23 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_paddedq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_track(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool result;
+  TagLib::uint result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","isPadded", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","track", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (bool)((TagLib::MPEG::Header const *)arg1)->isPadded();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->track();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
   return Qnil;
@@ -2580,829 +2573,418 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Header_channel_mode(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
+_wrap_XiphComment_titlee___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::MPEG::Header::ChannelMode result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","channelMode", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (TagLib::MPEG::Header::ChannelMode)((TagLib::MPEG::Header const *)arg1)->channelMode();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Header_copyrightedq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","isCopyrighted", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (bool)((TagLib::MPEG::Header const *)arg1)->isCopyrighted();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Header_originalq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","isOriginal", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (bool)((TagLib::MPEG::Header const *)arg1)->isOriginal();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Header_frame_length(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","frameLength", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (int)((TagLib::MPEG::Header const *)arg1)->frameLength();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Header_samples_per_frame(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Header *arg1 = (TagLib::MPEG::Header *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Header, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Header const *","samplesPerFrame", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Header * >(argp1);
-  result = (int)((TagLib::MPEG::Header const *)arg1)->samplesPerFrame();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-static swig_class SwigClassProperties;
-
-SWIGINTERN VALUE
-_wrap_new_Properties__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  TagLib::AudioProperties::ReadStyle arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  TagLib::MPEG::Properties *result = 0 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","TagLib::MPEG::Properties", 1, argv[0] )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::MPEG::Properties", 2, argv[1] ));
-  } 
-  arg2 = static_cast< TagLib::AudioProperties::ReadStyle >(val2);
-  result = (TagLib::MPEG::Properties *)new TagLib::MPEG::Properties(arg1,arg2);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_Properties_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_Properties_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__MPEG__Properties);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_Properties__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::MPEG::Properties *result = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","TagLib::MPEG::Properties", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setTitle", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::MPEG::Properties *)new TagLib::MPEG::Properties(arg1);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_new_Properties(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 2) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Properties__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_Properties__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "Properties.new", 
-    "    Properties.new(TagLib::MPEG::File *file, TagLib::AudioProperties::ReadStyle style)\n"
-    "    Properties.new(TagLib::MPEG::File *file)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_TagLib_MPEG_Properties(TagLib::MPEG::Properties *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
-SWIGINTERN VALUE
-_wrap_Properties_length(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","length", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (int)((TagLib::MPEG::Properties const *)arg1)->length();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_bitrate(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","bitrate", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (int)((TagLib::MPEG::Properties const *)arg1)->bitrate();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_sample_rate(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","sampleRate", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (int)((TagLib::MPEG::Properties const *)arg1)->sampleRate();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_channels(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","channels", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (int)((TagLib::MPEG::Properties const *)arg1)->channels();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_xing_header(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::MPEG::XingHeader *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","xingHeader", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (TagLib::MPEG::XingHeader *)((TagLib::MPEG::Properties const *)arg1)->xingHeader();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MPEG__XingHeader, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_version(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::MPEG::Header::Version result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","version", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (TagLib::MPEG::Header::Version)((TagLib::MPEG::Properties const *)arg1)->version();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_layer(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","layer", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (int)((TagLib::MPEG::Properties const *)arg1)->layer();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_protection_enabled(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","protectionEnabled", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (bool)((TagLib::MPEG::Properties const *)arg1)->protectionEnabled();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_channel_mode(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::MPEG::Header::ChannelMode result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","channelMode", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (TagLib::MPEG::Header::ChannelMode)((TagLib::MPEG::Properties const *)arg1)->channelMode();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_copyrightedq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","isCopyrighted", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (bool)((TagLib::MPEG::Properties const *)arg1)->isCopyrighted();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Properties_originalq___(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::Properties *arg1 = (TagLib::MPEG::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties const *","isOriginal", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::Properties * >(argp1);
-  result = (bool)((TagLib::MPEG::Properties const *)arg1)->isOriginal();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-static swig_class SwigClassFile;
-
-SWIGINTERN VALUE
-_wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  bool arg2 ;
-  TagLib::MPEG::Properties::ReadStyle arg3 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  TagLib::MPEG::File *result = 0 ;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::MPEG::File", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  ecode3 = SWIG_AsVal_int(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties::ReadStyle","TagLib::MPEG::File", 3, argv[2] ));
-  } 
-  arg3 = static_cast< TagLib::MPEG::Properties::ReadStyle >(val3);
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
+  (arg1)->setTitle((TagLib::String const &)*arg2);
+  return Qnil;
 fail:
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  bool arg2 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::MPEG::File *result = 0 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
-  }
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::MPEG::File", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  TagLib::MPEG::File *result = 0 ;
+_wrap_XiphComment_artiste___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setArtist", 1, self )); 
   }
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setArtist((TagLib::String const &)*arg2);
+  return Qnil;
 fail:
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_new_File__SWIG_3(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
-  bool arg3 ;
-  TagLib::MPEG::Properties::ReadStyle arg4 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  bool val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
+_wrap_XiphComment_albume___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setAlbum", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setAlbum((TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_commente___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setComment", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setComment((TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_genree___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setGenre", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setGenre((TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_yeare___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::uint arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setYear", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setYear", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::uint >(val2);
+  (arg1)->setYear(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_tracke___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::uint arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","setTrack", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setTrack", 2, argv[0] ));
+  } 
+  arg2 = static_cast< TagLib::uint >(val2);
+  (arg1)->setTrack(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_emptyq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","isEmpty", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (bool)((TagLib::Ogg::XiphComment const *)arg1)->isEmpty();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_field_count(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::uint result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","fieldCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->fieldCount();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_field_list_map(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::Ogg::FieldListMap *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","fieldListMap", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (TagLib::Ogg::FieldListMap *) &((TagLib::Ogg::XiphComment const *)arg1)->fieldListMap();
+  {
+    vresult = taglib_ogg_fieldlistmap_to_ruby_hash(*result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_vendor_id(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","vendorID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->vendorID();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_add_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
+  bool arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
+  bool val4 ;
   int ecode4 = 0 ;
-  TagLib::MPEG::File *result = 0 ;
-  
-  if ((argc < 4) || (argc > 4)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
-  }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
-  }
-  res2 = SWIG_ConvertPtr(argv[1], &argp2,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory *","TagLib::MPEG::File", 2, argv[1] )); 
-  }
-  arg2 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp2);
-  ecode3 = SWIG_AsVal_bool(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","TagLib::MPEG::File", 3, argv[2] ));
-  } 
-  arg3 = static_cast< bool >(val3);
-  ecode4 = SWIG_AsVal_int(argv[3], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::MPEG::Properties::ReadStyle","TagLib::MPEG::File", 4, argv[3] ));
-  } 
-  arg4 = static_cast< TagLib::MPEG::Properties::ReadStyle >(val4);
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3,arg4);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_File__SWIG_4(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
-  bool arg3 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  bool val3 ;
-  int ecode3 = 0 ;
-  TagLib::MPEG::File *result = 0 ;
   
   if ((argc < 3) || (argc > 3)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
   }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","addField", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
-  res2 = SWIG_ConvertPtr(argv[1], &argp2,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory *","TagLib::MPEG::File", 2, argv[1] )); 
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
   }
-  arg2 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp2);
-  ecode3 = SWIG_AsVal_bool(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","TagLib::MPEG::File", 3, argv[2] ));
+  ecode4 = SWIG_AsVal_bool(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "bool","addField", 4, argv[2] ));
   } 
-  arg3 = static_cast< bool >(val3);
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2,arg3);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
+  arg4 = static_cast< bool >(val4);
+  (arg1)->addField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3,arg4);
+  return Qnil;
 fail:
   return Qnil;
 }
 
 
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_File_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_File_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__MPEG__File);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_File__SWIG_5(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
-  TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  TagLib::MPEG::File *result = 0 ;
+_wrap_XiphComment_add_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
   
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","addField", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
   }
-  res2 = SWIG_ConvertPtr(argv[1], &argp2,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory *","TagLib::MPEG::File", 2, argv[1] )); 
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
   }
-  arg2 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp2);
-  result = (TagLib::MPEG::File *)new TagLib::MPEG::File(arg1,arg2);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
+  (arg1)->addField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
+  return Qnil;
 fail:
   return Qnil;
 }
 
 
-SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_XiphComment_add_field(int nargs, VALUE *args, VALUE self) {
   int argc;
-  VALUE argv[4];
+  VALUE argv[5];
   int ii;
   
-  argc = nargs;
-  if (argc > 4) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_File__SWIG_2(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_new_File__SWIG_5(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_File__SWIG_1(nargs, args, self);
-      }
-    }
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
   }
   if (argc == 3) {
     int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0);
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        {
-          int res = SWIG_AsVal_bool(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_File__SWIG_4(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
         if (_v) {
-          return _wrap_new_File__SWIG_0(nargs, args, self);
+          return _wrap_XiphComment_add_field__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   if (argc == 4) {
     int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0);
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        {
-          int res = SWIG_AsVal_bool(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
         if (_v) {
           {
-            int res = SWIG_AsVal_int(argv[3], NULL);
+            int res = SWIG_AsVal_bool(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_new_File__SWIG_3(nargs, args, self);
+            return _wrap_XiphComment_add_field__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -3410,163 +2992,75 @@ SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "File.new", 
-    "    File.new(TagLib::FileName file, bool readProperties, TagLib::MPEG::Properties::ReadStyle propertiesStyle)\n"
-    "    File.new(TagLib::FileName file, bool readProperties)\n"
-    "    File.new(TagLib::FileName file)\n"
-    "    File.new(TagLib::FileName file, TagLib::ID3v2::FrameFactory *frameFactory, bool readProperties, TagLib::MPEG::Properties::ReadStyle propertiesStyle)\n"
-    "    File.new(TagLib::FileName file, TagLib::ID3v2::FrameFactory *frameFactory, bool readProperties)\n"
-    "    File.new(TagLib::FileName file, TagLib::ID3v2::FrameFactory *frameFactory)\n");
+  Ruby_Format_OverloadedError( argc, 5, "XiphComment.add_field", 
+    "    void XiphComment.add_field(TagLib::String const &key, TagLib::String const &value, bool replace)\n"
+    "    void XiphComment.add_field(TagLib::String const &key, TagLib::String const &value)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_File_tag(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
+_wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::Tag *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File const *","tag", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::Tag *)((TagLib::MPEG::File const *)arg1)->tag();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_audio_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::MPEG::Properties *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File const *","audioProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::MPEG::Properties *)((TagLib::MPEG::File const *)arg1)->audioProperties();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MPEG__Properties, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_save__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","save", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (bool)(arg1)->save();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_save__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","save", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","save", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  result = (bool)(arg1)->save(arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_save__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  int arg2 ;
-  bool arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  bool val3 ;
-  int ecode3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
   
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","save", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","save", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","save", 3, argv[1] ));
-  } 
-  arg3 = static_cast< bool >(val3);
-  result = (bool)(arg1)->save(arg2,arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
+  }
+  (arg1)->removeField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
+  return Qnil;
 fail:
   return Qnil;
 }
 
 
-SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->removeField((TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -3577,88 +3071,70 @@ SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
   for (ii = 1; (ii < argc); ++ii) {
     argv[ii] = args[ii-1];
   }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_File_save__SWIG_0(nargs, args, self);
-    }
-  }
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_File_save__SWIG_1(nargs, args, self);
+        return _wrap_XiphComment_remove_field__SWIG_1(nargs, args, self);
       }
     }
   }
   if (argc == 3) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
       if (_v) {
-        {
-          int res = SWIG_AsVal_bool(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_File_save__SWIG_2(nargs, args, self);
+          return _wrap_XiphComment_remove_field__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "File.save", 
-    "    bool File.save()\n"
-    "    bool File.save(int tags)\n"
-    "    bool File.save(int tags, bool stripOthers)\n");
+  Ruby_Format_OverloadedError( argc, 4, "XiphComment.remove_field", 
+    "    void XiphComment.remove_field(TagLib::String const &key, TagLib::String const &value)\n"
+    "    void XiphComment.remove_field(TagLib::String const &key)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_File_id3v2_tag__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  bool arg2 ;
+_wrap_XiphComment_containsq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::ID3v2::Tag *result = 0 ;
+  TagLib::String tmp2 ;
+  bool result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","ID3v2Tag", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","contains", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","ID3v2Tag", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::ID3v2::Tag *)(arg1)->ID3v2Tag(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  result = (bool)((TagLib::Ogg::XiphComment const *)arg1)->contains((TagLib::String const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
   return Qnil;
@@ -3666,30 +3142,66 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_id3v2_tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
+_wrap_XiphComment_render__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::ID3v2::Tag *result = 0 ;
+  TagLib::ByteVector result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","ID3v2Tag", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","render", 1, self )); 
   }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::ID3v2::Tag *)(arg1)->ID3v2Tag();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->render();
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
   return vresult;
 fail:
   return Qnil;
 }
 
 
-SWIGINTERN VALUE _wrap_File_id3v2_tag(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE
+_wrap_XiphComment_render__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  TagLib::ByteVector result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","render", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","render", 2, argv[0] ));
+  } 
+  arg2 = static_cast< bool >(val2);
+  result = ((TagLib::Ogg::XiphComment const *)arg1)->render(arg2);
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XiphComment_render(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -3703,16 +3215,16 @@ SWIGINTERN VALUE _wrap_File_id3v2_tag(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_File_id3v2_tag__SWIG_1(nargs, args, self);
+      return _wrap_XiphComment_render__SWIG_0(nargs, args, self);
     }
   }
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -3720,543 +3232,16 @@ SWIGINTERN VALUE _wrap_File_id3v2_tag(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_File_id3v2_tag__SWIG_0(nargs, args, self);
+        return _wrap_XiphComment_render__SWIG_1(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "File.id3v2_tag", 
-    "    TagLib::ID3v2::Tag * File.id3v2_tag(bool create)\n"
-    "    TagLib::ID3v2::Tag * File.id3v2_tag()\n");
+  Ruby_Format_OverloadedError( argc, 3, "XiphComment.render", 
+    "    TagLib::ByteVector XiphComment.render()\n"
+    "    TagLib::ByteVector XiphComment.render(bool addFramingBit)\n");
   
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_id3v1_tag__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::ID3v1::Tag *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","ID3v1Tag", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","ID3v1Tag", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::ID3v1::Tag *)(arg1)->ID3v1Tag(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v1__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_id3v1_tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ID3v1::Tag *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","ID3v1Tag", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::ID3v1::Tag *)(arg1)->ID3v1Tag();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v1__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_File_id3v1_tag(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_File_id3v1_tag__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_File_id3v1_tag__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "File.id3v1_tag", 
-    "    TagLib::ID3v1::Tag * File.id3v1_tag(bool create)\n"
-    "    TagLib::ID3v1::Tag * File.id3v1_tag()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_apetag__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::APE::Tag *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","APETag", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","APETag", 2, argv[0] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::APE::Tag *)(arg1)->APETag(arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__APE__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_apetag__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::APE::Tag *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","APETag", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (TagLib::APE::Tag *)(arg1)->APETag();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__APE__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_File_apetag(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_File_apetag__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_File_apetag__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "File.apetag", 
-    "    TagLib::APE::Tag * File.apetag(bool create)\n"
-    "    TagLib::APE::Tag * File.apetag()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_strip__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","strip", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","strip", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  result = (bool)(arg1)->strip(arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_strip__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","strip", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (bool)(arg1)->strip();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_strip__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  int arg2 ;
-  bool arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  bool val3 ;
-  int ecode3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","strip", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","strip", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","strip", 3, argv[1] ));
-  } 
-  arg3 = static_cast< bool >(val3);
-  result = (bool)(arg1)->strip(arg2,arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_File_strip(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_File_strip__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_File_strip__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_bool(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_File_strip__SWIG_2(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "File.strip", 
-    "    bool File.strip(int tags)\n"
-    "    bool File.strip()\n"
-    "    bool File.strip(int tags, bool freeMemory)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_set_id3v2_frame_factory(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","setID3v2FrameFactory", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory const *","setID3v2FrameFactory", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp2);
-  (arg1)->setID3v2FrameFactory((TagLib::ID3v2::FrameFactory const *)arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_first_frame_offset(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","firstFrameOffset", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (long)(arg1)->firstFrameOffset();
-  vresult = SWIG_From_long(static_cast< long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_next_frame_offset(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  long arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  long val2 ;
-  int ecode2 = 0 ;
-  long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","nextFrameOffset", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","nextFrameOffset", 2, argv[0] ));
-  } 
-  arg2 = static_cast< long >(val2);
-  result = (long)(arg1)->nextFrameOffset(arg2);
-  vresult = SWIG_From_long(static_cast< long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_previous_frame_offset(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  long arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  long val2 ;
-  int ecode2 = 0 ;
-  long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","previousFrameOffset", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  ecode2 = SWIG_AsVal_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","previousFrameOffset", 2, argv[0] ));
-  } 
-  arg2 = static_cast< long >(val2);
-  result = (long)(arg1)->previousFrameOffset(arg2);
-  vresult = SWIG_From_long(static_cast< long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_last_frame_offset(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  long result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","lastFrameOffset", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  result = (long)(arg1)->lastFrameOffset();
-  vresult = SWIG_From_long(static_cast< long >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_close(int argc, VALUE *argv, VALUE self) {
-  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","close", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
-  TagLib_MPEG_File_close(arg1);
-  return Qnil;
-fail:
   return Qnil;
 }
 
@@ -4264,22 +3249,17 @@ fail:
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_TagLib__MPEG__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((TagLib::File *)  ((TagLib::MPEG::File *) x));
+static void *_p_TagLib__Ogg__XiphCommentTo_p_TagLib__Tag(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::Tag *)  ((TagLib::Ogg::XiphComment *) x));
 }
-static void *_p_TagLib__MPEG__PropertiesTo_p_TagLib__AudioProperties(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((TagLib::AudioProperties *)  ((TagLib::MPEG::Properties *) x));
+static void *_p_TagLib__Ogg__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::File *)  ((TagLib::Ogg::File *) x));
 }
-static swig_type_info _swigt__p_TagLib__APE__Tag = {"_p_TagLib__APE__Tag", "TagLib::APE::Tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MapT_TagLib__String_TagLib__StringList_t = {"_p_MapT_TagLib__String_TagLib__StringList_t", "Map< TagLib::String,TagLib::StringList > *|TagLib::Ogg::FieldListMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "TagLib::ID3v1::Tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ID3v2__FrameFactory = {"_p_TagLib__ID3v2__FrameFactory", "TagLib::ID3v2::FrameFactory *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__MPEG__File = {"_p_TagLib__MPEG__File", "TagLib::MPEG::File *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__MPEG__Header = {"_p_TagLib__MPEG__Header", "TagLib::MPEG::Header *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__MPEG__Properties = {"_p_TagLib__MPEG__Properties", "TagLib::MPEG::Properties *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__MPEG__XingHeader = {"_p_TagLib__MPEG__XingHeader", "TagLib::MPEG::XingHeader *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__Ogg__File = {"_p_TagLib__Ogg__File", "TagLib::Ogg::File *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__Ogg__PageHeader = {"_p_TagLib__Ogg__PageHeader", "TagLib::Ogg::PageHeader *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__Ogg__XiphComment = {"_p_TagLib__Ogg__XiphComment", "TagLib::Ogg::XiphComment *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
@@ -4288,16 +3268,11 @@ static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ul
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_TagLib__APE__Tag,
-  &_swigt__p_TagLib__AudioProperties,
+  &_swigt__p_MapT_TagLib__String_TagLib__StringList_t,
   &_swigt__p_TagLib__File,
-  &_swigt__p_TagLib__ID3v1__Tag,
-  &_swigt__p_TagLib__ID3v2__FrameFactory,
-  &_swigt__p_TagLib__ID3v2__Tag,
-  &_swigt__p_TagLib__MPEG__File,
-  &_swigt__p_TagLib__MPEG__Header,
-  &_swigt__p_TagLib__MPEG__Properties,
-  &_swigt__p_TagLib__MPEG__XingHeader,
+  &_swigt__p_TagLib__Ogg__File,
+  &_swigt__p_TagLib__Ogg__PageHeader,
+  &_swigt__p_TagLib__Ogg__XiphComment,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
   &_swigt__p_unsigned_char,
@@ -4306,17 +3281,12 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
-static swig_cast_info _swigc__p_TagLib__APE__Tag[] = {  {&_swigt__p_TagLib__APE__Tag, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},  {&_swigt__p_TagLib__MPEG__Properties, _p_TagLib__MPEG__PropertiesTo_p_TagLib__AudioProperties, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__MPEG__File, _p_TagLib__MPEG__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID3v1__Tag, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__MPEG__File[] = {  {&_swigt__p_TagLib__MPEG__File, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__MPEG__Header[] = {  {&_swigt__p_TagLib__MPEG__Header, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__MPEG__Properties[] = {  {&_swigt__p_TagLib__MPEG__Properties, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__MPEG__XingHeader[] = {  {&_swigt__p_TagLib__MPEG__XingHeader, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MapT_TagLib__String_TagLib__StringList_t[] = {  {&_swigt__p_MapT_TagLib__String_TagLib__StringList_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__Ogg__File, _p_TagLib__Ogg__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__Ogg__File[] = {  {&_swigt__p_TagLib__Ogg__File, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__Ogg__PageHeader[] = {  {&_swigt__p_TagLib__Ogg__PageHeader, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__Ogg__XiphComment[] = {  {&_swigt__p_TagLib__Ogg__XiphComment, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Ogg__XiphComment, _p_TagLib__Ogg__XiphCommentTo_p_TagLib__Tag, 0, 0},  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -4324,16 +3294,11 @@ static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_TagLib__APE__Tag,
-  _swigc__p_TagLib__AudioProperties,
+  _swigc__p_MapT_TagLib__String_TagLib__StringList_t,
   _swigc__p_TagLib__File,
-  _swigc__p_TagLib__ID3v1__Tag,
-  _swigc__p_TagLib__ID3v2__FrameFactory,
-  _swigc__p_TagLib__ID3v2__Tag,
-  _swigc__p_TagLib__MPEG__File,
-  _swigc__p_TagLib__MPEG__Header,
-  _swigc__p_TagLib__MPEG__Properties,
-  _swigc__p_TagLib__MPEG__XingHeader,
+  _swigc__p_TagLib__Ogg__File,
+  _swigc__p_TagLib__Ogg__PageHeader,
+  _swigc__p_TagLib__Ogg__XiphComment,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
   _swigc__p_unsigned_char,
@@ -4588,12 +3553,12 @@ SWIG_PropagateClientData(void) {
 #ifdef __cplusplus
 extern "C"
 #endif
-SWIGEXPORT void Init_taglib_mpeg(void) {
+SWIGEXPORT void Init_taglib_ogg(void) {
   size_t i;
   
   SWIG_InitRuntime();
-  mMPEG = rb_define_module("TagLib");
-  mMPEG = rb_define_module_under(mMPEG, "MPEG");
+  mOgg = rb_define_module("TagLib");
+  mOgg = rb_define_module_under(mOgg, "Ogg");
   
   SWIG_InitializeModule(0);
   for (i = 0; i < swig_module.size; i++) {
@@ -4603,88 +3568,46 @@ SWIGEXPORT void Init_taglib_mpeg(void) {
   SWIG_RubyInitializeTrackings();
   rb_require("taglib_base");
   
-  SwigClassXingHeader.klass = rb_define_class_under(mMPEG, "XingHeader", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__MPEG__XingHeader, (void *) &SwigClassXingHeader);
-  rb_define_alloc_func(SwigClassXingHeader.klass, _wrap_XingHeader_allocate);
-  rb_define_method(SwigClassXingHeader.klass, "initialize", VALUEFUNC(_wrap_new_XingHeader), -1);
-  rb_define_method(SwigClassXingHeader.klass, "valid?", VALUEFUNC(_wrap_XingHeader_validq___), -1);
-  rb_define_method(SwigClassXingHeader.klass, "total_frames", VALUEFUNC(_wrap_XingHeader_total_frames), -1);
-  rb_define_method(SwigClassXingHeader.klass, "total_size", VALUEFUNC(_wrap_XingHeader_total_size), -1);
-  rb_define_singleton_method(SwigClassXingHeader.klass, "xing_header_offset", VALUEFUNC(_wrap_XingHeader_xing_header_offset), -1);
-  SwigClassXingHeader.mark = 0;
-  SwigClassXingHeader.destroy = (void (*)(void *)) free_TagLib_MPEG_XingHeader;
-  SwigClassXingHeader.trackObjects = 1;
-  
-  SwigClassHeader.klass = rb_define_class_under(mMPEG, "Header", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__MPEG__Header, (void *) &SwigClassHeader);
-  rb_define_alloc_func(SwigClassHeader.klass, _wrap_Header_allocate);
-  rb_define_method(SwigClassHeader.klass, "initialize", VALUEFUNC(_wrap_new_Header), -1);
-  rb_define_method(SwigClassHeader.klass, "valid?", VALUEFUNC(_wrap_Header_validq___), -1);
-  rb_define_const(SwigClassHeader.klass, "Version1", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::Version1)));
-  rb_define_const(SwigClassHeader.klass, "Version2", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::Version2)));
-  rb_define_const(SwigClassHeader.klass, "Version2_5", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::Version2_5)));
-  rb_define_method(SwigClassHeader.klass, "version", VALUEFUNC(_wrap_Header_version), -1);
-  rb_define_method(SwigClassHeader.klass, "layer", VALUEFUNC(_wrap_Header_layer), -1);
-  rb_define_method(SwigClassHeader.klass, "protection_enabled", VALUEFUNC(_wrap_Header_protection_enabled), -1);
-  rb_define_method(SwigClassHeader.klass, "bitrate", VALUEFUNC(_wrap_Header_bitrate), -1);
-  rb_define_method(SwigClassHeader.klass, "sample_rate", VALUEFUNC(_wrap_Header_sample_rate), -1);
-  rb_define_method(SwigClassHeader.klass, "padded?", VALUEFUNC(_wrap_Header_paddedq___), -1);
-  rb_define_const(SwigClassHeader.klass, "Stereo", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::Stereo)));
-  rb_define_const(SwigClassHeader.klass, "JointStereo", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::JointStereo)));
-  rb_define_const(SwigClassHeader.klass, "DualChannel", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::DualChannel)));
-  rb_define_const(SwigClassHeader.klass, "SingleChannel", SWIG_From_int(static_cast< int >(TagLib::MPEG::Header::SingleChannel)));
-  rb_define_method(SwigClassHeader.klass, "channel_mode", VALUEFUNC(_wrap_Header_channel_mode), -1);
-  rb_define_method(SwigClassHeader.klass, "copyrighted?", VALUEFUNC(_wrap_Header_copyrightedq___), -1);
-  rb_define_method(SwigClassHeader.klass, "original?", VALUEFUNC(_wrap_Header_originalq___), -1);
-  rb_define_method(SwigClassHeader.klass, "frame_length", VALUEFUNC(_wrap_Header_frame_length), -1);
-  rb_define_method(SwigClassHeader.klass, "samples_per_frame", VALUEFUNC(_wrap_Header_samples_per_frame), -1);
-  SwigClassHeader.mark = 0;
-  SwigClassHeader.destroy = (void (*)(void *)) free_TagLib_MPEG_Header;
-  SwigClassHeader.trackObjects = 1;
-  
-  SwigClassProperties.klass = rb_define_class_under(mMPEG, "Properties", ((swig_class *) SWIGTYPE_p_TagLib__AudioProperties->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__MPEG__Properties, (void *) &SwigClassProperties);
-  rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
-  rb_define_method(SwigClassProperties.klass, "initialize", VALUEFUNC(_wrap_new_Properties), -1);
-  rb_define_method(SwigClassProperties.klass, "length", VALUEFUNC(_wrap_Properties_length), -1);
-  rb_define_method(SwigClassProperties.klass, "bitrate", VALUEFUNC(_wrap_Properties_bitrate), -1);
-  rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);
-  rb_define_method(SwigClassProperties.klass, "channels", VALUEFUNC(_wrap_Properties_channels), -1);
-  rb_define_method(SwigClassProperties.klass, "xing_header", VALUEFUNC(_wrap_Properties_xing_header), -1);
-  rb_define_method(SwigClassProperties.klass, "version", VALUEFUNC(_wrap_Properties_version), -1);
-  rb_define_method(SwigClassProperties.klass, "layer", VALUEFUNC(_wrap_Properties_layer), -1);
-  rb_define_method(SwigClassProperties.klass, "protection_enabled", VALUEFUNC(_wrap_Properties_protection_enabled), -1);
-  rb_define_method(SwigClassProperties.klass, "channel_mode", VALUEFUNC(_wrap_Properties_channel_mode), -1);
-  rb_define_method(SwigClassProperties.klass, "copyrighted?", VALUEFUNC(_wrap_Properties_copyrightedq___), -1);
-  rb_define_method(SwigClassProperties.klass, "original?", VALUEFUNC(_wrap_Properties_originalq___), -1);
-  SwigClassProperties.mark = 0;
-  SwigClassProperties.destroy = (void (*)(void *)) free_TagLib_MPEG_Properties;
-  SwigClassProperties.trackObjects = 1;
-  
-  SwigClassFile.klass = rb_define_class_under(mMPEG, "File", ((swig_class *) SWIGTYPE_p_TagLib__File->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__MPEG__File, (void *) &SwigClassFile);
-  rb_define_alloc_func(SwigClassFile.klass, _wrap_File_allocate);
-  rb_define_method(SwigClassFile.klass, "initialize", VALUEFUNC(_wrap_new_File), -1);
-  rb_define_const(SwigClassFile.klass, "NoTags", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::NoTags)));
-  rb_define_const(SwigClassFile.klass, "ID3v1", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::ID3v1)));
-  rb_define_const(SwigClassFile.klass, "ID3v2", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::ID3v2)));
-  rb_define_const(SwigClassFile.klass, "APE", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::APE)));
-  rb_define_const(SwigClassFile.klass, "AllTags", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::AllTags)));
-  rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
-  rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
+  SwigClassFile.klass = rb_define_class_under(mOgg, "File", ((swig_class *) SWIGTYPE_p_TagLib__File->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__Ogg__File, (void *) &SwigClassFile);
+  rb_undef_alloc_func(SwigClassFile.klass);
+  rb_define_method(SwigClassFile.klass, "packet", VALUEFUNC(_wrap_File_packet), -1);
+  rb_define_method(SwigClassFile.klass, "packet=", VALUEFUNC(_wrap_File_packete___), -1);
+  rb_define_method(SwigClassFile.klass, "first_page_header", VALUEFUNC(_wrap_File_first_page_header), -1);
+  rb_define_method(SwigClassFile.klass, "last_page_header", VALUEFUNC(_wrap_File_last_page_header), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
-  rb_define_method(SwigClassFile.klass, "id3v2_tag", VALUEFUNC(_wrap_File_id3v2_tag), -1);
-  rb_define_method(SwigClassFile.klass, "id3v1_tag", VALUEFUNC(_wrap_File_id3v1_tag), -1);
-  rb_define_method(SwigClassFile.klass, "apetag", VALUEFUNC(_wrap_File_apetag), -1);
-  rb_define_method(SwigClassFile.klass, "strip", VALUEFUNC(_wrap_File_strip), -1);
-  rb_define_method(SwigClassFile.klass, "set_id3v2_frame_factory", VALUEFUNC(_wrap_File_set_id3v2_frame_factory), -1);
-  rb_define_method(SwigClassFile.klass, "first_frame_offset", VALUEFUNC(_wrap_File_first_frame_offset), -1);
-  rb_define_method(SwigClassFile.klass, "next_frame_offset", VALUEFUNC(_wrap_File_next_frame_offset), -1);
-  rb_define_method(SwigClassFile.klass, "previous_frame_offset", VALUEFUNC(_wrap_File_previous_frame_offset), -1);
-  rb_define_method(SwigClassFile.klass, "last_frame_offset", VALUEFUNC(_wrap_File_last_frame_offset), -1);
-  rb_define_method(SwigClassFile.klass, "close", VALUEFUNC(_wrap_File_close), -1);
   SwigClassFile.mark = 0;
-  SwigClassFile.destroy = (void (*)(void *)) free_taglib_mpeg_file;
+  SwigClassFile.destroy = (void (*)(void *)) free_TagLib_Ogg_File;
   SwigClassFile.trackObjects = 1;
+  
+  SwigClassXiphComment.klass = rb_define_class_under(mOgg, "XiphComment", ((swig_class *) SWIGTYPE_p_TagLib__Tag->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__Ogg__XiphComment, (void *) &SwigClassXiphComment);
+  rb_define_alloc_func(SwigClassXiphComment.klass, _wrap_XiphComment_allocate);
+  rb_define_method(SwigClassXiphComment.klass, "initialize", VALUEFUNC(_wrap_new_XiphComment), -1);
+  rb_define_method(SwigClassXiphComment.klass, "title", VALUEFUNC(_wrap_XiphComment_title), -1);
+  rb_define_method(SwigClassXiphComment.klass, "artist", VALUEFUNC(_wrap_XiphComment_artist), -1);
+  rb_define_method(SwigClassXiphComment.klass, "album", VALUEFUNC(_wrap_XiphComment_album), -1);
+  rb_define_method(SwigClassXiphComment.klass, "comment", VALUEFUNC(_wrap_XiphComment_comment), -1);
+  rb_define_method(SwigClassXiphComment.klass, "genre", VALUEFUNC(_wrap_XiphComment_genre), -1);
+  rb_define_method(SwigClassXiphComment.klass, "year", VALUEFUNC(_wrap_XiphComment_year), -1);
+  rb_define_method(SwigClassXiphComment.klass, "track", VALUEFUNC(_wrap_XiphComment_track), -1);
+  rb_define_method(SwigClassXiphComment.klass, "title=", VALUEFUNC(_wrap_XiphComment_titlee___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "artist=", VALUEFUNC(_wrap_XiphComment_artiste___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "album=", VALUEFUNC(_wrap_XiphComment_albume___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "comment=", VALUEFUNC(_wrap_XiphComment_commente___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "genre=", VALUEFUNC(_wrap_XiphComment_genree___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "year=", VALUEFUNC(_wrap_XiphComment_yeare___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "track=", VALUEFUNC(_wrap_XiphComment_tracke___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "empty?", VALUEFUNC(_wrap_XiphComment_emptyq___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "field_count", VALUEFUNC(_wrap_XiphComment_field_count), -1);
+  rb_define_method(SwigClassXiphComment.klass, "field_list_map", VALUEFUNC(_wrap_XiphComment_field_list_map), -1);
+  rb_define_method(SwigClassXiphComment.klass, "vendor_id", VALUEFUNC(_wrap_XiphComment_vendor_id), -1);
+  rb_define_method(SwigClassXiphComment.klass, "add_field", VALUEFUNC(_wrap_XiphComment_add_field), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_field", VALUEFUNC(_wrap_XiphComment_remove_field), -1);
+  rb_define_method(SwigClassXiphComment.klass, "contains?", VALUEFUNC(_wrap_XiphComment_containsq___), -1);
+  rb_define_method(SwigClassXiphComment.klass, "render", VALUEFUNC(_wrap_XiphComment_render), -1);
+  SwigClassXiphComment.mark = 0;
+  SwigClassXiphComment.destroy = (void (*)(void *)) free_TagLib_Ogg_XiphComment;
+  SwigClassXiphComment.trackObjects = 1;
 }
 
