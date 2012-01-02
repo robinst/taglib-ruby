@@ -5,15 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = "taglib-ruby"
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robin Stocker"]
-  s.date = "2011-11-05"
+  s.date = "2012-01-02"
   s.description = "Ruby interface for the taglib C++ library.\n\nIn contrast to other libraries, this one wraps the C++ API using SWIG,\nnot only the minimal C API. This means that all tags can be accessed.\n"
   s.email = "robin@nibor.org"
-  s.extensions = ["ext/taglib_base/extconf.rb", "ext/taglib_mpeg/extconf.rb", "ext/taglib_id3v2/extconf.rb"]
+  s.extensions = ["ext/taglib_base/extconf.rb", "ext/taglib_mpeg/extconf.rb", "ext/taglib_id3v1/extconf.rb", "ext/taglib_id3v2/extconf.rb", "ext/taglib_ogg/extconf.rb", "ext/taglib_vorbis/extconf.rb"]
   s.extra_rdoc_files = [
+    "CHANGES.md",
     "LICENSE.txt",
     "README.md"
   ]
@@ -28,13 +29,19 @@ Gem::Specification.new do |s|
     "Rakefile",
     "docs/default/fulldoc/html/css/common.css",
     "docs/taglib/base.rb",
+    "docs/taglib/id3v1.rb",
     "docs/taglib/id3v2.rb",
     "docs/taglib/mpeg.rb",
+    "docs/taglib/ogg.rb",
+    "docs/taglib/vorbis.rb",
     "ext/extconf_common.rb",
     "ext/taglib_base/extconf.rb",
     "ext/taglib_base/includes.i",
     "ext/taglib_base/taglib_base.i",
     "ext/taglib_base/taglib_base_wrap.cxx",
+    "ext/taglib_id3v1/extconf.rb",
+    "ext/taglib_id3v1/taglib_id3v1.i",
+    "ext/taglib_id3v1/taglib_id3v1_wrap.cxx",
     "ext/taglib_id3v2/extconf.rb",
     "ext/taglib_id3v2/relativevolumeframe.i",
     "ext/taglib_id3v2/taglib_id3v2.i",
@@ -42,22 +49,41 @@ Gem::Specification.new do |s|
     "ext/taglib_mpeg/extconf.rb",
     "ext/taglib_mpeg/taglib_mpeg.i",
     "ext/taglib_mpeg/taglib_mpeg_wrap.cxx",
+    "ext/taglib_ogg/extconf.rb",
+    "ext/taglib_ogg/taglib_ogg.i",
+    "ext/taglib_ogg/taglib_ogg_wrap.cxx",
+    "ext/taglib_vorbis/extconf.rb",
+    "ext/taglib_vorbis/taglib_vorbis.i",
+    "ext/taglib_vorbis/taglib_vorbis_wrap.cxx",
     "ext/valgrind-suppressions.txt",
+    "ext/win.cmake",
     "lib/taglib.rb",
     "lib/taglib/base.rb",
+    "lib/taglib/id3v1.rb",
     "lib/taglib/id3v2.rb",
     "lib/taglib/mpeg.rb",
+    "lib/taglib/ogg.rb",
     "lib/taglib/version.rb",
+    "lib/taglib/vorbis.rb",
     "taglib-ruby.gemspec",
     "tasks/docs_coverage.rake",
+    "tasks/ext.rake",
+    "tasks/swig.rake",
+    "test/data/Makefile",
     "test/data/add-relative-volume.cpp",
     "test/data/crash.mp3",
     "test/data/globe_east_540.jpg",
+    "test/data/id3v1-create.cpp",
+    "test/data/id3v1.mp3",
     "test/data/relative-volume.mp3",
     "test/data/sample.mp3",
     "test/data/unicode.mp3",
+    "test/data/vorbis-create.cpp",
+    "test/data/vorbis.oga",
     "test/helper.rb",
     "test/test_fileref_properties.rb",
+    "test/test_fileref_write.rb",
+    "test/test_id3v1_tag.rb",
     "test/test_id3v2_frames.rb",
     "test/test_id3v2_memory.rb",
     "test/test_id3v2_relative_volume.rb",
@@ -65,7 +91,9 @@ Gem::Specification.new do |s|
     "test/test_id3v2_unicode.rb",
     "test/test_id3v2_write.rb",
     "test/test_mpeg_file.rb",
-    "test/test_tag.rb"
+    "test/test_tag.rb",
+    "test/test_vorbis_file.rb",
+    "test/test_vorbis_tag.rb"
   ]
   s.homepage = "http://github.com/robinst/taglib-ruby"
   s.licenses = ["MIT"]
@@ -82,18 +110,16 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<shoulda>, ["~> 2.11"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<yard>, ["~> 0.7"])
-      s.add_development_dependency(%q<redcarpet>, [">= 0"])
+      s.add_development_dependency(%q<redcarpet>, ["~> 1.0"])
       s.add_development_dependency(%q<guard-test>, ["~> 0.4.0"])
     else
       s.add_dependency(%q<rake-compiler>, ["~> 0.7"])
       s.add_dependency(%q<shoulda>, ["~> 2.11"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<yard>, ["~> 0.7"])
-      s.add_dependency(%q<redcarpet>, [">= 0"])
+      s.add_dependency(%q<redcarpet>, ["~> 1.0"])
       s.add_dependency(%q<guard-test>, ["~> 0.4.0"])
     end
   else
@@ -101,9 +127,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<shoulda>, ["~> 2.11"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<yard>, ["~> 0.7"])
-    s.add_dependency(%q<redcarpet>, [">= 0"])
+    s.add_dependency(%q<redcarpet>, ["~> 1.0"])
     s.add_dependency(%q<guard-test>, ["~> 0.4.0"])
   end
 end
