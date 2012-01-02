@@ -32,7 +32,10 @@ not only the minimal C API. This means that all tags can be accessed.
   gem.authors = ["Robin Stocker"]
   gem.extensions = ['ext/taglib_base/extconf.rb',
                     'ext/taglib_mpeg/extconf.rb',
-                    'ext/taglib_id3v2/extconf.rb']
+                    'ext/taglib_id3v1/extconf.rb',
+                    'ext/taglib_id3v2/extconf.rb',
+                    'ext/taglib_ogg/extconf.rb',
+                    'ext/taglib_vorbis/extconf.rb']
   gem.extra_rdoc_files = ["README.md", "CHANGES.md", "LICENSE.txt"]
   # dependencies defined in Gemfile
 end
