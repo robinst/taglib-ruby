@@ -149,7 +149,7 @@ License
 taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
 
-Copyright (c) 2010, 2011 Robin Stocker.
+Copyright (c) 2010-2012 Robin Stocker.
 
 [taglib]: http://developer.kde.org/~wheeler/taglib.html
 [flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
