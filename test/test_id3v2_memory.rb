@@ -67,6 +67,16 @@ class TestID3v2Memory < Test::Unit::TestCase
       end
     end
 
+    should "not throw when adding frame via Tag.add_frame" do
+      tcom = TagLib::ID3v2::TextIdentificationFrame.new('TCOM', TagLib::String::Latin1)
+      tcom.text = "Some composer"
+      @tag.add_frame tcom
+      # the following leads to an ObjectPreviouslyDeleted error (see Issue #8)
+      assert_nothing_raised do
+        @tag.frame_list.find{ |fr| 'TCOM' == fr.frame_id }
+      end
+    end
+
     teardown do
       if @file
         @file.close
