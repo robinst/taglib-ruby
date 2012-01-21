@@ -3388,7 +3388,8 @@ _wrap_Tag_add_frame(int argc, VALUE *argv, VALUE self) {
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","addFrame", 2, argv[0] ));
   }
-  SWIG_RubyUnlinkObjects(SWIG_as_voidptr(arg2));
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
   (arg1)->addFrame(arg2);
   return Qnil;
 fail:
@@ -3416,7 +3417,8 @@ _wrap_Tag_remove_frame(int argc, VALUE *argv, VALUE self) {
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","removeFrame", 2, argv[0] ));
   }
-  SWIG_RubyUnlinkObjects(SWIG_as_voidptr(arg2));
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
   (arg1)->removeFrame(arg2);
   return Qnil;
 fail:
