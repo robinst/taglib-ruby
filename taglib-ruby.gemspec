@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "taglib-ruby"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robin Stocker"]
-  s.date = "2012-01-02"
+  s.date = "2012-01-22"
   s.description = "Ruby interface for the taglib C++ library.\n\nIn contrast to other libraries, this one wraps the C++ API using SWIG,\nnot only the minimal C API. This means that all tags can be accessed.\n"
   s.email = "robin@nibor.org"
   s.extensions = ["ext/taglib_base/extconf.rb", "ext/taglib_mpeg/extconf.rb", "ext/taglib_id3v1/extconf.rb", "ext/taglib_id3v2/extconf.rb", "ext/taglib_ogg/extconf.rb", "ext/taglib_vorbis/extconf.rb"]
