@@ -1,6 +1,12 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.3.1 (2012-01-22)
+
+* Fix ObjectPreviouslyDeleted exception after calling
+  TagLib::ID3v2::Tag#add_frame (#8)
+* Make installation under MacPorts work out of the box (#7)
+
 ## 0.3.0 (2012-01-02)
 
 * Add support for Ogg Vorbis
