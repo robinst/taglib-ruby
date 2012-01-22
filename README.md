@@ -20,6 +20,8 @@ Some things are still left to do (contributors very welcome):
   * Unicode filename support
 * More coverage of the library
 
+[![Build status][travis-img]][travis-link]
+
 [![flattr this project][flattr-img]][flattr-link]
 
 Installation
@@ -152,5 +154,7 @@ see LICENSE.txt for details.
 Copyright (c) 2010-2012 Robin Stocker.
 
 [taglib]: http://developer.kde.org/~wheeler/taglib.html
+[travis-img]: https://secure.travis-ci.org/robinst/taglib-ruby.png
+[travis-link]: http://travis-ci.org/robinst/taglib-ruby
 [flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
 [flattr-link]: https://flattr.com/submit/auto?user_id=robinst&url=https://github.com/robinst/taglib-ruby&title=taglib-ruby&tags=github&category=software
