@@ -1,14 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    ffi (1.0.11)
     git (1.2.5)
-    guard (0.9.3)
-      ffi (>= 0.5.0)
-      thor (~> 0.14.6)
-    guard-test (0.4.3)
-      guard (>= 0.4)
-      test-unit (~> 2.2)
     jeweler (1.6.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
@@ -18,8 +11,6 @@ GEM
       rake
     redcarpet (1.17.2)
     shoulda (2.11.3)
-    test-unit (2.4.3)
-    thor (0.14.6)
     yard (0.7.4)
 
 PLATFORMS
@@ -27,9 +18,8 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bundler (~> 1.0.0)
-  guard-test (~> 0.4.0)
   jeweler (~> 1.6.4)
+  rake (~> 0.9)
   rake-compiler (~> 0.7)
   redcarpet (~> 1.0)
   shoulda (~> 2.11)
