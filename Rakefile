@@ -48,7 +48,7 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-task :default => :test
+task :default => [:compile, :test]
 
 require 'yard'
 YARD::Rake::YardocTask.new do |t|
