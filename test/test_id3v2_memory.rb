@@ -73,7 +73,7 @@ class TestID3v2Memory < Test::Unit::TestCase
       @tag.add_frame tcom
       # the following leads to an ObjectPreviouslyDeleted error (see Issue #8)
       assert_nothing_raised do
-        @tag.frame_list.find { |fr| 'TCOM' == fr.frame_id }
+        @tag.frame_list.find{ |fr| 'TCOM' == fr.frame_id }
       end
     end
 
