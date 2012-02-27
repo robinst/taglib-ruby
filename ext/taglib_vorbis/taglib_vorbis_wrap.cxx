@@ -1929,8 +1929,26 @@ VALUE taglib_filename_to_ruby_string(TagLib::FileName filename) {
 
 TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #ifdef _WIN32
-  const char *filename = StringValuePtr(s);
-  return TagLib::FileName(filename);
+  #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
+    VALUE ospath;
+    const char *utf8;
+    int len;
+    wchar_t *wide;
+
+    ospath = rb_str_encode_ospath(s);
+    utf8 = StringValuePtr(ospath);
+    len = MultiByteToWideChar(CP_UTF8, 0, utf8, -1, NULL, 0);
+    if (!(wide = (wchar_t *) xmalloc(sizeof(wchar_t) * len))) {
+      return TagLib::FileName((const char *) NULL);
+    }
+    MultiByteToWideChar(CP_UTF8, 0, utf8, -1, wide, len);
+    TagLib::FileName filename(wide);
+    xfree(wide);
+    return filename;
+  #else
+    const char *filename = StringValuePtr(s);
+    return TagLib::FileName(filename);
+  #endif
 #else
   return StringValuePtr(s);
 #endif
@@ -2450,6 +2468,9 @@ _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   {
     arg1 = ruby_string_to_taglib_filename(argv[0]);
+    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
+      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
+    }
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
@@ -2483,6 +2504,9 @@ _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   {
     arg1 = ruby_string_to_taglib_filename(argv[0]);
+    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
+      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
+    }
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
@@ -2525,6 +2549,9 @@ _wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   {
     arg1 = ruby_string_to_taglib_filename(argv[0]);
+    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
+      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
+    }
   }
   result = (TagLib::Vorbis::File *)new TagLib::Vorbis::File(arg1);
   DATA_PTR(self) = result;
