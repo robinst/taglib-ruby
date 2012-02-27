@@ -81,6 +81,9 @@ namespace TagLib {
 }
 %typemap(in) TagLib::FileName {
   $1 = ruby_string_to_taglib_filename($input);
+  if ((const char *)(TagLib::FileName)($1) == NULL) {
+    SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
+  }
 }
 %typemap(typecheck) TagLib::FileName = char *;
 %feature("valuewrapper") TagLib::FileName;
