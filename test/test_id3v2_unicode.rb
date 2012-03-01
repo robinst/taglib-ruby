@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestID3v2Unicode < Test::Unit::TestCase
   context "The unicode.mp3 file" do

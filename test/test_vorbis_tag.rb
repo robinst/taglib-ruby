@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestVorbisTag < Test::Unit::TestCase
   context "The vorbis.oga file tag" do

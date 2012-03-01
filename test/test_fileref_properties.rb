@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestFileRefProperties < Test::Unit::TestCase
   context "The crash.mp3 file audio properties" do

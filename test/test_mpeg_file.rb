@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestMPEGFile < Test::Unit::TestCase
   context "The crash.mp3 file" do

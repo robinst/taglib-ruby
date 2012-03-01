@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestID3v2RelativeVolumeFrame < Test::Unit::TestCase
   context "The relative-volume.mp3 RVA2 frame" do

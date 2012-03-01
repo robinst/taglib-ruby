@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 require 'fileutils'
 
 class TestUnicodeFilename < Test::Unit::TestCase

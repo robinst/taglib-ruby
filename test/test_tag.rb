@@ -1,4 +1,4 @@
-require 'helper'
+require File.join(File.dirname(__FILE__), 'helper')
 
 class TestTag < Test::Unit::TestCase
   context "The sample.mp3 file" do
