@@ -90,6 +90,7 @@ DESC
     "taglib-ruby.gemspec",
     "tasks/docs_coverage.rake",
     "tasks/ext.rake",
+    "tasks/gemspec_check.rake",
     "tasks/swig.rake",
     "test/data/Makefile",
     "test/data/add-relative-volume.cpp",
