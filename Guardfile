@@ -4,5 +4,5 @@
 guard :test do
   watch(%r{^lib/(.+)\.so$})     { "test" }
   watch('test/test_helper.rb')  { "test" }
-  watch(%r{^test/test_.+\.rb$})
+  watch(%r{^test/.+_test\.rb$})
 end
