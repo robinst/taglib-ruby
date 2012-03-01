@@ -4,6 +4,7 @@
 mkmf.log
 Makefile
 *.dll
+*.bundle
 
 # Editor
 .*.swp
