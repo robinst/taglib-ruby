@@ -28,7 +28,7 @@ namespace TagLib {
 
 
 // Rename setters to Ruby convention (combining SWIG rename functions
-// doesn't seem to be possible, thus resort to some magic)
+// does not seem to be possible, thus resort to some magic)
 %rename("%(command: ruby -e 'print(ARGV[0][3..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"=\")' )s",
         regexmatch$name="^set[A-Z]") "";
 
