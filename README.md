@@ -16,8 +16,6 @@ taglib-ruby is work in progress, but the following is already available:
 
 Some things are still left to do (contributors very welcome):
 
-* Pre-compiled Gem for Windows:
-  * Unicode filename support
 * More coverage of the library
 
 [![Build status][travis-img]][travis-link]
