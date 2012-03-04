@@ -63,4 +63,14 @@ class TestMPEGFile < Test::Unit::TestCase
       @file = nil
     end
   end
+
+  context "TagLib::MPEG::File" do
+    should "have open method" do
+      title = nil
+      TagLib::MPEG::File.open("test/data/sample.mp3", false) do |file|
+        title = file.tag.title
+      end
+      assert_equal "Dummy Title", title
+    end
+  end
 end

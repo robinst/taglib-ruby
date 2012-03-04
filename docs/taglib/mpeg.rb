@@ -1,6 +1,23 @@
 module TagLib::MPEG
   # The file class for `.mp3` and other MPEG files.
+  #
+  # @example Reading a title
+  #   title = TagLib::MPEG::File.open("file.mp3") do |file|
+  #     tag = file.tag
+  #     tag.title
+  #   end
+  #
   class File < TagLib::File
+    # {include:TagLib::FileRef.open}
+    #
+    # @param (see #initialize)
+    # @yield [file] the {File} object, as obtained by {#initialize}
+    # @return the return value of the block
+    #
+    # @since 0.4.0
+    def self.open(filename, read_properties=true)
+    end
+
     # Load an MPEG file.
     #
     # @param [String] filename

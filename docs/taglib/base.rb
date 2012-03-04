@@ -8,7 +8,7 @@
 # * Reading/writing ID3v2 tags: {TagLib::MPEG::File} and
 #   {TagLib::MPEG::File#id3v2_tag}
 # * Reading/writing Ogg Vorbis tags: {TagLib::Ogg::Vorbis::File}.
-# 
+#
 # ## String Encodings
 #
 # Sometimes, it is necessary to specify which encoding should be used to
@@ -31,7 +31,48 @@ module TagLib
   #
   # Should you need more, use the file type specific classes, see
   # subclasses of {TagLib::File}.
+  #
+  # @example Reading tags
+  #   TagLib::FileRef.open("foo.flac") do |file|
+  #     tag = file.tag
+  #     puts tag.artist
+  #     puts tag.title
+  #   end
+  #
+  # @example Reading audio properties
+  #   TagLib::FileRef.open("bar.oga") do |file|
+  #     prop = file.audio_properties
+  #     puts prop.length
+  #     puts prop.bitrate
+  #   end
+  #
   class FileRef
+
+    # Creates a new file and passes it to the provided block,
+    # closing the file automatically at the end of the block.
+    #
+    # Note that after the block is done, the file is closed and
+    # all memory is released for objects read from the file
+    # (basically everything from the `TagLib` namespace).
+    #
+    # Using `open` is preferable to using `new` and then
+    # manually `close`.
+    #
+    # @example Reading a title
+    #   title = TagLib::FileRef.open("file.oga") do |file|
+    #     tag = file.tag
+    #     tag.title
+    #   end
+    #
+    # @param (see #initialize)
+    # @yield [file] the {FileRef} object, as obtained by {#initialize}
+    # @return the return value of the block
+    #
+    # @since 0.4.0
+    def self.open(filename, read_audio_properties=true,
+                   audio_properties_style=TagLib::AudioProperties::Average)
+    end
+
     # Create a FileRef from a file name.
     #
     # @param [String] filename
@@ -75,11 +116,13 @@ module TagLib
   # @abstract Base class for files, see subclasses.
   class File
     # Closes the file and releases all objects that were read from the
-    # file.
+    # file (basically everything from the TagLib namespace).
     #
     # After this method has been called, no other methods on this object
     # may be called. So it's a good idea to always use it like this:
     #
+    #     file = TagLib::MPEG::File.new("file.mp3")
+    #     # ...
     #     file.close
     #     file = nil
     #
@@ -87,6 +130,12 @@ module TagLib
     # with a file. Otherwise the file will only be closed when GC is
     # run, which may be much later. On Windows, this is especially
     # important as the file is locked until it is closed.
+    #
+    # As a better alternative to this, use the `open` class method:
+    #
+    #     TagLib::MPEG::File.open("file.mp3") do |file|
+    #        # ...
+    #     end
     #
     # @return [void]
     def close

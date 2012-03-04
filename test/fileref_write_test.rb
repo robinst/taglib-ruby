@@ -35,4 +35,28 @@ class TestFileRefWrite < Test::Unit::TestCase
       FileUtils.rm OUTPUT_FILE
     end
   end
+
+  context "TagLib::FileRef.open" do
+    setup do
+      FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
+    end
+
+    should "be able to save file" do
+      TagLib::MPEG::File.open(OUTPUT_FILE, false) do |file|
+        tag = file.tag
+        tag.title = "New Title"
+        file.save
+      end
+
+      title = TagLib::MPEG::File.open(OUTPUT_FILE, false) do |file|
+        tag = file.tag
+        tag.title
+      end
+      assert_equal "New Title", title
+    end
+
+    teardown do
+      FileUtils.rm OUTPUT_FILE
+    end
+  end
 end

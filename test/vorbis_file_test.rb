@@ -41,4 +41,14 @@ class TestVorbisFile < Test::Unit::TestCase
       @file = nil
     end
   end
+
+  context "TagLib::Ogg::Vorbis::File" do
+    should "have open method" do
+      title = nil
+      TagLib::Ogg::Vorbis::File.open("test/data/vorbis.oga", false) do |file|
+        title = file.tag.title
+      end
+      assert_equal "Title", title
+    end
+  end
 end

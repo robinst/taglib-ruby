@@ -1,7 +1,26 @@
 module TagLib::Ogg::Vorbis
 
   # The file class for `.ogg` and other `.oga` files.
+  #
+  # @example Reading Vorbis comments
+  #   TagLib::Ogg::Vorbis::File.open("file.oga") do |file|
+  #     tag = file.tag
+  #     puts tag.title
+  #     fields = tag.field_list_map
+  #     puts fields['DATE']
+  #   end
+  #
   class File < TagLib::Ogg::File
+    # {include:TagLib::FileRef.open}
+    #
+    # @param (see #initialize)
+    # @yield [file] the {File} object, as obtained by {#initialize}
+    # @return the return value of the block
+    #
+    # @since 0.4.0
+    def self.open(filename, read_properties=true)
+    end
+
     # Load an Ogg Vorbis file.
     #
     # @param [String] filename
