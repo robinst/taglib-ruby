@@ -1,5 +1,66 @@
 module TagLib::ID3v2
-  # An ID3v2 tag.
+  # An ID3v2 tag. A tag consists of a list of frames, identified by IDs.
+  #
+  # ## Encoding
+  #
+  # By default, taglib stores ID3v2 text frames as ISO-8859-1 (Latin-1) if the
+  # text contains only characters that are available in that encoding. If
+  # not (e.g. with Cyrillic, Chinese, Japanese), it prints a warning and
+  # stores the text as UTF-8.
+  #
+  # When you already know that you want to store the text as UTF-8, you can
+  # change the default text encoding:
+  #
+  #     frame_factory = TagLib::ID3v2::FrameFactory.instance
+  #     frame_factory.default_text_encoding = TagLib::String::UTF8
+  #
+  # Another option is using the frame API directly:
+  #
+  #     title = tag.frame_list('TIT2').first
+  #     title.text = "Joga"
+  #     title.text_encoding = TagLib::String::UTF8
+  #
+  # @example Read ID3v2 frames from a file
+  #   TagLib::MPEG::File.new("wake_up.mp3") do |file|
+  #     tag = file.id3v2_tag
+  #
+  #     # Read basic attributes
+  #     tag.title  #=> "Wake Up"
+  #     tag.artist  #=> "Arcade Fire"
+  #     tag.track  #=> 7
+  #
+  #     # Access all frames
+  #     tag.frame_list.size  #=> 13
+  #
+  #     # Track frame
+  #     track = tag.frame_list('TRCK').first
+  #     track.to_s  #=> "7/10"
+  #
+  #     # Attached picture frame
+  #     cover = tag.frame_list('APIC').first
+  #     cover.mime_type  #=> "image/jpeg"
+  #     cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+  #   end
+  #
+  # @example Add frames and save file
+  #   TagLib::MPEG::File.new("joga.mp3") do |file|
+  #     tag = file.id3v2_tag
+  #
+  #     # Write basic attributes
+  #     tag.artist = "Björk"
+  #     tag.title = "Jóga"
+  #
+  #     # Add attached picture frame
+  #     apic = TagLib::ID3v2::AttachedPictureFrame.new
+  #     apic.mime_type = "image/jpeg"
+  #     apic.description = "Cover"
+  #     apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
+  #     apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
+  #
+  #     tag.add_frame(apic)
+  #
+  #     file.save
+  #   end
   class Tag < TagLib::Tag
     # Get a list of frames. Note that the frames returned are subclasses
     # of {TagLib::ID3v2::Frame}, depending on the frame ID.
