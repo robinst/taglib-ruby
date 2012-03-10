@@ -12,6 +12,8 @@ $cross_config_options = ["--with-opt-dir=#{install_dir}"]
 taglib_version = '1.7'
 taglib = "taglib-#{taglib_version}"
 taglib_url = "http://developer.kde.org/~wheeler/files/src/#{taglib}.tar.gz"
+# WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
+taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
 
 def configure_cross_compile(ext)
   ext.cross_compile = true
@@ -52,7 +54,7 @@ task :taglib => [install_dll]
 
 file install_dll => ["#{tmp}/#{taglib}"] do
   chdir "#{tmp}/#{taglib}" do
-    sh "cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file}"
+    sh "cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file} #{taglib_options}"
     sh "make"
     sh "make install"
   end
