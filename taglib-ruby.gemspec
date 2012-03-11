@@ -24,7 +24,7 @@ DESC
 
   s.add_development_dependency 'bundler', '~> 1.0.0'
   s.add_development_dependency 'rake-compiler', '~> 0.8'
-  s.add_development_dependency 'shoulda', '~> 2.11'
+  s.add_development_dependency 'shoulda-context', '~> 1.0'
   s.add_development_dependency 'yard', '~> 0.7'
 
   s.extensions = [
