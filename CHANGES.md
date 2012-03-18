@@ -1,6 +1,20 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.4.0 (2012-03-18)
+
+* Pre-compiled binary gem for Windows (Ruby 1.9) with TagLib 1.7.1
+* Unicode filename support on Windows
+* Add `open` class method to `FileRef` and `File` classes (use it
+  instead of `new` and `close`):
+
+```ruby
+title = TagLib::FileRef.open("file.mp3") do |file|
+  tag = file.tag
+  tag.title
+end
+```
+
 ## 0.3.1 (2012-01-22)
 
 * Fix ObjectPreviouslyDeleted exception after calling
