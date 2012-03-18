@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = TagLib::Version::STRING
   s.authors     = ["Robin Stocker"]
   s.email       = ["robin@nibor.org"]
-  s.homepage    = "https://github.com/robinst/taglib-ruby"
+  s.homepage    = "http://robinst.github.com/taglib-ruby/"
   s.licenses    = ["MIT"]
   s.summary     = "Ruby interface for the taglib C++ library"
   s.description = <<DESC
