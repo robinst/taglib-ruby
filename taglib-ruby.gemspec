@@ -103,6 +103,7 @@ DESC
     "test/data/vorbis-create.cpp",
     "test/data/vorbis.oga",
     "test/helper.rb",
+    "test/fileref_open_test.rb",
     "test/fileref_properties_test.rb",
     "test/fileref_write_test.rb",
     "test/id3v1_tag_test.rb",
