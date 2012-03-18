@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ page.title }}</title>
+  <link href="assets/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="assets/css/pygments-default.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="assets/css/custom.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="assets/img/favicon.ico" rel="icon" type="image/x-icon">
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li><a href="https://github.com/robinst/taglib-ruby">Code <img src="assets/img/icon-github.png"></a></li>
+          <li><a href="http://rubydoc.info/gems/taglib-ruby/frames">Docs <img src="assets/img/icon-book.png"></a></li>
+          <li><a href="https://twitter.com/taglib_ruby">Twitter <img src="assets/img/icon-twitter.png"></a></li>
+        </ul>
+        <a class="brand" href="#">taglib-ruby <img src="assets/img/icon-tag.png"></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+      {{ content }}
+    <footer class="footer">
+      <p>
+        Copyright 2010&ndash;2012 Robin Stocker <a href="https://twitter.com/niborst">@niborst</a> &ndash;
+        Built with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>,
+        Icons by <a href="http://glyphicons.com/">Glyphicons</a>
+      </p>
+    </footer>
+  </div>
+<!-- Piwik -->
+<!--
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://robin.st/piwik/" : "http://robin.st/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://robin.st/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+-->
+<!-- End Piwik Tracking Code -->
+</body>
+</html>

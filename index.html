@@ -1,0 +1,140 @@
+---
+title: taglib-ruby
+layout: default
+---
+
+<section id="introduction">
+<div class="hero-unit">
+  <h1>taglib-ruby</h1>
+  <p>Ruby library for reading and writing meta-data (tags) of many audio formats</p>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <p>
+      It’s based on the excellent
+      <a href="http://developer.kde.org/~wheeler/taglib.html">TagLib</a> C++ library,
+      which is fast, full-featured and mature.
+    </p>
+    <p>
+      In contrast to other bindings, this one wraps the full C++ API, not
+      only the minimal C API.
+      This means that all tag data can be accessed,
+      e.g. cover art of ID3v2 or custom fields of Ogg Vorbis comments.
+    </p>
+  </div>
+
+  <div class="span6">
+    <p>
+      taglib-ruby is work in progress, but the following is already available:
+    </p>
+    <ul>
+      <li>Reading/writing common tag data of all formats that TagLib supports</li>
+      <li>Reading/writing ID3v1 and ID3v2 including ID3v2.4 and Unicode</li>
+      <li>Reading/writing Ogg Vorbis comments</li>
+      <li>Reading audio properties (e.g. bitrate) of the above formats</li>
+    </ul>
+  </div>
+</div> <!-- row -->
+</section>
+
+<section id="installation">
+<div class="page-header">
+  <h1>Installation</h1>
+</div>
+
+<p>
+  Before you install the gem, make sure to have
+  <a href="http://developer.kde.org/~wheeler/taglib.html">taglib</a>
+  installed with header files (and a C++ compiler of course):
+</p>
+
+<table class="table">
+  <tr><td>Debian/Ubuntu</td><td><code>sudo apt-get install libtag1-dev</code></td></tr>
+  <tr><td>Fedora/RHEL</td><td><code>sudo yum install taglib-devel</code></td></tr>
+  <tr><td>Brew</td><td><code>brew install taglib</code></td></tr>
+  <tr><td>MacPorts</td><td><code>sudo port install taglib</code></td></tr>
+</table>
+
+<p>
+  Windows users on Ruby 1.9 don't need that, because there is a
+  pre-compiled binary gem available which bundles taglib.
+</p>
+
+<p>Then install taglib-ruby (or add it to your Gemfile):</p>
+<p><code>gem install taglib-ruby</code></p>
+
+</section>
+
+<section id="usage">
+<div class="page-header">
+  <h1>Usage</h1>
+</div>
+
+<p>
+  There’s a basic API and format-specific APIs.
+</p>
+
+<div class="row">
+  <div class="span6">
+    <h2>Basic API</h1>
+      <p>The basic API can read all formats that TagLib supports and is easy to use.
+On the other hand, it only exposes some basic meta-data that is the same across all formats. Here’s an example:</p>
+{% highlight ruby %}
+require 'taglib'
+
+# Load a file
+TagLib::FileRef.open("wake_up.flac") do |fileref|
+  tag = fileref.tag
+
+  # Read basic attributes
+  tag.title   #=> "Wake Up"
+  tag.artist  #=> "Arcade Fire"
+  tag.album   #=> "Funeral"
+  tag.year    #=> 2004
+  tag.track   #=> 7
+  tag.genre   #=> "Indie Rock"
+  tag.comment #=> nil
+
+  properties = fileref.audio_properties
+  properties.length  #=> 335 (song length in seconds)
+end  # File is automatically closed at block end
+{% endhighlight %}
+  </div>
+  <div class="span6">
+    <h2>Format-specific API</h1>
+      <p>For each format, there’s also an advanced API. It enables doing format-specific things.
+In the example, we’re reading ID3v2 frames and extract the attached picture from an ID3v2 tag:</p>
+{% highlight ruby %}
+require 'taglib'
+
+# Load an ID3v2 tag from a file
+TagLib::MPEG::File.open("wake_up.mp3") do |file|
+  tag = file.id3v2_tag
+
+  # Access all frames
+  tag.frame_list.size  #=> 13
+
+  # Track frame
+  track = tag.frame_list('TRCK').first
+  track.to_s  #=> "7/10"
+
+  # Attached picture frame
+  cover = tag.frame_list('APIC').first
+  cover.mime_type  #=> "image/jpeg"
+  cover.picture  #=> "\xFF\xD8\xFF\xE0\x00\x10JFIF..."
+end  # File is automatically closed at block end
+{% endhighlight %}
+  </div>
+</div> <!-- row -->
+
+<div class="row">
+  <div class="span12">
+    <p>
+      For more information please have a look at the complete
+      <a href="http://rubydoc.info/gems/taglib-ruby/frames">documentation</a>.
+    </p>
+  </div>
+</div> <!-- row -->
+
+</section>
