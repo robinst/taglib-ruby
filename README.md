@@ -71,10 +71,14 @@ Contributing
 License
 -------
 
+Copyright (c) 2010-2012 Robin Stocker.
+
 taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
 
-Copyright (c) 2010-2012 Robin Stocker.
+In the binary gem for Windows, a compiled [TagLib][taglib] is bundled as
+a DLL. TagLib is distributed under the GNU Lesser General Public License
+version 2.1 (LGPL) and Mozilla Public License (MPL).
 
 [taglib]: http://developer.kde.org/~wheeler/taglib.html
 [travis-img]: https://secure.travis-ci.org/robinst/taglib-ruby.png
