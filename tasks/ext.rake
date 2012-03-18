@@ -11,7 +11,7 @@ $cross_config_options = ["--with-opt-dir=#{install_dir}"]
 
 taglib_version = '1.7.1'
 taglib = "taglib-#{taglib_version}"
-taglib_url = "http://developer.kde.org/~wheeler/files/src/#{taglib}.tar.gz"
+taglib_url = "http://cloud.github.com/downloads/taglib/taglib/#{taglib}.tar.gz"
 # WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
 taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
 
