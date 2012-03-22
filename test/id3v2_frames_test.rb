@@ -25,7 +25,7 @@ class TestID3v2Frames < Test::Unit::TestCase
     end
 
     should "be enumerable" do
-      ids = @frames.collect{ |frame| frame.frame_id }
+      ids = @frames.collect { |frame| frame.frame_id }
       assert_equal ["TIT2", "TPE1", "TALB", "TRCK", "TDRC",
                     "COMM", "COMM", "TCON", "TXXX", "COMM", "APIC"], ids
     end
@@ -57,7 +57,7 @@ class TestID3v2Frames < Test::Unit::TestCase
     should "be removable by ID" do
       frames = @tag.frame_list
       @tag.remove_frames('COMM')
-      tit2 = frames.find{ |f| f.frame_id == 'TIT2' }
+      tit2 = frames.find { |f| f.frame_id == 'TIT2' }
       # Other frames should still be accessible
       assert_equal "Dummy Title", tit2.to_s
     end

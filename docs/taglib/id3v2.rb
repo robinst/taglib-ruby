@@ -55,7 +55,7 @@ module TagLib::ID3v2
   #     apic.mime_type = "image/jpeg"
   #     apic.description = "Cover"
   #     apic.type = TagLib::ID3v2::AttachedPictureFrame::FrontCover
-  #     apic.picture = File.open("cover.jpg", 'rb'){ |f| f.read }
+  #     apic.picture = File.open("cover.jpg", 'rb') { |f| f.read }
   #
   #     tag.add_frame(apic)
   #

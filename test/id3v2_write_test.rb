@@ -6,6 +6,7 @@ class TestID3v2Write < Test::Unit::TestCase
 
   SAMPLE_FILE = "test/data/sample.mp3"
   OUTPUT_FILE = "test/data/output.mp3"
+  PICTURE_FILE = "test/data/globe_east_540.jpg"
 
   context "TagLib::MPEG::File" do
     setup do
@@ -37,7 +38,7 @@ class TestID3v2Write < Test::Unit::TestCase
       end
 
       should "be able to add a new frame to it and read it back" do
-        picture_data = File.open("test/data/globe_east_540.jpg", 'rb'){ |f| f.read }
+        picture_data = File.open(PICTURE_FILE, 'rb') { |f| f.read }
 
         apic = TagLib::ID3v2::AttachedPictureFrame.new
         apic.mime_type = "image/jpeg"
