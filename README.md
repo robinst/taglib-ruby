@@ -1,7 +1,8 @@
 taglib-ruby
 ===========
 
-Ruby interface for the [TagLib C++ library][taglib].
+Ruby interface for the [TagLib C++ library][taglib], for reading and
+writing meta-data (tags) of many audio formats.
 
 In contrast to other libraries, this one wraps the full C++ API, not
 only the minimal C API. This means that all tag data can be accessed,
