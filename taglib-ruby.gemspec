@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.licenses    = ["MIT"]
   s.summary     = "Ruby interface for the taglib C++ library"
   s.description = <<DESC
-Ruby interface for the taglib C++ library.
+Ruby interface for the taglib C++ library, for reading and writing
+meta-data (tags) of many audio formats.
 
 In contrast to other libraries, this one wraps the C++ API using SWIG,
 not only the minimal C API. This means that all tags can be accessed.
