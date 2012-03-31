@@ -78,14 +78,7 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 }
 %apply TagLib::ID3v2::FrameList & { const TagLib::ID3v2::FrameList & };
 
-%typemap(in, noblock=1) TagLib::ID3v2::Frame * (int res = 0) {
-  res = SWIG_ConvertPtr($input, %as_voidptrptr(&$1), $descriptor, SWIG_POINTER_DISOWN | %convertptr_flags);
-  if (!SWIG_IsOK(res)) {
-    %argument_fail(res, "$type", $symname, $argnum);
-  }
-  SWIG_RubyUnlinkObjects($1);
-  SWIG_RubyRemoveTracking($1);
-}
+%apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
 %ignore TagLib::ID3v2::Tag::removeFrame(Frame *, bool);
 %include <taglib/id3v2tag.h>
 %clear TagLib::ID3v2::Frame *;

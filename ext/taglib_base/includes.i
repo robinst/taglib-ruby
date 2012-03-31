@@ -12,7 +12,8 @@
   if (!SWIG_IsOK(res)) {
     %argument_fail(res,"$type", $symname, $argnum);
   }
-  SWIG_RubyUnlinkObjects(%as_voidptr($1));
+  SWIG_RubyUnlinkObjects($1);
+  SWIG_RubyRemoveTracking($1);
 }
 
 %{
