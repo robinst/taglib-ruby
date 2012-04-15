@@ -6,14 +6,13 @@ class FlacFileWriteTest < Test::Unit::TestCase
   OUTPUT_FILE = "test/data/output.flac"
   PICTURE_FILE = "test/data/globe_east_90.jpg"
 
-  context "TagLib::FLAC::File" do
-
-    def reloaded
-      TagLib::FLAC::File.open(OUTPUT_FILE, false) do |file|
-        yield file
-      end
+  def reloaded
+    TagLib::FLAC::File.open(OUTPUT_FILE, false) do |file|
+      yield file
     end
+  end
 
+  context "TagLib::FLAC::File" do
     setup do
       FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
       @file = TagLib::FLAC::File.new(OUTPUT_FILE, false)
