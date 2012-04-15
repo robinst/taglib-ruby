@@ -7,7 +7,8 @@
 # * Reading properties of MPEG files: {TagLib::MPEG::File}
 # * Reading/writing ID3v2 tags: {TagLib::MPEG::File} and
 #   {TagLib::ID3v2::Tag}
-# * Reading/writing Ogg Vorbis tags: {TagLib::Ogg::Vorbis::File}.
+# * Reading/writing Ogg Vorbis tags: {TagLib::Ogg::Vorbis::File}
+# * Reading/writing FLAC tags: {TagLib::FLAC::File}
 #
 # ## String Encodings
 #
