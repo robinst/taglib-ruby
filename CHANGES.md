@@ -1,6 +1,11 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.5.0 (2012-04-15)
+
+* Add support for FLAC
+* Fix problem in SWIG causing compilation error on MacRuby (#10)
+
 ## 0.4.0 (2012-03-18)
 
 * Pre-compiled binary gem for Windows (Ruby 1.9) with TagLib 1.7.1
