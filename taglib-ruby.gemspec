@@ -35,6 +35,7 @@ DESC
     "ext/taglib_id3v2/extconf.rb",
     "ext/taglib_ogg/extconf.rb",
     "ext/taglib_vorbis/extconf.rb",
+    "ext/taglib_flac/extconf.rb",
   ]
   s.extra_rdoc_files = [
     "CHANGES.md",
