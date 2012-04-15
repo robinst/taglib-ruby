@@ -14,7 +14,9 @@ task :swig =>
    'ext/taglib_id3v1/taglib_id3v1_wrap.cxx',
    'ext/taglib_id3v2/taglib_id3v2_wrap.cxx',
    'ext/taglib_ogg/taglib_ogg_wrap.cxx',
-   'ext/taglib_vorbis/taglib_vorbis_wrap.cxx']
+   'ext/taglib_vorbis/taglib_vorbis_wrap.cxx',
+   'ext/taglib_flac/taglib_flac_wrap.cxx',
+  ]
 
 base_dependencies = ['ext/taglib_base/taglib_base.i', 'ext/taglib_base/includes.i']
 
@@ -40,4 +42,8 @@ end
 
 file 'ext/taglib_vorbis/taglib_vorbis_wrap.cxx' => ['ext/taglib_vorbis/taglib_vorbis.i'] + base_dependencies do
   run_swig('taglib_vorbis')
+end
+
+file 'ext/taglib_flac/taglib_flac_wrap.cxx' => ['ext/taglib_flac/taglib_flac.i'] + base_dependencies do
+  run_swig('taglib_flac')
 end

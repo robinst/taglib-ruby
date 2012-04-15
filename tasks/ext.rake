@@ -42,6 +42,9 @@ end
 Rake::ExtensionTask.new("taglib_vorbis", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
+Rake::ExtensionTask.new("taglib_flac", $gemspec) do |ext|
+  configure_cross_compile(ext)
+end
 
 task :cross => [:taglib] do
   # Mkmf just uses "g++" as C++ compiler, despite what's in rbconfig.rb.
