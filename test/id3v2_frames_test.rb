@@ -41,6 +41,10 @@ class TestID3v2Frames < Test::Unit::TestCase
       assert_equal TagLib::ID3v2::UserTextIdentificationFrame, txxx.class
     end
 
+    should "not fail for nil String" do
+      assert_equal [], @tag.frame_list(nil)
+    end
+
     should "be removable" do
       assert_equal 11, @tag.frame_list.size
       tit2 = @tag.frame_list('TIT2').first

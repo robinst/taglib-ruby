@@ -54,6 +54,12 @@ class TestID3v2Write < Test::Unit::TestCase
       end
     end
 
+    should "be able to set fields to nil" do
+      tag = @file.id3v2_tag
+      tag.title = nil
+      assert_equal [], tag.frame_list('TIT2')
+    end
+
     context "with a fresh tag" do
       setup do
         @file.strip
@@ -103,6 +109,12 @@ class TestID3v2Write < Test::Unit::TestCase
         @tag.add_frame(tit2)
         success = @file.save
         assert success
+      end
+
+      should "not fail when field_list is nil" do
+        tit2 = TagLib::ID3v2::TextIdentificationFrame.new("TIT2", TagLib::String::UTF8)
+        tit2.field_list = nil
+        assert_equal [], tit2.field_list
       end
 
       if HAVE_ENCODING

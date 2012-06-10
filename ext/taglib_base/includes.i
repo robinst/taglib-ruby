@@ -39,7 +39,11 @@ VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
-  return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+  if (NIL_P(s)) {
+    return TagLib::ByteVector::null;
+  } else {
+    return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+  }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
@@ -53,7 +57,11 @@ VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
-  return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+  if (NIL_P(s)) {
+    return TagLib::String::null;
+  } else {
+    return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+  }
 }
 
 VALUE taglib_string_list_to_ruby_array(const TagLib::StringList & list) {
@@ -67,6 +75,9 @@ VALUE taglib_string_list_to_ruby_array(const TagLib::StringList & list) {
 
 TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
   TagLib::StringList result = TagLib::StringList();
+  if (NIL_P(ary)) {
+    return result;
+  }
   for (long i = 0; i < RARRAY_LEN(ary); i++) {
     VALUE e = RARRAY_PTR(ary)[i];
     TagLib::String s = ruby_string_to_taglib_string(e);
