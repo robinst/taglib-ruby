@@ -9,7 +9,7 @@ install_dir = "#{tmp}/install"
 install_dll = "#{install_dir}/bin/libtag.dll"
 $cross_config_options = ["--with-opt-dir=#{install_dir}"]
 
-taglib_version = '1.7.1'
+taglib_version = '1.7.2'
 taglib = "taglib-#{taglib_version}"
 taglib_url = "http://cloud.github.com/downloads/taglib/taglib/#{taglib}.tar.gz"
 # WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
