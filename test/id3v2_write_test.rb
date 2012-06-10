@@ -8,6 +8,12 @@ class TestID3v2Write < Test::Unit::TestCase
   OUTPUT_FILE = "test/data/output.mp3"
   PICTURE_FILE = "test/data/globe_east_540.jpg"
 
+  def reloaded
+    TagLib::MPEG::File.open(OUTPUT_FILE, false) do |file|
+      yield file
+    end
+  end
+
   context "TagLib::MPEG::File" do
     setup do
       FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
@@ -19,6 +25,26 @@ class TestID3v2Write < Test::Unit::TestCase
       success = @file.strip
       assert success
       assert_nil @file.id3v2_tag
+    end
+
+    should "be able to save only ID3v2 tag" do
+      assert_not_nil @file.id3v2_tag
+      assert_not_nil @file.id3v1_tag
+      @file.save(TagLib::MPEG::File::ID3v2)
+      @file.close
+      @file = nil
+
+      reloaded do |file|
+        id3v1_tag = file.id3v1_tag
+        id3v2_tag = file.id3v2_tag
+
+        # TagLib always creates the tags
+        assert_not_nil id3v1_tag
+        assert_not_nil id3v2_tag
+
+        assert_equal true, file.id3v1_tag.empty?
+        assert_equal false, file.id3v2_tag.empty?
+      end
     end
 
     context "with a fresh tag" do
