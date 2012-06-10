@@ -75,6 +75,19 @@ module TagLib::MPEG
     # @return [Boolean] whether saving was successful
     def save(tags=TagLib::MPEG::File::AllTags, strip_others=true)
     end
+
+    # Strip the specified tags from the file. Note that this directly
+    # updates the file, a call to save afterwards is not necessary
+    # (closing the file is necessary as always, though).
+    #
+    # @param [Integer] tags
+    #   The tag types to strip (see constants), e.g.
+    #   {TagLib::MPEG::File::ID3v2}. To specify more than one tag type,
+    #   or them together using `|`, e.g.
+    #   `TagLib::MPEG::File::ID3v1 | TagLib::MPEG::File::ID3v2`.
+    # @return [Boolean] whether stripping was successful
+    def strip(tags=TagLib::MPEG::File::AllTags)
+    end
   end
 
   # Audio properties for MPEG files.
