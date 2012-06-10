@@ -1,6 +1,10 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## unreleased
+
+* Document TagLib::MPEG::File#save and TagLib::MPEG::File#strip
+
 ## 0.5.0 (2012-04-15)
 
 * Add support for FLAC
