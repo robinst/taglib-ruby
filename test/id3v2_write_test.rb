@@ -25,6 +25,13 @@ class TestID3v2Write < Test::Unit::TestCase
       success = @file.strip
       assert success
       assert_nil @file.id3v2_tag
+      @file.close
+      @file = nil
+
+      reloaded do |file|
+        assert_equal true, file.id3v1_tag.empty?
+        assert_equal true, file.id3v2_tag.empty?
+      end
     end
 
     should "be able to save only ID3v2 tag" do
