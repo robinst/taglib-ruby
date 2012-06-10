@@ -8,6 +8,12 @@ module TagLib::MPEG
   #   end
   #
   class File < TagLib::File
+    NoTags  = 0x0000
+    ID3v1   = 0x0001
+    ID3v2   = 0x0002
+    APE     = 0x0004
+    AllTags = 0xffff
+
     # {include:TagLib::FileRef.open}
     #
     # @param (see #initialize)
@@ -54,6 +60,20 @@ module TagLib::MPEG
     #
     # @return [TagLib::MPEG::Properties]
     def audio_properties
+    end
+
+    # Save the file and the associated tags.
+    #
+    # @param [Integer] tags
+    #   The tag types to save (see constants), e.g.
+    #   {TagLib::MPEG::File::ID3v2}. To specify more than one tag type,
+    #   or them together using `|`, e.g.
+    #   `TagLib::MPEG::File::ID3v1 | TagLib::MPEG::File::ID3v2`.
+    # @param [Boolean] strip_others
+    #   true if tag types other than the specified ones should be
+    #   stripped from the file
+    # @return [Boolean] whether saving was successful
+    def save(tags=TagLib::MPEG::File::AllTags, strip_others=true)
     end
   end
 

@@ -116,6 +116,15 @@ module TagLib
 
   # @abstract Base class for files, see subclasses.
   class File
+
+    # Save the file and the associated tags.
+    #
+    # See subclasses, as some provide more control over what is saved.
+    #
+    # @return [Boolean] whether saving was successful
+    def save
+    end
+
     # Closes the file and releases all objects that were read from the
     # file (basically everything from the TagLib namespace).
     #
