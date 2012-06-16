@@ -11,8 +11,12 @@ end
 
 dir_config('tag')
 
-if not have_library('stdc++')
-  error "You must have libstdc++ installed."
+# When compiling statically, -lstdc++ would make the resulting .so to
+# have a dependency on an external libstdc++ instead of the static one.
+unless $LDFLAGS.split(" ").include?("-static-libstdc++")
+  if not have_library('stdc++')
+    error "You must have libstdc++ installed."
+  end
 end
 
 if not have_library('tag')

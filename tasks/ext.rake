@@ -7,7 +7,8 @@ tmp = "#{Dir.pwd}/tmp/#{plat}"
 toolchain_file = "#{Dir.pwd}/ext/win.cmake"
 install_dir = "#{tmp}/install"
 install_dll = "#{install_dir}/bin/libtag.dll"
-$cross_config_options = ["--with-opt-dir=#{install_dir}"]
+ldflags = "-static-libgcc -static-libstdc++"
+$cross_config_options = [%(--with-opt-dir=#{install_dir} --with-ldflags="#{ldflags}")]
 
 taglib_version = '1.7.2'
 taglib = "taglib-#{taglib_version}"
@@ -57,8 +58,8 @@ task :taglib => [install_dll]
 
 file install_dll => ["#{tmp}/#{taglib}"] do
   chdir "#{tmp}/#{taglib}" do
-    sh "cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file} #{taglib_options}"
-    sh "make"
+    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file} -DCMAKE_SHARED_LINKER_FLAGS="#{ldflags}" #{taglib_options})
+    sh "make VERBOSE=1"
     sh "make install"
   end
 end
