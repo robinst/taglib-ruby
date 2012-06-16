@@ -1,9 +1,11 @@
 Changes in Releases of taglib-ruby
 ==================================
 
-## unreleased
+## 0.5.1 (2012-06-16)
 
-* Document TagLib::MPEG::File#save and TagLib::MPEG::File#strip
+* Fix crashes (segfault) with nil arguments, e.g. with `tag.title = nil`
+* Document TagLib::MPEG::File#save and TagLib::MPEG::File#strip (#11)
+* Update TagLib of binary gem for Windows to 1.7.2
 
 ## 0.5.0 (2012-04-15)
 
