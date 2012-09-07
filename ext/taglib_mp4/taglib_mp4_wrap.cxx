@@ -8,6 +8,9 @@
  * interface file instead. 
  * ----------------------------------------------------------------------------- */
 
+  static void free_taglib_mp4_file(void *ptr);
+
+
 #define SWIGRUBY
 
 
@@ -2177,6 +2180,25 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
   return SWIG_TypeError;
 }
 
+SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
+    free_taglib_mp4_file(self);
+  }
+
+  static void free_taglib_mp4_file(void *ptr) {
+    TagLib::MP4::File *file = (TagLib::MP4::File *) ptr;
+
+    TagLib::MP4::Properties *properties = file->audioProperties();
+    if (properties) {
+      SWIG_RubyUnlinkObjects(properties);
+      SWIG_RubyRemoveTracking(properties);
+    }
+
+    SWIG_RubyUnlinkObjects(ptr);
+    SWIG_RubyRemoveTracking(ptr);
+
+    delete file;
+  }
+
 static swig_class SwigClassProperties;
 
 SWIGINTERN VALUE
@@ -3099,12 +3121,6 @@ fail:
 }
 
 
-SWIGINTERN void
-free_TagLib_MP4_File(TagLib::MP4::File *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
 SWIGINTERN VALUE
 _wrap_File_tag(int argc, VALUE *argv, VALUE self) {
   TagLib::MP4::File *arg1 = (TagLib::MP4::File *) 0 ;
@@ -3172,6 +3188,27 @@ _wrap_File_save(int argc, VALUE *argv, VALUE self) {
   result = (bool)(arg1)->save();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_close(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::File *arg1 = (TagLib::MP4::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MP4__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MP4::File *","close", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::MP4::File * >(argp1);
+  TagLib_MP4_File_close(arg1);
+  return Qnil;
 fail:
   return Qnil;
 }
@@ -3554,8 +3591,9 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
+  rb_define_method(SwigClassFile.klass, "close", VALUEFUNC(_wrap_File_close), -1);
   SwigClassFile.mark = 0;
-  SwigClassFile.destroy = (void (*)(void *)) free_TagLib_MP4_File;
+  SwigClassFile.destroy = (void (*)(void *)) free_taglib_mp4_file;
   SwigClassFile.trackObjects = 1;
 }
 
