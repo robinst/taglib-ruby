@@ -18,6 +18,30 @@ class MP4FileTest < Test::Unit::TestCase
       assert_equal false, @tag.empty?
     end
 
+    context "audio properties" do
+      setup do
+        @properties = @file.audio_properties
+      end
+
+      should "exist" do
+        assert_not_nil @properties
+      end
+
+      should "contain basic information" do
+        assert_equal 1, @properties.length
+        assert_equal 54, @properties.bitrate
+        assert_equal 44100, @properties.sample_rate
+        # The test file is mono, this appears to be a TagLib bug
+        assert_equal 2, @properties.channels
+      end
+
+      should "contain flac-specific information" do
+        assert_equal 16, @properties.bits_per_sample
+        # Properties#encrypted? raises a NoMethodError
+        # assert_equal false, @properties.encrypted?
+      end
+    end
+
     teardown do
       @file.close
       @file = nil
