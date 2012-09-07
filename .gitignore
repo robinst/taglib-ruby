@@ -20,3 +20,4 @@ Makefile
 /test/data/flac-create
 /test/data/id3v1-create
 /test/data/vorbis-create
+/test/data/mp4-create
