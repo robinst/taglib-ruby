@@ -35,7 +35,7 @@ class MP4FileTest < Test::Unit::TestCase
         assert_equal 2, @properties.channels
       end
 
-      should "contain flac-specific information" do
+      should "contain mp4-specific information" do
         assert_equal 16, @properties.bits_per_sample
         # Properties#encrypted? raises a NoMethodError
         # assert_equal false, @properties.encrypted?
