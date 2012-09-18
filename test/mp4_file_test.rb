@@ -42,6 +42,31 @@ class MP4FileTest < Test::Unit::TestCase
       end
     end
 
+    context "item_list_map" do
+      setup do
+        @item_list_map = @file.tag.item_list_map
+      end
+
+      should "exist" do
+        assert_not_nil @item_list_map
+      end
+
+      should "not be empty" do
+        assert_equal false, @item_list_map.empty?
+      end
+
+      should "contain 9 items" do
+        assert_equal 9, @item_list_map.size
+      end
+
+      should "have keys" do
+        ["\xa9nam", "\xa9ART", "\xa9alb", "\xa9cmt", "\xa9gen", "\xa9day",
+         "trkn"].each do |key|
+          assert_equal true, @item_list_map.contains?(key)
+        end
+      end
+    end
+
     teardown do
       @file.close
       @file = nil
