@@ -9,10 +9,20 @@
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
+// This is having no effect for some reason...
+%rename("contains?") TagLib::MP4::ItemListMap::contains;
+
+%ignore TagLib::Map::operator[];
+%ignore TagLib::Map::operator=;
+%include <taglib/tmap.h>
+
 namespace TagLib {
   namespace MP4 {
+    class Item;
     class Properties;
   }
+
+  %template(ItemListMap) Map<String, MP4::Item>;
 }
 
 %include <taglib/mp4properties.h>
