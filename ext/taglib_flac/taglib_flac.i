@@ -53,6 +53,12 @@ VALUE taglib_flac_picturelist_to_ruby_array(const TagLib::List<TagLib::FLAC::Pic
   static void free_taglib_flac_file(void *ptr) {
     TagLib::FLAC::File *file = (TagLib::FLAC::File *) ptr;
 
+    TagLib::Tag *tag = file->tag();
+    if (tag) {
+      SWIG_RubyUnlinkObjects(tag);
+      SWIG_RubyRemoveTracking(tag);
+    }
+
     TagLib::ID3v1::Tag *id3v1tag = file->ID3v1Tag(false);
     if (id3v1tag) {
       SWIG_RubyUnlinkObjects(id3v1tag);

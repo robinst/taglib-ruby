@@ -33,6 +33,12 @@
   static void free_taglib_mpeg_file(void *ptr) {
     TagLib::MPEG::File *file = (TagLib::MPEG::File *) ptr;
 
+    TagLib::Tag *tag = file->tag();
+    if (tag) {
+      SWIG_RubyUnlinkObjects(tag);
+      SWIG_RubyRemoveTracking(tag);
+    }
+
     TagLib::ID3v1::Tag *id3v1tag = file->ID3v1Tag(false);
     if (id3v1tag) {
       SWIG_RubyUnlinkObjects(id3v1tag);
