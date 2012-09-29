@@ -55,6 +55,21 @@ See {file:CHANGES.md}.
 Contributing
 ------------
 
+### Building
+
+    # Install dependencies
+    bundle install
+    # Regenerate SWIG wrappers (only necessary if you made changes)
+    rake swig
+    # Compile extension
+    rake clean compile
+    # Run tests
+    rake test
+    # Build and install gem into system gems
+    rake install
+
+### Workflow
+
 * Check out the latest master to make sure the feature hasn't been
   implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't
