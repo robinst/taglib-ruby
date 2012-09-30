@@ -9,11 +9,9 @@
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
-// This is having no effect for some reason...
-%rename("contains?") TagLib::MP4::ItemListMap::contains;
-
 %ignore TagLib::Map::operator[];
 %ignore TagLib::Map::operator=;
+%rename("contains?") contains;
 %include <taglib/tmap.h>
 
 %include <taglib/tiostream.h>
@@ -32,11 +30,13 @@ namespace TagLib {
 
 %include <taglib/mp4file.h>
 
+
 namespace TagLib {
   namespace MP4 {
     %template(ItemListMap) ::TagLib::Map<String, Item>;
   }
 }
+
 
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
 // that calls a method on a tag after the file is deleted segfaults.

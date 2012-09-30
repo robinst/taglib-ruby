@@ -4683,7 +4683,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ItemListMap_contains(int argc, VALUE *argv, VALUE self) {
+_wrap_ItemListMap_containsq___(int argc, VALUE *argv, VALUE self) {
   TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
   TagLib::String *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5267,7 +5267,7 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_method(SwigClassItemListMap.klass, "size", VALUEFUNC(_wrap_ItemListMap_size), -1);
   rb_define_method(SwigClassItemListMap.klass, "empty?", VALUEFUNC(_wrap_ItemListMap_emptyq___), -1);
   rb_define_method(SwigClassItemListMap.klass, "find", VALUEFUNC(_wrap_ItemListMap_find), -1);
-  rb_define_method(SwigClassItemListMap.klass, "contains", VALUEFUNC(_wrap_ItemListMap_contains), -1);
+  rb_define_method(SwigClassItemListMap.klass, "contains?", VALUEFUNC(_wrap_ItemListMap_containsq___), -1);
   rb_define_method(SwigClassItemListMap.klass, "erase", VALUEFUNC(_wrap_ItemListMap_erase), -1);
   SwigClassItemListMap.mark = 0;
   SwigClassItemListMap.destroy = (void (*)(void *)) free_TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg_;
