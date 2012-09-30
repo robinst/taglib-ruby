@@ -2193,6 +2193,12 @@ SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
   static void free_taglib_mp4_file(void *ptr) {
     TagLib::MP4::File *file = (TagLib::MP4::File *) ptr;
 
+    TagLib::MP4::Tag *tag = file->tag();
+    if (tag) {
+      SWIG_RubyUnlinkObjects(tag);
+      SWIG_RubyRemoveTracking(tag);
+    }
+
     TagLib::MP4::Properties *properties = file->audioProperties();
     if (properties) {
       SWIG_RubyUnlinkObjects(properties);
