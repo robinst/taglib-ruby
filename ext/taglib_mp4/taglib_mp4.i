@@ -16,13 +16,13 @@
 %ignore TagLib::Map::operator=;
 %include <taglib/tmap.h>
 
+%include <taglib/tiostream.h>
+
 namespace TagLib {
   namespace MP4 {
     class Item;
     class Properties;
   }
-
-  %template(ItemListMap) Map<String, MP4::Item>;
 }
 
 %include <taglib/mp4properties.h>
@@ -31,6 +31,12 @@ namespace TagLib {
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
 
 %include <taglib/mp4file.h>
+
+namespace TagLib {
+  namespace MP4 {
+    %template(ItemListMap) ::TagLib::Map<String, Item>;
+  }
+}
 
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
 // that calls a method on a tag after the file is deleted segfaults.
