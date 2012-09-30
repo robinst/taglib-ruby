@@ -45,6 +45,10 @@ class MP4FileTest < Test::Unit::TestCase
     context "item_list_map" do
       setup do
         @item_list_map = @file.tag.item_list_map
+        @item_keys = [
+          "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
+          "\u00A9day", "trkn", "\u00A9too", "\u00A9cpy"
+        ]
       end
 
       should "exist" do
@@ -56,12 +60,11 @@ class MP4FileTest < Test::Unit::TestCase
       end
 
       should "contain 9 items" do
-        assert_equal 9, @item_list_map.size
+        assert_equal @item_keys.count, @item_list_map.size
       end
 
       should "have keys" do
-        ["\xa9nam", "\xa9ART", "\xa9alb", "\xa9cmt", "\xa9gen", "\xa9day",
-         "trkn"].each do |key|
+        @item_keys.each do |key|
           assert_equal true, @item_list_map.contains?(key)
         end
       end
