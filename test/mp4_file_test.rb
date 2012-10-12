@@ -64,9 +64,15 @@ class MP4FileTest < Test::Unit::TestCase
       end
 
       should "have keys" do
-        @item_keys.each do |key|
-          assert_equal true, @item_list_map.contains?(key)
-        end
+        assert_equal true, @item_list_map.contains("trkn")
+        assert_equal true, @item_list_map.has_key?("\u00A9too")
+        assert_equal true, @item_list_map.include?("\u00A9cpy")
+        assert_equal false, @item_list_map.include?("none such key")
+      end
+
+      should "look up keys" do
+        assert_nil @item_list_map["none such key"]
+        assert_equal "Title", @item_list_map["\u00A9nam"]
       end
     end
 
