@@ -11,7 +11,7 @@
 
 %ignore TagLib::Map::operator[];
 %ignore TagLib::Map::operator=;
-%rename("contains?") contains;
+%alias TagLib::Map::contains "include?,has_key?";
 %include <taglib/tmap.h>
 
 %include <taglib/tiostream.h>
