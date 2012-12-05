@@ -48,6 +48,12 @@ namespace TagLib {
 
     TagLib::MP4::Tag *tag = file->tag();
     if (tag) {
+      TagLib::Map<TagLib::String, TagLib::MP4::Item> *item_list_map = &(tag->itemListMap());
+      if(item_list_map) {
+        SWIG_RubyUnlinkObjects(item_list_map);
+        SWIG_RubyRemoveTracking(item_list_map);
+      }
+
       SWIG_RubyUnlinkObjects(tag);
       SWIG_RubyRemoveTracking(tag);
     }
