@@ -37,7 +37,6 @@ namespace TagLib {
   }
 }
 
-
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
 // that calls a method on a tag after the file is deleted segfaults.
 %begin %{
@@ -65,6 +64,20 @@ namespace TagLib {
     delete file;
   }
 %}
+
+namespace TagLib {
+  %extend Map<String, MP4::Item> {
+    VALUE fetch(VALUE string) {
+      TagLib::MP4::ItemListMap::Iterator it = $self->find(ruby_string_to_taglib_string(string));
+      VALUE result = Qnil;
+      if (it != $self->end()) {
+        TagLib::MP4::Item *item = &(it->second);
+        result = SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+      }
+      return result;
+    }
+  }
+}
 
 %extend TagLib::MP4::File {
   void close() {
