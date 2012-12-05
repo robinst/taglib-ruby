@@ -74,6 +74,17 @@ class MP4FileTest < Test::Unit::TestCase
         assert_nil @item_list_map["none such key"]
         assert_equal "Title", @item_list_map["\u00A9nam"]
       end
+
+      context "delete keys" do
+        should "delete the key" do
+          assert_equal 7, @item_list_map.delete("trkn")
+          assert_equal false, @item_list_map.has_key?("trkn")
+        end
+
+        should "return nil when key does not exist" do
+          assert_nil @item_list_map.delete("none such key")
+        end
+      end
     end
 
     teardown do
