@@ -15,16 +15,20 @@
 %include <taglib/tmap.h>
 
 %include <taglib/tiostream.h>
+%include <taglib/tbytevectorlist.h>
 
 namespace TagLib {
   namespace MP4 {
     class Item;
+    class CoverArtList;
     class Properties;
   }
 }
 
 %include <taglib/mp4properties.h>
 %include <taglib/mp4tag.h>
+%include <taglib/mp4atom.h>
+%include <taglib/mp4item.h>
 
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
 
