@@ -1,21 +1,18 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
 class MP4ItemsTest < Test::Unit::TestCase
-  context "TagLib::MP4::Tag" do
+  context "The mp4.m4a file's items" do
     setup do
       @file = TagLib::MP4::File.new("test/data/mp4.m4a")
       @tag = @file.tag
       @item_list_map = @file.tag.item_list_map
+      @item_keys = [
+        "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
+        "\u00A9day", "trkn", "\u00A9too", "\u00A9cpy"
+      ]
     end
 
     context "item_list_map" do
-      setup do
-        @item_keys = [
-          "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
-          "\u00A9day", "trkn", "\u00A9too", "\u00A9cpy"
-        ]
-      end
-
       should "exist" do
         assert_not_nil @item_list_map
       end
@@ -37,18 +34,20 @@ class MP4ItemsTest < Test::Unit::TestCase
 
       should "look up keys" do
         assert_nil @item_list_map["none such key"]
-        assert_equal "Title", @item_list_map["\u00A9nam"]
+        assert_equal ["Title"], @item_list_map["\u00A9nam"].to_string_list
       end
+    end
 
-      context "delete keys" do
-        should "delete the key" do
-          assert_equal 7, @item_list_map.delete("trkn")
-          assert_equal false, @item_list_map.has_key?("trkn")
-        end
-
-        should "return nil when key does not exist" do
-          assert_nil @item_list_map.delete("none such key")
-        end
+    should "be removable" do
+      assert_equal 9, @item_list_map.size
+      title = @item_list_map["\u00A9nam"]
+      @item_list_map.erase("\u00A9nam")
+      assert_equal 8, @item_list_map.size
+      begin
+        title.to_int
+        flunk("Should have raised ObjectPreviouslyDeleted.")
+      rescue => e
+        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
       end
     end
 
