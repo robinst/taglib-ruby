@@ -2274,6 +2274,12 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__fetch(TagLib
     if (tag) {
       TagLib::Map<TagLib::String, TagLib::MP4::Item> *item_list_map = &(tag->itemListMap());
       if(item_list_map) {
+        for (TagLib::MP4::ItemListMap::Iterator it = item_list_map->begin(); it != item_list_map->end(); it++) {
+          TagLib::MP4::Item *item = &(it->second);
+          SWIG_RubyUnlinkObjects(item);
+          SWIG_RubyRemoveTracking(item);
+        }
+
         SWIG_RubyUnlinkObjects(item_list_map);
         SWIG_RubyRemoveTracking(item_list_map);
       }
