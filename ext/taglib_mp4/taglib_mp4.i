@@ -4,6 +4,13 @@
 #include <taglib/mp4file.h>
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
+
+static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
+  TagLib::MP4::Item *item = &(it->second);
+  SWIG_RubyUnlinkObjects(item);
+  SWIG_RubyRemoveTracking(item);
+}
+
 %}
 
 %include "../taglib_base/includes.i"
@@ -65,9 +72,7 @@ namespace TagLib {
       TagLib::Map<TagLib::String, TagLib::MP4::Item> *item_list_map = &(tag->itemListMap());
       if(item_list_map) {
         for (TagLib::MP4::ItemListMap::Iterator it = item_list_map->begin(); it != item_list_map->end(); it++) {
-          TagLib::MP4::Item *item = &(it->second);
-          SWIG_RubyUnlinkObjects(item);
-          SWIG_RubyRemoveTracking(item);
+          unlink_taglib_mp4_item_list_map_iterator(it);
         }
 
         SWIG_RubyUnlinkObjects(item_list_map);
@@ -116,9 +121,7 @@ namespace TagLib {
 
     VALUE _clear() {
       for (TagLib::MP4::ItemListMap::Iterator it = $self->begin(); it != $self->end(); it++) {
-        TagLib::MP4::Item *item = &(it->second);
-        SWIG_RubyUnlinkObjects(item);
-        SWIG_RubyRemoveTracking(item);
+        unlink_taglib_mp4_item_list_map_iterator(it);
       }
       $self->clear();
       return Qnil;
@@ -127,9 +130,7 @@ namespace TagLib {
     VALUE erase(VALUE string) {
       TagLib::MP4::ItemListMap::Iterator it = $self->find(ruby_string_to_taglib_string(string));
       if (it != $self->end()) {
-        TagLib::MP4::Item *item = &(it->second);
-        SWIG_RubyUnlinkObjects(item);
-        SWIG_RubyRemoveTracking(item);
+        unlink_taglib_mp4_item_list_map_iterator(it);
         $self->erase(it);
       }
       return Qnil;

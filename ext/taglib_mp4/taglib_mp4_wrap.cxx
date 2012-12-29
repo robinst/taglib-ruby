@@ -1874,6 +1874,13 @@ static VALUE mMP4;
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
 
+static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
+  TagLib::MP4::Item *item = &(it->second);
+  SWIG_RubyUnlinkObjects(item);
+  SWIG_RubyRemoveTracking(item);
+}
+
+
 
 #include <taglib/tstring.h>
 #include <taglib/tstringlist.h>
@@ -2276,9 +2283,7 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__fetch(TagLib
     }
 SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___clear(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self){
       for (TagLib::MP4::ItemListMap::Iterator it = self->begin(); it != self->end(); it++) {
-        TagLib::MP4::Item *item = &(it->second);
-        SWIG_RubyUnlinkObjects(item);
-        SWIG_RubyRemoveTracking(item);
+        unlink_taglib_mp4_item_list_map_iterator(it);
       }
       self->clear();
       return Qnil;
@@ -2286,9 +2291,7 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___clear(TagLi
 SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__erase(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self,VALUE string){
       TagLib::MP4::ItemListMap::Iterator it = self->find(ruby_string_to_taglib_string(string));
       if (it != self->end()) {
-        TagLib::MP4::Item *item = &(it->second);
-        SWIG_RubyUnlinkObjects(item);
-        SWIG_RubyRemoveTracking(item);
+        unlink_taglib_mp4_item_list_map_iterator(it);
         self->erase(it);
       }
       return Qnil;
@@ -2302,9 +2305,7 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__erase(TagLib
       TagLib::Map<TagLib::String, TagLib::MP4::Item> *item_list_map = &(tag->itemListMap());
       if(item_list_map) {
         for (TagLib::MP4::ItemListMap::Iterator it = item_list_map->begin(); it != item_list_map->end(); it++) {
-          TagLib::MP4::Item *item = &(it->second);
-          SWIG_RubyUnlinkObjects(item);
-          SWIG_RubyRemoveTracking(item);
+          unlink_taglib_mp4_item_list_map_iterator(it);
         }
 
         SWIG_RubyUnlinkObjects(item_list_map);
