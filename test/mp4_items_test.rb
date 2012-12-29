@@ -44,7 +44,7 @@ class MP4ItemsTest < Test::Unit::TestCase
       @item_list_map.erase("\u00A9nam")
       assert_equal 8, @item_list_map.size
       begin
-        title.to_int
+        title.to_string_list
         flunk("Should have raised ObjectPreviouslyDeleted.")
       rescue => e
         assert_equal "ObjectPreviouslyDeleted", e.class.to_s
