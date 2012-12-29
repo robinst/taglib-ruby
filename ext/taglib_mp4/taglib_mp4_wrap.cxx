@@ -2264,6 +2264,15 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__fetch(TagLib
       }
       return result;
     }
+SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___clear(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self){
+      for (TagLib::MP4::ItemListMap::Iterator it = self->begin(); it != self->end(); it++) {
+        TagLib::MP4::Item *item = &(it->second);
+        SWIG_RubyUnlinkObjects(item);
+        SWIG_RubyRemoveTracking(item);
+      }
+      self->clear();
+      return Qnil;
+    }
 SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__erase(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self,VALUE string){
       TagLib::MP4::ItemListMap::Iterator it = self->find(ruby_string_to_taglib_string(string));
       if (it != self->end()) {
@@ -2274,6 +2283,10 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__erase(TagLib
       }
       return Qnil;
     }
+
+static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
+}
+
 
   static void free_taglib_mp4_file(void *ptr) {
     TagLib::MP4::File *file = (TagLib::MP4::File *) ptr;
@@ -7494,6 +7507,30 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_ItemListMap__clear(int argc, VALUE *argv, VALUE self) {
+  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","_clear", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
+  result = (VALUE)TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___clear(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_ItemListMap_erase(int argc, VALUE *argv, VALUE self) {
   TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
   VALUE arg2 = (VALUE) 0 ;
@@ -8081,6 +8118,7 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_alias(SwigClassItemListMap.klass, "include?", "contains");
   rb_define_alias(SwigClassItemListMap.klass, "has_key?", "contains");
   rb_define_method(SwigClassItemListMap.klass, "fetch", VALUEFUNC(_wrap_ItemListMap_fetch), -1);
+  rb_define_method(SwigClassItemListMap.klass, "_clear", VALUEFUNC(_wrap_ItemListMap__clear), -1);
   rb_define_method(SwigClassItemListMap.klass, "erase", VALUEFUNC(_wrap_ItemListMap_erase), -1);
   SwigClassItemListMap.mark = 0;
   SwigClassItemListMap.destroy = (void (*)(void *)) free_TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg_;

@@ -6,6 +6,8 @@ module TagLib::MP4
   end
 
   class ItemListMap
+    alias :clear :_clear
+
     def [](key)
       fetch(key)
     end
