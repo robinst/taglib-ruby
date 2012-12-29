@@ -26,7 +26,12 @@ namespace TagLib {
 }
 
 %include <taglib/mp4properties.h>
+
+// We will create a safe version of #erase below in an %extend
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(Iterator);
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(const TagLib::String &);
 %include <taglib/mp4tag.h>
+
 %include <taglib/mp4atom.h>
 %include <taglib/mp4item.h>
 
@@ -91,6 +96,17 @@ namespace TagLib {
         result = SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
       }
       return result;
+    }
+
+    VALUE erase(VALUE string) {
+      TagLib::MP4::ItemListMap::Iterator it = $self->find(ruby_string_to_taglib_string(string));
+      if (it != $self->end()) {
+        TagLib::MP4::Item *item = &(it->second);
+        SWIG_RubyUnlinkObjects(item);
+        SWIG_RubyRemoveTracking(item);
+        $self->erase(it);
+      }
+      return Qnil;
     }
   }
 }
