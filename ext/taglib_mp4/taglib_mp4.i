@@ -27,6 +27,11 @@ namespace TagLib {
 
 %include <taglib/mp4properties.h>
 
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::begin;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::end;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::insert;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::clear;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::find;
 // We will create a safe version of #erase below in an %extend
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(Iterator);
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(const TagLib::String &);

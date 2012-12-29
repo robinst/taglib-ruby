@@ -1838,14 +1838,12 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__StringList swig_types[19]
 #define SWIGTYPE_p_TagLib__Tag swig_types[20]
 #define SWIGTYPE_p_char swig_types[21]
-#define SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator swig_types[22]
-#define SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator swig_types[23]
-#define SWIGTYPE_p_unsigned_char swig_types[24]
-#define SWIGTYPE_p_unsigned_int swig_types[25]
-#define SWIGTYPE_p_unsigned_long swig_types[26]
-#define SWIGTYPE_p_wchar_t swig_types[27]
-static swig_type_info *swig_types[29];
-static swig_module_info swig_module = {swig_types, 28, 0, 0, 0, 0};
+#define SWIGTYPE_p_unsigned_char swig_types[22]
+#define SWIGTYPE_p_unsigned_int swig_types[23]
+#define SWIGTYPE_p_unsigned_long swig_types[24]
+#define SWIGTYPE_p_wchar_t swig_types[25]
+static swig_type_info *swig_types[27];
+static swig_module_info swig_module = {swig_types, 26, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -7382,254 +7380,6 @@ free_TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg_(TagLib::Map< TagLib::Str
     delete arg1;
 }
 
-SWIGINTERN VALUE
-_wrap_ItemListMap_begin__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","begin", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = (arg1)->begin();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemListMap_begin__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::const_iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > const *","begin", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = ((TagLib::Map< TagLib::String,TagLib::MP4::Item > const *)arg1)->begin();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ItemListMap_begin(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 2) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ItemListMap_begin__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ItemListMap_begin__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ItemListMap.begin", 
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.begin()\n"
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.begin()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemListMap_end__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","end", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = (arg1)->end();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemListMap_end__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::const_iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > const *","end", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = ((TagLib::Map< TagLib::String,TagLib::MP4::Item > const *)arg1)->end();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ItemListMap_end(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[2];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 2) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ItemListMap_end__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ItemListMap_end__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 2, "ItemListMap.end", 
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.end()\n"
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.end()\n");
-  
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::MP4::ItemListMap.insert
-
-  call-seq:
-    insert(key, value) -> ItemListMap
-
-Insert one or more new elements in the ItemListMap.
-*/
-SWIGINTERN VALUE
-_wrap_ItemListMap_insert(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::MP4::Item *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  void *argp3 ;
-  int res3 = 0 ;
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","insert", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__MP4__Item,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::MP4::Item const &","insert", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::MP4::Item const &","insert", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< TagLib::MP4::Item * >(argp3);
-  result = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) &(arg1)->insert((TagLib::String const &)*arg2,(TagLib::MP4::Item const &)*arg3);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemListMap_clear(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","clear", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) &(arg1)->clear();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 
 /*
   Document-method: TagLib::MP4::ItemListMap.size
@@ -7683,123 +7433,6 @@ _wrap_ItemListMap_emptyq___(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
-  return Qnil;
-}
-
-
-
-/*
-  Document-method: TagLib::MP4::ItemListMap.find
-
-  call-seq:
-    find(key) -> TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator
-    find(key) -> TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator
-
-Find an element in the class.
-*/
-SWIGINTERN VALUE
-_wrap_ItemListMap_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","find", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = (arg1)->find((TagLib::String const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemListMap_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::const_iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > const *","find", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = ((TagLib::Map< TagLib::String,TagLib::MP4::Item > const *)arg1)->find((TagLib::String const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator(static_cast< const TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator& >(result))), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ItemListMap_find(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ItemListMap_find__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ItemListMap_find__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ItemListMap.find", 
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.find(TagLib::String const &key)\n"
-    "    TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator ItemListMap.find(TagLib::String const &key)\n");
-  
   return Qnil;
 }
 
@@ -7889,14 +7522,14 @@ fail:
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_TagLib__MP4__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::File *)  ((TagLib::MP4::File *) x));
+}
 static void *_p_TagLib__MP4__PropertiesTo_p_TagLib__AudioProperties(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::AudioProperties *)  ((TagLib::MP4::Properties *) x));
 }
 static void *_p_TagLib__MP4__TagTo_p_TagLib__Tag(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::Tag *)  ((TagLib::MP4::Tag *) x));
-}
-static void *_p_TagLib__MP4__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((TagLib::File *)  ((TagLib::MP4::File *) x));
 }
 static swig_type_info _swigt__p_ConstIterator = {"_p_ConstIterator", "ConstIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Iterator = {"_p_Iterator", "Iterator *", 0, 0, (void*)0, 0};
@@ -7920,8 +7553,6 @@ static swig_type_info _swigt__p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t 
 static swig_type_info _swigt__p_TagLib__StringList = {"_p_TagLib__StringList", "TagLib::StringList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator = {"_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator", "TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator *|std::map< TagLib::String,TagLib::MP4::Item >::const_iterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator = {"_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator", "TagLib::Map< TagLib::String,TagLib::MP4::Item >::Iterator *|std::map< TagLib::String,TagLib::MP4::Item >::iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|TagLib::uint *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -7950,8 +7581,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__StringList,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
-  &_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator,
-  &_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -7980,8 +7609,6 @@ static swig_cast_info _swigc__p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t[
 static swig_cast_info _swigc__p_TagLib__StringList[] = {  {&_swigt__p_TagLib__StringList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},  {&_swigt__p_TagLib__MP4__Tag, _p_TagLib__MP4__TagTo_p_TagLib__Tag, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator[] = {  {&_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator[] = {  {&_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -8010,8 +7637,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__StringList,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
-  _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator,
-  _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__iterator,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -8450,13 +8075,8 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, (void *) &SwigClassItemListMap);
   rb_define_alloc_func(SwigClassItemListMap.klass, _wrap_ItemListMap_allocate);
   rb_define_method(SwigClassItemListMap.klass, "initialize", VALUEFUNC(_wrap_new_ItemListMap), -1);
-  rb_define_method(SwigClassItemListMap.klass, "begin", VALUEFUNC(_wrap_ItemListMap_begin), -1);
-  rb_define_method(SwigClassItemListMap.klass, "end", VALUEFUNC(_wrap_ItemListMap_end), -1);
-  rb_define_method(SwigClassItemListMap.klass, "insert", VALUEFUNC(_wrap_ItemListMap_insert), -1);
-  rb_define_method(SwigClassItemListMap.klass, "clear", VALUEFUNC(_wrap_ItemListMap_clear), -1);
   rb_define_method(SwigClassItemListMap.klass, "size", VALUEFUNC(_wrap_ItemListMap_size), -1);
   rb_define_method(SwigClassItemListMap.klass, "empty?", VALUEFUNC(_wrap_ItemListMap_emptyq___), -1);
-  rb_define_method(SwigClassItemListMap.klass, "find", VALUEFUNC(_wrap_ItemListMap_find), -1);
   rb_define_method(SwigClassItemListMap.klass, "contains", VALUEFUNC(_wrap_ItemListMap_contains), -1);
   rb_define_alias(SwigClassItemListMap.klass, "include?", "contains");
   rb_define_alias(SwigClassItemListMap.klass, "has_key?", "contains");
