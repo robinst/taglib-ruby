@@ -10,9 +10,9 @@ static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::I
   SWIG_RubyUnlinkObjects(item);
   SWIG_RubyRemoveTracking(item);
 }
-
 %}
 
+%ignore TagLib::List::operator!=;
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
@@ -22,15 +22,22 @@ static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::I
 %include <taglib/tmap.h>
 
 %include <taglib/tiostream.h>
-%include <taglib/tbytevectorlist.h>
 
 namespace TagLib {
+  %template() List<ByteVector>;
+
   namespace MP4 {
     class Item;
     class CoverArtList;
     class Properties;
+
+    struct IntPair {
+      int first, second;
+    };
   }
 }
+
+%include <taglib/tbytevectorlist.h>
 
 %include <taglib/mp4properties.h>
 
@@ -45,12 +52,21 @@ namespace TagLib {
 %include <taglib/mp4tag.h>
 
 %include <taglib/mp4atom.h>
+
+%nestedworkaround TagLib::MP4::Item::IntPair;
+%{
+  namespace TagLib {
+    namespace MP4 {
+      typedef Item::IntPair IntPair;
+    }
+  }
+%}
+%ignore TagLib::MP4::Item::operator=;
 %include <taglib/mp4item.h>
 
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
 
 %include <taglib/mp4file.h>
-
 
 namespace TagLib {
   namespace MP4 {
