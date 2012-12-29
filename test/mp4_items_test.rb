@@ -36,6 +36,19 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_nil @item_list_map["none such key"]
         assert_equal ["Title"], @item_list_map["\u00A9nam"].to_string_list
       end
+
+      should "be clearable" do
+        assert_equal 9, @item_list_map.size
+        comment = @item_list_map["\u00A9cmt"]
+        @item_list_map.clear
+        assert_equal true, @item_list_map.empty?
+        begin
+          comment.to_string_list
+          flunk("Should have raised ObjectPreviouslyDeleted.")
+        rescue => e
+          assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+        end
+      end
     end
 
     should "be removable" do
