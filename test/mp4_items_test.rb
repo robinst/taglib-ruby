@@ -49,6 +49,17 @@ class MP4ItemsTest < Test::Unit::TestCase
           assert_equal "ObjectPreviouslyDeleted", e.class.to_s
         end
       end
+
+      should "be convertable to an array" do
+        array = @item_list_map.to_a
+        assert_equal 9, array.count
+        array.each do |object|
+          assert_equal Array, object.class
+          assert_equal 2, object.count
+          assert_equal String, object.first.class
+          assert_equal TagLib::MP4::Item, object.last.class
+        end
+      end
     end
 
     should "be removable" do
