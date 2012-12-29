@@ -2265,9 +2265,11 @@ SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
 SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__to_a(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self){
       VALUE ary = rb_ary_new2(self->size());
       for (TagLib::MP4::ItemListMap::Iterator it = self->begin(); it != self->end(); it++) {
+        TagLib::String string = it->first;
+        TagLib::MP4::Item *item = &(it->second);
         VALUE pair = rb_ary_new2(2);
-        rb_ary_push(pair, taglib_string_to_ruby_string(it->first));
-        rb_ary_push(pair, SWIG_NewPointerObj(&(it->second), SWIGTYPE_p_TagLib__MP4__Item, 0));
+        rb_ary_push(pair, taglib_string_to_ruby_string(string));
+        rb_ary_push(pair, SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0));
         rb_ary_push(ary, pair);
       }
       return ary;
