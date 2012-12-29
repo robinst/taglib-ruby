@@ -101,9 +101,11 @@ namespace TagLib {
     VALUE to_a() {
       VALUE ary = rb_ary_new2($self->size());
       for (TagLib::MP4::ItemListMap::Iterator it = $self->begin(); it != $self->end(); it++) {
+        TagLib::String string = it->first;
+        TagLib::MP4::Item *item = &(it->second);
         VALUE pair = rb_ary_new2(2);
-        rb_ary_push(pair, taglib_string_to_ruby_string(it->first));
-        rb_ary_push(pair, SWIG_NewPointerObj(&(it->second), SWIGTYPE_p_TagLib__MP4__Item, 0));
+        rb_ary_push(pair, taglib_string_to_ruby_string(string));
+        rb_ary_push(pair, SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0));
         rb_ary_push(ary, pair);
       }
       return ary;
