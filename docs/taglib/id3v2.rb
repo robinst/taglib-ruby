@@ -21,7 +21,7 @@ module TagLib::ID3v2
   #     title.text_encoding = TagLib::String::UTF8
   #
   # @example Read ID3v2 frames from a file
-  #   TagLib::MPEG::File.new("wake_up.mp3") do |file|
+  #   TagLib::MPEG::File.open("wake_up.mp3") do |file|
   #     tag = file.id3v2_tag
   #
   #     # Read basic attributes
@@ -43,7 +43,7 @@ module TagLib::ID3v2
   #   end
   #
   # @example Add frames and save file
-  #   TagLib::MPEG::File.new("joga.mp3") do |file|
+  #   TagLib::MPEG::File.open("joga.mp3") do |file|
   #     tag = file.id3v2_tag
   #
   #     # Write basic attributes
