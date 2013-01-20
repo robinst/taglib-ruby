@@ -75,6 +75,44 @@ class MP4ItemsTest < Test::Unit::TestCase
       end
     end
 
+    context "TagLib::MP4::Item" do
+      should "be creatable from an int" do
+        item = TagLib::MP4::Item.from_int(-42)
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal -42, item.to_int
+      end
+
+      should "be creatable from a byte" do
+        item = TagLib::MP4::Item.from_byte(255)
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal 255, item.to_byte
+      end
+
+      should "be creatable from a uint" do
+        item = TagLib::MP4::Item.from_uint(255)
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal 255, item.to_uint
+      end
+
+      should "be creatable from a long long" do
+        item = TagLib::MP4::Item.from_long_long(255)
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal 255, item.to_long_long
+      end
+
+      should "be creatable from a boolean" do
+        item = TagLib::MP4::Item.from_bool(false)
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal false, item.to_bool
+      end
+
+      should "be creatable from a string list" do
+        item = TagLib::MP4::Item.from_string_list(["hello"])
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal ["hello"], item.to_string_list
+      end
+    end
+
     teardown do
       @file.close
       @file = nil
