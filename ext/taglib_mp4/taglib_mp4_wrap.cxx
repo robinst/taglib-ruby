@@ -2261,6 +2261,30 @@ SWIG_From_long_SS_long  (long long value)
   return LL2NUM(value);
 }
 
+SWIGINTERN VALUE TagLib_MP4_Item_from_int(int n){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+SWIGINTERN VALUE TagLib_MP4_Item_from_byte(TagLib::uchar c){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(c);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+SWIGINTERN VALUE TagLib_MP4_Item_from_uint(TagLib::uint n){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+SWIGINTERN VALUE TagLib_MP4_Item_from_long_long(long long n){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+SWIGINTERN VALUE TagLib_MP4_Item_from_bool(bool q){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(q);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+SWIGINTERN VALUE TagLib_MP4_Item_from_string_list(TagLib::StringList const &string_list){
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(string_list);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
 SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
     free_taglib_mp4_file(self);
   }
@@ -7057,6 +7081,148 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_Item_from_int(int argc, VALUE *argv, VALUE self) {
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib_MP4_Item_from_int", 1, argv[0] ));
+  } 
+  arg1 = static_cast< int >(val1);
+  result = (VALUE)TagLib_MP4_Item_from_int(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_byte(int argc, VALUE *argv, VALUE self) {
+  TagLib::uchar arg1 ;
+  unsigned char val1 ;
+  int ecode1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_unsigned_SS_char(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uchar","TagLib_MP4_Item_from_byte", 1, argv[0] ));
+  } 
+  arg1 = static_cast< TagLib::uchar >(val1);
+  result = (VALUE)TagLib_MP4_Item_from_byte(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_uint(int argc, VALUE *argv, VALUE self) {
+  TagLib::uint arg1 ;
+  unsigned int val1 ;
+  int ecode1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib_MP4_Item_from_uint", 1, argv[0] ));
+  } 
+  arg1 = static_cast< TagLib::uint >(val1);
+  result = (VALUE)TagLib_MP4_Item_from_uint(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_long_long(int argc, VALUE *argv, VALUE self) {
+  long long arg1 ;
+  long long val1 ;
+  int ecode1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_long_SS_long(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "long long","TagLib_MP4_Item_from_long_long", 1, argv[0] ));
+  } 
+  arg1 = static_cast< long long >(val1);
+  result = (VALUE)TagLib_MP4_Item_from_long_long(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_bool(int argc, VALUE *argv, VALUE self) {
+  bool arg1 ;
+  bool val1 ;
+  int ecode1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_bool(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "bool","TagLib_MP4_Item_from_bool", 1, argv[0] ));
+  } 
+  arg1 = static_cast< bool >(val1);
+  result = (VALUE)TagLib_MP4_Item_from_bool(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_string_list(int argc, VALUE *argv, VALUE self) {
+  TagLib::StringList *arg1 = 0 ;
+  TagLib::StringList tmp1 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_array_to_taglib_string_list(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (VALUE)TagLib_MP4_Item_from_string_list((TagLib::StringList const &)*arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 static swig_class SwigClassFile;
 
 SWIGINTERN VALUE
@@ -8312,6 +8478,12 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_method(SwigClassItem.klass, "to_byte_vector_list", VALUEFUNC(_wrap_Item_to_byte_vector_list), -1);
   rb_define_method(SwigClassItem.klass, "to_cover_art_list", VALUEFUNC(_wrap_Item_to_cover_art_list), -1);
   rb_define_method(SwigClassItem.klass, "valid?", VALUEFUNC(_wrap_Item_validq___), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_int", VALUEFUNC(_wrap_Item_from_int), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_byte", VALUEFUNC(_wrap_Item_from_byte), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_uint", VALUEFUNC(_wrap_Item_from_uint), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_long_long", VALUEFUNC(_wrap_Item_from_long_long), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_bool", VALUEFUNC(_wrap_Item_from_bool), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_string_list", VALUEFUNC(_wrap_Item_from_string_list), -1);
   SwigClassItem.mark = 0;
   SwigClassItem.destroy = (void (*)(void *)) free_TagLib_MP4_Item;
   SwigClassItem.trackObjects = 1;

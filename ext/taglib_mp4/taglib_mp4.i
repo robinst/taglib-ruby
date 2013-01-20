@@ -156,6 +156,38 @@ namespace TagLib {
   }
 }
 
+%extend TagLib::MP4::Item {
+  static VALUE from_int(int n) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+
+  static VALUE from_byte(uchar c) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(c);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+
+  static VALUE from_uint(uint n) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+
+  static VALUE from_long_long(long long n) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(n);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+
+  static VALUE from_bool(bool q) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(q);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+
+  static VALUE from_string_list(const TagLib::StringList &string_list) {
+    TagLib::MP4::Item *item = new TagLib::MP4::Item(string_list);
+    return SWIG_NewPointerObj(item, SWIGTYPE_p_TagLib__MP4__Item, 0);
+  }
+}
+
 %extend TagLib::MP4::File {
   void close() {
     free_taglib_mp4_file($self);
