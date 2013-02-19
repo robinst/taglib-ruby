@@ -127,8 +127,8 @@ namespace TagLib {
       return ary;
     }
 
-    VALUE fetch(VALUE string) {
-      TagLib::MP4::ItemListMap::Iterator it = $self->find(ruby_string_to_taglib_string(string));
+    VALUE fetch(const String &string) {
+      TagLib::MP4::ItemListMap::Iterator it = $self->find(string);
       VALUE result = Qnil;
       if (it != $self->end()) {
         TagLib::MP4::Item *item = &(it->second);
@@ -145,8 +145,8 @@ namespace TagLib {
       return Qnil;
     }
 
-    VALUE erase(VALUE string) {
-      TagLib::MP4::ItemListMap::Iterator it = $self->find(ruby_string_to_taglib_string(string));
+    VALUE erase(const String &string) {
+      TagLib::MP4::ItemListMap::Iterator it = $self->find(string);
       if (it != $self->end()) {
         unlink_taglib_mp4_item_list_map_iterator(it);
         $self->erase(it);
