@@ -2324,6 +2324,14 @@ SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg__erase(TagLib
       }
       return Qnil;
     }
+SWIGINTERN VALUE TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___insert(TagLib::Map< TagLib::String,TagLib::MP4::Item > *self,TagLib::String const &string,TagLib::MP4::Item const &item){
+      TagLib::MP4::ItemListMap::Iterator it = self->find(string);
+      if (it != self->end()) {
+        unlink_taglib_mp4_item_list_map_iterator(it);
+      }
+      self->insert(string, item);
+      return Qnil;
+    }
 
   static void free_taglib_mp4_file(void *ptr) {
     TagLib::MP4::File *file = (TagLib::MP4::File *) ptr;
@@ -7939,6 +7947,47 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_ItemListMap__insert(int argc, VALUE *argv, VALUE self) {
+  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::MP4::Item *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > *","_insert", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__MP4__Item,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::MP4::Item const &","_insert", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::MP4::Item const &","_insert", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< TagLib::MP4::Item * >(argp3);
+  result = (VALUE)TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg___insert(arg1,(TagLib::String const &)*arg2,(TagLib::MP4::Item const &)*arg3);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
@@ -8521,6 +8570,7 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_method(SwigClassItemListMap.klass, "fetch", VALUEFUNC(_wrap_ItemListMap_fetch), -1);
   rb_define_method(SwigClassItemListMap.klass, "_clear", VALUEFUNC(_wrap_ItemListMap__clear), -1);
   rb_define_method(SwigClassItemListMap.klass, "erase", VALUEFUNC(_wrap_ItemListMap_erase), -1);
+  rb_define_method(SwigClassItemListMap.klass, "_insert", VALUEFUNC(_wrap_ItemListMap__insert), -1);
   SwigClassItemListMap.mark = 0;
   SwigClassItemListMap.destroy = (void (*)(void *)) free_TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg_;
   SwigClassItemListMap.trackObjects = 1;

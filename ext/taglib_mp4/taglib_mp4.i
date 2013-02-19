@@ -153,6 +153,15 @@ namespace TagLib {
       }
       return Qnil;
     }
+
+    VALUE _insert(const String &string, const MP4::Item &item) {
+      TagLib::MP4::ItemListMap::Iterator it = $self->find(string);
+      if (it != $self->end()) {
+        unlink_taglib_mp4_item_list_map_iterator(it);
+      }
+      $self->insert(string, item);
+      return Qnil;
+    }
   }
 }
 
