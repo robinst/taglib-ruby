@@ -7,6 +7,7 @@ module TagLib::MP4
 
   class ItemListMap
     alias :clear :_clear
+    alias :insert :_insert
 
     def [](key)
       fetch(key)

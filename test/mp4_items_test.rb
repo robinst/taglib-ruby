@@ -75,6 +75,19 @@ class MP4ItemsTest < Test::Unit::TestCase
       end
     end
 
+    should "insert items" do
+      title = @item_list_map["\u00A9nam"]
+      new_title = TagLib::MP4::Item.from_string_list(['new title'])
+      @item_list_map.insert("\u00A9nam", new_title)
+      assert_equal ['new title'], @item_list_map["\u00A9nam"].to_string_list
+      begin
+        title.to_string_list
+        flunk("Should have raised ObjectPreviouslyDeleted.")
+      rescue => e
+        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      end
+    end
+
     context "TagLib::MP4::Item" do
       should "be creatable from an int" do
         item = TagLib::MP4::Item.from_int(-42)
