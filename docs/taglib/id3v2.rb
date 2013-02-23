@@ -384,7 +384,7 @@ module TagLib::ID3v2
     # @return [Array<String>] list of text strings in this frame
     attr_accessor :field_list
 
-    # @param [String] text simple text to set
+    # @param [String] value simple text to set
     attr_writer :text
   end
 
@@ -424,10 +424,10 @@ module TagLib::ID3v2
   # URL link frame (`W???`), e.g. `WOAR` for "official artist/performer
   # webpage".
   class UrlLinkFrame < Frame
-    # @param [String] text simple text to set
+    # @param [String] value simple text to set
     attr_writer :text
 
-    # @param [String] URL
+    # @param [String] value URL
     attr_accessor :url
   end
 
