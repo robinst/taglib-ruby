@@ -1,10 +1,6 @@
 require 'taglib_mp4'
 
 module TagLib::MP4
-  remove_const :Atom
-  remove_const :AtomData
-  remove_const :Atoms
-  remove_const :IOStream
 
   class File
     extend ::TagLib::FileOpenable
