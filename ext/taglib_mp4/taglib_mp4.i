@@ -21,7 +21,7 @@ static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::I
 %alias TagLib::Map::contains "include?,has_key?";
 %include <taglib/tmap.h>
 
-%include <taglib/tiostream.h>
+%import <taglib/tiostream.h>
 
 namespace TagLib {
   %template() List<ByteVector>;
@@ -51,7 +51,7 @@ namespace TagLib {
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(const TagLib::String &);
 %include <taglib/mp4tag.h>
 
-%include <taglib/mp4atom.h>
+%import <taglib/mp4atom.h>
 
 %nestedworkaround TagLib::MP4::Item::IntPair;
 %{
