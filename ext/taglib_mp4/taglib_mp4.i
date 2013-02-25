@@ -4,7 +4,6 @@
 #include <taglib/mp4file.h>
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
-
 %}
 
 %ignore TagLib::List::operator!=;
