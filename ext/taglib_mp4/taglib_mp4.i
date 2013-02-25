@@ -5,16 +5,41 @@
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
 
-static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
-  TagLib::MP4::Item *item = &(it->second);
-  SWIG_RubyUnlinkObjects(item);
-  SWIG_RubyRemoveTracking(item);
-}
 %}
 
 %ignore TagLib::List::operator!=;
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
+
+%{
+static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
+  TagLib::MP4::Item *item = &(it->second);
+  SWIG_RubyUnlinkObjects(item);
+  SWIG_RubyRemoveTracking(item);
+}
+
+VALUE taglib_bytevector_list_to_ruby_array(const TagLib::ByteVectorList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::ByteVectorList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_bytevector_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
+  TagLib::ByteVectorList result = TagLib::ByteVectorList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::ByteVector b = ruby_string_to_taglib_bytevector(e);
+    result.append(b);
+  }
+  return result;
+}
+%}
 
 %ignore TagLib::Map::operator[];
 %ignore TagLib::Map::operator=;
@@ -24,8 +49,6 @@ static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::I
 %import <taglib/tiostream.h>
 
 namespace TagLib {
-  %template() List<ByteVector>;
-
   namespace MP4 {
     class Item;
     class CoverArtList;
@@ -37,7 +60,15 @@ namespace TagLib {
   }
 }
 
-%include <taglib/tbytevectorlist.h>
+%typemap(out) TagLib::ByteVectorList {
+  $result = taglib_bytevector_list_to_ruby_array($1);
+}
+%typemap(in) TagLib::ByteVectorList (TagLib::ByteVectorList tmp) {
+  tmp = ruby_array_to_byte_vector_list($input);
+  $1 = &tmp;
+}
+%apply TagLib::ByteVectorList { TagLib::ByteVectorList &, const TagLib::ByteVectorList & };
+%import <taglib/tbytevectorlist.h>
 
 %include <taglib/mp4properties.h>
 
@@ -188,6 +219,10 @@ namespace TagLib {
 
   static TagLib::MP4::Item * from_string_list(const TagLib::StringList &string_list) {
    return new TagLib::MP4::Item(string_list);
+  }
+
+  static TagLib::MP4::Item * from_byte_vector_list(const TagLib::ByteVectorList &byte_vector_list) {
+   return new TagLib::MP4::Item(byte_vector_list);
   }
 }
 
