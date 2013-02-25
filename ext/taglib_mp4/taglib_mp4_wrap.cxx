@@ -1871,11 +1871,6 @@ static VALUE mMP4;
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
 
-static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
-  TagLib::MP4::Item *item = &(it->second);
-  SWIG_RubyUnlinkObjects(item);
-  SWIG_RubyRemoveTracking(item);
-}
 
 
 #include <taglib/tstring.h>
@@ -1985,6 +1980,35 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 
 
 
+static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
+  TagLib::MP4::Item *item = &(it->second);
+  SWIG_RubyUnlinkObjects(item);
+  SWIG_RubyRemoveTracking(item);
+}
+
+VALUE taglib_bytevector_list_to_ruby_array(const TagLib::ByteVectorList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::ByteVectorList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_bytevector_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
+  TagLib::ByteVectorList result = TagLib::ByteVectorList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::ByteVector b = ruby_string_to_taglib_bytevector(e);
+    result.append(b);
+  }
+  return result;
+}
+
+
 #include <limits.h>
 #if !defined(SWIG_NO_LLONG_MAX)
 # if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
@@ -2057,6 +2081,27 @@ SWIG_From_int  (int value)
 }
 
 
+SWIGINTERNINLINE VALUE
+SWIG_From_bool  (bool value)
+{
+  return value ? Qtrue : Qfalse;
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_long  (unsigned long value)
+{
+  return ULONG2NUM(value); 
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_int  (unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
+}
+
+
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -2105,27 +2150,6 @@ SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 
 
 
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_bool  (bool value)
-{
-  return value ? Qtrue : Qfalse;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_long  (unsigned long value)
-{
-  return ULONG2NUM(value); 
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_int  (unsigned int value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
 
 
 /*@SWIG:/usr/local/Cellar/swig/2.0.9/share/swig/2.0.9/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
@@ -2275,6 +2299,9 @@ SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_bool(bool q){
   }
 SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_string_list(TagLib::StringList const &string_list){
    return new TagLib::MP4::Item(string_list);
+  }
+SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_byte_vector_list(TagLib::ByteVectorList const &byte_vector_list){
+   return new TagLib::MP4::Item(byte_vector_list);
   }
 SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
     free_taglib_mp4_file(self);
@@ -2519,390 +2546,6 @@ free_TagLib_MP4_IntPair(TagLib::MP4::IntPair *arg1) {
     SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
-
-static swig_class SwigClassByteVectorList;
-
-SWIGINTERN VALUE
-_wrap_new_ByteVectorList__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVectorList *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::ByteVectorList *)new TagLib::ByteVectorList();
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_TagLib_ByteVectorList(TagLib::ByteVectorList *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_ByteVectorList_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_ByteVectorList_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ByteVectorList);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_ByteVectorList__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVectorList *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  TagLib::ByteVectorList *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__ByteVectorList,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVectorList const &","ByteVectorList", 1, argv[0] )); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVectorList const &","ByteVectorList", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVectorList * >(argp1);
-  result = (TagLib::ByteVectorList *)new TagLib::ByteVectorList((TagLib::ByteVectorList const &)*arg1);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_new_ByteVectorList(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[1];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 1) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 0) {
-    return _wrap_new_ByteVectorList__SWIG_0(nargs, args, self);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVectorList, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_ByteVectorList__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 1, "ByteVectorList.new", 
-    "    ByteVectorList.new()\n"
-    "    ByteVectorList.new(TagLib::ByteVectorList const &l)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVectorList_to_byte_vector__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVectorList *arg1 = (TagLib::ByteVectorList *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector tmp2 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVectorList, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVectorList const *","toByteVector", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVectorList * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = ((TagLib::ByteVectorList const *)arg1)->toByteVector((TagLib::ByteVector const &)*arg2);
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVectorList_to_byte_vector__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVectorList *arg1 = (TagLib::ByteVectorList *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ByteVectorList, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVectorList const *","toByteVector", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVectorList * >(argp1);
-  result = ((TagLib::ByteVectorList const *)arg1)->toByteVector();
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVectorList_to_byte_vector(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVectorList, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_ByteVectorList_to_byte_vector__SWIG_1(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ByteVectorList, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVectorList_to_byte_vector__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ByteVectorList.to_byte_vector", 
-    "    TagLib::ByteVector ByteVectorList.to_byte_vector(TagLib::ByteVector const &separator)\n"
-    "    TagLib::ByteVector ByteVectorList.to_byte_vector()\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVectorList_split__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  int arg3 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::ByteVector tmp2 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  TagLib::ByteVectorList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
-    arg2 = &tmp2;
-  }
-  ecode3 = SWIG_AsVal_int(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","TagLib::ByteVectorList::split", 3, argv[2] ));
-  } 
-  arg3 = static_cast< int >(val3);
-  result = TagLib::ByteVectorList::split((TagLib::ByteVector const &)*arg1,(TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVectorList(static_cast< const TagLib::ByteVectorList& >(result))), SWIGTYPE_p_TagLib__ByteVectorList, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVectorList_split__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::ByteVector tmp2 ;
-  TagLib::ByteVectorList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
-    arg2 = &tmp2;
-  }
-  result = TagLib::ByteVectorList::split((TagLib::ByteVector const &)*arg1,(TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVectorList(static_cast< const TagLib::ByteVectorList& >(result))), SWIGTYPE_p_TagLib__ByteVectorList, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ByteVectorList_split__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  int arg3 ;
-  int arg4 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::ByteVector tmp2 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  TagLib::ByteVectorList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 4) || (argc > 4)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
-    arg2 = &tmp2;
-  }
-  ecode3 = SWIG_AsVal_int(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","TagLib::ByteVectorList::split", 3, argv[2] ));
-  } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(argv[3], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int","TagLib::ByteVectorList::split", 4, argv[3] ));
-  } 
-  arg4 = static_cast< int >(val4);
-  result = TagLib::ByteVectorList::split((TagLib::ByteVector const &)*arg1,(TagLib::ByteVector const &)*arg2,arg3,arg4);
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVectorList(static_cast< const TagLib::ByteVectorList& >(result))), SWIGTYPE_p_TagLib__ByteVectorList, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ByteVectorList_split(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 4) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 2) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ByteVectorList_split__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_ByteVectorList_split__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_ByteVectorList_split__SWIG_2(nargs, args, self);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "ByteVectorList.split", 
-    "    TagLib::ByteVectorList ByteVectorList.split(TagLib::ByteVector const &v, TagLib::ByteVector const &pattern, int byteAlign)\n"
-    "    TagLib::ByteVectorList ByteVectorList.split(TagLib::ByteVector const &v, TagLib::ByteVector const &pattern)\n"
-    "    TagLib::ByteVectorList ByteVectorList.split(TagLib::ByteVector const &v, TagLib::ByteVector const &pattern, int byteAlign, int max)\n");
-  
-  return Qnil;
-}
-
 
 static swig_class SwigClassProperties;
 
@@ -3956,21 +3599,16 @@ fail:
 SWIGINTERN VALUE
 _wrap_new_Item__SWIG_9(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVectorList *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  TagLib::ByteVectorList tmp1 ;
   TagLib::MP4::Item *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__ByteVectorList,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ByteVectorList const &","Item", 1, argv[0] )); 
+  {
+    tmp1 = ruby_array_to_byte_vector_list(argv[0]);
+    arg1 = &tmp1;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ByteVectorList const &","Item", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< TagLib::ByteVectorList * >(argp1);
   result = (TagLib::MP4::Item *)new TagLib::MP4::Item((TagLib::ByteVectorList const &)*arg1);
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
@@ -4398,7 +4036,9 @@ _wrap_Item_to_byte_vector_list(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::MP4::Item * >(argp1);
   result = ((TagLib::MP4::Item const *)arg1)->toByteVectorList();
-  vresult = SWIG_NewPointerObj((new TagLib::ByteVectorList(static_cast< const TagLib::ByteVectorList& >(result))), SWIGTYPE_p_TagLib__ByteVectorList, SWIG_POINTER_OWN |  0 );
+  {
+    vresult = taglib_bytevector_list_to_ruby_array(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -4588,6 +4228,28 @@ _wrap_Item_from_string_list(int argc, VALUE *argv, VALUE self) {
     arg1 = &tmp1;
   }
   result = (TagLib::MP4::Item *)TagLib_MP4_Item_from_string_list((TagLib::StringList const &)*arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MP4__Item, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_byte_vector_list(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVectorList *arg1 = 0 ;
+  TagLib::ByteVectorList tmp1 ;
+  TagLib::MP4::Item *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_array_to_byte_vector_list(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (TagLib::MP4::Item *)TagLib_MP4_Item_from_byte_vector_list((TagLib::ByteVectorList const &)*arg1);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MP4__Item, 0 |  0 );
   return vresult;
 fail:
@@ -5735,16 +5397,6 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   SwigClassIntPair.destroy = (void (*)(void *)) free_TagLib_MP4_IntPair;
   SwigClassIntPair.trackObjects = 1;
   
-  SwigClassByteVectorList.klass = rb_define_class_under(mMP4, "ByteVectorList", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ByteVectorList, (void *) &SwigClassByteVectorList);
-  rb_define_alloc_func(SwigClassByteVectorList.klass, _wrap_ByteVectorList_allocate);
-  rb_define_method(SwigClassByteVectorList.klass, "initialize", VALUEFUNC(_wrap_new_ByteVectorList), -1);
-  rb_define_method(SwigClassByteVectorList.klass, "to_byte_vector", VALUEFUNC(_wrap_ByteVectorList_to_byte_vector), -1);
-  rb_define_singleton_method(SwigClassByteVectorList.klass, "split", VALUEFUNC(_wrap_ByteVectorList_split), -1);
-  SwigClassByteVectorList.mark = 0;
-  SwigClassByteVectorList.destroy = (void (*)(void *)) free_TagLib_ByteVectorList;
-  SwigClassByteVectorList.trackObjects = 1;
-  
   SwigClassProperties.klass = rb_define_class_under(mMP4, "Properties", ((swig_class *) SWIGTYPE_p_TagLib__AudioProperties->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__MP4__Properties, (void *) &SwigClassProperties);
   rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
@@ -5805,6 +5457,7 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_singleton_method(SwigClassItem.klass, "from_long_long", VALUEFUNC(_wrap_Item_from_long_long), -1);
   rb_define_singleton_method(SwigClassItem.klass, "from_bool", VALUEFUNC(_wrap_Item_from_bool), -1);
   rb_define_singleton_method(SwigClassItem.klass, "from_string_list", VALUEFUNC(_wrap_Item_from_string_list), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_byte_vector_list", VALUEFUNC(_wrap_Item_from_byte_vector_list), -1);
   SwigClassItem.mark = 0;
   SwigClassItem.destroy = (void (*)(void *)) free_TagLib_MP4_Item;
   SwigClassItem.trackObjects = 1;

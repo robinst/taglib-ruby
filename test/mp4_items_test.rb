@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.join(File.dirname(__FILE__), 'helper')
 
 class MP4ItemsTest < Test::Unit::TestCase
@@ -125,10 +126,18 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_equal false, item.to_bool
       end
 
-      should "be creatable from a string list" do
-        item = TagLib::MP4::Item.from_string_list(["hello"])
-        assert_equal TagLib::MP4::Item, item.class
-        assert_equal ["hello"], item.to_string_list
+      context "created from an array of strings" do
+        should "interpreted as strings with an encoding" do
+          item = TagLib::MP4::Item.from_string_list(["héllo"])
+          assert_equal TagLib::MP4::Item, item.class
+          assert_equal ["héllo"], item.to_string_list
+        end
+
+        should "interpreted as lists of bytes" do
+          item = TagLib::MP4::Item.from_byte_vector_list(["hell\000!"])
+          assert_equal TagLib::MP4::Item, item.class
+          assert_equal ["hell\000!"], item.to_byte_vector_list
+        end
       end
     end
 

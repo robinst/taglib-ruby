@@ -81,6 +81,10 @@ module TagLib::MP4
     end
     #
     # @return [TagLib::MP4::Item]
+    def self.from_byte_vector_list
+    end
+    #
+    # @return [TagLib::MP4::Item]
     def self.from_uint
     end
     # TagLib::MP4::Item#methods:
@@ -95,7 +99,6 @@ module TagLib::MP4
     def to_byte
     end
 
-    # TODO!!
     # @return [Array<String>]
     def to_byte_vector_list
     end
