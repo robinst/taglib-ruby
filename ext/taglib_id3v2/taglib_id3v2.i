@@ -3,6 +3,7 @@
 #include <taglib/id3v2frame.h>
 #include <taglib/id3v2framefactory.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/id3v2header.h>
 
 #include <taglib/attachedpictureframe.h>
 #include <taglib/commentsframe.h>
@@ -69,6 +70,8 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
   return ary;
 }
 %}
+
+%include <taglib/id3v2header.h>
 
 %ignore TagLib::ID3v2::Frame::Header;
 %include <taglib/id3v2frame.h>
