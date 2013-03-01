@@ -10,6 +10,12 @@ module TagLib::MP4
     remove_method :save
   end
 
+  class Item
+    def self.from_int_pair(ary)
+      new(*ary)
+    end
+  end
+
   class ItemListMap
     alias :clear :_clear
     alias :insert :_insert
