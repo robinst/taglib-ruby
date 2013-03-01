@@ -80,19 +80,21 @@ class MP4ItemsTest < Test::Unit::TestCase
       should "insert a new item" do
         new_title = TagLib::MP4::Item.from_string_list(['new title'])
         @item_list_map.insert("\u00A9nam", new_title)
+        new_title = nil
+        GC.start
         assert_equal ['new title'], @item_list_map["\u00A9nam"].to_string_list
       end
 
-    should "unlink items that get replaced" do
-      title = @item_list_map["\u00A9nam"]
-      @item_list_map.insert("\u00A9nam", TagLib::MP4::Item.from_int(1))
-      begin
-        title.to_string_list
-        flunk("Should have raised ObjectPreviouslyDeleted.")
-      rescue => e
-        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      should "unlink items that get replaced" do
+        title = @item_list_map["\u00A9nam"]
+        @item_list_map.insert("\u00A9nam", TagLib::MP4::Item.from_int(1))
+        begin
+          title.to_string_list
+          flunk("Should have raised ObjectPreviouslyDeleted.")
+        rescue => e
+          assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+        end
       end
-    end
     end
 
     context "TagLib::MP4::Item" do
