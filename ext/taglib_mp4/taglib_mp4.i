@@ -38,6 +38,11 @@ TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
   }
   return result;
 }
+
+VALUE taglib_mp4_item_int_pair_to_ruby_array(const TagLib::MP4::Item::IntPair &int_pair) {
+  VALUE ary = rb_ary_new3(2, INT2NUM(int_pair.first), INT2NUM(int_pair.second));
+  return ary;
+}
 %}
 
 %ignore TagLib::Map::operator[];
@@ -52,10 +57,6 @@ namespace TagLib {
     class Item;
     class CoverArtList;
     class Properties;
-
-    struct IntPair {
-      int first, second;
-    };
   }
 }
 
@@ -83,14 +84,9 @@ namespace TagLib {
 
 %import <taglib/mp4atom.h>
 
-%nestedworkaround TagLib::MP4::Item::IntPair;
-%{
-  namespace TagLib {
-    namespace MP4 {
-      typedef Item::IntPair IntPair;
-    }
-  }
-%}
+%typemap(out) TagLib::MP4::Item::IntPair {
+  $result = taglib_mp4_item_int_pair_to_ruby_array($1);
+}
 %ignore TagLib::MP4::Item::operator=;
 %include <taglib/mp4item.h>
 

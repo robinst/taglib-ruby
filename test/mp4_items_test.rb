@@ -126,6 +126,12 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_equal false, item.to_bool
       end
 
+      should "be creatable from a pair of ints" do
+        item = TagLib::MP4::Item.from_int_pair([123, 456])
+        assert_equal TagLib::MP4::Item, item.class
+        assert_equal [123, 456], item.to_int_pair
+      end
+
       context "created from an array of strings" do
         should "interpreted as strings with an encoding" do
           item = TagLib::MP4::Item.from_string_list(["héllo"])
