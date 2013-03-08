@@ -13,6 +13,12 @@
 %{
 static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
   TagLib::MP4::Item *item = &(it->second);
+  TagLib::MP4::CoverArtList list = item->toCoverArtList();
+  for (TagLib::MP4::CoverArtList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    void *cover_art = (void *) &(*it);
+    SWIG_RubyUnlinkObjects(cover_art);
+    SWIG_RubyRemoveTracking(cover_art);
+  }
   SWIG_RubyUnlinkObjects(item);
   SWIG_RubyRemoveTracking(item);
 }
@@ -42,6 +48,29 @@ TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
 VALUE taglib_mp4_item_int_pair_to_ruby_array(const TagLib::MP4::Item::IntPair &int_pair) {
   VALUE ary = rb_ary_new3(2, INT2NUM(int_pair.first), INT2NUM(int_pair.second));
   return ary;
+}
+
+VALUE taglib_cover_art_list_to_ruby_array(const TagLib::MP4::CoverArtList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::MP4::CoverArtList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE c = SWIG_NewPointerObj((void *) &(*it), SWIGTYPE_p_TagLib__MP4__CoverArt, 0);
+    rb_ary_push(ary, c);
+  }
+  return ary;
+}
+
+TagLib::MP4::CoverArtList ruby_array_to_taglib_cover_art_list(VALUE ary) {
+  TagLib::MP4::CoverArtList result = TagLib::MP4::CoverArtList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::MP4::CoverArt *c;
+    SWIG_ConvertPtr(e, (void **) &c, SWIGTYPE_p_TagLib__MP4__CoverArt, 1);
+    result.append(*c);
+  }
+  return result;
 }
 %}
 
@@ -83,6 +112,16 @@ namespace TagLib {
 %include <taglib/mp4tag.h>
 
 %import <taglib/mp4atom.h>
+
+%typemap(out) TagLib::MP4::CoverArtList {
+  $result = taglib_cover_art_list_to_ruby_array($1);
+}
+%typemap(in) TagLib::MP4::CoverArtList (TagLib::MP4::CoverArtList tmp) {
+  tmp = ruby_array_to_taglib_cover_art_list($input);
+  $1 = &tmp;
+}
+%apply TagLib::MP4::CoverArtList { TagLib::MP4::CoverArtList &, const TagLib::MP4::CoverArtList & };
+%include <taglib/mp4coverart.h>
 
 %typemap(out) TagLib::MP4::Item::IntPair {
   $result = taglib_mp4_item_int_pair_to_ruby_array($1);
@@ -218,6 +257,10 @@ namespace TagLib {
 
   static TagLib::MP4::Item * from_byte_vector_list(const TagLib::ByteVectorList &byte_vector_list) {
    return new TagLib::MP4::Item(byte_vector_list);
+  }
+
+  static TagLib::MP4::Item * from_cover_art_list(const TagLib::MP4::CoverArtList &cover_art_list) {
+    return new TagLib::MP4::Item(cover_art_list);
   }
 }
 

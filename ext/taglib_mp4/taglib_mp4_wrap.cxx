@@ -1825,21 +1825,22 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ListT_TagLib__MP4__AtomData_t swig_types[6]
 #define SWIGTYPE_p_TagLib__ListT_TagLib__MP4__Atom_p_t swig_types[7]
 #define SWIGTYPE_p_TagLib__MP4__Atoms swig_types[8]
-#define SWIGTYPE_p_TagLib__MP4__CoverArtList swig_types[9]
-#define SWIGTYPE_p_TagLib__MP4__File swig_types[10]
-#define SWIGTYPE_p_TagLib__MP4__Item swig_types[11]
-#define SWIGTYPE_p_TagLib__MP4__Properties swig_types[12]
-#define SWIGTYPE_p_TagLib__MP4__Tag swig_types[13]
-#define SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t swig_types[14]
-#define SWIGTYPE_p_TagLib__StringList swig_types[15]
-#define SWIGTYPE_p_TagLib__Tag swig_types[16]
-#define SWIGTYPE_p_char swig_types[17]
-#define SWIGTYPE_p_unsigned_char swig_types[18]
-#define SWIGTYPE_p_unsigned_int swig_types[19]
-#define SWIGTYPE_p_unsigned_long swig_types[20]
-#define SWIGTYPE_p_wchar_t swig_types[21]
-static swig_type_info *swig_types[23];
-static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__MP4__CoverArt swig_types[9]
+#define SWIGTYPE_p_TagLib__MP4__CoverArtList swig_types[10]
+#define SWIGTYPE_p_TagLib__MP4__File swig_types[11]
+#define SWIGTYPE_p_TagLib__MP4__Item swig_types[12]
+#define SWIGTYPE_p_TagLib__MP4__Properties swig_types[13]
+#define SWIGTYPE_p_TagLib__MP4__Tag swig_types[14]
+#define SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t swig_types[15]
+#define SWIGTYPE_p_TagLib__StringList swig_types[16]
+#define SWIGTYPE_p_TagLib__Tag swig_types[17]
+#define SWIGTYPE_p_char swig_types[18]
+#define SWIGTYPE_p_unsigned_char swig_types[19]
+#define SWIGTYPE_p_unsigned_int swig_types[20]
+#define SWIGTYPE_p_unsigned_long swig_types[21]
+#define SWIGTYPE_p_wchar_t swig_types[22]
+static swig_type_info *swig_types[24];
+static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1980,6 +1981,12 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 
 static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::Iterator &it) {
   TagLib::MP4::Item *item = &(it->second);
+  TagLib::MP4::CoverArtList list = item->toCoverArtList();
+  for (TagLib::MP4::CoverArtList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    void *cover_art = (void *) &(*it);
+    SWIG_RubyUnlinkObjects(cover_art);
+    SWIG_RubyRemoveTracking(cover_art);
+  }
   SWIG_RubyUnlinkObjects(item);
   SWIG_RubyRemoveTracking(item);
 }
@@ -2009,6 +2016,29 @@ TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
 VALUE taglib_mp4_item_int_pair_to_ruby_array(const TagLib::MP4::Item::IntPair &int_pair) {
   VALUE ary = rb_ary_new3(2, INT2NUM(int_pair.first), INT2NUM(int_pair.second));
   return ary;
+}
+
+VALUE taglib_cover_art_list_to_ruby_array(const TagLib::MP4::CoverArtList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::MP4::CoverArtList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE c = SWIG_NewPointerObj((void *) &(*it), SWIGTYPE_p_TagLib__MP4__CoverArt, 0);
+    rb_ary_push(ary, c);
+  }
+  return ary;
+}
+
+TagLib::MP4::CoverArtList ruby_array_to_taglib_cover_art_list(VALUE ary) {
+  TagLib::MP4::CoverArtList result = TagLib::MP4::CoverArtList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = RARRAY_PTR(ary)[i];
+    TagLib::MP4::CoverArt *c;
+    SWIG_ConvertPtr(e, (void **) &c, SWIGTYPE_p_TagLib__MP4__CoverArt, 1);
+    result.append(*c);
+  }
+  return result;
 }
 
 
@@ -2298,6 +2328,9 @@ SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_string_list(TagLib::StringLis
   }
 SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_byte_vector_list(TagLib::ByteVectorList const &byte_vector_list){
    return new TagLib::MP4::Item(byte_vector_list);
+  }
+SWIGINTERN TagLib::MP4::Item *TagLib_MP4_Item_from_cover_art_list(TagLib::MP4::CoverArtList const &cover_art_list){
+    return new TagLib::MP4::Item(cover_art_list);
   }
 SWIGINTERN void TagLib_MP4_File_close(TagLib::MP4::File *self){
     free_taglib_mp4_file(self);
@@ -3202,6 +3235,181 @@ fail:
 }
 
 
+static swig_class SwigClassCoverArt;
+
+SWIGINTERN VALUE
+_wrap_new_CoverArt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::CoverArt::Format arg1 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::MP4::CoverArt *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::MP4::CoverArt::Format","CoverArt", 1, argv[0] ));
+  } 
+  arg1 = static_cast< TagLib::MP4::CoverArt::Format >(val1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::MP4::CoverArt *)new TagLib::MP4::CoverArt(arg1,(TagLib::ByteVector const &)*arg2);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_TagLib_MP4_CoverArt(TagLib::MP4::CoverArt *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_CoverArt_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_CoverArt_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__MP4__CoverArt);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_CoverArt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::CoverArt *arg1 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  TagLib::MP4::CoverArt *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__MP4__CoverArt,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MP4::CoverArt const &","CoverArt", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::MP4::CoverArt const &","CoverArt", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< TagLib::MP4::CoverArt * >(argp1);
+  result = (TagLib::MP4::CoverArt *)new TagLib::MP4::CoverArt((TagLib::MP4::CoverArt const &)*arg1);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_CoverArt(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 2) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MP4__CoverArt, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_CoverArt__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      int res = SWIG_AsVal_int(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_CoverArt__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "CoverArt.new", 
+    "    CoverArt.new(TagLib::MP4::CoverArt::Format format, TagLib::ByteVector const &data)\n"
+    "    CoverArt.new(TagLib::MP4::CoverArt const &item)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_CoverArt_format(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::CoverArt *arg1 = (TagLib::MP4::CoverArt *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::MP4::CoverArt::Format result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MP4__CoverArt, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MP4::CoverArt const *","format", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::MP4::CoverArt * >(argp1);
+  result = (TagLib::MP4::CoverArt::Format)((TagLib::MP4::CoverArt const *)arg1)->format();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_CoverArt_data(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::CoverArt *arg1 = (TagLib::MP4::CoverArt *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MP4__CoverArt, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MP4::CoverArt const *","data", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::MP4::CoverArt * >(argp1);
+  result = ((TagLib::MP4::CoverArt const *)arg1)->data();
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 static swig_class SwigClassItem;
 
 SWIGINTERN VALUE
@@ -3469,21 +3677,16 @@ _wrap_Item_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_Item__SWIG_10(int argc, VALUE *argv, VALUE self) {
   TagLib::MP4::CoverArtList *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  TagLib::MP4::CoverArtList tmp1 ;
   TagLib::MP4::Item *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__MP4__CoverArtList,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MP4::CoverArtList const &","Item", 1, argv[0] )); 
+  {
+    tmp1 = ruby_array_to_taglib_cover_art_list(argv[0]);
+    arg1 = &tmp1;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::MP4::CoverArtList const &","Item", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< TagLib::MP4::CoverArtList * >(argp1);
   result = (TagLib::MP4::Item *)new TagLib::MP4::Item((TagLib::MP4::CoverArtList const &)*arg1);
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
@@ -3895,7 +4098,9 @@ _wrap_Item_to_cover_art_list(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< TagLib::MP4::Item * >(argp1);
   result = ((TagLib::MP4::Item const *)arg1)->toCoverArtList();
-  vresult = SWIG_NewPointerObj((new TagLib::MP4::CoverArtList(static_cast< const TagLib::MP4::CoverArtList& >(result))), SWIGTYPE_p_TagLib__MP4__CoverArtList, SWIG_POINTER_OWN |  0 );
+  {
+    vresult = taglib_cover_art_list_to_ruby_array(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -4083,6 +4288,28 @@ _wrap_Item_from_byte_vector_list(int argc, VALUE *argv, VALUE self) {
     arg1 = &tmp1;
   }
   result = (TagLib::MP4::Item *)TagLib_MP4_Item_from_byte_vector_list((TagLib::ByteVectorList const &)*arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MP4__Item, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Item_from_cover_art_list(int argc, VALUE *argv, VALUE self) {
+  TagLib::MP4::CoverArtList *arg1 = 0 ;
+  TagLib::MP4::CoverArtList tmp1 ;
+  TagLib::MP4::Item *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_array_to_taglib_cover_art_list(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (TagLib::MP4::Item *)TagLib_MP4_Item_from_cover_art_list((TagLib::MP4::CoverArtList const &)*arg1);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__MP4__Item, 0 |  0 );
   return vresult;
 fail:
@@ -4868,6 +5095,7 @@ static swig_type_info _swigt__p_TagLib__IOStream = {"_p_TagLib__IOStream", "TagL
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__MP4__AtomData_t = {"_p_TagLib__ListT_TagLib__MP4__AtomData_t", "TagLib::MP4::AtomDataList *|TagLib::List< TagLib::MP4::AtomData > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t = {"_p_TagLib__ListT_TagLib__MP4__Atom_p_t", "TagLib::MP4::AtomList *|TagLib::List< TagLib::MP4::Atom * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__Atoms = {"_p_TagLib__MP4__Atoms", "TagLib::MP4::Atoms *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__MP4__CoverArt = {"_p_TagLib__MP4__CoverArt", "TagLib::MP4::CoverArt *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__CoverArtList = {"_p_TagLib__MP4__CoverArtList", "TagLib::MP4::CoverArtList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__File = {"_p_TagLib__MP4__File", "TagLib::MP4::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__Item = {"_p_TagLib__MP4__Item", "TagLib::MP4::Item *", 0, 0, (void*)0, 0};
@@ -4892,6 +5120,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ListT_TagLib__MP4__AtomData_t,
   &_swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t,
   &_swigt__p_TagLib__MP4__Atoms,
+  &_swigt__p_TagLib__MP4__CoverArt,
   &_swigt__p_TagLib__MP4__CoverArtList,
   &_swigt__p_TagLib__MP4__File,
   &_swigt__p_TagLib__MP4__Item,
@@ -4916,6 +5145,7 @@ static swig_cast_info _swigc__p_TagLib__IOStream[] = {  {&_swigt__p_TagLib__IOSt
 static swig_cast_info _swigc__p_TagLib__ListT_TagLib__MP4__AtomData_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__MP4__AtomData_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ListT_TagLib__MP4__Atom_p_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__Atoms[] = {  {&_swigt__p_TagLib__MP4__Atoms, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__MP4__CoverArt[] = {  {&_swigt__p_TagLib__MP4__CoverArt, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__CoverArtList[] = {  {&_swigt__p_TagLib__MP4__CoverArtList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__File[] = {  {&_swigt__p_TagLib__MP4__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__Item[] = {  {&_swigt__p_TagLib__MP4__Item, 0, 0, 0},{0, 0, 0, 0}};
@@ -4940,6 +5170,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ListT_TagLib__MP4__AtomData_t,
   _swigc__p_TagLib__ListT_TagLib__MP4__Atom_p_t,
   _swigc__p_TagLib__MP4__Atoms,
+  _swigc__p_TagLib__MP4__CoverArt,
   _swigc__p_TagLib__MP4__CoverArtList,
   _swigc__p_TagLib__MP4__File,
   _swigc__p_TagLib__MP4__Item,
@@ -5252,6 +5483,20 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_MP4_Tag;
   SwigClassTag.trackObjects = 1;
   
+  SwigClassCoverArt.klass = rb_define_class_under(mMP4, "CoverArt", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__MP4__CoverArt, (void *) &SwigClassCoverArt);
+  rb_define_alloc_func(SwigClassCoverArt.klass, _wrap_CoverArt_allocate);
+  rb_define_method(SwigClassCoverArt.klass, "initialize", VALUEFUNC(_wrap_new_CoverArt), -1);
+  rb_define_const(SwigClassCoverArt.klass, "JPEG", SWIG_From_int(static_cast< int >(TagLib::MP4::CoverArt::JPEG)));
+  rb_define_const(SwigClassCoverArt.klass, "PNG", SWIG_From_int(static_cast< int >(TagLib::MP4::CoverArt::PNG)));
+  rb_define_const(SwigClassCoverArt.klass, "BMP", SWIG_From_int(static_cast< int >(TagLib::MP4::CoverArt::BMP)));
+  rb_define_const(SwigClassCoverArt.klass, "GIF", SWIG_From_int(static_cast< int >(TagLib::MP4::CoverArt::GIF)));
+  rb_define_method(SwigClassCoverArt.klass, "format", VALUEFUNC(_wrap_CoverArt_format), -1);
+  rb_define_method(SwigClassCoverArt.klass, "data", VALUEFUNC(_wrap_CoverArt_data), -1);
+  SwigClassCoverArt.mark = 0;
+  SwigClassCoverArt.destroy = (void (*)(void *)) free_TagLib_MP4_CoverArt;
+  SwigClassCoverArt.trackObjects = 1;
+  
   SwigClassItem.klass = rb_define_class_under(mMP4, "Item", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__MP4__Item, (void *) &SwigClassItem);
   rb_define_alloc_func(SwigClassItem.klass, _wrap_Item_allocate);
@@ -5275,6 +5520,7 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   rb_define_singleton_method(SwigClassItem.klass, "from_bool", VALUEFUNC(_wrap_Item_from_bool), -1);
   rb_define_singleton_method(SwigClassItem.klass, "from_string_list", VALUEFUNC(_wrap_Item_from_string_list), -1);
   rb_define_singleton_method(SwigClassItem.klass, "from_byte_vector_list", VALUEFUNC(_wrap_Item_from_byte_vector_list), -1);
+  rb_define_singleton_method(SwigClassItem.klass, "from_cover_art_list", VALUEFUNC(_wrap_Item_from_cover_art_list), -1);
   SwigClassItem.mark = 0;
   SwigClassItem.destroy = (void (*)(void *)) free_TagLib_MP4_Item;
   SwigClassItem.trackObjects = 1;
