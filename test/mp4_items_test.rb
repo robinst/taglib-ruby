@@ -147,6 +147,23 @@ class MP4ItemsTest < Test::Unit::TestCase
           assert_equal ["hell\000!"], item.to_byte_vector_list
         end
       end
+
+      should "be creatable from a CoverArt list" do
+        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::BMP, 'foo')
+        item = TagLib::MP4::Item.from_cover_art_list([cover_art])
+        assert_equal TagLib::MP4::Item, item.class
+        new_cover_art = item.to_cover_art_list.first
+        assert_equal 'foo', new_cover_art.data
+        assert_equal TagLib::MP4::CoverArt::BMP, new_cover_art.format
+      end
+    end
+
+    context "TagLib::MP4::CoverArt" do
+      should "be creatable from a string" do
+        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::BMP, 'foo')
+        assert_equal TagLib::MP4::CoverArt::BMP, cover_art.format
+        assert_equal 'foo', cover_art.data
+      end
     end
 
     teardown do
