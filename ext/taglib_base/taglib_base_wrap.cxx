@@ -2019,11 +2019,7 @@ SWIGINTERN int
 SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 {
   if (TYPE(obj) == T_STRING) {
-    #if defined(StringValuePtr)
     char *cstr = StringValuePtr(obj); 
-    #else
-    char *cstr = STR2CSTR(obj);
-    #endif
     size_t size = RSTRING_LEN(obj) + 1;
     if (cptr)  {
       if (alloc) {
@@ -4135,12 +4131,12 @@ _wrap_new_FileRef__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","FileRef", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
   ecode3 = SWIG_AsVal_int(argv[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef", 3, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","FileRef", 3, argv[2] ));
   } 
   arg3 = static_cast< TagLib::AudioProperties::ReadStyle >(val3);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1,arg2,arg3);
@@ -4171,7 +4167,7 @@ _wrap_new_FileRef__SWIG_2(int argc, VALUE *argv, VALUE self) {
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","FileRef", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1,arg2);
@@ -4218,7 +4214,7 @@ _wrap_new_FileRef__SWIG_4(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__File, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","TagLib::FileRef", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","FileRef", 1, argv[0] )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   result = (TagLib::FileRef *)new TagLib::FileRef(arg1);
@@ -4259,10 +4255,10 @@ _wrap_new_FileRef__SWIG_5(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__FileRef,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef const &","TagLib::FileRef", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef const &","FileRef", 1, argv[0] )); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::FileRef const &","TagLib::FileRef", 1, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::FileRef const &","FileRef", 1, argv[0])); 
   }
   arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
   result = (TagLib::FileRef *)new TagLib::FileRef((TagLib::FileRef const &)*arg1);

@@ -2076,11 +2076,7 @@ SWIGINTERN int
 SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 {
   if (TYPE(obj) == T_STRING) {
-    #if defined(StringValuePtr)
     char *cstr = StringValuePtr(obj); 
-    #else
-    char *cstr = STR2CSTR(obj);
-    #endif
     size_t size = RSTRING_LEN(obj) + 1;
     if (cptr)  {
       if (alloc) {
@@ -2161,12 +2157,12 @@ _wrap_new_Properties__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__Vorbis__File, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::File *","TagLib::Vorbis::Properties", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::File *","Properties", 1, argv[0] )); 
   }
   arg1 = reinterpret_cast< TagLib::Vorbis::File * >(argp1);
   ecode2 = SWIG_AsVal_int(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::Vorbis::Properties", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","Properties", 2, argv[1] ));
   } 
   arg2 = static_cast< TagLib::AudioProperties::ReadStyle >(val2);
   result = (TagLib::Vorbis::Properties *)new TagLib::Vorbis::Properties(arg1,arg2);
@@ -2207,7 +2203,7 @@ _wrap_new_Properties__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__Vorbis__File, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::File *","TagLib::Vorbis::Properties", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::File *","Properties", 1, argv[0] )); 
   }
   arg1 = reinterpret_cast< TagLib::Vorbis::File * >(argp1);
   result = (TagLib::Vorbis::Properties *)new TagLib::Vorbis::Properties(arg1);
@@ -2485,12 +2481,12 @@ _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::Vorbis::File", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","File", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
   ecode3 = SWIG_AsVal_int(argv[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties::ReadStyle","TagLib::Vorbis::File", 3, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties::ReadStyle","File", 3, argv[2] ));
   } 
   arg3 = static_cast< TagLib::Vorbis::Properties::ReadStyle >(val3);
   result = (TagLib::Vorbis::File *)new TagLib::Vorbis::File(arg1,arg2,arg3);
@@ -2521,7 +2517,7 @@ _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::Vorbis::File", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","File", 2, argv[1] ));
   } 
   arg2 = static_cast< bool >(val2);
   result = (TagLib::Vorbis::File *)new TagLib::Vorbis::File(arg1,arg2);

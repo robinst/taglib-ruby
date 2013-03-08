@@ -1976,11 +1976,7 @@ SWIGINTERN int
 SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 {
   if (TYPE(obj) == T_STRING) {
-    #if defined(StringValuePtr)
     char *cstr = StringValuePtr(obj); 
-    #else
-    char *cstr = STR2CSTR(obj);
-    #endif
     size_t size = RSTRING_LEN(obj) + 1;
     if (cptr)  {
       if (alloc) {
@@ -2275,12 +2271,12 @@ _wrap_new_Tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__File, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","TagLib::ID3v1::Tag", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","Tag", 1, argv[0] )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   ecode2 = SWIG_AsVal_long(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","TagLib::ID3v1::Tag", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","Tag", 2, argv[1] ));
   } 
   arg2 = static_cast< long >(val2);
   result = (TagLib::ID3v1::Tag *)new TagLib::ID3v1::Tag(arg1,arg2);
