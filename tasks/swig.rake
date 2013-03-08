@@ -5,7 +5,7 @@ def run_swig(mod)
   if swig.empty?
     swig = `which swig2.0`.chomp
   end
-  sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} -I/usr/include #{mod}.i"
+  sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} -I/usr/local/include -I/usr/include #{mod}.i"
 end
 
 task :swig =>
