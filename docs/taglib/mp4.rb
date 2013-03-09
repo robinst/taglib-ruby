@@ -57,9 +57,19 @@ module TagLib::MP4
     end
   end
 
+  # TagLib's `MP4::Item` class is a C++ union. To create a new Item with a value
+  # of the right type, use one of the `Item.from_<type>`-constructors. The use
+  # of `Item.new` is discouraged. For more information, see [the TagLib
+  # documentation of `Item`](http://taglib.github.com/api/classTagLib_1_1MP4_1_1Item.html).
+  # @example Using a specific constructor
+  #   > item = TagLib::MP4::Item.from_string_list(['hello'])
+  #   => #<TagLib::MP4::Item:0x007ffd59796d60 @__swigtype__="_p_TagLib__MP4__Item">
+  #   > item.to_string_list
+  #   => ["hello"]
+  #   > item.to_int # Good luck!
+  #   => 1538916358
+  #
   class Item
-    # [8] pry(main)> ls TagLib::MP4::Item
-    # TagLib::MP4::Item.methods:
     # @return [TagLib::MP4::Item]
     def self.from_bool
     end
@@ -87,7 +97,7 @@ module TagLib::MP4
     # @return [TagLib::MP4::Item]
     def self.from_uint
     end
-    # TagLib::MP4::Item#methods:
+
     attr_accessor :atom_data_type
 
     # @return [Boolean]
@@ -111,7 +121,6 @@ module TagLib::MP4
     def to_int
     end
 
-    # TODO!!
     # @return [Array<Fixnum, Fixnum>]
     def to_int_pair
     end
@@ -132,15 +141,94 @@ module TagLib::MP4
     def valid?
     end
   end
-  #
+
+  # The underlying C++-structure of `ItemListMap` inherits from `std::map`.
+  # Consequently, `ItemListMap` behaves differently from a Ruby hash in a few
+  # places. Be sure to read the documentation of the instance methods below.
   class ItemListMap
-    # [9] pry(main)> ls TagLib::MP4::ItemListMap
-    # TagLib::MP4::ItemListMap#methods: []  _clear  _insert  clear  contains  empty?  erase  fetch  has_key?  include?  insert  size  to_a
+    # Return the Item under `key`, or `nil` if no Item is present.
+    # @param [String] key
+    # @return [TagLib::MP4::Item]
+    # @return [nil] if not present
+    def fetch(key)
+    end
+    alias :[] :fetch
+
+    # @example Warning: things get destroyed
+    #   > mp4.tag.item_list_map["\u00a9nam"]
+    #   => #<TagLib::MP4::Item:0x007f9199f9f2b8 @__swigtype__="_p_TagLib__MP4__Item">
+    #   > remember_me = mp4.tag.item_list_map["\u00a9nam"]
+    #   => #<TagLib::MP4::Item:0x007f9199f9f2b8 @__swigtype__="_p_TagLib__MP4__Item">
+    #   > mp4.tag.item_list_map.clear
+    #   => nil
+    #   > remember_me.to_string_list
+    #   ObjectPreviouslyDeleted: Expected argument 0 of type TagLib::MP4::Item const *, but got TagLib::MP4::Item #<TagLib::MP4::Item:0x007f9199...
+    #   	in SWIG method 'toStringList'
+    #   from (pry):7:in `to_string_list'
+    #
+    # Remove all Items from self, destroying each Item.
+    # @return [nil]
+    def clear
+    end
+
+    # Returns true if self has an Item under `key`.
+    # @param [String] key
+    # @return [Boolean]
+    def contains(key)
+    end
+    alias :has_key? :contains
+    alias :include? :contains
+
+    # Returns true if self is empty
+    # @return [Boolean]
+    def empty?
+    end
+
+    # Remove and destroy the value under `key`, if present.
+    # @example Warning: things get destroyed
+    #   > remember_me = mp4.tag.item_list_map["\u00a9nam"]
+    #   => #<TagLib::MP4::Item:0x007f919a99bac8 @__swigtype__="_p_TagLib__MP4__Item">
+    #   > mp4.tag.item_list_map.erase("\u00a9nam")
+    #   => nil
+    #   > remember_me.to_string_list
+    #   ObjectPreviouslyDeleted: Expected argument 0 of type TagLib::MP4::Item const *, but got TagLib::MP4::Item #<TagLib::MP4::Item:0x007f919a...
+    #   	in SWIG method 'toStringList'
+    #   from (pry):13:in `to_string_list'
+    #
+    # @param [String] key
+    # @return [nil]
+    def erase(key)
+    end
+
+    # Insert an item at `key`, destoying the existing item under `key`.
+    # @example Warning: things get destroyed
+    #   > remember_me = mp4.tag.item_list_map["\u00a9nam"]
+    #   => #<TagLib::MP4::Item:0x007f919aa062b0 @__swigtype__="_p_TagLib__MP4__Item">
+    #   > mp4.tag.item_list_map.insert("\u00a9nam", TagLib::MP4::Item.from_string_list(['New']))
+    #   => nil
+    #   > remember_me.to_string_list
+    #   ObjectPreviouslyDeleted: Expected argument 0 of type TagLib::MP4::Item const *, but got TagLib::MP4::Item #<TagLib::MP4::Item:0x007f919a...
+    #   	in SWIG method 'toStringList'
+    #   from (pry):18:in `to_string_list'
+    # @param [String] key
+    # @param [TagLib::MP4::Item] item
+    # @return [nil]
+    def insert(key, item)
+    end
+
+    # The number of Items in self.
+    # @return [FixNum]
+    def size
+    end
+
+    # Convert self into an array of `[key, value]` pairs.
+    # @return [Array<Array<String, TagLib::MP4::Item>>]
+    def to_a
+    end
   end
   #
   class Properties < TagLib::AudioProperties
-    # [11] pry(main)> ls TagLib::MP4::Properties
-    # TagLib::MP4::Properties#methods: bitrate  bits_per_sample  channels  encrypted?  length  sample_rate
+    attr_reader :bits_per_sample, :encrypted?
   end
   #
 end
