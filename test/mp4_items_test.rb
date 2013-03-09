@@ -8,7 +8,7 @@ class MP4ItemsTest < Test::Unit::TestCase
       @tag = @file.tag
       @item_list_map = @file.tag.item_list_map
       @item_keys = [
-        "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
+        "cover", "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
         "\u00A9day", "trkn", "\u00A9too", "\u00A9cpy"
       ]
     end
@@ -22,7 +22,7 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_equal false, @item_list_map.empty?
       end
 
-      should "contain 9 items" do
+      should "contain 10 items" do
         assert_equal @item_keys.count, @item_list_map.size
       end
 
@@ -39,7 +39,7 @@ class MP4ItemsTest < Test::Unit::TestCase
       end
 
       should "be clearable" do
-        assert_equal 9, @item_list_map.size
+        assert_equal 10, @item_list_map.size
         comment = @item_list_map["\u00A9cmt"]
         @item_list_map.clear
         assert_equal true, @item_list_map.empty?
@@ -53,7 +53,7 @@ class MP4ItemsTest < Test::Unit::TestCase
 
       should "be convertable to an array" do
         array = @item_list_map.to_a
-        assert_equal 9, array.count
+        assert_equal 10, array.count
         array.each do |object|
           assert_equal Array, object.class
           assert_equal 2, object.count
@@ -64,10 +64,10 @@ class MP4ItemsTest < Test::Unit::TestCase
     end
 
     should "be removable" do
-      assert_equal 9, @item_list_map.size
+      assert_equal 10, @item_list_map.size
       title = @item_list_map["\u00A9nam"]
       @item_list_map.erase("\u00A9nam")
-      assert_equal 8, @item_list_map.size
+      assert_equal 9, @item_list_map.size
       begin
         title.to_string_list
         flunk("Should have raised ObjectPreviouslyDeleted.")
