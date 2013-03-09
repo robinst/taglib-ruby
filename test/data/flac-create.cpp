@@ -1,14 +1,13 @@
 #include <iostream>
-#include <fstream>
 #include <stdlib.h>
 
 #include <taglib/taglib.h>
 #include <taglib/flacfile.h>
 #include <taglib/xiphcomment.h>
 
-using namespace TagLib;
+#include "get_picture_data.cpp"
 
-ByteVector getPictureData(const char *filename);
+using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -56,25 +55,6 @@ int main(int argc, char **argv) {
   file.addPicture(picture);
 
   file.save();
-}
-
-ByteVector getPictureData(const char *filename) {
-  std::ifstream is;
-  is.open(filename, std::ios::binary);
-
-  is.seekg(0, std::ios::end);
-  int length = is.tellg();
-  is.seekg(0, std::ios::beg);
-
-  char *buffer = new char[length];
-
-  is.read(buffer, length);
-  is.close();
-
-  ByteVector result(buffer, length);
-  delete[] buffer;
-
-  return result;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
