@@ -1,10 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include <stdlib.h>
 
 #include <taglib/taglib.h>
 #include <taglib/mp4file.h>
 
 using namespace TagLib;
+
+ByteVector getPictureData(const char *filename);
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -24,7 +27,32 @@ int main(int argc, char **argv) {
   tag->setYear(2011);
   tag->setTrack(7);
 
+  ByteVector data = getPictureData("globe_east_90.jpg");
+  MP4::CoverArt cover_art = MP4::CoverArt(MP4::CoverArt::JPEG, data);
+  MP4::CoverArtList cover_art_list = MP4::CoverArtList();
+  cover_art_list.append(cover_art);
+  tag->itemListMap().insert("covr", MP4::Item(cover_art_list));
+
   file.save();
+}
+
+ByteVector getPictureData(const char *filename) {
+  std::ifstream is;
+  is.open(filename, std::ios::binary);
+
+  is.seekg(0, std::ios::end);
+  int length = is.tellg();
+  is.seekg(0, std::ios::beg);
+
+  char *buffer = new char[length];
+
+  is.read(buffer, length);
+  is.close();
+
+  ByteVector result(buffer, length);
+  delete[] buffer;
+
+  return result;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
