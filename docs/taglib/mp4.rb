@@ -198,5 +198,32 @@ module TagLib::MP4
   class Properties < TagLib::AudioProperties
     attr_reader :bits_per_sample, :encrypted?
   end
+
+  # The `CoverArt` class is used to embed cover art images in MP4 tags.
   #
+  # @example Creating a new CoverArt instance
+  #   > image_data = File.open('test/data/globe_east_90.jpg', 'rb') { |f| f.read }
+  #   => <snip>
+  #   > cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, image_data)
+  #   => #<TagLib::MP4::CoverArt:0x007ffb1b43a918
+  #    @__swigtype__="_p_TagLib__MP4__CoverArt">
+  class CoverArt
+    JPEG = 0x0D
+    PNG  = 0x0E
+
+    # Returns the format of the image data: `JPEG` or `PNG`.
+    # @return [Format]
+    attr_reader :format
+
+    # Returns the raw image data
+    # @return [String]
+   attr_reader :data
+
+    # @param [Format] format
+    # @param [String] data
+    # @return [TagLib::MP4::CoverArt]
+    def initialize(format, data)
+
+    end
+  end
 end
