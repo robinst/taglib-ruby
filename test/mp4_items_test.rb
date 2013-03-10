@@ -104,24 +104,6 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_equal -42, item.to_int
       end
 
-      should "be creatable from a byte" do
-        item = TagLib::MP4::Item.from_byte(255)
-        assert_equal TagLib::MP4::Item, item.class
-        assert_equal 255, item.to_byte
-      end
-
-      should "be creatable from a uint" do
-        item = TagLib::MP4::Item.from_uint(255)
-        assert_equal TagLib::MP4::Item, item.class
-        assert_equal 255, item.to_uint
-      end
-
-      should "be creatable from a long long" do
-        item = TagLib::MP4::Item.from_long_long(255)
-        assert_equal TagLib::MP4::Item, item.class
-        assert_equal 255, item.to_long_long
-      end
-
       should "be creatable from a boolean" do
         item = TagLib::MP4::Item.from_bool(false)
         assert_equal TagLib::MP4::Item, item.class
@@ -140,28 +122,22 @@ class MP4ItemsTest < Test::Unit::TestCase
           assert_equal TagLib::MP4::Item, item.class
           assert_equal ["héllo"], item.to_string_list
         end
-
-        should "interpreted as lists of bytes" do
-          item = TagLib::MP4::Item.from_byte_vector_list(["hell\000!"])
-          assert_equal TagLib::MP4::Item, item.class
-          assert_equal ["hell\000!"], item.to_byte_vector_list
-        end
       end
 
       should "be creatable from a CoverArt list" do
-        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::BMP, 'foo')
+        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, 'foo')
         item = TagLib::MP4::Item.from_cover_art_list([cover_art])
         assert_equal TagLib::MP4::Item, item.class
         new_cover_art = item.to_cover_art_list.first
         assert_equal 'foo', new_cover_art.data
-        assert_equal TagLib::MP4::CoverArt::BMP, new_cover_art.format
+        assert_equal TagLib::MP4::CoverArt::JPEG, new_cover_art.format
       end
     end
 
     context "TagLib::MP4::CoverArt" do
       should "be creatable from a string" do
-        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::BMP, 'foo')
-        assert_equal TagLib::MP4::CoverArt::BMP, cover_art.format
+        cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, 'foo')
+        assert_equal TagLib::MP4::CoverArt::JPEG, cover_art.format
         assert_equal 'foo', cover_art.data
       end
     end
