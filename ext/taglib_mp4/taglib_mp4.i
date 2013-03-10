@@ -23,28 +23,6 @@ static void unlink_taglib_mp4_item_list_map_iterator(TagLib::MP4::ItemListMap::I
   SWIG_RubyRemoveTracking(item);
 }
 
-VALUE taglib_bytevector_list_to_ruby_array(const TagLib::ByteVectorList & list) {
-  VALUE ary = rb_ary_new2(list.size());
-  for (TagLib::ByteVectorList::ConstIterator it = list.begin(); it != list.end(); it++) {
-    VALUE s = taglib_bytevector_to_ruby_string(*it);
-    rb_ary_push(ary, s);
-  }
-  return ary;
-}
-
-TagLib::ByteVectorList ruby_array_to_byte_vector_list(VALUE ary) {
-  TagLib::ByteVectorList result = TagLib::ByteVectorList();
-  if (NIL_P(ary)) {
-    return result;
-  }
-  for (long i = 0; i < RARRAY_LEN(ary); i++) {
-    VALUE e = RARRAY_PTR(ary)[i];
-    TagLib::ByteVector b = ruby_string_to_taglib_bytevector(e);
-    result.append(b);
-  }
-  return result;
-}
-
 VALUE taglib_mp4_item_int_pair_to_ruby_array(const TagLib::MP4::Item::IntPair &int_pair) {
   VALUE ary = rb_ary_new3(2, INT2NUM(int_pair.first), INT2NUM(int_pair.second));
   return ary;
@@ -79,8 +57,6 @@ TagLib::MP4::CoverArtList ruby_array_to_taglib_cover_art_list(VALUE ary) {
 %alias TagLib::Map::contains "include?,has_key?";
 %include <taglib/tmap.h>
 
-%import <taglib/tiostream.h>
-
 namespace TagLib {
   namespace MP4 {
     class Item;
@@ -88,16 +64,6 @@ namespace TagLib {
     class Properties;
   }
 }
-
-%typemap(out) TagLib::ByteVectorList {
-  $result = taglib_bytevector_list_to_ruby_array($1);
-}
-%typemap(in) TagLib::ByteVectorList (TagLib::ByteVectorList tmp) {
-  tmp = ruby_array_to_byte_vector_list($input);
-  $1 = &tmp;
-}
-%apply TagLib::ByteVectorList { TagLib::ByteVectorList &, const TagLib::ByteVectorList & };
-%import <taglib/tbytevectorlist.h>
 
 %include <taglib/mp4properties.h>
 
@@ -235,28 +201,12 @@ namespace TagLib {
     return new TagLib::MP4::Item(n);
   }
 
-  static TagLib::MP4::Item * from_byte(uchar c) {
-    return new TagLib::MP4::Item(c);
-  }
-
-  static TagLib::MP4::Item * from_uint(uint n) {
-    return new TagLib::MP4::Item(n);
-  }
-
-  static TagLib::MP4::Item * from_long_long(long long n) {
-    return new TagLib::MP4::Item(n);
-  }
-
   static TagLib::MP4::Item * from_bool(bool q) {
     return new TagLib::MP4::Item(q);
   }
 
   static TagLib::MP4::Item * from_string_list(const TagLib::StringList &string_list) {
    return new TagLib::MP4::Item(string_list);
-  }
-
-  static TagLib::MP4::Item * from_byte_vector_list(const TagLib::ByteVectorList &byte_vector_list) {
-   return new TagLib::MP4::Item(byte_vector_list);
   }
 
   static TagLib::MP4::Item * from_cover_art_list(const TagLib::MP4::CoverArtList &cover_art_list) {

@@ -75,27 +75,11 @@ module TagLib::MP4
     end
     #
     # @return [TagLib::MP4::Item]
-    def self.from_byte
-    end
-    #
-    # @return [TagLib::MP4::Item]
     def self.from_int
     end
     #
     # @return [TagLib::MP4::Item]
-    def self.from_long_long
-    end
-    #
-    # @return [TagLib::MP4::Item]
     def self.from_string_list
-    end
-    #
-    # @return [TagLib::MP4::Item]
-    def self.from_byte_vector_list
-    end
-    #
-    # @return [TagLib::MP4::Item]
-    def self.from_uint
     end
 
     attr_accessor :atom_data_type
@@ -103,14 +87,6 @@ module TagLib::MP4
     # @return [Boolean]
     def
       to_bool
-    end
-
-    # @return [Fixnum]
-    def to_byte
-    end
-
-    # @return [Array<String>]
-    def to_byte_vector_list
     end
 
     # @return [Array<TagLib::MP4::CoverArt>]
@@ -125,16 +101,8 @@ module TagLib::MP4
     def to_int_pair
     end
 
-    # @return [Fixnum]
-    def to_long_long
-    end
-
     # @return [Array<String>]
     def to_string_list
-    end
-
-    # @return [Fixnum]
-    def to_uint
     end
 
     # @return [Boolean]
