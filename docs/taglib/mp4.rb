@@ -1,7 +1,3 @@
-# [1] pry(main)> ls TagLib::MP4
-# constants: Atom  AtomData  Atoms  ByteVectorList  File  IntPair  IOStream  Item  ItemListMap  Properties  Tag  TypeBMP  TypeDateTime  TypeDuration  TypeGenred  TypeGIF  TypeHTML  TypeImplicit  TypeInteger  TypeISRC  TypeJPEG  TypeMI3P  TypePNG  TypeRIAAPA  TypeSJIS  TypeUndefined  TypeUPC  TypeURL  TypeUTF16  TypeUTF8  TypeUUID  TypeXML
-#
-
 module TagLib::MP4
 
   # The file class for '.m4a' files.
