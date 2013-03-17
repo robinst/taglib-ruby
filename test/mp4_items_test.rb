@@ -110,10 +110,39 @@ class MP4ItemsTest < Test::Unit::TestCase
         assert_equal false, item.to_bool
       end
 
-      should "be creatable from a pair of ints" do
-        item = TagLib::MP4::Item.from_int_pair([123, 456])
-        assert_equal TagLib::MP4::Item, item.class
-        assert_equal [123, 456], item.to_int_pair
+      context ".from_int_pair" do
+        should "be creatable from a pair of ints" do
+          item = TagLib::MP4::Item.from_int_pair([123, 456])
+          assert_equal TagLib::MP4::Item, item.class
+          assert_equal [123, 456], item.to_int_pair
+        end
+
+        should "raise an error when passed something other than an Array" do
+          begin
+            TagLib::MP4::Item.from_int_pair(1)
+            flunk("Should have raised ArgumentError.")
+          rescue => e
+            assert_equal "ArgumentError", e.class.to_s
+          end
+        end
+
+        should "raise an error when passed an Array with more than two elements" do
+          begin
+            TagLib::MP4::Item.from_int_pair([1, 2, 3])
+            flunk("Should have raised ArgumentError.")
+          rescue => e
+            assert_equal "ArgumentError", e.class.to_s
+          end
+        end
+
+        should "raise an error when passed an Array with less than two elements" do
+          begin
+            TagLib::MP4::Item.from_int_pair([1])
+            flunk("Should have raised ArgumentError.")
+          rescue => e
+            assert_equal "ArgumentError", e.class.to_s
+          end
+        end
       end
 
       context "created from an array of strings" do

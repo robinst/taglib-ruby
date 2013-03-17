@@ -12,7 +12,13 @@ module TagLib::MP4
 
   class Item
     def self.from_int_pair(ary)
-      new(*ary)
+      if !(ary.is_a? Array)
+        raise ArgumentError, 'argument should be an array'
+      elsif ary.length != 2
+        raise ArgumentError, 'argument should have exactly two elements'
+      else
+        new(*ary)
+      end
     end
   end
 
