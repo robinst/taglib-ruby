@@ -110,14 +110,7 @@ module TagLib::ID3v2
 
   # Exposes properties defined in a standard ID3v2 header.
   class Header
-    # Construct an empty header.
-    #
-    # @param [TagLib::ByteVector] data to populate the new header with
-    # @return [TagLib::ID3v2::Header::Header]
-    def initialize(data=null)
-    end
-
-    # The major version number, i.e. 4 for a ID3v2.4.0 version tag.
+    # The major version number (4 for a ID3v2.4.0 version tag).
     # @return [Integer] major version number
     attr_accessor :major_version
 
@@ -125,7 +118,7 @@ module TagLib::ID3v2
     # @return [Integer] size in bytes
     attr_accessor :tag_size
 
-    # The major version number, i.e. 0 for a ID3v2.4.0 version tag.
+    # The revision version number (0 for a ID3v2.4.0 version tag).
     # @return [Integer] revision version number
     attr_reader :revision_number
 
@@ -140,23 +133,6 @@ module TagLib::ID3v2
 
     # @return [Boolean] if a footer is present in the tag
     attr_reader :footer_present
-
-    # The size of the tag including the size of the header.
-    # @return [Integer] size in bytes
-    attr_reader :complete_tag_size
-
-    # The string used to identify an ID3v2 tag inside of a file.
-    # @return [TagLib::ByteVector]
-    attr_reader :file_identifier
-
-    # The size of the tag's header.
-    # @return [Integer] size in bytes
-    attr_reader :size
-
-    # Set the data that will be used as the header (see #initalize).
-    # @param [TagLib::ByteVector] data
-    def data(data)
-    end
 
     # Renders the header to binary.
     # @return [TagLib::ByteVector]
