@@ -1820,24 +1820,23 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_Iterator swig_types[1]
 #define SWIGTYPE_p_TagLib__AudioProperties swig_types[2]
 #define SWIGTYPE_p_TagLib__File swig_types[3]
-#define SWIGTYPE_p_TagLib__ListT_TagLib__MP4__Atom_p_t swig_types[4]
-#define SWIGTYPE_p_TagLib__MP4__Atoms swig_types[5]
-#define SWIGTYPE_p_TagLib__MP4__CoverArt swig_types[6]
-#define SWIGTYPE_p_TagLib__MP4__CoverArtList swig_types[7]
-#define SWIGTYPE_p_TagLib__MP4__File swig_types[8]
-#define SWIGTYPE_p_TagLib__MP4__Item swig_types[9]
-#define SWIGTYPE_p_TagLib__MP4__Properties swig_types[10]
-#define SWIGTYPE_p_TagLib__MP4__Tag swig_types[11]
-#define SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t swig_types[12]
-#define SWIGTYPE_p_TagLib__StringList swig_types[13]
-#define SWIGTYPE_p_TagLib__Tag swig_types[14]
-#define SWIGTYPE_p_char swig_types[15]
-#define SWIGTYPE_p_unsigned_char swig_types[16]
-#define SWIGTYPE_p_unsigned_int swig_types[17]
-#define SWIGTYPE_p_unsigned_long swig_types[18]
-#define SWIGTYPE_p_wchar_t swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__MP4__Atoms swig_types[4]
+#define SWIGTYPE_p_TagLib__MP4__CoverArt swig_types[5]
+#define SWIGTYPE_p_TagLib__MP4__CoverArtList swig_types[6]
+#define SWIGTYPE_p_TagLib__MP4__File swig_types[7]
+#define SWIGTYPE_p_TagLib__MP4__Item swig_types[8]
+#define SWIGTYPE_p_TagLib__MP4__Properties swig_types[9]
+#define SWIGTYPE_p_TagLib__MP4__Tag swig_types[10]
+#define SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t swig_types[11]
+#define SWIGTYPE_p_TagLib__StringList swig_types[12]
+#define SWIGTYPE_p_TagLib__Tag swig_types[13]
+#define SWIGTYPE_p_char swig_types[14]
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1867,6 +1866,7 @@ static VALUE mMP4;
 #include <taglib/mp4file.h>
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
+#include <taglib/mp4atom.h>
 
 
 #include <taglib/tstring.h>
@@ -4391,7 +4391,6 @@ static swig_type_info _swigt__p_ConstIterator = {"_p_ConstIterator", "ConstItera
 static swig_type_info _swigt__p_Iterator = {"_p_Iterator", "Iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t = {"_p_TagLib__ListT_TagLib__MP4__Atom_p_t", "TagLib::MP4::AtomList *|TagLib::List< TagLib::MP4::Atom * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__Atoms = {"_p_TagLib__MP4__Atoms", "TagLib::MP4::Atoms *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__CoverArt = {"_p_TagLib__MP4__CoverArt", "TagLib::MP4::CoverArt *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MP4__CoverArtList = {"_p_TagLib__MP4__CoverArtList", "TagLib::MP4::CoverArtList *", 0, 0, (void*)0, 0};
@@ -4413,7 +4412,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Iterator,
   &_swigt__p_TagLib__AudioProperties,
   &_swigt__p_TagLib__File,
-  &_swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t,
   &_swigt__p_TagLib__MP4__Atoms,
   &_swigt__p_TagLib__MP4__CoverArt,
   &_swigt__p_TagLib__MP4__CoverArtList,
@@ -4435,7 +4433,6 @@ static swig_cast_info _swigc__p_ConstIterator[] = {  {&_swigt__p_ConstIterator, 
 static swig_cast_info _swigc__p_Iterator[] = {  {&_swigt__p_Iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},  {&_swigt__p_TagLib__MP4__Properties, _p_TagLib__MP4__PropertiesTo_p_TagLib__AudioProperties, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},  {&_swigt__p_TagLib__MP4__File, _p_TagLib__MP4__FileTo_p_TagLib__File, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ListT_TagLib__MP4__Atom_p_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__MP4__Atom_p_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__Atoms[] = {  {&_swigt__p_TagLib__MP4__Atoms, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__CoverArt[] = {  {&_swigt__p_TagLib__MP4__CoverArt, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MP4__CoverArtList[] = {  {&_swigt__p_TagLib__MP4__CoverArtList, 0, 0, 0},{0, 0, 0, 0}};
@@ -4457,7 +4454,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Iterator,
   _swigc__p_TagLib__AudioProperties,
   _swigc__p_TagLib__File,
-  _swigc__p_TagLib__ListT_TagLib__MP4__Atom_p_t,
   _swigc__p_TagLib__MP4__Atoms,
   _swigc__p_TagLib__MP4__CoverArt,
   _swigc__p_TagLib__MP4__CoverArtList,

@@ -4,6 +4,7 @@
 #include <taglib/mp4file.h>
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
+#include <taglib/mp4atom.h>
 %}
 
 %ignore TagLib::List::operator!=;
@@ -76,8 +77,6 @@ namespace TagLib {
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(Iterator);
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(const TagLib::String &);
 %include <taglib/mp4tag.h>
-
-%import <taglib/mp4atom.h>
 
 %typemap(out) TagLib::MP4::CoverArtList {
   $result = taglib_cover_art_list_to_ruby_array($1);
