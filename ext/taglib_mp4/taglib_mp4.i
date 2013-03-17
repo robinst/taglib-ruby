@@ -119,7 +119,7 @@ namespace TagLib {
     TagLib::MP4::Tag *tag = file->tag();
     if (tag) {
       TagLib::Map<TagLib::String, TagLib::MP4::Item> *item_list_map = &(tag->itemListMap());
-      if(item_list_map) {
+      if (item_list_map) {
         for (TagLib::MP4::ItemListMap::Iterator it = item_list_map->begin(); it != item_list_map->end(); it++) {
           unlink_taglib_mp4_item_list_map_iterator(it);
         }
