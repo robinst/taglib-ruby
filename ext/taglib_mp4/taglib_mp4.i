@@ -86,12 +86,15 @@ namespace TagLib {
   $1 = &tmp;
 }
 %apply TagLib::MP4::CoverArtList { TagLib::MP4::CoverArtList &, const TagLib::MP4::CoverArtList & };
+%ignore TagLib::MP4::CoverArt::operator=;
 %include <taglib/mp4coverart.h>
 
 %typemap(out) TagLib::MP4::Item::IntPair {
   $result = taglib_mp4_item_int_pair_to_ruby_array($1);
 }
 %ignore TagLib::MP4::Item::operator=;
+
+%warnfilter(325) IntPair;
 %include <taglib/mp4item.h>
 
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
