@@ -108,6 +108,38 @@ module TagLib::ID3v2
     end
   end
 
+  # Exposes properties defined in a standard ID3v2 header.
+  class Header
+    # The major version number (4 for a ID3v2.4.0 version tag).
+    # @return [Integer] major version number
+    attr_accessor :major_version
+
+    # The size of the tag without the size of the header.
+    # @return [Integer] size in bytes
+    attr_accessor :tag_size
+
+    # The revision version number (0 for a ID3v2.4.0 version tag).
+    # @return [Integer] revision version number
+    attr_reader :revision_number
+
+    # @return [Boolean] if unsynchronisation has been applied to all frames
+    attr_reader :unsynchronisation
+
+    # @return [Boolean] if an extended header is present in the tag
+    attr_reader :extended_header
+
+    # @return [Boolean] if the experimental indicator flag is set
+    attr_reader :experimental_indicator
+
+    # @return [Boolean] if a footer is present in the tag
+    attr_reader :footer_present
+
+    # Renders the header to binary.
+    # @return [TagLib::ByteVector]
+    def render
+    end
+  end
+
   # Frame factory for ID3v2 frames. Useful for setting the default text
   # encoding.
   class FrameFactory
