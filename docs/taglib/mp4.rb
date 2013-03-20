@@ -10,7 +10,7 @@ module TagLib::MP4
   #   end
   #
   # @example Add new cover art to a tag
-  #   image_data = File.open('test/data/globe_east_90.jpg', 'rb') { |f| f.read }
+  #   image_data = File.open('cover_art.jpeg', 'rb') { |f| f.read }
   #   cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, image_data)
   #   item = TagLib::MP4::Item.from_cover_art_list([cover_art])
   #   mp4.tag.item_list_map.insert('covr', item)
@@ -25,7 +25,7 @@ module TagLib::MP4
   #   # => 13
   #   cover_art.format == TagLib::MP4::CoverArt::JPEG
   #   # => true
-  #   File.open('cover_art.jpeg', 'w') do |file|
+  #   File.open('cover_art.jpeg', 'wb') do |file|
   #     file.write(cover_art.data)
   #   end
   #   # => 3108
@@ -244,7 +244,7 @@ module TagLib::MP4
   # The `CoverArt` class is used to embed cover art images in MP4 tags.
   #
   # @example Creating a new CoverArt instance
-  #   image_data = File.open('test/data/globe_east_90.jpg', 'rb') { |f| f.read }
+  #   image_data = File.open('cover_art.jpeg', 'rb') { |f| f.read }
   #   cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, image_data)
   class CoverArt
     JPEG = 0x0D
