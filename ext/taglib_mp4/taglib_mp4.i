@@ -94,7 +94,7 @@ namespace TagLib {
 }
 %ignore TagLib::MP4::Item::operator=;
 
-%warnfilter(325) IntPair;
+%warnfilter(SWIGWARN_PARSE_NAMED_NESTED_CLASS) IntPair;
 %include <taglib/mp4item.h>
 
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
