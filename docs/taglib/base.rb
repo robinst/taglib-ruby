@@ -35,16 +35,20 @@ module TagLib
   #
   # @example Reading tags
   #   TagLib::FileRef.open("foo.flac") do |file|
-  #     tag = file.tag
-  #     puts tag.artist
-  #     puts tag.title
+  #     unless file.null?
+  #       tag = file.tag
+  #       puts tag.artist
+  #       puts tag.title
+  #     end
   #   end
   #
   # @example Reading audio properties
   #   TagLib::FileRef.open("bar.oga") do |file|
-  #     prop = file.audio_properties
-  #     puts prop.length
-  #     puts prop.bitrate
+  #     unless file.null?
+  #       prop = file.audio_properties
+  #       puts prop.length
+  #       puts prop.bitrate
+  #     end
   #   end
   #
   class FileRef
@@ -86,6 +90,11 @@ module TagLib
                    audio_properties_style=TagLib::AudioProperties::Average)
     end
 
+    # Gets the audio properties. Before accessing it, check if there
+    # were problems reading the file using {#null?}. If the audio
+    # properties are accessed anyway, a warning will be printed and it
+    # will return nil.
+    #
     # @return [TagLib::AudioProperties] the audio properties
     def audio_properties
     end
@@ -100,7 +109,11 @@ module TagLib
     def save
     end
 
-    # @return [TagLib::Tag] the tag
+    # Gets the tag. Before accessing it, check if there were problems
+    # reading the file using {#null?}. If the tag is accessed anyway, a
+    # warning will be printed and it will return nil.
+    #
+    # @return [TagLib::Tag] the tag, or nil
     def tag
     end
 
