@@ -44,7 +44,8 @@ class FlacFileTest < Test::Unit::TestCase
 
       should "contain flac-specific information" do
         assert_equal 16, @properties.sample_width
-        assert_equal "x\xD1\x9B\x86\xDF,\xD4\x88\xB3YW\xE6\xBD\x88Ih", @properties.signature
+        s = ["78d19b86df2cd488b35957e6bd884968"].pack('H*')
+        assert_equal s, @properties.signature
       end
     end
 
