@@ -85,19 +85,19 @@ require 'taglib'
 
 # Load a file
 TagLib::FileRef.open("wake_up.flac") do |fileref|
-  tag = fileref.tag
+  unless fileref.null?
+    tag = fileref.tag
+    tag.title   #=> "Wake Up"
+    tag.artist  #=> "Arcade Fire"
+    tag.album   #=> "Funeral"
+    tag.year    #=> 2004
+    tag.track   #=> 7
+    tag.genre   #=> "Indie Rock"
+    tag.comment #=> nil
 
-  # Read basic attributes
-  tag.title   #=> "Wake Up"
-  tag.artist  #=> "Arcade Fire"
-  tag.album   #=> "Funeral"
-  tag.year    #=> 2004
-  tag.track   #=> 7
-  tag.genre   #=> "Indie Rock"
-  tag.comment #=> nil
-
-  properties = fileref.audio_properties
-  properties.length  #=> 335 (song length in seconds)
+    properties = fileref.audio_properties
+    properties.length  #=> 335 (song length in seconds)
+  end
 end  # File is automatically closed at block end
 {% endhighlight %}
   </div>
