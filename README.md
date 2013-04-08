@@ -96,7 +96,7 @@ In the binary gem for Windows, a compiled [TagLib][taglib] is bundled as
 a DLL. TagLib is distributed under the GNU Lesser General Public License
 version 2.1 (LGPL) and Mozilla Public License (MPL).
 
-[taglib]: http://developer.kde.org/~wheeler/taglib.html
+[taglib]: http://taglib.github.io/
 [travis-img]: https://secure.travis-ci.org/robinst/taglib-ruby.png
 [travis-link]: http://travis-ci.org/robinst/taglib-ruby
 [flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
