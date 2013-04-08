@@ -1892,7 +1892,7 @@ TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
     return TagLib::ByteVector::null;
   } else {
-    return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+    return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
@@ -1910,7 +1910,7 @@ TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
     return TagLib::String::null;
   } else {
-    return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+    return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
 }
 

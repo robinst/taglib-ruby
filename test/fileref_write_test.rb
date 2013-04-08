@@ -27,6 +27,15 @@ class TestFileRefWrite < Test::Unit::TestCase
       written_file.close
     end
 
+    should "not segfault when setting int" do
+      begin
+        @file.tag.title = 42
+        flunk("Should have raised a TypeError")
+      rescue TypeError
+        # this is good
+      end
+    end
+
     teardown do
       if @file
         @file.close
