@@ -1894,7 +1894,7 @@ TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
     return TagLib::ByteVector::null;
   } else {
-    return TagLib::ByteVector(RSTRING_PTR(s), RSTRING_LEN(s));
+    return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
@@ -1912,7 +1912,7 @@ TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
     return TagLib::String::null;
   } else {
-    return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(s)), TagLib::String::UTF8);
+    return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
 }
 
@@ -2034,7 +2034,7 @@ SWIG_ruby_failed(void)
 } 
 
 
-/*@SWIG:/usr/local/Cellar/swig/2.0.9/share/swig/2.0.9/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/2.0.9/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -2160,7 +2160,7 @@ SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 
 
 
-/*@SWIG:/usr/local/Cellar/swig/2.0.9/share/swig/2.0.9/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/2.0.9/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
 {
   VALUE obj = args[0];
