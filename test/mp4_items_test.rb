@@ -2,14 +2,17 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
 class MP4ItemsTest < Test::Unit::TestCase
+  ITUNES_LEADER = "\xC2\xA9"
+
   context "The mp4.m4a file's items" do
     setup do
       @file = TagLib::MP4::File.new("test/data/mp4.m4a")
       @tag = @file.tag
       @item_list_map = @file.tag.item_list_map
       @item_keys = [
-        "cover", "\u00A9nam", "\u00A9ART", "\u00A9alb", "\u00A9cmt", "\u00A9gen",
-        "\u00A9day", "trkn", "\u00A9too", "\u00A9cpy"
+        "cover", "#{ITUNES_LEADER}nam", "#{ITUNES_LEADER}ART", "#{ITUNES_LEADER}alb",
+        "#{ITUNES_LEADER}cmt", "#{ITUNES_LEADER}gen", "#{ITUNES_LEADER}day",
+        "trkn", "#{ITUNES_LEADER}too", "#{ITUNES_LEADER}cpy"
       ]
     end
 
@@ -28,19 +31,19 @@ class MP4ItemsTest < Test::Unit::TestCase
 
       should "have keys" do
         assert_equal true, @item_list_map.contains("trkn")
-        assert_equal true, @item_list_map.has_key?("\u00A9too")
-        assert_equal true, @item_list_map.include?("\u00A9cpy")
+        assert_equal true, @item_list_map.has_key?("#{ITUNES_LEADER}too")
+        assert_equal true, @item_list_map.include?("#{ITUNES_LEADER}cpy")
         assert_equal false, @item_list_map.include?("none such key")
       end
 
       should "look up keys" do
         assert_nil @item_list_map["none such key"]
-        assert_equal ["Title"], @item_list_map["\u00A9nam"].to_string_list
+        assert_equal ["Title"], @item_list_map["#{ITUNES_LEADER}nam"].to_string_list
       end
 
       should "be clearable" do
         assert_equal 10, @item_list_map.size
-        comment = @item_list_map["\u00A9cmt"]
+        comment = @item_list_map["#{ITUNES_LEADER}cmt"]
         @item_list_map.clear
         assert_equal true, @item_list_map.empty?
         begin
@@ -65,8 +68,8 @@ class MP4ItemsTest < Test::Unit::TestCase
 
     should "be removable" do
       assert_equal 10, @item_list_map.size
-      title = @item_list_map["\u00A9nam"]
-      @item_list_map.erase("\u00A9nam")
+      title = @item_list_map["#{ITUNES_LEADER}nam"]
+      @item_list_map.erase("#{ITUNES_LEADER}nam")
       assert_equal 9, @item_list_map.size
       begin
         title.to_string_list
@@ -79,15 +82,15 @@ class MP4ItemsTest < Test::Unit::TestCase
     context "inserting items" do
       should "insert a new item" do
         new_title = TagLib::MP4::Item.from_string_list(['new title'])
-        @item_list_map.insert("\u00A9nam", new_title)
+        @item_list_map.insert("#{ITUNES_LEADER}nam", new_title)
         new_title = nil
         GC.start
-        assert_equal ['new title'], @item_list_map["\u00A9nam"].to_string_list
+        assert_equal ['new title'], @item_list_map["#{ITUNES_LEADER}nam"].to_string_list
       end
 
       should "unlink items that get replaced" do
-        title = @item_list_map["\u00A9nam"]
-        @item_list_map.insert("\u00A9nam", TagLib::MP4::Item.from_int(1))
+        title = @item_list_map["#{ITUNES_LEADER}nam"]
+        @item_list_map.insert("#{ITUNES_LEADER}nam", TagLib::MP4::Item.from_int(1))
         begin
           title.to_string_list
           flunk("Should have raised ObjectPreviouslyDeleted.")
