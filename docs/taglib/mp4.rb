@@ -5,7 +5,7 @@ module TagLib::MP4
   # @example Finding an MP4 item by field name
   #   TagLib::MP4::File.open("file.m4a") do |mp4|
   #     item_list_map = mp4.tag.item_list_map
-  #     title = item_list_map["\u00a9nam"].to_string_list
+  #     title = item_list_map["\xC2\xA9nam"].to_string_list
   #     puts title.first
   #   end
   #
@@ -168,7 +168,7 @@ module TagLib::MP4
     alias :[] :fetch
 
     # @example Triggering an ObjectPreviouslyDeleted exception
-    #   remember_me = mp4.tag.item_list_map["\u00a9nam"]
+    #   remember_me = mp4.tag.item_list_map["\xC2\xA9nam"]
     #   mp4.tag.item_list_map.clear
     #   # => nil
     #   remember_me.to_string_list
@@ -197,8 +197,8 @@ module TagLib::MP4
 
     # Remove and destroy the value under `key`, if present.
     # @example Triggering an ObjectPreviouslyDeleted exception
-    #   remember_me = mp4.tag.item_list_map["\u00a9nam"]
-    #   mp4.tag.item_list_map.erase("\u00a9nam")
+    #   remember_me = mp4.tag.item_list_map["\xC2\xA9nam"]
+    #   mp4.tag.item_list_map.erase("\xC2\xA9nam")
     #   # => nil
     #   remember_me.to_string_list
     #   # ObjectPreviouslyDeleted: Expected argument 0 of type TagLib::MP4::Item const *, but got TagLib::MP4::Item #<TagLib::MP4::Item:0x007f919a...
@@ -213,8 +213,8 @@ module TagLib::MP4
 
     # Insert an item at `key`, destoying the existing item under `key`.
     # @example Triggering an ObjectPreviouslyDeleted exception
-    #   remember_me = mp4.tag.item_list_map["\u00a9nam"]
-    #   mp4.tag.item_list_map.insert("\u00a9nam", TagLib::MP4::Item.from_string_list(['New']))
+    #   remember_me = mp4.tag.item_list_map["\xC2\xA9nam"]
+    #   mp4.tag.item_list_map.insert("\xC2\xA9nam", TagLib::MP4::Item.from_string_list(['New']))
     #   remember_me.to_string_list
     #   # ObjectPreviouslyDeleted: Expected argument 0 of type TagLib::MP4::Item const *, but got TagLib::MP4::Item #<TagLib::MP4::Item:0x007f919a...
     #   # 	in SWIG method 'toStringList'
