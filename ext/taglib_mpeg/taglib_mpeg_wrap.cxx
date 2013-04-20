@@ -1866,6 +1866,8 @@ static VALUE mMPEG;
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
 
+static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version);
+
 
 #include <taglib/tstring.h>
 #include <taglib/tstringlist.h>
@@ -2139,6 +2141,9 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
 SWIGINTERN void TagLib_MPEG_File_close(TagLib::MPEG::File *self){
     free_taglib_mpeg_file(self);
   }
+SWIGINTERN bool TagLib_MPEG_File_save__SWIG_3(TagLib::MPEG::File *self,int tags,bool stripOthers,int id3v2Version){
+    return taglib_ruby_mpeg_file_save(self, tags, stripOthers, id3v2Version);
+  }
 
   static void free_taglib_mpeg_file(void *ptr) {
     TagLib::MPEG::File *file = (TagLib::MPEG::File *) ptr;
@@ -2178,6 +2183,15 @@ SWIGINTERN void TagLib_MPEG_File_close(TagLib::MPEG::File *self){
     SWIG_RubyRemoveTracking(ptr);
 
     delete file;
+  }
+
+  static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version) {
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 8))
+    return file->save(tags, stripOthers, id3v2Version);
+#else
+    rb_raise(rb_eArgError, "Overloaded method save(int tags, bool stripOthers, int id3v2Version) on TagLib::MPEG::File is only available when compiled against TagLib >= 1.8");
+    return false;
+#endif
   }
 
 static swig_class SwigClassXingHeader;
@@ -3615,73 +3629,6 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_File_save__SWIG_0(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_File_save__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_bool(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_File_save__SWIG_2(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "File.save", 
-    "    bool File.save()\n"
-    "    bool File.save(int tags)\n"
-    "    bool File.save(int tags, bool stripOthers)\n");
-  
-  return Qnil;
-}
-
-
 SWIGINTERN VALUE
 _wrap_File_id3v2_tag__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
@@ -4310,6 +4257,149 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_File_save__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  TagLib::MPEG::File *arg1 = (TagLib::MPEG::File *) 0 ;
+  int arg2 ;
+  bool arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MPEG__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::MPEG::File *","save", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::MPEG::File * >(argp1);
+  ecode2 = SWIG_AsVal_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","save", 2, argv[0] ));
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","save", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int","save", 4, argv[2] ));
+  } 
+  arg4 = static_cast< int >(val4);
+  result = (bool)TagLib_MPEG_File_save__SWIG_3(arg1,arg2,arg3,arg4);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_File_save__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_File_save__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_File_save__SWIG_2(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__MPEG__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_File_save__SWIG_3(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "File.save", 
+    "    bool File.save()\n"
+    "    bool File.save(int tags)\n"
+    "    bool File.save(int tags, bool stripOthers)\n"
+    "    bool File.save(int tags, bool stripOthers, int id3v2Version)\n");
+  
+  return Qnil;
+}
+
+
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
@@ -4719,7 +4809,6 @@ SWIGEXPORT void Init_taglib_mpeg(void) {
   rb_define_const(SwigClassFile.klass, "AllTags", SWIG_From_int(static_cast< int >(TagLib::MPEG::File::AllTags)));
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
-  rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
   rb_define_method(SwigClassFile.klass, "id3v2_tag", VALUEFUNC(_wrap_File_id3v2_tag), -1);
   rb_define_method(SwigClassFile.klass, "id3v1_tag", VALUEFUNC(_wrap_File_id3v1_tag), -1);
   rb_define_method(SwigClassFile.klass, "apetag", VALUEFUNC(_wrap_File_apetag), -1);
@@ -4730,6 +4819,7 @@ SWIGEXPORT void Init_taglib_mpeg(void) {
   rb_define_method(SwigClassFile.klass, "previous_frame_offset", VALUEFUNC(_wrap_File_previous_frame_offset), -1);
   rb_define_method(SwigClassFile.klass, "last_frame_offset", VALUEFUNC(_wrap_File_last_frame_offset), -1);
   rb_define_method(SwigClassFile.klass, "close", VALUEFUNC(_wrap_File_close), -1);
+  rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
   SwigClassFile.mark = 0;
   SwigClassFile.destroy = (void (*)(void *)) free_taglib_mpeg_file;
   SwigClassFile.trackObjects = 1;

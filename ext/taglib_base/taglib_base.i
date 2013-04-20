@@ -26,6 +26,9 @@ namespace TagLib {
   typedef unsigned long ulong;
 }
 
+%constant int TAGLIB_MAJOR_VERSION = TAGLIB_MAJOR_VERSION;
+%constant int TAGLIB_MINOR_VERSION = TAGLIB_MINOR_VERSION;
+%constant int TAGLIB_PATCH_VERSION = TAGLIB_PATCH_VERSION;
 
 // Rename setters to Ruby convention (combining SWIG rename functions
 // does not seem to be possible, thus resort to some magic)

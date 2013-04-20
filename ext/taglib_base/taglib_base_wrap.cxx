@@ -5070,6 +5070,9 @@ SWIGEXPORT void Init_taglib_base(void) {
   SwigClassString.mark = 0;
   SwigClassString.destroy = (void (*)(void *)) free_TagLib_String;
   SwigClassString.trackObjects = 1;
+  rb_define_const(mTagLib, "TAGLIB_MAJOR_VERSION", SWIG_From_int(static_cast< int >(TAGLIB_MAJOR_VERSION)));
+  rb_define_const(mTagLib, "TAGLIB_MINOR_VERSION", SWIG_From_int(static_cast< int >(TAGLIB_MINOR_VERSION)));
+  rb_define_const(mTagLib, "TAGLIB_PATCH_VERSION", SWIG_From_int(static_cast< int >(TAGLIB_PATCH_VERSION)));
   
   SwigClassTag.klass = rb_define_class_under(mTagLib, "Tag", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__Tag, (void *) &SwigClassTag);

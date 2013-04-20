@@ -64,14 +64,29 @@ module TagLib::MPEG
 
     # Save the file and the associated tags.
     #
-    # @param [Integer] tags
-    #   The tag types to save (see constants), e.g.
-    #   {TagLib::MPEG::File::ID3v2}. To specify more than one tag type,
-    #   or them together using `|`, e.g.
-    #   `TagLib::MPEG::File::ID3v1 | TagLib::MPEG::File::ID3v2`.
-    # @param [Boolean] strip_others
-    #   true if tag types other than the specified ones should be
-    #   stripped from the file
+    # @overload save(tags=TagLib::MPEG::File::AllTags, strip_others=true)
+    #
+    #   @param [Integer] tags
+    #     The tag types to save (see constants), e.g.
+    #     {TagLib::MPEG::File::ID3v2}. To specify more than one tag type,
+    #     or them together using `|`, e.g.
+    #     `TagLib::MPEG::File::ID3v1 | TagLib::MPEG::File::ID3v2`.
+    #   @param [Boolean] strip_others
+    #     true if tag types other than the specified ones should be
+    #     stripped from the file
+    #
+    # @overload save(tags, strip_others, id3v2_version)
+    #
+    #   @param [Integer] id3v2_version
+    #     3 if the saved ID3v2 tag should be in version ID3v2.3, or 4 if
+    #     it should use ID3v2.4
+    #
+    #   This overload can only be called if the extension was compiled
+    #   against TagLib >= 1.8. Otherwise it will raise an ArgumentError.
+    #   So either check the version using {TagLib::TAGLIB_MAJOR_VERSION}
+    #   and {TagLib::TAGLIB_MINOR_VERSION} or be prepared to rescue the
+    #   ArgumentError.
+    #
     # @return [Boolean] whether saving was successful
     def save(tags=TagLib::MPEG::File::AllTags, strip_others=true)
     end

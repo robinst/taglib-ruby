@@ -25,6 +25,21 @@
 # using the {TagLib::ID3v2::FrameFactory}.
 module TagLib
 
+  # Major version of TagLib the extensions were compiled against
+  # (major.minor.patch). Note that the value is not actually 0, but
+  # depends on the version of the installed library.
+  TAGLIB_MAJOR_VERSION = 0
+
+  # Minor version of TagLib the extensions were compiled against
+  # (major.minor.patch). Note that the value is not actually 0, but
+  # depends on the version of the installed library.
+  TAGLIB_MINOR_VERSION = 0
+
+  # Patch version of TagLib the extensions were compiled against
+  # (major.minor.patch). Note that the value is not actually 0, but
+  # depends on the version of the installed library.
+  TAGLIB_PATCH_VERSION = 0
+
   # This class allows to read basic tagging and audio properties from
   # files, without having to know what the file type is. Thus, it works
   # for all tagging formats that taglib supports, but only provides a

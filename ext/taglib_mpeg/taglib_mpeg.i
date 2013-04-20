@@ -6,6 +6,8 @@
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
+
+static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version);
 %}
 
 %include "../taglib_base/includes.i"
@@ -69,11 +71,24 @@
 
     delete file;
   }
+
+  static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version) {
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 8))
+    return file->save(tags, stripOthers, id3v2Version);
+#else
+    rb_raise(rb_eArgError, "Overloaded method save(int tags, bool stripOthers, int id3v2Version) on TagLib::MPEG::File is only available when compiled against TagLib >= 1.8");
+    return false;
+#endif
+  }
 %}
 
 %extend TagLib::MPEG::File {
   void close() {
     free_taglib_mpeg_file($self);
+  }
+
+  bool save(int tags, bool stripOthers, int id3v2Version) {
+    return taglib_ruby_mpeg_file_save($self, tags, stripOthers, id3v2Version);
   }
 }
 
