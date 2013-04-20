@@ -1,5 +1,5 @@
 --markup markdown
---markup-provider redcarpet
+--markup-provider kramdown
 --charset UTF-8
 --template-path docs
 docs/**/*.rb

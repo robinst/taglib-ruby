@@ -41,9 +41,8 @@ Then do:
 Usage
 -----
 
-Complete API documentation can be found here:
-
-http://rubydoc.info/gems/taglib-ruby/frames
+Complete API documentation can be found on
+[rubydoc.info](http://rubydoc.info/gems/taglib-ruby/frames).
 
 Begin with the {TagLib} namespace.
 

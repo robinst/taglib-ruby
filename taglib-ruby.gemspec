@@ -27,6 +27,7 @@ DESC
   s.add_development_dependency 'rake-compiler', '~> 0.8'
   s.add_development_dependency 'shoulda-context', '~> 1.0'
   s.add_development_dependency 'yard', '~> 0.7'
+  s.add_development_dependency 'kramdown', '~> 1.0'
 
   s.extensions = [
     "ext/taglib_base/extconf.rb",
