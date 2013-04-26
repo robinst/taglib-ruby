@@ -66,6 +66,7 @@ DESC
     "ext/taglib_base/includes.i",
     "ext/taglib_base/taglib_base.i",
     "ext/taglib_base/taglib_base_wrap.cxx",
+    "ext/taglib_flac/extconf.rb",
     "ext/taglib_flac/taglib_flac.i",
     "ext/taglib_flac/taglib_flac_wrap.cxx",
     "ext/taglib_id3v1/extconf.rb",
