@@ -1,7 +1,7 @@
 Changes in Releases of taglib-ruby
 ==================================
 
-## 0.6.0
+## 0.6.0 (2013-04-26)
 
 * Add support for TagLib::MP4 (#3, by @jacobvosmaer)
 * Add support for TagLib::ID3v2::Header (#19, by @kaethorn)
