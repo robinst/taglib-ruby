@@ -104,6 +104,7 @@ DESC
     "tasks/ext.rake",
     "tasks/gemspec_check.rake",
     "tasks/swig.rake",
+    "test/base_test.rb",
     "test/data/Makefile",
     "test/data/add-relative-volume.cpp",
     "test/data/crash.mp3",
