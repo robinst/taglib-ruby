@@ -86,7 +86,7 @@ Contributing
 License
 -------
 
-Copyright (c) 2010-2013 Robin Stocker.
+Copyright (c) 2010-2013 Robin Stocker and others, see Git history.
 
 taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
