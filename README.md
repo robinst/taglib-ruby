@@ -8,16 +8,15 @@ In contrast to other libraries, this one wraps the full C++ API, not
 only the minimal C API. This means that all tag data can be accessed,
 e.g. cover art of ID3v2 or custom fields of Ogg Vorbis comments.
 
-taglib-ruby is work in progress, but the following is already available:
+taglib-ruby currently supports the following:
 
 * Reading/writing common tag data of all formats that TagLib supports
 * Reading/writing ID3v1 and ID3v2 including ID3v2.4 and Unicode
 * Reading/writing Ogg Vorbis comments
+* Reading/writing MP4 tags (.m4a)
 * Reading audio properties (e.g. bitrate) of the above formats
 
-Some things are still left to do (contributors very welcome):
-
-* More coverage of the library
+Contributions for more coverage of the library are very welcome.
 
 [![Build status][travis-img]][travis-link]
 
