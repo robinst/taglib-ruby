@@ -7,7 +7,7 @@ require 'taglib/version'
 Gem::Specification.new do |s|
   s.name        = "taglib-ruby"
   s.version     = TagLib::Version::STRING
-  s.authors     = ["Robin Stocker"]
+  s.authors     = ["Robin Stocker", "Jacob Vosmaer"]
   s.email       = ["robin@nibor.org"]
   s.homepage    = "http://robinst.github.io/taglib-ruby/"
   s.licenses    = ["MIT"]
