@@ -1,6 +1,17 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.6.0
+
+* Add support for TagLib::MP4 (#3, by @jacobvosmaer)
+* Add support for TagLib::ID3v2::Header (#19, by @kaethorn)
+* Support saving ID3v2.3 with TagLib::MPEG::File#save (#17)
+  *  Note that this requires at least TagLib 1.8, and due to 1.8.0
+     having an incorrect version number in the headers, it currently
+     requires master. See issue #17 for details.
+* Fix segfault when passing a non-String to a String argument
+* Documentation updates
+
 ## 0.5.2 (2012-10-06)
 
 * Fix memory bug with TagLib::MPEG::File#tag and TagLib::FLAC::File#tag
