@@ -24,9 +24,11 @@
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
 # define ASSOCIATE_UTF8_ENCODING(value) rb_enc_associate(value, rb_utf8_encoding());
+# define ASSOCIATE_FILESYSTEM_ENCODING(value) rb_enc_associate(value, rb_filesystem_encoding());
 # define CONVERT_TO_UTF8(value) rb_str_export_to_enc(value, rb_utf8_encoding())
 #else
 # define ASSOCIATE_UTF8_ENCODING(value) /* nothing */
+# define ASSOCIATE_FILESYSTEM_ENCODING(value)
 # define CONVERT_TO_UTF8(value) value
 #endif
 
@@ -87,12 +89,15 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
 }
 
 VALUE taglib_filename_to_ruby_string(TagLib::FileName filename) {
+  VALUE result;
 #ifdef _WIN32
   const char *s = (const char *) filename;
-  return rb_tainted_str_new2(s);
+  result = rb_tainted_str_new2(s);
 #else
-  return rb_tainted_str_new2(filename);
+  result = rb_tainted_str_new2(filename);
 #endif
+  ASSOCIATE_FILESYSTEM_ENCODING(result);
+  return result;
 }
 
 TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
