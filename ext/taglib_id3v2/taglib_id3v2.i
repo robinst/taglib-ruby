@@ -32,7 +32,9 @@ VALUE taglib_id3v2_frame_to_ruby_object(const TagLib::ID3v2::Frame *frame) {
   TagLib::ByteVector id = frame->frameID();
   void *f = SWIG_as_voidptr(frame);
   swig_type_info *ti;
-  if (id == "APIC")
+  if (dynamic_cast<const TagLib::ID3v2::UnknownFrame *>(frame))
+    ti = SWIGTYPE_p_TagLib__ID3v2__UnknownFrame;
+  else if (id == "APIC")
     ti = SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame;
   else if (id == "COMM")
     ti = SWIGTYPE_p_TagLib__ID3v2__CommentsFrame;

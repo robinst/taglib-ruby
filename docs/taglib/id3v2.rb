@@ -62,8 +62,13 @@ module TagLib::ID3v2
   #     file.save
   #   end
   class Tag < TagLib::Tag
-    # Get a list of frames. Note that the frames returned are subclasses
-    # of {TagLib::ID3v2::Frame}, depending on the frame ID.
+    # Get a list of frames.
+    #
+    # Note that the frames returned are subclasses of {TagLib::ID3v2::Frame},
+    # depending on the frame ID. But it's also possible that a
+    # {TagLib::ID3v2::UnknownFrame} is returned (e.g. when TagLib discards a
+    # deprecated frame). So to make sure your code can handle all the cases, it
+    # should include a check for the returned class of the frame.
     #
     # @overload frame_list()
     #   Returns all frames.
@@ -433,6 +438,11 @@ module TagLib::ID3v2
 
     # @return [String] owner
     attr_accessor :owner
+  end
+
+  # Unknown frame used by TagLib to represent a frame whose type is not
+  # known, not implemented or deprecated in later versions of ID3v2.
+  class UnknownFrame < Frame
   end
 
   # Unsynchronized lyrics frame (`USLT`).
