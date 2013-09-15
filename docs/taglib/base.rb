@@ -23,6 +23,27 @@
 #
 # For ID3v2 frames, you can also set a default text encoding globally
 # using the {TagLib::ID3v2::FrameFactory}.
+#
+# ## Modifying attributes
+#
+# Mutable Ruby types (String, Array) returned by TagLib cannot be modified in-place.
+#
+# @example Modifying an attribute in-place does not work
+#   tag.title = 'Title'
+#   tag.title
+#   # => "Title"
+#   tag.title << ' of the song'
+#   # => "Title of the song"
+#   tag.title
+#   # => "Title"
+#
+# @example You need to replace the existing attribute value
+#   tag.title = 'Title'
+#   tag.title
+#   # => "Title"
+#   tag.title = 'Title of the song'
+#   tag.title
+#   # => "Title of the song"
 module TagLib
 
   # Major version of TagLib the extensions were compiled against
