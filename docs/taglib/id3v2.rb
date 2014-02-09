@@ -410,7 +410,16 @@ module TagLib::ID3v2
   end
 
   # Text identification frame (`T???`).
+  #
+  # @example Create a new TIT2 frame
+  #   frame = TagLib::ID3v2::TextIdentificationFrame.new("TIT2", TagLib::String::UTF8)
+  #   frame.text = "Title"
   class TextIdentificationFrame < Frame
+    # @param [String] type the frame ID, e.g. `TDRC`
+    # @param [TagLib::String constant] encoding text encoding, e.g. `TagLib::String::UTF8`
+    def initialize(type, encoding)
+    end
+
     # Encoding for storing the text in the tag, e.g.
     # `TagLib::String::UTF8`. See the section _String Encodings_ in
     # {TagLib}.
