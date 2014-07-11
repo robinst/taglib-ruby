@@ -12,6 +12,12 @@ class AIFFFileTest < Test::Unit::TestCase
     end
 
     should "have an ID3v2 tag" do
+
+      if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 9)
+        # BUG in TagLib 1.9.1: TagLib::RIFF::AIFF::File::hasID3v2Tag() is declared but not implemented!
+        # assert_equal true, @file.id3v2_tag?
+      end
+
       assert_not_nil @tag
       assert_equal TagLib::ID3v2::Tag, @tag.class
     end
@@ -69,6 +75,10 @@ class AIFFFileTest < Test::Unit::TestCase
 
       should "contain AIFF-specific information" do
         assert_equal 16, @properties.sample_width
+
+        if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 8)
+          assert_equal 23493, @properties.sample_frames
+        end
       end
     end
 

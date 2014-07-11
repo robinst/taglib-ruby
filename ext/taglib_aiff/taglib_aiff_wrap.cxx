@@ -1820,14 +1820,13 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[1]
 #define SWIGTYPE_p_TagLib__RIFF__AIFF__File swig_types[2]
 #define SWIGTYPE_p_TagLib__RIFF__AIFF__Properties swig_types[3]
-#define SWIGTYPE_p_TagLib__StringList swig_types[4]
-#define SWIGTYPE_p_char swig_types[5]
-#define SWIGTYPE_p_unsigned_char swig_types[6]
-#define SWIGTYPE_p_unsigned_int swig_types[7]
-#define SWIGTYPE_p_unsigned_long swig_types[8]
-#define SWIGTYPE_p_wchar_t swig_types[9]
-static swig_type_info *swig_types[11];
-static swig_module_info swig_module = {swig_types, 10, 0, 0, 0, 0};
+#define SWIGTYPE_p_char swig_types[4]
+#define SWIGTYPE_p_unsigned_char swig_types[5]
+#define SWIGTYPE_p_unsigned_int swig_types[6]
+#define SWIGTYPE_p_unsigned_long swig_types[7]
+#define SWIGTYPE_p_wchar_t swig_types[8]
+static swig_type_info *swig_types[10];
+static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2092,20 +2091,6 @@ SWIG_From_int  (int value)
 }
 
 
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_long  (unsigned long value)
-{
-  return ULONG2NUM(value); 
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_int  (unsigned int value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
-
-
 SWIGINTERN int
 SWIG_AsVal_bool (VALUE obj, bool *val)
 {
@@ -2339,35 +2324,11 @@ fail:
 }
 
 
-SWIGINTERN VALUE
-_wrap_Properties_sample_frames(int argc, VALUE *argv, VALUE self) {
-  TagLib::RIFF::AIFF::Properties *arg1 = (TagLib::RIFF::AIFF::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__RIFF__AIFF__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::Properties const *","sampleFrames", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::RIFF::AIFF::Properties * >(argp1);
-  result = (TagLib::uint)((TagLib::RIFF::AIFF::Properties const *)arg1)->sampleFrames();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 swig_class SwigClassFile;
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
+  SwigValueWrapper< TagLib::FileName > arg1 ;
   bool arg2 ;
   TagLib::RIFF::AIFF::Properties::ReadStyle arg3 ;
   bool val2 ;
@@ -2406,7 +2367,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
+  SwigValueWrapper< TagLib::FileName > arg1 ;
   bool arg2 ;
   bool val2 ;
   int ecode2 = 0 ;
@@ -2454,7 +2415,7 @@ _wrap_File_allocate(VALUE self) {
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
+  SwigValueWrapper< TagLib::FileName > arg1 ;
   TagLib::RIFF::AIFF::File *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
@@ -2563,33 +2524,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_remove_unsupported_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::RIFF::AIFF::File *arg1 = (TagLib::RIFF::AIFF::File *) 0 ;
-  TagLib::StringList *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::StringList tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__RIFF__AIFF__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::File *","removeUnsupportedProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::RIFF::AIFF::File * >(argp1);
-  {
-    tmp2 = ruby_array_to_taglib_string_list(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->removeUnsupportedProperties((TagLib::StringList const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_File_audio_properties(int argc, VALUE *argv, VALUE self) {
   TagLib::RIFF::AIFF::File *arg1 = (TagLib::RIFF::AIFF::File *) 0 ;
   void *argp1 = 0 ;
@@ -2668,7 +2602,6 @@ static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProp
 static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__RIFF__AIFF__File = {"_p_TagLib__RIFF__AIFF__File", "TagLib::RIFF::AIFF::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__RIFF__AIFF__Properties = {"_p_TagLib__RIFF__AIFF__Properties", "TagLib::RIFF::AIFF::Properties *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__StringList = {"_p_TagLib__StringList", "TagLib::StringList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "unsigned int *|TagLib::uint *", 0, 0, (void*)0, 0};
@@ -2680,7 +2613,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v2__Tag,
   &_swigt__p_TagLib__RIFF__AIFF__File,
   &_swigt__p_TagLib__RIFF__AIFF__Properties,
-  &_swigt__p_TagLib__StringList,
   &_swigt__p_char,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
@@ -2692,7 +2624,6 @@ static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLi
 static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__RIFF__AIFF__File[] = {  {&_swigt__p_TagLib__RIFF__AIFF__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__RIFF__AIFF__Properties[] = {  {&_swigt__p_TagLib__RIFF__AIFF__Properties, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__StringList[] = {  {&_swigt__p_TagLib__StringList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -2704,7 +2635,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v2__Tag,
   _swigc__p_TagLib__RIFF__AIFF__File,
   _swigc__p_TagLib__RIFF__AIFF__Properties,
-  _swigc__p_TagLib__StringList,
   _swigc__p_char,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
@@ -2983,7 +2913,6 @@ SWIGEXPORT void Init_taglib_aiff(void) {
   rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);
   rb_define_method(SwigClassProperties.klass, "channels", VALUEFUNC(_wrap_Properties_channels), -1);
   rb_define_method(SwigClassProperties.klass, "sample_width", VALUEFUNC(_wrap_Properties_sample_width), -1);
-  rb_define_method(SwigClassProperties.klass, "sample_frames", VALUEFUNC(_wrap_Properties_sample_frames), -1);
   SwigClassProperties.mark = 0;
   SwigClassProperties.destroy = (void (*)(void *)) free_TagLib_RIFF_AIFF_Properties;
   SwigClassProperties.trackObjects = 1;
@@ -2993,7 +2922,6 @@ SWIGEXPORT void Init_taglib_aiff(void) {
   rb_define_alloc_func(SwigClassFile.klass, _wrap_File_allocate);
   rb_define_method(SwigClassFile.klass, "initialize", VALUEFUNC(_wrap_new_File), -1);
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
-  rb_define_method(SwigClassFile.klass, "remove_unsupported_properties", VALUEFUNC(_wrap_File_remove_unsupported_properties), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
   rb_define_method(SwigClassFile.klass, "close", VALUEFUNC(_wrap_File_close), -1);

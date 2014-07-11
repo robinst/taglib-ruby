@@ -13,14 +13,7 @@
 
 %freefunc TagLib::RIFF::AIFF::File "free_taglib_riff_aiff_file";
 
-// ignore TagLib 1.8 extensions
-%ignore TagLib::RIFF::AIFF::File::File(IOStream *stream, bool readProperties = true, Properties::ReadStyle propertiesStyle = Properties::Average);
-%ignore TagLib::RIFF::AIFF::File::properties() const;
-%ignore TagLib::RIFF::AIFF::File::setProperties(const PropertyMap &);
-
-// ignore TagLib 1.9 extensions
-//%rename("id3v2_tag?") TagLib::FLAC::File::hasID3v2Tag;
-%ignore TagLib::RIFF::AIFF::File::hasID3v2Tag() const;
+%rename("id3v2_tag?") TagLib::RIFF::AIFF::File::hasID3v2Tag;
 
 namespace TagLib {
   namespace ID3v2 {
