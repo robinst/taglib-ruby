@@ -37,6 +37,15 @@ Then do:
 
     gem install taglib-ruby
 
+OS X C++ compiler override
+--------------------------
+
+Not all versions of TagLib get along with `clang++`, the default C++ compiler
+on OS X. To compile taglib-ruby's C++ extensions with a different compiler
+during installation, set the `TAGLIB_RUBY_CXX` environement variable.
+
+    TAGLIB_RUBY_CXX=g++-4.2 gem install taglib-ruby
+
 Usage
 -----
 
