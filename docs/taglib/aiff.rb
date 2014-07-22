@@ -1,4 +1,4 @@
-# @since 0.6.1?
+# @since 0.7.0
 module TagLib::RIFF::AIFF
 
   # The file class for `.aiff` files.
@@ -10,7 +10,7 @@ module TagLib::RIFF::AIFF
   #   end
   #
   # @example Reading the sample width
-  #   TagLib::RIFF::AIFF::File.open("file.aif") do |file|
+  #   TagLib::RIFF::AIFF::File.open("file2.aif") do |file|
   #     file.audio_properties.sample_width  #=>  16
   #   end
   #
@@ -20,7 +20,7 @@ module TagLib::RIFF::AIFF
   #     ext = cover.mime_type.rpartition('/')[2]
   #     File.open("cover-art.#{ext}", "wb") { |f| f.write cover.picture }
   #   end
-  class File < TagLib::RIFF::File
+  class File < TagLib::File
     # {include:TagLib::FileRef.open}
     #
     # @param (see #initialize)

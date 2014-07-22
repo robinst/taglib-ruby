@@ -38,7 +38,6 @@ DESC
     "ext/taglib_vorbis/extconf.rb",
     "ext/taglib_flac/extconf.rb",
     "ext/taglib_mp4/extconf.rb",
-    "ext/taglib_riff/extconf.rb",
     "ext/taglib_aiff/extconf.rb",
   ]
   s.extra_rdoc_files = [
@@ -92,9 +91,6 @@ DESC
     "ext/taglib_ogg/extconf.rb",
     "ext/taglib_ogg/taglib_ogg.i",
     "ext/taglib_ogg/taglib_ogg_wrap.cxx",
-    "ext/taglib_riff/extconf.rb",
-    "ext/taglib_riff/taglib_riff.i",
-    "ext/taglib_riff/taglib_riff_wrap.cxx",
     "ext/taglib_vorbis/extconf.rb",
     "ext/taglib_vorbis/taglib_vorbis.i",
     "ext/taglib_vorbis/taglib_vorbis_wrap.cxx",
@@ -109,7 +105,6 @@ DESC
     "lib/taglib/mp4.rb",
     "lib/taglib/mpeg.rb",
     "lib/taglib/ogg.rb",
-    "lib/taglib/riff.rb",
     "lib/taglib/version.rb",
     "lib/taglib/vorbis.rb",
     "taglib-ruby.gemspec",

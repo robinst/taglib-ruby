@@ -1,8 +1,3 @@
-# @since 0.6.1?
+# @since 0.7.0
 module TagLib::RIFF
-
-  # @abstract Base class for Ogg files, see subclasses.
-  class File < TagLib::File
-  end
-
 end

@@ -49,9 +49,6 @@ end
 Rake::ExtensionTask.new("taglib_mp4", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
-Rake::ExtensionTask.new("taglib_riff", $gemspec) do |ext|
-  configure_cross_compile(ext)
-end
 Rake::ExtensionTask.new("taglib_aiff", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
