@@ -2,11 +2,14 @@ require File.join(File.dirname(__FILE__), 'helper')
 
 class AIFFFileTest < Test::Unit::TestCase
 
+  SAMPLE_FILE = "test/data/aiff-sample.aiff"
+  PICTURE_FILE = "test/data/globe_east_540.jpg"
+
   context "TagLib::RIFF::AIFF::File" do
     setup do
-      @file = TagLib::RIFF::AIFF::File.new("test/data/aiff.aiff")
+      @file = TagLib::RIFF::AIFF::File.new(SAMPLE_FILE)
       @tag = @file.tag
-      File.open("test/data/globe_east_540.jpg", "rb") do |f|
+      File.open(PICTURE_FILE, "rb") do |f|
         @picture_data = f.read
       end
     end
@@ -81,7 +84,7 @@ class AIFFFileTest < Test::Unit::TestCase
   context "TagLib::RIFF::AIFF::File.open" do
     should "have open method" do
       title = nil
-      TagLib::RIFF::AIFF::File.open("test/data/aiff.aiff", false) do |file|
+      TagLib::RIFF::AIFF::File.open(SAMPLE_FILE, false) do |file|
         title = file.tag.title
       end
       assert_equal "AIFF Dummy Track Title - ID3v2.4", title

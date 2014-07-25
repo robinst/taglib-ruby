@@ -3,23 +3,26 @@ module TagLib::RIFF::AIFF
 
   # The file class for `.aiff` files.
   #
-  # @example Reading a title
-  #   title = TagLib::RIFF::AIFF::File.open("file.aiff") do |file|
-  #     tag = file.tag
-  #     tag.title
+  # @example Reading the title
+  #   title = TagLib::RIFF::AIFF::File.open("sample.aiff") do |file|
+  #     file.tag.title
   #   end
   #
-  # @example Reading the sample width
-  #   TagLib::RIFF::AIFF::File.open("file2.aif") do |file|
+  # @example Reading AIFF-specific audio properties
+  #   TagLib::RIFF::AIFF::File.open("sample.aiff") do |file|
   #     file.audio_properties.sample_width  #=>  16
   #   end
   #
-  # @example Saving cover-art to disk
-  #   TagLib::RIFF::AIFF::File.open("file.aiff") do |file|
-  #     cover = file.tag.frame_list('APIC').first
+  # @example Saving ID3v2 cover-art to disk
+  #   TagLib::RIFF::AIFF::File.open("sample2.aif") do |file|
+  #     id3v2_tag = file.tag
+  #     cover = id3v2_tag.frame_list('APIC').first
   #     ext = cover.mime_type.rpartition('/')[2]
   #     File.open("cover-art.#{ext}", "wb") { |f| f.write cover.picture }
   #   end
+  #
+  # @see ID3v2::Tag ID3v2 examples.
+  #
   class File < TagLib::File
     # {include:TagLib::FileRef.open}
     #

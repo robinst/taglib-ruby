@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'helper')
 
 class AIFFFileWriteTest < Test::Unit::TestCase
 
-  SAMPLE_FILE = "test/data/aiff.aiff"
+  SAMPLE_FILE = "test/data/aiff-sample.aiff"
   OUTPUT_FILE = "test/data/_output.aiff"
   PICTURE_FILE = "test/data/globe_east_90.jpg"
 
