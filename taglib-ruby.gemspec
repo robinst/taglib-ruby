@@ -162,6 +162,7 @@ DESC
     "test/unicode_filename_test.rb",
     "test/vorbis_file_test.rb",
     "test/vorbis_tag_test.rb",
+    "test/wav_examples_test.rb",
     "test/wav_file_test.rb",
     "test/wav_file_write_test.rb",
   ]
