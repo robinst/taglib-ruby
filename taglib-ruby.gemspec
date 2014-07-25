@@ -137,6 +137,7 @@ DESC
     "test/data/unicode.mp3",
     "test/data/vorbis-create.cpp",
     "test/data/vorbis.oga",
+    "test/data/wav-create.rb",
     "test/data/wav-sample.wav",
     "test/aiff_file_test.rb",
     "test/aiff_file_write_test.rb",
