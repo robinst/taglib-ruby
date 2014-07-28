@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-class WAVExemples < Test::Unit::TestCase
+class WAVExamples < Test::Unit::TestCase
 
   DATA_FILE_PREFIX = "test/data/wav-"
 
