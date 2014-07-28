@@ -17,6 +17,7 @@ task :swig =>
    'ext/taglib_vorbis/taglib_vorbis_wrap.cxx',
    'ext/taglib_flac/taglib_flac_wrap.cxx',
    'ext/taglib_mp4/taglib_mp4_wrap.cxx',
+   'ext/taglib_aiff/taglib_aiff_wrap.cxx',
   ]
 
 base_dependencies = ['ext/taglib_base/taglib_base.i', 'ext/taglib_base/includes.i']
@@ -51,4 +52,8 @@ end
 
 file 'ext/taglib_mp4/taglib_mp4_wrap.cxx' => ['ext/taglib_mp4/taglib_mp4.i'] + base_dependencies do
   run_swig('taglib_mp4')
+end
+
+file 'ext/taglib_aiff/taglib_aiff_wrap.cxx' => ['ext/taglib_aiff/taglib_aiff.i'] + base_dependencies do
+  run_swig('taglib_aiff')
 end

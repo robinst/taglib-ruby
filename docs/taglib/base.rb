@@ -5,7 +5,7 @@
 # * Reading/writing basic tag and audio properties without having to
 #   know the tagging format: {TagLib::FileRef}
 # * Reading properties of MPEG files: {TagLib::MPEG::File}
-# * Reading/writing ID3v2 tags: {TagLib::MPEG::File} and
+# * Reading/writing ID3v2 tags: {TagLib::MPEG::File}, {TagLib::RIFF::AIFF::File} and
 #   {TagLib::ID3v2::Tag}
 # * Reading/writing Ogg Vorbis tags: {TagLib::Ogg::Vorbis::File}
 # * Reading/writing FLAC tags: {TagLib::FLAC::File}
