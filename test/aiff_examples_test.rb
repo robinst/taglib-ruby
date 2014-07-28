@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-class AIFFExemples < Test::Unit::TestCase
+class AIFFExamples < Test::Unit::TestCase
 
   DATA_FILE_PREFIX = "test/data/aiff-"
 
