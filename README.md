@@ -74,6 +74,11 @@ version 2.0.5 of SWIG):
 
     rake swig
 
+Force regeneration of all SWIG wrappers:
+
+    touch ext/*/*.i
+    rake swig
+
 Compile extensions:
 
     rake clean compile
