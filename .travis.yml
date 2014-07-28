@@ -4,4 +4,4 @@ rvm:
   - 1.9.3
   - 2.0.0
 before_script:
-  - "sudo apt-get install -y libtag1-dev"
+  - "sudo apt-get install -y libtag1-dev swig"
