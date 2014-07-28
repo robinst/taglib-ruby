@@ -64,15 +64,30 @@ Contributing
 
 ### Building
 
-    # Install dependencies
+Install dependencies (uses bundler, install it via `gem install bundler`
+if you don't have it):
+
     bundle install
-    # Regenerate SWIG wrappers (only necessary if you made changes)
+
+Regenerate SWIG wrappers if you made changes in `.i` files (use at least
+version 2.0.5 of SWIG):
+
     rake swig
-    # Compile extension
+
+Compile extensions:
+
     rake clean compile
-    # Run tests
+
+Run tests:
+
     rake test
-    # Build and install gem into system gems
+
+Run irb with library:
+
+    irb -Ilib -rtaglib
+
+Build and install gem into system gems:
+
     rake install
 
 ### Workflow
