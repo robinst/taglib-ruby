@@ -1,4 +1,4 @@
-require '/home/tchevereau/tch/Dev/voxtok/lib/tchev/taglib-ruby/lib/taglib'
+require 'taglib'
 
 sample = 'wav-sample.wav'
 coverart = 'globe_east_540.jpg'
