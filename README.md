@@ -18,6 +18,7 @@ taglib-ruby currently supports the following:
 
 Contributions for more coverage of the library are very welcome.
 
+[![Gem version][gem-img]][gem-link]
 [![Build status][travis-img]][travis-link]
 
 [![flattr this project][flattr-img]][flattr-link]
@@ -124,6 +125,8 @@ a DLL. TagLib is distributed under the GNU Lesser General Public License
 version 2.1 (LGPL) and Mozilla Public License (MPL).
 
 [taglib]: http://taglib.github.io/
+[gem-img]: https://badge.fury.io/rb/taglib-ruby.svg
+[gem-link]: https://rubygems.org/gems/taglib-ruby
 [travis-img]: https://secure.travis-ci.org/robinst/taglib-ruby.png
 [travis-link]: http://travis-ci.org/robinst/taglib-ruby
 [flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
