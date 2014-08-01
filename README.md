@@ -127,7 +127,7 @@ version 2.1 (LGPL) and Mozilla Public License (MPL).
 [taglib]: http://taglib.github.io/
 [gem-img]: https://badge.fury.io/rb/taglib-ruby.svg
 [gem-link]: https://rubygems.org/gems/taglib-ruby
-[travis-img]: https://secure.travis-ci.org/robinst/taglib-ruby.png
-[travis-link]: http://travis-ci.org/robinst/taglib-ruby
-[flattr-img]: http://api.flattr.com/button/flattr-badge-large.png
+[travis-img]: https://api.travis-ci.org/robinst/taglib-ruby.png
+[travis-link]: https://travis-ci.org/robinst/taglib-ruby
+[flattr-img]: https://api.flattr.com/button/flattr-badge-large.png
 [flattr-link]: https://flattr.com/submit/auto?user_id=robinst&url=https://github.com/robinst/taglib-ruby&title=taglib-ruby&tags=github&category=software
