@@ -1,6 +1,17 @@
 # Default opt dirs to help mkmf find taglib
-configure_args = "--with-opt-dir=/usr/local:/opt/local:/sw "
+
+opt_dirs = ["/usr/local", "/opt/local", "/sw"]
+
+# Heroku vendor dir
+vendor = ENV.fetch('GEM_HOME', "")[/^[^ ]*\/vendor\//]
+if vendor
+  opt_dirs << (vendor + "taglib")
+end
+opt_dirs_joined = opt_dirs.join(":")
+
+configure_args = "--with-opt-dir=#{opt_dirs_joined} "
 ENV['CONFIGURE_ARGS'] = configure_args + ENV.fetch('CONFIGURE_ARGS', "")
+
 
 require 'mkmf'
 
