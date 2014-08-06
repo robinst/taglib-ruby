@@ -91,7 +91,7 @@ class WAVFileTest < Test::Unit::TestCase
       TagLib::RIFF::WAV::File.open(SAMPLE_FILE, false) do |file|
         title = file.tag.title
       end
-#      assert_equal "WAV Dummy Track Title - ID3v2.4", title
+      assert_equal "WAV Dummy Track Title", title
     end
   end
 
