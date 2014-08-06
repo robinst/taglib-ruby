@@ -9,9 +9,6 @@ class WAVFileTest < Test::Unit::TestCase
     setup do
       @file = TagLib::RIFF::WAV::File.new(SAMPLE_FILE)
       @tag = @file.tag
-      File.open(PICTURE_FILE, "rb") do |f|
-        @picture_data = f.read
-      end
     end
 
     should "open" do
@@ -36,6 +33,7 @@ class WAVFileTest < Test::Unit::TestCase
 
     context "APIC frame" do
       setup do
+        @picture_data = File.open(PICTURE_FILE, 'rb') { |f| f.read }
         @apic = @tag.frame_list('APIC').first
       end
 
