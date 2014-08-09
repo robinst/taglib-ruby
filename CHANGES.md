@@ -4,7 +4,7 @@ Changes in Releases of taglib-ruby
 ## 0.7.0 (2014-08-09)
 
 * Add support for TagLib::RIFF::AIFF (#52, by @tchev)
-* Add support for TagLib::RIFF::WAV (#52, by @tchev)
+* Add support for TagLib::RIFF::WAV (#57, by @tchev)
 * Associate filesystem encoding to filename strings
 * Allow CXX override during gem installation
 * Documentation updates
