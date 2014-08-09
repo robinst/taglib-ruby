@@ -39,6 +39,7 @@ DESC
     "ext/taglib_flac/extconf.rb",
     "ext/taglib_mp4/extconf.rb",
     "ext/taglib_aiff/extconf.rb",
+    "ext/taglib_wav/extconf.rb",
   ]
   s.extra_rdoc_files = [
     "CHANGES.md",
@@ -64,6 +65,7 @@ DESC
     "docs/taglib/ogg.rb",
     "docs/taglib/riff.rb",
     "docs/taglib/vorbis.rb",
+    "docs/taglib/wav.rb",
     "ext/extconf_common.rb",
     "ext/taglib_aiff/extconf.rb",
     "ext/taglib_aiff/taglib_aiff.i",
@@ -94,6 +96,9 @@ DESC
     "ext/taglib_vorbis/extconf.rb",
     "ext/taglib_vorbis/taglib_vorbis.i",
     "ext/taglib_vorbis/taglib_vorbis_wrap.cxx",
+    "ext/taglib_wav/extconf.rb",
+    "ext/taglib_wav/taglib_wav.i",
+    "ext/taglib_wav/taglib_wav_wrap.cxx",
     "ext/valgrind-suppressions.txt",
     "ext/win.cmake",
     "lib/taglib.rb",
@@ -107,6 +112,7 @@ DESC
     "lib/taglib/ogg.rb",
     "lib/taglib/version.rb",
     "lib/taglib/vorbis.rb",
+    "lib/taglib/wav.rb",
     "taglib-ruby.gemspec",
     "tasks/docs_coverage.rake",
     "tasks/ext.rake",
@@ -131,6 +137,9 @@ DESC
     "test/data/unicode.mp3",
     "test/data/vorbis-create.cpp",
     "test/data/vorbis.oga",
+    "test/data/wav-create.cpp",
+    "test/data/wav-dump.cpp",
+    "test/data/wav-sample.wav",
     "test/aiff_examples_test.rb",
     "test/aiff_file_test.rb",
     "test/aiff_file_write_test.rb",
@@ -156,5 +165,8 @@ DESC
     "test/unicode_filename_test.rb",
     "test/vorbis_file_test.rb",
     "test/vorbis_tag_test.rb",
+    "test/wav_examples_test.rb",
+    "test/wav_file_test.rb",
+    "test/wav_file_write_test.rb",
   ]
 end

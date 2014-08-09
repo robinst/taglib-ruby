@@ -21,3 +21,5 @@ Makefile
 /test/data/id3v1-create
 /test/data/vorbis-create
 /test/data/mp4-create
+/test/data/wav-create
+/test/data/wav-dump
