@@ -114,7 +114,7 @@ Build and install gem into system gems:
 License
 -------
 
-Copyright (c) 2010-2013 Robin Stocker and others, see Git history.
+Copyright (c) 2010-2014 Robin Stocker and others, see Git history.
 
 taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
