@@ -10,9 +10,9 @@ install_dll = "#{install_dir}/bin/libtag.dll"
 ldflags = "-static-libgcc -static-libstdc++"
 $cross_config_options = [%(--with-opt-dir=#{install_dir} --with-ldflags="#{ldflags}")]
 
-taglib_version = '1.8'
+taglib_version = '1.9.1'
 taglib = "taglib-#{taglib_version}"
-taglib_url = "http://cloud.github.com/downloads/taglib/taglib/#{taglib}.tar.gz"
+taglib_url = "https://github.com/taglib/taglib/releases/download/v#{taglib_version}/#{taglib}.tar.gz"
 # WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
 taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
 
