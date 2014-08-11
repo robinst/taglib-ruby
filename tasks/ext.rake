@@ -1,6 +1,6 @@
 # Extension tasks and cross-compiling
 
-host = 'x86_64-w64-mingw32'
+host = 'i686-w64-mingw32'
 plat = 'x86-mingw32'
 
 tmp = "#{Dir.pwd}/tmp/#{plat}"
