@@ -23,7 +23,6 @@ YARD::Rake::YardocTask.new do |t|
   t.options = ['--title', "taglib-ruby #{version}"]
 end
 
-# Change to Bundler::GemHelper.gemspec when it's released
-$gemspec = Bundler.load_gemspec('taglib-ruby.gemspec')
+$gemspec = Bundler::GemHelper.gemspec
 
 FileList['tasks/**/*.rake'].each { |task| import task }
