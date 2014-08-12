@@ -1,9 +1,9 @@
 # Extension tasks and cross-compiling
 
 host = 'i686-w64-mingw32'
-plat = 'x86-mingw32'
+$plat = 'i386-mingw32'
 
-tmp = "#{Dir.pwd}/tmp/#{plat}"
+tmp = "#{Dir.pwd}/tmp/#{$plat}"
 toolchain_file = "#{Dir.pwd}/ext/win.cmake"
 install_dir = "#{tmp}/install"
 install_dll = "#{install_dir}/bin/libtag.dll"
@@ -18,7 +18,7 @@ taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
 
 def configure_cross_compile(ext)
   ext.cross_compile = true
-  ext.cross_platform = 'i386-mingw32'
+  ext.cross_platform = $plat
   ext.cross_config_options.concat($cross_config_options)
   ext.cross_compiling do |gem|
     gem.files << "lib/libtag.dll"
@@ -57,14 +57,15 @@ Rake::ExtensionTask.new("taglib_wav", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
 
-task :cross => [:taglib] do
+task :cross do
   # Mkmf just uses "g++" as C++ compiler, despite what's in rbconfig.rb.
   # So, we need to hack around it by setting CXX to the cross compiler.
   ENV["CXX"] = "#{host}-g++"
-  install install_dll, "lib/"
 end
 
-task :taglib => [install_dll]
+file "tmp/#{$plat}/stage/lib/libtag.dll" => [install_dll] do |f|
+  install install_dll, f
+end
 
 file install_dll => ["#{tmp}/#{taglib}"] do
   chdir "#{tmp}/#{taglib}" do
