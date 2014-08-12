@@ -18,6 +18,7 @@ taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
 
 def configure_cross_compile(ext)
   ext.cross_compile = true
+  ext.cross_platform = 'i386-mingw32'
   ext.cross_config_options.concat($cross_config_options)
   ext.cross_compiling do |gem|
     gem.files << "lib/libtag.dll"
