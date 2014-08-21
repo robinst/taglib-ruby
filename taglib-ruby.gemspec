@@ -7,7 +7,7 @@ require 'taglib/version'
 Gem::Specification.new do |s|
   s.name        = "taglib-ruby"
   s.version     = TagLib::Version::STRING
-  s.authors     = ["Robin Stocker", "Jacob Vosmaer"]
+  s.authors     = ["Robin Stocker", "Jacob Vosmaer", "Thomas Chevereau"]
   s.email       = ["robin@nibor.org"]
   s.homepage    = "http://robinst.github.io/taglib-ruby/"
   s.licenses    = ["MIT"]
@@ -147,6 +147,7 @@ DESC
     "test/fileref_open_test.rb",
     "test/fileref_properties_test.rb",
     "test/fileref_write_test.rb",
+    "test/file_test.rb",
     "test/flac_file_test.rb",
     "test/flac_file_write_test.rb",
     "test/id3v1_tag_test.rb",
@@ -156,6 +157,7 @@ DESC
     "test/id3v2_relative_volume_test.rb",
     "test/id3v2_tag_test.rb",
     "test/id3v2_unicode_test.rb",
+    "test/id3v2_unknown_frames_test.rb",
     "test/id3v2_write_test.rb",
     "test/mp4_file_test.rb",
     "test/mp4_file_write_test.rb",
