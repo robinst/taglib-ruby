@@ -4,13 +4,13 @@ layout: default
 ---
 
 <section id="introduction">
-<div class="hero-unit">
+<div class="jumbotron">
   <h1>taglib-ruby</h1>
   <p>Ruby library for reading and writing meta-data (tags) of many audio formats</p>
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       It’s based on the excellent
       <a href="http://developer.kde.org/~wheeler/taglib.html">TagLib</a> C++ library,
@@ -24,7 +24,7 @@ layout: default
     </p>
   </div>
 
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       taglib-ruby currently supports the following:
     </p>
@@ -77,7 +77,7 @@ layout: default
 </p>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <h2>Basic API</h2>
       <p>The basic API can read all formats that TagLib supports and is easy to use.
 On the other hand, it only exposes some basic meta-data that is the same across all formats. Here’s an example:</p>
@@ -102,7 +102,7 @@ TagLib::FileRef.open("wake_up.flac") do |fileref|
 end  # File is automatically closed at block end
 {% endhighlight %}
   </div>
-  <div class="span6">
+  <div class="col-md-6">
     <h2>Format-specific API</h2>
       <p>For each format, there’s also an advanced API. It enables doing format-specific things.
 In the example, we’re reading ID3v2 frames and extract the attached picture from an ID3v2 tag:</p>
@@ -130,7 +130,7 @@ end  # File is automatically closed at block end
 </div> <!-- row -->
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <p>
       For more information please have a look at the complete
       <a href="http://rubydoc.info/gems/taglib-ruby/frames">documentation</a>.
