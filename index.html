@@ -41,9 +41,9 @@ layout: default
 </section>
 
 <section id="installation">
-<div class="page-header">
-  <h1>Installation</h1>
-</div>
+<h2>Installation</h2>
+
+<h3>Dependencies</h3>
 
 <p>
   Before you install the gem, you need to have
@@ -63,15 +63,15 @@ layout: default
   pre-compiled binary gem available which bundles taglib.
 </p>
 
+<h3>Gem</h3>
+
 <p>Then install taglib-ruby (or add it to your Gemfile):</p>
 <p><code>gem install taglib-ruby</code></p>
 
 </section>
 
 <section id="usage">
-<div class="page-header">
-  <h1>Usage</h1>
-</div>
+<h2>Usage</h2>
 
 <p>
   There’s a basic API and format-specific APIs.
@@ -79,7 +79,7 @@ layout: default
 
 <div class="row">
   <div class="col-md-6">
-    <h2>Basic API</h2>
+    <h3>Basic API</h3>
       <p>The basic API can read all formats that TagLib supports and is easy to use.
 On the other hand, it only exposes some basic meta-data that is the same across all formats. Here’s an example:</p>
 {% highlight ruby %}
@@ -104,7 +104,7 @@ end  # File is automatically closed at block end
 {% endhighlight %}
   </div>
   <div class="col-md-6">
-    <h2>Format-specific API</h2>
+    <h3>Format-specific API</h3>
       <p>For each format, there’s also an advanced API. It enables doing format-specific things.
 In the example, we’re reading ID3v2 frames and extract the attached picture from an ID3v2 tag:</p>
 {% highlight ruby %}
