@@ -26,15 +26,16 @@ layout: default
 
   <div class="col-md-6">
     <p>
-      taglib-ruby currently supports the following:
+      taglib-ruby currently supports reading and writing of:
     </p>
     <ul>
-      <li>Reading/writing common tag data of all formats that TagLib supports</li>
-      <li>Reading/writing ID3v1 and ID3v2 including ID3v2.4 and Unicode</li>
-      <li>Reading/writing Ogg Vorbis comments</li>
-      <li>Reading/writing MP4 tags (.m4a)</li>
-      <li>Reading audio properties (e.g. bitrate) of the above formats</li>
+      <li>Basic tag data of all formats that TagLib supports</li>
+      <li>ID3v1 and ID3v2 including v2.4, Unicode and attached pictures</li>
+      <li>Ogg Vorbis comments, MP4, WAV and AIFF tags</li>
     </ul>
+    <p>
+      It also supports reading audio properties (e.g. bitrate) of the above formats.
+    </p>
   </div>
 </div> <!-- row -->
 </section>
@@ -45,9 +46,9 @@ layout: default
 </div>
 
 <p>
-  Before you install the gem, make sure to have
+  Before you install the gem, you need to have
   <a href="http://developer.kde.org/~wheeler/taglib.html">taglib</a>
-  installed with header files (and a C++ compiler of course):
+  installed with header files (and a C++ compiler):
 </p>
 
 <table class="table">
