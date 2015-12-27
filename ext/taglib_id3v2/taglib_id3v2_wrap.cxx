@@ -1839,29 +1839,28 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[9]
 #define SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame swig_types[10]
 #define SWIGTYPE_p_TagLib__ID3v2__Header swig_types[11]
-#define SWIGTYPE_p_TagLib__ID3v2__PeakVolume swig_types[12]
-#define SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame swig_types[13]
-#define SWIGTYPE_p_TagLib__ID3v2__PrivateFrame swig_types[14]
-#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame swig_types[15]
-#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume swig_types[16]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[17]
-#define SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame swig_types[18]
-#define SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame swig_types[19]
-#define SWIGTYPE_p_TagLib__ID3v2__UnknownFrame swig_types[20]
-#define SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame swig_types[21]
-#define SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame swig_types[22]
-#define SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame swig_types[23]
-#define SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame swig_types[24]
-#define SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t swig_types[25]
-#define SWIGTYPE_p_TagLib__StringList swig_types[26]
-#define SWIGTYPE_p_TagLib__Tag swig_types[27]
-#define SWIGTYPE_p_char swig_types[28]
-#define SWIGTYPE_p_unsigned_char swig_types[29]
-#define SWIGTYPE_p_unsigned_int swig_types[30]
-#define SWIGTYPE_p_unsigned_long swig_types[31]
-#define SWIGTYPE_p_wchar_t swig_types[32]
-static swig_type_info *swig_types[34];
-static swig_module_info swig_module = {swig_types, 33, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame swig_types[12]
+#define SWIGTYPE_p_TagLib__ID3v2__PrivateFrame swig_types[13]
+#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame swig_types[14]
+#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume swig_types[15]
+#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[16]
+#define SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame swig_types[17]
+#define SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame swig_types[18]
+#define SWIGTYPE_p_TagLib__ID3v2__UnknownFrame swig_types[19]
+#define SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame swig_types[20]
+#define SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame swig_types[21]
+#define SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame swig_types[22]
+#define SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame swig_types[23]
+#define SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t swig_types[24]
+#define SWIGTYPE_p_TagLib__StringList swig_types[25]
+#define SWIGTYPE_p_TagLib__Tag swig_types[26]
+#define SWIGTYPE_p_char swig_types[27]
+#define SWIGTYPE_p_unsigned_char swig_types[28]
+#define SWIGTYPE_p_unsigned_int swig_types[29]
+#define SWIGTYPE_p_unsigned_long swig_types[30]
+#define SWIGTYPE_p_wchar_t swig_types[31]
+static swig_type_info *swig_types[33];
+static swig_module_info swig_module = {swig_types, 32, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2270,36 +2269,6 @@ SWIG_From_int  (int value)
 }
 
 
-SWIGINTERN int
-SWIG_AsVal_unsigned_SS_char (VALUE obj, unsigned char *val)
-{
-  unsigned long v;
-  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v > UCHAR_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< unsigned char >(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_unsigned_SS_char  (unsigned char value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
-}
-
-
-namespace TagLib {
-  namespace ID3v2 {
-    typedef RelativeVolumeFrame::PeakVolume PeakVolume;
-  }
-}
-
-
 SWIGINTERNINLINE VALUE
 SWIG_From_short  (short value)
 {    
@@ -2402,6 +2371,29 @@ SWIG_AsVal_float (VALUE obj, float *val)
     }
   }  
   return res;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_char (VALUE obj, unsigned char *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UCHAR_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< unsigned char >(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_unsigned_SS_char  (unsigned char value)
+{    
+  return SWIG_From_unsigned_SS_long  (value);
 }
 
 static swig_class SwigClassHeader;
@@ -4298,153 +4290,6 @@ fail:
 }
 
 
-static swig_class SwigClassPeakVolume;
-
-SWIGINTERN VALUE
-_wrap_PeakVolume_bits_representing_peak_set(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::PeakVolume *arg1 = (TagLib::ID3v2::PeakVolume *) 0 ;
-  unsigned char arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned char val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__PeakVolume, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::PeakVolume *","bitsRepresentingPeak", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ID3v2::PeakVolume * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_char(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned char","bitsRepresentingPeak", 2, argv[0] ));
-  } 
-  arg2 = static_cast< unsigned char >(val2);
-  if (arg1) (arg1)->bitsRepresentingPeak = arg2;
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_PeakVolume_bits_representing_peak_get(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::PeakVolume *arg1 = (TagLib::ID3v2::PeakVolume *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned char result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__PeakVolume, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::PeakVolume *","bitsRepresentingPeak", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ID3v2::PeakVolume * >(argp1);
-  result = (unsigned char) ((arg1)->bitsRepresentingPeak);
-  vresult = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_PeakVolume_peak_volume_set(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::PeakVolume *arg1 = (TagLib::ID3v2::PeakVolume *) 0 ;
-  TagLib::ByteVector *arg2 = (TagLib::ByteVector *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__PeakVolume, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::PeakVolume *","peakVolume", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ID3v2::PeakVolume * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg2 = &tmp2;
-  }
-  if (arg1) (arg1)->peakVolume = *arg2;
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_PeakVolume_peak_volume_get(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::PeakVolume *arg1 = (TagLib::ID3v2::PeakVolume *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__PeakVolume, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::PeakVolume *","peakVolume", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ID3v2::PeakVolume * >(argp1);
-  result = (TagLib::ByteVector *)& ((arg1)->peakVolume);
-  {
-    vresult = taglib_bytevector_to_ruby_string(*(result));
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_PeakVolume_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_PeakVolume_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__PeakVolume);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_PeakVolume(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::PeakVolume *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::ID3v2::PeakVolume *)new TagLib::ID3v2::PeakVolume();
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_TagLib_ID3v2_PeakVolume(TagLib::ID3v2::PeakVolume *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
 static swig_class SwigClassRelativeVolumeFrame;
 
 SWIGINTERN VALUE
@@ -5378,6 +5223,153 @@ fail:
   return Qnil;
 }
 
+
+static swig_class SwigClassPeakVolume;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_PeakVolume_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_PeakVolume_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_PeakVolume(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *)new TagLib::ID3v2::RelativeVolumeFrame::PeakVolume();
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PeakVolume_bits_representing_peak_set(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *arg1 = (TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *) 0 ;
+  unsigned char arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned char val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *","bitsRepresentingPeak", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame::PeakVolume * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_char(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned char","bitsRepresentingPeak", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned char >(val2);
+  if (arg1) (arg1)->bitsRepresentingPeak = arg2;
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PeakVolume_bits_representing_peak_get(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *arg1 = (TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned char result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *","bitsRepresentingPeak", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame::PeakVolume * >(argp1);
+  result = (unsigned char) ((arg1)->bitsRepresentingPeak);
+  vresult = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PeakVolume_peak_volume_set(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *arg1 = (TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *) 0 ;
+  TagLib::ByteVector *arg2 = (TagLib::ByteVector *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *","peakVolume", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame::PeakVolume * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  if (arg1) (arg1)->peakVolume = *arg2;
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PeakVolume_peak_volume_get(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *arg1 = (TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *","peakVolume", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::RelativeVolumeFrame::PeakVolume * >(argp1);
+  result = (TagLib::ByteVector *)& ((arg1)->peakVolume);
+  {
+    vresult = taglib_bytevector_to_ruby_string(*(result));
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_TagLib_ID3v2_RelativeVolumeFrame_PeakVolume(TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
 
 static swig_class SwigClassAttachedPictureFrame;
 
@@ -8835,7 +8827,6 @@ static swig_type_info _swigt__p_TagLib__ID3v2__Frame = {"_p_TagLib__ID3v2__Frame
 static swig_type_info _swigt__p_TagLib__ID3v2__FrameFactory = {"_p_TagLib__ID3v2__FrameFactory", "TagLib::ID3v2::FrameFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame = {"_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame", "TagLib::ID3v2::GeneralEncapsulatedObjectFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Header = {"_p_TagLib__ID3v2__Header", "TagLib::ID3v2::Header *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ID3v2__PeakVolume = {"_p_TagLib__ID3v2__PeakVolume", "TagLib::ID3v2::PeakVolume *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__PopularimeterFrame = {"_p_TagLib__ID3v2__PopularimeterFrame", "TagLib::ID3v2::PopularimeterFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__PrivateFrame = {"_p_TagLib__ID3v2__PrivateFrame", "TagLib::ID3v2::PrivateFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__RelativeVolumeFrame = {"_p_TagLib__ID3v2__RelativeVolumeFrame", "TagLib::ID3v2::RelativeVolumeFrame *", 0, 0, (void*)0, 0};
@@ -8870,7 +8861,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v2__FrameFactory,
   &_swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame,
   &_swigt__p_TagLib__ID3v2__Header,
-  &_swigt__p_TagLib__ID3v2__PeakVolume,
   &_swigt__p_TagLib__ID3v2__PopularimeterFrame,
   &_swigt__p_TagLib__ID3v2__PrivateFrame,
   &_swigt__p_TagLib__ID3v2__RelativeVolumeFrame,
@@ -8905,7 +8895,6 @@ static swig_cast_info _swigc__p_TagLib__ID3v2__Frame[] = {  {&_swigt__p_TagLib__
 static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame[] = {  {&_swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Header[] = {  {&_swigt__p_TagLib__ID3v2__Header, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v2__PeakVolume[] = {  {&_swigt__p_TagLib__ID3v2__PeakVolume, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__PopularimeterFrame[] = {  {&_swigt__p_TagLib__ID3v2__PopularimeterFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__PrivateFrame[] = {  {&_swigt__p_TagLib__ID3v2__PrivateFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__RelativeVolumeFrame[] = {  {&_swigt__p_TagLib__ID3v2__RelativeVolumeFrame, 0, 0, 0},{0, 0, 0, 0}};
@@ -8940,7 +8929,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v2__FrameFactory,
   _swigc__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame,
   _swigc__p_TagLib__ID3v2__Header,
-  _swigc__p_TagLib__ID3v2__PeakVolume,
   _swigc__p_TagLib__ID3v2__PopularimeterFrame,
   _swigc__p_TagLib__ID3v2__PrivateFrame,
   _swigc__p_TagLib__ID3v2__RelativeVolumeFrame,
@@ -9297,18 +9285,6 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   SwigClassFrameFactory.mark = 0;
   SwigClassFrameFactory.trackObjects = 1;
   
-  SwigClassPeakVolume.klass = rb_define_class_under(mID3v2, "PeakVolume", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__PeakVolume, (void *) &SwigClassPeakVolume);
-  rb_define_alloc_func(SwigClassPeakVolume.klass, _wrap_PeakVolume_allocate);
-  rb_define_method(SwigClassPeakVolume.klass, "initialize", VALUEFUNC(_wrap_new_PeakVolume), -1);
-  rb_define_method(SwigClassPeakVolume.klass, "bits_representing_peak=", VALUEFUNC(_wrap_PeakVolume_bits_representing_peak_set), -1);
-  rb_define_method(SwigClassPeakVolume.klass, "bits_representing_peak", VALUEFUNC(_wrap_PeakVolume_bits_representing_peak_get), -1);
-  rb_define_method(SwigClassPeakVolume.klass, "peak_volume=", VALUEFUNC(_wrap_PeakVolume_peak_volume_set), -1);
-  rb_define_method(SwigClassPeakVolume.klass, "peak_volume", VALUEFUNC(_wrap_PeakVolume_peak_volume_get), -1);
-  SwigClassPeakVolume.mark = 0;
-  SwigClassPeakVolume.destroy = (void (*)(void *)) free_TagLib_ID3v2_PeakVolume;
-  SwigClassPeakVolume.trackObjects = 1;
-  
   SwigClassRelativeVolumeFrame.klass = rb_define_class_under(mID3v2, "RelativeVolumeFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame, (void *) &SwigClassRelativeVolumeFrame);
   rb_define_alloc_func(SwigClassRelativeVolumeFrame.klass, _wrap_RelativeVolumeFrame_allocate);
@@ -9337,6 +9313,18 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   SwigClassRelativeVolumeFrame.mark = 0;
   SwigClassRelativeVolumeFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_RelativeVolumeFrame;
   SwigClassRelativeVolumeFrame.trackObjects = 1;
+  
+  SwigClassPeakVolume.klass = rb_define_class_under(mID3v2, "PeakVolume", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, (void *) &SwigClassPeakVolume);
+  rb_define_alloc_func(SwigClassPeakVolume.klass, _wrap_PeakVolume_allocate);
+  rb_define_method(SwigClassPeakVolume.klass, "initialize", VALUEFUNC(_wrap_new_PeakVolume), -1);
+  rb_define_method(SwigClassPeakVolume.klass, "bits_representing_peak=", VALUEFUNC(_wrap_PeakVolume_bits_representing_peak_set), -1);
+  rb_define_method(SwigClassPeakVolume.klass, "bits_representing_peak", VALUEFUNC(_wrap_PeakVolume_bits_representing_peak_get), -1);
+  rb_define_method(SwigClassPeakVolume.klass, "peak_volume=", VALUEFUNC(_wrap_PeakVolume_peak_volume_set), -1);
+  rb_define_method(SwigClassPeakVolume.klass, "peak_volume", VALUEFUNC(_wrap_PeakVolume_peak_volume_get), -1);
+  SwigClassPeakVolume.mark = 0;
+  SwigClassPeakVolume.destroy = (void (*)(void *)) free_TagLib_ID3v2_RelativeVolumeFrame_PeakVolume;
+  SwigClassPeakVolume.trackObjects = 1;
   
   SwigClassAttachedPictureFrame.klass = rb_define_class_under(mID3v2, "AttachedPictureFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame, (void *) &SwigClassAttachedPictureFrame);
