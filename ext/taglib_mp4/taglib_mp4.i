@@ -44,7 +44,7 @@ TagLib::MP4::CoverArtList ruby_array_to_taglib_cover_art_list(VALUE ary) {
     return result;
   }
   for (long i = 0; i < RARRAY_LEN(ary); i++) {
-    VALUE e = RARRAY_PTR(ary)[i];
+    VALUE e = rb_ary_entry(ary, i);
     TagLib::MP4::CoverArt *c;
     SWIG_ConvertPtr(e, (void **) &c, SWIGTYPE_p_TagLib__MP4__CoverArt, 1);
     result.append(*c);
