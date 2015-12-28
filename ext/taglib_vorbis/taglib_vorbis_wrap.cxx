@@ -1938,7 +1938,7 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
     return result;
   }
   for (long i = 0; i < RARRAY_LEN(ary); i++) {
-    VALUE e = RARRAY_PTR(ary)[i];
+    VALUE e = rb_ary_entry(ary, i);
     TagLib::String s = ruby_string_to_taglib_string(e);
     result.append(s);
   }
