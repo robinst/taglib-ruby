@@ -1,6 +1,10 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 0.7.1 (2015-12-28)
+
+* Fix compile error during gem installation on Ruby 2.3 (MRI) (#67)
+
 ## 0.7.0 (2014-08-21)
 
 * Add support for TagLib::RIFF::AIFF (#52, by @tchev)
