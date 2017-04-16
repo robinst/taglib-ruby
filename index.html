@@ -87,7 +87,7 @@ require 'taglib'
 
 # Load a file
 TagLib::FileRef.open("wake_up.flac") do |fileref|
-  unless fileref.null?
+  unless fileref.nil?
     tag = fileref.tag
     tag.title   #=> "Wake Up"
     tag.artist  #=> "Arcade Fire"
