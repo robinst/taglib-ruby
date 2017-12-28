@@ -95,6 +95,12 @@ Build and install gem into system gems:
 
     rake install
 
+The `swig` and `compile` rake tasks can use the `TAGLIB_DIR` environment
+variable to build against non-standard taglib installations. It is assumed
+that taglib headers are located at `$TAGLIB_DIR/include` and taglib libraries
+at `$TAGLIB_DIR/lib`. To run taglib-ruby with non-standard taglib
+installations, use the `LD_LIBRARY_PATH` env. variable.
+
 ### Workflow
 
 * Check out the latest master to make sure the feature hasn't been
