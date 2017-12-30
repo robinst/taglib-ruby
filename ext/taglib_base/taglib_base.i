@@ -94,6 +94,7 @@ namespace TagLib {
 
 %ignore TagLib::List::operator[];
 %ignore TagLib::List::operator=;
+%ignore TagLib::List::operator!=;
 %include <taglib/tlist.h>
 
 %include <taglib/tag.h>

@@ -7,7 +7,6 @@
 #include <taglib/mp4atom.h>
 %}
 
-%ignore TagLib::List::operator!=;
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
