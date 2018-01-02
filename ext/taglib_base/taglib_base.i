@@ -32,11 +32,12 @@ namespace TagLib {
 
 // Rename setters to Ruby convention (combining SWIG rename functions
 // does not seem to be possible, thus resort to some magic)
-%rename("%(command: ruby -e 'print(ARGV[0][3..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"=\")' )s",
+// setFoo -> foo=
+%rename("%(command: perl -e \"print lc(join('_', split(/(?=[A-Z])/, substr(@ARGV[0], 3)))), '='\" )s",
         regexmatch$name="^set[A-Z]") "";
 
 // isFoo -> foo?
-%rename("%(command: ruby -e 'print(ARGV[0][2..-1].split(/(?=[A-Z])/).join(\"_\").downcase + \"?\")' )s",
+%rename("%(command: perl -e \"print lc(join('_', split(/(?=[A-Z])/, substr(@ARGV[0], 2)))), '?'\" )s",
         regexmatch$name="^is[A-Z]") "";
 
 // ByteVector
