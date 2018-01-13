@@ -7,4 +7,3 @@ addons:
   apt:
     packages:
     - libtag1-dev
-    - swig
