@@ -37,7 +37,14 @@ class FlacFileTest < Test::Unit::TestCase
 
       should "contain basic information" do
         assert_equal 1, @properties.length
-        assert_equal 212, @properties.bitrate
+
+        # taglib/taglib#557 changed the way bitrate is calculated.
+        if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 10)
+          assert_equal 209, @properties.bitrate
+        else
+          assert_equal 212, @properties.bitrate
+        end
+
         assert_equal 44100, @properties.sample_rate
         assert_equal 1, @properties.channels
       end

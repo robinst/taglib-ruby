@@ -1,9 +1,18 @@
 language: ruby
-rvm:
-  - 2.2.7
-  - 2.3.4
-  - 2.4.1
-addons:
-  apt:
-    packages:
-    - libtag1-dev
+env:
+  global:
+    - PLATFORM=x86_64-linux-gnu
+    - MAKEFLAGS="-j2"
+matrix:
+  include:
+    - rvm: 2.2.7
+      env: TAGLIB_VERSION=1.7.2 TAGLIB_DIR=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.7.2 LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.7.2/lib:$LD_LIBRARY_PATH
+    - rvm: 2.2.7
+      env: TAGLIB_VERSION=1.8 TAGLIB_DIR=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.8 LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.8/lib:$LD_LIBRARY_PATH
+    - rvm: 2.3.4
+      env: TAGLIB_VERSION=1.9.1 TAGLIB_DIR=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.9.1 LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.9.1/lib:$LD_LIBRARY_PATH
+    - rvm: 2.4.1
+      env: TAGLIB_VERSION=1.10 TAGLIB_DIR=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.10 LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.10/lib:$LD_LIBRARY_PATH
+    - rvm: 2.4.1
+      env: TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.11.1 LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/tmp/x86_64-linux-gnu/taglib-1.11.1/lib:$LD_LIBRARY_PATH
+before_script: bundle exec rake vendor

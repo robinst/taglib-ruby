@@ -1,19 +1,28 @@
 # Extension tasks and cross-compiling
 
 host = 'i686-w64-mingw32'
-$plat = 'i386-mingw32'
+$plat = ENV['PLATFORM'] || 'i386-mingw32'
 
-tmp = "#{Dir.pwd}/tmp/#{$plat}"
+
+taglib_version = ENV['TAGLIB_VERSION'] || '1.9.1'
+taglib = "taglib-#{taglib_version}"
+
+tmp = "#{Dir.pwd}/tmp"
+tmp_arch = "#{tmp}/#{$plat}"
 toolchain_file = "#{Dir.pwd}/ext/win.cmake"
-install_dir = "#{tmp}/install"
+install_dir = "#{tmp_arch}/#{taglib}"
 install_dll = "#{install_dir}/bin/libtag.dll"
+install_so = "#{install_dir}/lib/libtag.so"
 $cross_config_options = ["--with-opt-dir=#{install_dir}"]
 
-taglib_version = '1.9.1'
-taglib = "taglib-#{taglib_version}"
-taglib_url = "https://github.com/taglib/taglib/releases/download/v#{taglib_version}/#{taglib}.tar.gz"
-# WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
-taglib_options = "-DCMAKE_BUILD_TYPE=Release -DWITH_MP4=ON -DWITH_ASF=ON"
+taglib_url = "https://github.com/taglib/taglib/archive/v#{taglib_version}.tar.gz"
+taglib_options = [ "-DCMAKE_BUILD_TYPE=Release",
+                   "-DBUILD_EXAMPLES=OFF",
+                   "-DBUILD_TESTS=OFF",
+                   "-DBUILD_BINDINGS=OFF", # 1.11 builds bindings by default
+                   "-DBUILD_SHARED_LIBS=ON", # 1.11 builds static by default
+                   "-DWITH_MP4=ON",# WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
+                   "-DWITH_ASF=ON"].join(' ')
 
 def configure_cross_compile(ext)
   ext.cross_compile = true
@@ -62,7 +71,7 @@ task :cross do
   ENV["CXX"] = "#{host}-g++"
 end
 
-file "tmp/#{$plat}/stage/lib/libtag.dll" => [install_dll] do |f|
+file "#{tmp_arch}/stage/lib/libtag.dll" => [install_dll] do |f|
   install install_dll, f
 end
 
@@ -74,6 +83,18 @@ file install_dll => ["#{tmp}/#{taglib}"] do
   end
 end
 
+task :vendor => [install_so]
+
+file install_so => ["#{tmp_arch}/#{taglib}", "#{tmp_arch}/#{taglib}-build", "#{tmp}/#{taglib}"] do
+  chdir "#{tmp_arch}/#{taglib}-build" do
+    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} #{taglib_options} #{tmp}/#{taglib})
+    sh "make install VERBOSE=1"
+  end
+end
+
+directory "#{tmp_arch}/#{taglib}"
+directory "#{tmp_arch}/#{taglib}-build"
+
 file "#{tmp}/#{taglib}" => ["#{tmp}/#{taglib}.tar.gz"] do
   chdir tmp do
     sh "tar xzf #{taglib}.tar.gz"
@@ -83,12 +104,9 @@ end
 file "#{tmp}/#{taglib}.tar.gz" => [tmp] do |t|
   require 'open-uri'
   puts "Downloading #{taglib_url}"
-  data = open(taglib_url).read()
-  break if data == nil
-  chdir tmp do
-    open(File.basename(t.name), 'wb') do |f|
-      f.write(data)
-    end
+
+  File.open(t.name, 'wb') do |f|
+    IO.copy_stream(open(taglib_url), f)
   end
 end
 
