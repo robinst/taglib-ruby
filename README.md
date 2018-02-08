@@ -95,6 +95,20 @@ Build and install gem into system gems:
 
     rake install
 
+Build a specific version of Taglib:
+
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.9.1 rake vendor
+
+The above command will automatically download Taglig 1.9.1, build it and install it in `tmp/x86_64-linux/taglib-1.9.1`.
+
+The `swig` and `compile` tasks can then be executed against that specific version of Taglib by setting the `TAGLIB_DIR` environment variable to `$PWD/tmp/x86_64-linux/taglib-1.9.1` (it is assumed that taglib headers are located at `$TAGLIB_DIR/include` and taglib libraries at `$TAGLIB_DIR/lib`).
+
+The `test` task can then be run for that version of Taglib by adding `$PWD/tmp/x86_64-linux/taglib-1.9.1/lib` to the `LD_LIBRARY_PATH` environment variable.
+
+To do everything in one command:
+
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.7.2 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.7.2 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.7.2/lib rake vendor compile test
+
 ### Workflow
 
 * Check out the latest master to make sure the feature hasn't been

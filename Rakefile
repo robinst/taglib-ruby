@@ -25,4 +25,14 @@ end
 
 $gemspec = Bundler::GemHelper.gemspec
 
-FileList['tasks/**/*.rake'].each { |task| import task }
+import 'tasks/docs_coverage.rake'
+import 'tasks/ext.rake'
+import 'tasks/gemspec_check.rake'
+
+# When importing swig.rake, the *_wrap.cxx files depend on being generated
+# by Swig. Since the ExtensionTasks depend on the *_wrap.cxx files,
+# compiling the extensions will trigger Swig, which is not desired as
+# those files have already been generated and there's no reason to make
+# Swig a variable of the CI. To prevent those dependencies, do not import
+# swig.rake when running in Travis.
+import 'tasks/swig.rake' unless ENV['TRAVIS'] == 'true'

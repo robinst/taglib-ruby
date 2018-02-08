@@ -1,11 +1,30 @@
 # Tasks for generating SWIG wrappers in ext
 
+# Execute SWIG for the specified extension.
+# Arguments:
+# mod:: The name of the SWIG wrapper to process.
+#
+# If the TAGLIB_DIR environment variable points to a directory,
+# $TAGLIB_DIR/include will be searched first for taglib headers.
 def run_swig(mod)
   swig = `which swig`.chomp
   if swig.empty?
     swig = `which swig2.0`.chomp
   end
-  sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} -I/usr/local/include -I/usr/include #{mod}.i"
+
+  # Standard search location for headers
+  include_args = %w{-I/usr/local/include -I/usr/include}
+
+  if ENV.has_key?('TAGLIB_DIR')
+    unless File.directory?(ENV['TAGLIB_DIR'])
+      abort "When defined, the TAGLIB_DIR environment variable must point to a valid directory."
+    end
+
+    # Push it in front to get it searched first.
+    include_args.unshift('-I' + ENV['TAGLIB_DIR'] + '/include')
+  end
+
+  sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} #{include_args.join(' ')} #{mod}.i"
 end
 
 task :swig =>

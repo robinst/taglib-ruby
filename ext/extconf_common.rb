@@ -20,7 +20,14 @@ def error msg
   abort
 end
 
-dir_config('tag')
+if ENV.has_key?('TAGLIB_DIR') and !File.directory?(ENV['TAGLIB_DIR'])
+  error "When defined, the TAGLIB_DIR environment variable must point to a valid directory."
+end
+
+# If specified, use the TAGLIB_DIR environment variable as the prefix
+# for finding taglib headers and libs. See MakeMakefile#dir_config
+# for more details.
+dir_config('tag', (ENV['TAGLIB_DIR'] if ENV.has_key?('TAGLIB_DIR')))
 
 # When compiling statically, -lstdc++ would make the resulting .so to
 # have a dependency on an external libstdc++ instead of the static one.
