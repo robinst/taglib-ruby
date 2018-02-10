@@ -1869,6 +1869,10 @@ static VALUE mOgg;
 #include <taglib/oggfile.h>
 #include <taglib/xiphcomment.h>
 
+static VALUE taglib_ruby_ogg_xiphcomment_fieldlistmap(TagLib::Ogg::XiphComment *tag);
+static void taglib_ruby_ogg_xiphcomment_add_field(TagLib::Ogg::XiphComment *tag, const TagLib::String &key, const TagLib::String &value, bool replace);
+static void taglib_ruby_ogg_xiphcomment_remove_field(TagLib::Ogg::XiphComment *tag, const TagLib::String &key, const TagLib::String &value);
+
 
 #include <taglib/tstring.h>
 #include <taglib/tstringlist.h>
@@ -2182,6 +2186,15 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
   return SWIG_TypeError;
 }
 
+SWIGINTERN VALUE TagLib_Ogg_XiphComment_field_list_map(TagLib::Ogg::XiphComment *self){
+    return taglib_ruby_ogg_xiphcomment_fieldlistmap(self);
+  }
+SWIGINTERN void TagLib_Ogg_XiphComment_add_field__SWIG_0(TagLib::Ogg::XiphComment *self,TagLib::String const &key,TagLib::String const &value,bool replace=true){
+    taglib_ruby_ogg_xiphcomment_add_field(self, key, value, replace);
+  }
+SWIGINTERN void TagLib_Ogg_XiphComment_remove_field__SWIG_0(TagLib::Ogg::XiphComment *self,TagLib::String const &key,TagLib::String const &value=TagLib::String::null){
+    taglib_ruby_ogg_xiphcomment_remove_field(self, key, value);
+  }
 
   VALUE taglib_ogg_fieldlistmap_to_ruby_hash(const TagLib::Ogg::FieldListMap & map) {
     VALUE hash = rb_hash_new();
@@ -2193,6 +2206,118 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
       rb_hash_aset(hash, k, v);
     }
     return hash;
+  }
+
+  static VALUE taglib_ruby_ogg_xiphcomment_fieldlistmap(TagLib::Ogg::XiphComment *tag)
+  {
+    VALUE hash = taglib_ogg_fieldlistmap_to_ruby_hash(tag->fieldListMap());
+
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 11))
+    // Inject pictures to the fields map.
+    const TagLib::List<TagLib::FLAC::Picture *> pictures = tag->pictureList();
+    if (pictures.size() > 0) {
+      VALUE ary = rb_ary_new2(pictures.size());
+
+      for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = pictures.begin(); it != pictures.end(); ++it) {
+        rb_ary_push(ary, taglib_bytevector_to_ruby_string((*it)->render().toBase64()));
+      }
+
+      rb_hash_aset(hash, rb_tainted_str_new2("METADATA_BLOCK_PICTURE"), ary);
+    }
+#endif
+
+    return hash;
+  }
+
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 11))
+  // Build a FLAC::Picture from the content of a COVERART field (Base64-encoded image).
+  static TagLib::FLAC::Picture *buildPictureFromBase64CoverArt(TagLib::FLAC::Picture *picture, const TagLib::String &value) {
+    picture->setData(TagLib::ByteVector::fromBase64(value.data(TagLib::String::Latin1)));
+    picture->setMimeType("image/");
+    picture->setType(TagLib::FLAC::Picture::Other);
+    return picture;
+  }
+
+  enum { NOTAPICTURE, METADATA_BLOCK_PICTURE, COVERART };
+
+  static int picture_type(const TagLib::String &key) {
+    const TagLib::String ukey = key.upper();
+    if (ukey == "METADATA_BLOCK_PICTURE")
+      return METADATA_BLOCK_PICTURE;
+    if (ukey == "COVERART")
+      return COVERART;
+
+    return NOTAPICTURE;
+  }
+#endif
+
+  static void taglib_ruby_ogg_xiphcomment_add_field(TagLib::Ogg::XiphComment *tag, const TagLib::String &key, const TagLib::String &value, bool replace)
+  {
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 11))
+    const int tag_type = picture_type(key);
+
+    if (tag_type == NOTAPICTURE) {
+      tag->addField(key, value, replace);
+      return;
+    }
+
+    if (replace)
+      tag->removeAllPictures();
+
+    TagLib::FLAC::Picture *picture = new TagLib::FLAC::Picture();
+
+    if (tag_type == METADATA_BLOCK_PICTURE) {
+      // value is expected to be a valid METADATA_BLOCK_PICTURE, Base64-encoded, as specified here:
+      // https://xiph.org/flac/format.html#metadata_block_picture
+      if(picture->parse(TagLib::ByteVector::fromBase64(value.data(TagLib::String::Latin1)))) {
+        tag->addPicture(picture); // Ownership of the picture has been transferred.
+      } else {
+        delete picture; // Not a valid METADATA_BLOCK_PICTURE, nothing we can do.
+      }
+    } else { // COVERART
+      tag->addPicture(buildPictureFromBase64CoverArt(picture, value)); // Ownership of the picture has been transferred.
+    }
+#else
+    tag->addField(key, value, replace);
+#endif
+  }
+
+  static void taglib_ruby_ogg_xiphcomment_remove_field(TagLib::Ogg::XiphComment *tag, const TagLib::String &key, const TagLib::String &value)
+  {
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 11))
+    const int tag_type = picture_type(key);
+
+    if (key != "METADATA_BLOCK_PICTURE") {
+      tag->removeField(key, value);
+      return;
+    }
+
+    if (value.isNull()) {
+      tag->removeAllPictures();
+      return;
+    }
+
+    const TagLib::ByteVector pictureData = TagLib::ByteVector::fromBase64(value.data(TagLib::String::Latin1));
+
+    TagLib::List<TagLib::FLAC::Picture *> picturesToRemove;
+
+    {
+      // This list needs to be scoped, otherwise, when being destroyed, it will try
+      // to delete pictures that have already been destroyed by removePicture().
+      const TagLib::List<TagLib::FLAC::Picture *> pictures = tag->pictureList();
+      for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = pictures.begin(); it != pictures.end(); ++it) {
+        if ((*it)->render() == pictureData) {
+          picturesToRemove.append(*it);
+        }
+      }
+    }
+
+    for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = picturesToRemove.begin(); it != picturesToRemove.end(); ++it) {
+      tag->removePicture(*it);
+    }
+#else
+    tag->removeField(key, value);
+#endif
   }
 
 static swig_class SwigClassFile;
@@ -2858,32 +2983,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XiphComment_field_list_map(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::Ogg::FieldListMap *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","fieldListMap", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  result = (TagLib::Ogg::FieldListMap *) &((TagLib::Ogg::XiphComment const *)arg1)->fieldListMap();
-  {
-    vresult = taglib_ogg_fieldlistmap_to_ruby_hash(*result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_XiphComment_vendor_id(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
@@ -2905,252 +3004,6 @@ _wrap_XiphComment_vendor_id(int argc, VALUE *argv, VALUE self) {
   }
   return vresult;
 fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XiphComment_add_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::String *arg3 = 0 ;
-  bool arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  TagLib::String tmp3 ;
-  bool val4 ;
-  int ecode4 = 0 ;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","addField", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  {
-    tmp3 = ruby_string_to_taglib_string(argv[1]);
-    arg3 = &tmp3;
-  }
-  ecode4 = SWIG_AsVal_bool(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "bool","addField", 4, argv[2] ));
-  } 
-  arg4 = static_cast< bool >(val4);
-  (arg1)->addField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3,arg4);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XiphComment_add_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::String *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  TagLib::String tmp3 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","addField", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  {
-    tmp3 = ruby_string_to_taglib_string(argv[1]);
-    arg3 = &tmp3;
-  }
-  (arg1)->addField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_XiphComment_add_field(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[5];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 5) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_XiphComment_add_field__SWIG_1(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_bool(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_XiphComment_add_field__SWIG_0(nargs, args, self);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 5, "XiphComment.add_field", 
-    "    void XiphComment.add_field(TagLib::String const &key, TagLib::String const &value, bool replace)\n"
-    "    void XiphComment.add_field(TagLib::String const &key, TagLib::String const &value)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::String *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  TagLib::String tmp3 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  {
-    tmp3 = ruby_string_to_taglib_string(argv[1]);
-    arg3 = &tmp3;
-  }
-  (arg1)->removeField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_XiphComment_remove_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->removeField((TagLib::String const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_XiphComment_remove_field__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_XiphComment_remove_field__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "XiphComment.remove_field", 
-    "    void XiphComment.remove_field(TagLib::String const &key, TagLib::String const &value)\n"
-    "    void XiphComment.remove_field(TagLib::String const &key)\n");
-  
   return Qnil;
 }
 
@@ -3285,6 +3138,276 @@ fail:
   Ruby_Format_OverloadedError( argc, 3, "XiphComment.render", 
     "    TagLib::ByteVector XiphComment.render()\n"
     "    TagLib::ByteVector XiphComment.render(bool addFramingBit)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_field_list_map(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","field_list_map", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (VALUE)TagLib_Ogg_XiphComment_field_list_map(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_add_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
+  bool arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
+  bool val4 ;
+  int ecode4 = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","add_field", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
+  }
+  ecode4 = SWIG_AsVal_bool(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "bool","add_field", 4, argv[2] ));
+  } 
+  arg4 = static_cast< bool >(val4);
+  TagLib_Ogg_XiphComment_add_field__SWIG_0(arg1,(TagLib::String const &)*arg2,(TagLib::String const &)*arg3,arg4);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_add_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","add_field", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
+  }
+  TagLib_Ogg_XiphComment_add_field__SWIG_0(arg1,(TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XiphComment_add_field(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_XiphComment_add_field__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          {
+            int res = SWIG_AsVal_bool(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_XiphComment_add_field__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "add_field", 
+    "    void add_field(TagLib::String const &key, TagLib::String const &value, bool replace)\n"
+    "    void add_field(TagLib::String const &key, TagLib::String const &value)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  TagLib::String *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  TagLib::String tmp3 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","remove_field", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  {
+    tmp3 = ruby_string_to_taglib_string(argv[1]);
+    arg3 = &tmp3;
+  }
+  TagLib_Ogg_XiphComment_remove_field__SWIG_0(arg1,(TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","remove_field", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  TagLib_Ogg_XiphComment_remove_field__SWIG_0(arg1,(TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_XiphComment_remove_field__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_XiphComment_remove_field__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "remove_field", 
+    "    void remove_field(TagLib::String const &key, TagLib::String const &value)\n"
+    "    void remove_field(TagLib::String const &key)\n");
   
   return Qnil;
 }
@@ -3638,12 +3761,12 @@ SWIGEXPORT void Init_taglib_ogg(void) {
   rb_define_method(SwigClassXiphComment.klass, "track=", VALUEFUNC(_wrap_XiphComment_tracke___), -1);
   rb_define_method(SwigClassXiphComment.klass, "empty?", VALUEFUNC(_wrap_XiphComment_emptyq___), -1);
   rb_define_method(SwigClassXiphComment.klass, "field_count", VALUEFUNC(_wrap_XiphComment_field_count), -1);
-  rb_define_method(SwigClassXiphComment.klass, "field_list_map", VALUEFUNC(_wrap_XiphComment_field_list_map), -1);
   rb_define_method(SwigClassXiphComment.klass, "vendor_id", VALUEFUNC(_wrap_XiphComment_vendor_id), -1);
-  rb_define_method(SwigClassXiphComment.klass, "add_field", VALUEFUNC(_wrap_XiphComment_add_field), -1);
-  rb_define_method(SwigClassXiphComment.klass, "remove_field", VALUEFUNC(_wrap_XiphComment_remove_field), -1);
   rb_define_method(SwigClassXiphComment.klass, "contains?", VALUEFUNC(_wrap_XiphComment_containsq___), -1);
   rb_define_method(SwigClassXiphComment.klass, "render", VALUEFUNC(_wrap_XiphComment_render), -1);
+  rb_define_method(SwigClassXiphComment.klass, "field_list_map", VALUEFUNC(_wrap_XiphComment_field_list_map), -1);
+  rb_define_method(SwigClassXiphComment.klass, "add_field", VALUEFUNC(_wrap_XiphComment_add_field), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_field", VALUEFUNC(_wrap_XiphComment_remove_field), -1);
   SwigClassXiphComment.mark = 0;
   SwigClassXiphComment.destroy = (void (*)(void *)) free_TagLib_Ogg_XiphComment;
   SwigClassXiphComment.trackObjects = 1;

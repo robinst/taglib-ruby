@@ -26,7 +26,7 @@ class TestVorbisFile < Test::Unit::TestCase
 
         # taglib/taglib#563 changed the way bitrate is calculated.
         if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 10)
-          assert_equal 222, @properties.bitrate
+          assert_equal 517, @properties.bitrate
         else
           assert_equal 64, @properties.bitrate
         end
