@@ -30,7 +30,7 @@ module TagLib::FLAC
   #     file.save
   #   end
   class File < TagLib::File
-    # {include:TagLib::FileRef.open}
+    # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
     # @yield [file] the {File} object, as obtained by {#initialize}

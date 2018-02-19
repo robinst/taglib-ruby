@@ -11,7 +11,7 @@ module TagLib::Ogg::Vorbis
   #   end
   #
   class File < TagLib::Ogg::File
-    # {include:TagLib::FileRef.open}
+    # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
     # @yield [file] the {File} object, as obtained by {#initialize}
