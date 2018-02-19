@@ -47,6 +47,13 @@ module TagLib::Ogg
     # effect on the comment; use {#add_field} and {#remove_field} for
     # that.
     #
+    # Starting with TagLib 1.11, pictures stored in the COVERART field,
+    # which is a deprecated way to store attached pictures ([reference][coverart_ref]),
+    # will be reported as being part of the METADATA_BLOCK_PICTURE field
+    # and will be converted to this format on save.
+    #
+    # [coverart_ref]: https://wiki.xiph.org/VorbisComment#Unofficial_COVERART_field_.28deprecated.29
+    #
     # @return [Hash<String, Array<String>>] a hash from field names to
     #   value lists
     def field_list_map

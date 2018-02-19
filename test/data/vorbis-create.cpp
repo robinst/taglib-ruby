@@ -4,6 +4,8 @@
 #include <taglib/taglib.h>
 #include <taglib/vorbisfile.h>
 
+#include "get_picture_data.cpp"
+
 using namespace TagLib;
 
 int main(int argc, char **argv) {
@@ -35,6 +37,25 @@ int main(int argc, char **argv) {
 
   tag->addField("MULTIPLE", "A");
   tag->addField("MULTIPLE", "B", false);
+
+#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 11))
+  tag->removeAllPictures();
+#endif
+
+  ByteVector pictureData = getPictureData("globe_east_90.jpg");
+
+  FLAC::Picture picture;
+  picture.setType(FLAC::Picture::FrontCover);
+  picture.setMimeType("image/jpeg");
+  picture.setDescription("Globe");
+  picture.setWidth(90);
+  picture.setHeight(90);
+  picture.setColorDepth(24);
+  picture.setNumColors(0);
+  picture.setData(pictureData);
+
+  tag->addField("METADATA_BLOCK_PICTURE", picture.render().toBase64());
+  tag->addField("COVERART", pictureData.toBase64());
 
   file.save();
 }
