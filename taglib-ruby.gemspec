@@ -26,7 +26,7 @@ DESC
   s.add_development_dependency 'bundler', '~> 1.2'
   s.add_development_dependency 'rake-compiler', '~> 0.9'
   s.add_development_dependency 'shoulda-context', '~> 1.0'
-  s.add_development_dependency 'yard', '~> 0.7'
+  s.add_development_dependency 'yard', '~> 0.9.12'
   s.add_development_dependency 'kramdown', '~> 1.0'
   s.add_development_dependency 'test-unit', '~> 3.1'
 

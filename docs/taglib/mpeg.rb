@@ -14,7 +14,7 @@ module TagLib::MPEG
     APE     = 0x0004
     AllTags = 0xffff
 
-    # {include:TagLib::FileRef.open}
+    # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
     # @yield [file] the {File} object, as obtained by {#initialize}

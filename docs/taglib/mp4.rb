@@ -54,7 +54,7 @@ module TagLib::MP4
   #   #   #<TagLib::MP4::Item:0x007f9bab61d818 @__swigtype__="_p_TagLib__MP4__Item">]]
   class File < TagLib::File
 
-    # {include:TagLib::FileRef.open}
+    # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
     # @yield [file] the {File} object, as obtained by {#initialize}

@@ -478,7 +478,7 @@ module TagLib::ID3v2
     # @param [String] value simple text to set
     attr_writer :text
 
-    # @param [String] value URL
+    # @return [String] the URL
     attr_accessor :url
   end
 

@@ -24,7 +24,7 @@ module TagLib::RIFF::WAV
   # @see ID3v2::Tag ID3v2 examples.
   #
   class File < TagLib::File
-    # {include:TagLib::FileRef.open}
+    # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
     # @yield [file] the {File} object, as obtained by {#initialize}
