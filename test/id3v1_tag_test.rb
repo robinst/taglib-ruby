@@ -22,6 +22,7 @@ class TestID3v1Tag < Test::Unit::TestCase
         assert_equal 'Album', @tag.album
         assert_equal 'Comment', @tag.comment
         assert_equal 'Pop', @tag.genre
+        assert_equal 13, @tag.genre_number
         assert_equal 2011, @tag.year
         assert_equal 7, @tag.track
         assert_equal false, @tag.empty?

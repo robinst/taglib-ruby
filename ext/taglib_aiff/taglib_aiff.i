@@ -9,9 +9,25 @@
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
 
+// Deprecated
+%ignore TagLib::RIFF::AIFF::Properties::Properties(const ByteVector&, ReadStyle);
+%ignore TagLib::RIFF::AIFF::Properties::length;
+%ignore TagLib::RIFF::AIFF::Properties::sampleWidth;
+
 %include <taglib/aiffproperties.h>
 
 %freefunc TagLib::RIFF::AIFF::File "free_taglib_riff_aiff_file";
+
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle);
+%ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool);
+%ignore TagLib::RIFF::AIFF::File::File(IOStream *);
+
+// Ignore the unified property interface.
+%ignore TagLib::RIFF::AIFF::File::properties;
+%ignore TagLib::RIFF::AIFF::File::setProperties;
+%ignore TagLib::RIFF::AIFF::File::removeUnsupportedProperties;
 
 %rename("id3v2_tag?") TagLib::RIFF::AIFF::File::hasID3v2Tag;
 

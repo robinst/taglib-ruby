@@ -54,21 +54,18 @@ class TestID3v2Write < Test::Unit::TestCase
       end
     end
 
-    should "be able to save ID3v2.3 when compiled against TagLib >= 1.8" do
-      if TagLib::TAGLIB_MAJOR_VERSION > 1 ||
-        (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 8)
-        success = @file.save(TagLib::MPEG::File::ID3v2, true, 3)
-        assert_equal true, success
-        @file.close
-        @file = nil
+    should "be able to save ID3v2.3" do
+      success = @file.save(TagLib::MPEG::File::ID3v2, true, 3)
+      assert_equal true, success
+      @file.close
+      @file = nil
 
-        header = File.open(OUTPUT_FILE, 'rb') do |f|
-          f.read(5)
-        end
-        # 3 stands for v2.3
-        s = "ID3" + 3.chr + 0.chr
-        assert_equal s, header
+      header = File.open(OUTPUT_FILE, 'rb') do |f|
+        f.read(5)
       end
+      # 3 stands for v2.3
+      s = "ID3" + 3.chr + 0.chr
+      assert_equal s, header
     end
 
     should "be able to set fields to nil" do

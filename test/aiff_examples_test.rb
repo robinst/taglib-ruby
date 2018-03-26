@@ -16,7 +16,7 @@ class AIFFExamples < Test::Unit::TestCase
 
       # @example Reading AIFF-specific audio properties
       TagLib::RIFF::AIFF::File.open("#{DATA_FILE_PREFIX}sample.aiff") do |file|
-        file.audio_properties.sample_width  #=>  16
+        file.audio_properties.bits_per_sample  #=>  16
       end
 
       # @example Saving ID3v2 cover-art to disk

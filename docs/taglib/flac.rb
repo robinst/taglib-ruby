@@ -30,6 +30,13 @@ module TagLib::FLAC
   #     file.save
   #   end
   class File < TagLib::File
+
+    NoTags      = 0x0000
+    XiphComment = 0x0001
+    ID3v1       = 0x0002
+    ID3v2       = 0x0004
+    AllTags     = 0xffff
+
     # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
@@ -82,6 +89,14 @@ module TagLib::FLAC
     def picture_list
     end
 
+    # Remove the specified picture.
+    #
+    # @param [TagLib::FLAC::Picture] picture
+    #
+    # @since 1.0.0
+    def remove_picture(picture)
+    end
+
     # Remove all pictures.
     #
     # @return [void]
@@ -94,12 +109,46 @@ module TagLib::FLAC
     # @return [void]
     def add_picture(picture)
     end
+
+    # Remove the tags matching the specified OR-ed types.
+    #
+    # @param [int] tags The types of tags to remove.
+    # @return [void]
+    #
+    # @since 1.0.0
+    def strip(tags=TagLib::FLAC::File::AllTags)
+    end
+
+    # @return [Boolean] Whether or not the file on disk actually has a XiphComment.
+    #
+    # @since 1.0.0
+    def xiph_comment?
+    end
+
+    # @return [Boolean] Whether or not the file on disk actually has an ID3v1 tag.
+    #
+    # @since 1.0.0
+    def id3v1_tag?
+    end
+
+    # @return [Boolean] Whether or not the file on disk actually has an ID3v2 tag.
+    #
+    # @since 1.0.0
+    def id3v2_tag?
+    end
   end
 
   # FLAC audio properties.
   class Properties < TagLib::AudioProperties
-    # @return [Integer] Sample width
-    attr_reader :sample_width
+    # @return [Integer] Number of bits per audio sample.
+    #
+    # @since 1.0.0
+    attr_reader :bits_per_sample
+
+    # @return [Integer] Number of sample frames.
+    #
+    # @since 1.0.0
+    attr_reader :sample_frames
 
     # @return [binary String] MD5 signature of uncompressed audio stream
     #   (binary data)
@@ -172,5 +221,12 @@ module TagLib::FLAC
     #
     # @return [binary String]
     attr_accessor :data
+
+    # Parse the picture data in the FLAC picture block format.
+    # @return [Boolean] True if the data have been successfully been parsed, false otherwise.
+    #
+    # @since 1.0.0
+    def parse(rawdata)
+    end
   end
 end

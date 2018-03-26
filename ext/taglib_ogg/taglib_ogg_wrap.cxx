@@ -1828,18 +1828,20 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_MapT_TagLib__String_TagLib__StringList_t swig_types[0]
-#define SWIGTYPE_p_TagLib__File swig_types[1]
-#define SWIGTYPE_p_TagLib__Ogg__File swig_types[2]
-#define SWIGTYPE_p_TagLib__Ogg__PageHeader swig_types[3]
-#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[4]
-#define SWIGTYPE_p_TagLib__Tag swig_types[5]
-#define SWIGTYPE_p_char swig_types[6]
-#define SWIGTYPE_p_unsigned_char swig_types[7]
-#define SWIGTYPE_p_unsigned_int swig_types[8]
-#define SWIGTYPE_p_unsigned_long swig_types[9]
-#define SWIGTYPE_p_wchar_t swig_types[10]
-static swig_type_info *swig_types[12];
-static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__FLAC__Picture swig_types[1]
+#define SWIGTYPE_p_TagLib__File swig_types[2]
+#define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[3]
+#define SWIGTYPE_p_TagLib__Ogg__File swig_types[4]
+#define SWIGTYPE_p_TagLib__Ogg__PageHeader swig_types[5]
+#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[6]
+#define SWIGTYPE_p_TagLib__Tag swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+#define SWIGTYPE_p_unsigned_char swig_types[9]
+#define SWIGTYPE_p_unsigned_int swig_types[10]
+#define SWIGTYPE_p_unsigned_long swig_types[11]
+#define SWIGTYPE_p_wchar_t swig_types[12]
+static swig_type_info *swig_types[14];
+static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1867,7 +1869,10 @@ static VALUE mOgg;
 
 #include <taglib/taglib.h>
 #include <taglib/oggfile.h>
+#include <taglib/flacpicture.h>
 #include <taglib/xiphcomment.h>
+// Help find FLAC::
+using namespace TagLib;
 
 
 #include <taglib/tstring.h>
@@ -1980,6 +1985,17 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+
+
+VALUE taglib_flac_picturelist_to_ruby_array(const TagLib::List<TagLib::FLAC::Picture *> & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = list.begin(); it != list.end(); it++) {
+    TagLib::FLAC::Picture *picture = *it;
+    VALUE p = SWIG_NewPointerObj(picture, SWIGTYPE_p_TagLib__FLAC__Picture, 0);
+    rb_ary_push(ary, p);
+  }
+  return ary;
+}
 
 
 #include <limits.h>
@@ -2206,7 +2222,7 @@ free_TagLib_Ogg_File(TagLib::Ogg::File *arg1) {
 SWIGINTERN VALUE
 _wrap_File_packet(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2224,9 +2240,9 @@ _wrap_File_packet(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","packet", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","packet", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   result = (arg1)->packet(arg2);
   {
     vresult = taglib_bytevector_to_ruby_string(result);
@@ -2240,7 +2256,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_packete___(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::File *arg1 = (TagLib::Ogg::File *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   TagLib::ByteVector *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2258,9 +2274,9 @@ _wrap_File_packete___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Ogg::File * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setPacket", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setPacket", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   {
     tmp3 = ruby_string_to_taglib_bytevector(argv[1]);
     arg3 = &tmp3;
@@ -2573,7 +2589,7 @@ _wrap_XiphComment_year(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2584,7 +2600,7 @@ _wrap_XiphComment_year(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","year", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->year();
+  result = (unsigned int)((TagLib::Ogg::XiphComment const *)arg1)->year();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2597,7 +2613,7 @@ _wrap_XiphComment_track(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2608,7 +2624,7 @@ _wrap_XiphComment_track(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","track", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->track();
+  result = (unsigned int)((TagLib::Ogg::XiphComment const *)arg1)->track();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2754,7 +2770,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_XiphComment_yeare___(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2770,9 +2786,9 @@ _wrap_XiphComment_yeare___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setYear", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setYear", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setYear(arg2);
   return Qnil;
 fail:
@@ -2783,7 +2799,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_XiphComment_tracke___(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2799,9 +2815,9 @@ _wrap_XiphComment_tracke___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setTrack", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setTrack", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setTrack(arg2);
   return Qnil;
 fail:
@@ -2838,7 +2854,7 @@ _wrap_XiphComment_field_count(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2849,7 +2865,7 @@ _wrap_XiphComment_field_count(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment const *","fieldCount", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  result = (TagLib::uint)((TagLib::Ogg::XiphComment const *)arg1)->fieldCount();
+  result = (unsigned int)((TagLib::Ogg::XiphComment const *)arg1)->fieldCount();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2877,6 +2893,28 @@ _wrap_XiphComment_field_list_map(int argc, VALUE *argv, VALUE self) {
   {
     vresult = taglib_ogg_fieldlistmap_to_ruby_hash(*result);
   }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_check_key(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  TagLib::String tmp1 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (bool)TagLib::Ogg::XiphComment::checkKey((TagLib::String const &)*arg1);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
   return Qnil;
@@ -3045,7 +3083,34 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_XiphComment_remove_fields__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeFields", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_string(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->removeFields((TagLib::String const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_fields__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
   TagLib::String *arg2 = 0 ;
   TagLib::String *arg3 = 0 ;
@@ -3059,7 +3124,7 @@ _wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeFields", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
   {
@@ -3070,41 +3135,14 @@ _wrap_XiphComment_remove_field__SWIG_0(int argc, VALUE *argv, VALUE self) {
     tmp3 = ruby_string_to_taglib_string(argv[1]);
     arg3 = &tmp3;
   }
-  (arg1)->removeField((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
+  (arg1)->removeFields((TagLib::String const &)*arg2,(TagLib::String const &)*arg3);
   return Qnil;
 fail:
   return Qnil;
 }
 
 
-SWIGINTERN VALUE
-_wrap_XiphComment_remove_field__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeField", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->removeField((TagLib::String const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_XiphComment_remove_fields(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -3124,7 +3162,7 @@ SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE se
       int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_XiphComment_remove_field__SWIG_1(nargs, args, self);
+        return _wrap_XiphComment_remove_fields__SWIG_0(nargs, args, self);
       }
     }
   }
@@ -3140,17 +3178,38 @@ SWIGINTERN VALUE _wrap_XiphComment_remove_field(int nargs, VALUE *args, VALUE se
         int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_XiphComment_remove_field__SWIG_0(nargs, args, self);
+          return _wrap_XiphComment_remove_fields__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "XiphComment.remove_field", 
-    "    void XiphComment.remove_field(TagLib::String const &key, TagLib::String const &value)\n"
-    "    void XiphComment.remove_field(TagLib::String const &key)\n");
+  Ruby_Format_OverloadedError( argc, 4, "XiphComment.remove_fields", 
+    "    void XiphComment.remove_fields(TagLib::String const &key)\n"
+    "    void XiphComment.remove_fields(TagLib::String const &key, TagLib::String const &value)\n");
   
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_all_fields(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeAllFields", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  (arg1)->removeAllFields();
+  return Qnil;
+fail:
   return Qnil;
 }
 
@@ -3290,6 +3349,203 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_XiphComment_picture_list(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  SwigValueWrapper< TagLib::List< TagLib::FLAC::Picture * > > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","pictureList", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  result = (arg1)->pictureList();
+  {
+    vresult = taglib_flac_picturelist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_picture__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::FLAC::Picture *arg2 = (TagLib::FLAC::Picture *) 0 ;
+  bool arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removePicture", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__FLAC__Picture, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","removePicture", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","removePicture", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  (arg1)->removePicture(arg2,arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_picture__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::FLAC::Picture *arg2 = (TagLib::FLAC::Picture *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removePicture", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__FLAC__Picture, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","removePicture", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->removePicture(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_XiphComment_remove_picture(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__FLAC__Picture, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_XiphComment_remove_picture__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__Ogg__XiphComment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__FLAC__Picture, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_XiphComment_remove_picture__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "XiphComment.remove_picture", 
+    "    void XiphComment.remove_picture(TagLib::FLAC::Picture *picture, bool del)\n"
+    "    void XiphComment.remove_picture(TagLib::FLAC::Picture *picture)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_remove_all_pictures(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","removeAllPictures", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  (arg1)->removeAllPictures();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_XiphComment_add_picture(int argc, VALUE *argv, VALUE self) {
+  TagLib::Ogg::XiphComment *arg1 = (TagLib::Ogg::XiphComment *) 0 ;
+  TagLib::FLAC::Picture *arg2 = (TagLib::FLAC::Picture *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Ogg__XiphComment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Ogg::XiphComment *","addPicture", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Ogg::XiphComment * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__FLAC__Picture, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","addPicture", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->addPicture(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
@@ -3300,7 +3556,9 @@ static void *_p_TagLib__Ogg__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM(
     return (void *)((TagLib::File *)  ((TagLib::Ogg::File *) x));
 }
 static swig_type_info _swigt__p_MapT_TagLib__String_TagLib__StringList_t = {"_p_MapT_TagLib__String_TagLib__StringList_t", "Map< TagLib::String,TagLib::StringList > *|TagLib::Ogg::FieldListMap *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__FLAC__Picture = {"_p_TagLib__FLAC__Picture", "TagLib::FLAC::Picture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t = {"_p_TagLib__ListT_TagLib__FLAC__Picture_t", "TagLib::List< TagLib::FLAC::Picture > *|TagLib::FLAC::PictureList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__File = {"_p_TagLib__Ogg__File", "TagLib::Ogg::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__PageHeader = {"_p_TagLib__Ogg__PageHeader", "TagLib::Ogg::PageHeader *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__XiphComment = {"_p_TagLib__Ogg__XiphComment", "TagLib::Ogg::XiphComment *", 0, 0, (void*)0, 0};
@@ -3313,7 +3571,9 @@ static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MapT_TagLib__String_TagLib__StringList_t,
+  &_swigt__p_TagLib__FLAC__Picture,
   &_swigt__p_TagLib__File,
+  &_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   &_swigt__p_TagLib__Ogg__File,
   &_swigt__p_TagLib__Ogg__PageHeader,
   &_swigt__p_TagLib__Ogg__XiphComment,
@@ -3326,7 +3586,9 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_MapT_TagLib__String_TagLib__StringList_t[] = {  {&_swigt__p_MapT_TagLib__String_TagLib__StringList_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__FLAC__Picture[] = {  {&_swigt__p_TagLib__FLAC__Picture, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__Ogg__File, _p_TagLib__Ogg__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__File[] = {  {&_swigt__p_TagLib__Ogg__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__PageHeader[] = {  {&_swigt__p_TagLib__Ogg__PageHeader, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__XiphComment[] = {  {&_swigt__p_TagLib__Ogg__XiphComment, 0, 0, 0},{0, 0, 0, 0}};
@@ -3339,7 +3601,9 @@ static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0,
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MapT_TagLib__String_TagLib__StringList_t,
+  _swigc__p_TagLib__FLAC__Picture,
   _swigc__p_TagLib__File,
+  _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   _swigc__p_TagLib__Ogg__File,
   _swigc__p_TagLib__Ogg__PageHeader,
   _swigc__p_TagLib__Ogg__XiphComment,
@@ -3605,6 +3869,7 @@ SWIGEXPORT void Init_taglib_ogg(void) {
   
   SWIG_RubyInitializeTrackings();
   rb_require("taglib_base");
+  rb_require("taglib_flac_picture");
   
   SwigClassFile.klass = rb_define_class_under(mOgg, "File", ((swig_class *) SWIGTYPE_p_TagLib__File->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__Ogg__File, (void *) &SwigClassFile);
@@ -3639,11 +3904,17 @@ SWIGEXPORT void Init_taglib_ogg(void) {
   rb_define_method(SwigClassXiphComment.klass, "empty?", VALUEFUNC(_wrap_XiphComment_emptyq___), -1);
   rb_define_method(SwigClassXiphComment.klass, "field_count", VALUEFUNC(_wrap_XiphComment_field_count), -1);
   rb_define_method(SwigClassXiphComment.klass, "field_list_map", VALUEFUNC(_wrap_XiphComment_field_list_map), -1);
+  rb_define_singleton_method(SwigClassXiphComment.klass, "check_key", VALUEFUNC(_wrap_XiphComment_check_key), -1);
   rb_define_method(SwigClassXiphComment.klass, "vendor_id", VALUEFUNC(_wrap_XiphComment_vendor_id), -1);
   rb_define_method(SwigClassXiphComment.klass, "add_field", VALUEFUNC(_wrap_XiphComment_add_field), -1);
-  rb_define_method(SwigClassXiphComment.klass, "remove_field", VALUEFUNC(_wrap_XiphComment_remove_field), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_fields", VALUEFUNC(_wrap_XiphComment_remove_fields), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_all_fields", VALUEFUNC(_wrap_XiphComment_remove_all_fields), -1);
   rb_define_method(SwigClassXiphComment.klass, "contains?", VALUEFUNC(_wrap_XiphComment_containsq___), -1);
   rb_define_method(SwigClassXiphComment.klass, "render", VALUEFUNC(_wrap_XiphComment_render), -1);
+  rb_define_method(SwigClassXiphComment.klass, "picture_list", VALUEFUNC(_wrap_XiphComment_picture_list), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_picture", VALUEFUNC(_wrap_XiphComment_remove_picture), -1);
+  rb_define_method(SwigClassXiphComment.klass, "remove_all_pictures", VALUEFUNC(_wrap_XiphComment_remove_all_pictures), -1);
+  rb_define_method(SwigClassXiphComment.klass, "add_picture", VALUEFUNC(_wrap_XiphComment_add_picture), -1);
   SwigClassXiphComment.mark = 0;
   SwigClassXiphComment.destroy = (void (*)(void *)) free_TagLib_Ogg_XiphComment;
   SwigClassXiphComment.trackObjects = 1;

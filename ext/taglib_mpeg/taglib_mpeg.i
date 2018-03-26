@@ -6,8 +6,6 @@
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
-
-static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version);
 %}
 
 %include "../taglib_base/includes.i"
@@ -15,7 +13,10 @@ static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool 
 
 %ignore TagLib::MPEG::Header::operator=;
 %include <taglib/xingheader.h>
+
 %include <taglib/mpegheader.h>
+
+%ignore TagLib::MPEG::length; // Deprecated.
 %include <taglib/mpegproperties.h>
 
 %rename(id3v1_tag) TagLib::MPEG::File::ID3v1Tag;
@@ -24,6 +25,14 @@ static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool 
 
 %freefunc TagLib::MPEG::File "free_taglib_mpeg_file";
 
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool, Properties::ReadStyle);
+%ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool);
+%ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *);
+%rename("id3v1_tag?") TagLib::MPEG::File::hasID3v1Tag;
+%rename("id3v2_tag?") TagLib::MPEG::File::hasID3v2Tag;
+%rename("ape_tag?") TagLib::MPEG::File::hasAPETag;
 %include <taglib/mpegfile.h>
 
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
@@ -71,26 +80,12 @@ static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool 
 
     delete file;
   }
-
-  static bool taglib_ruby_mpeg_file_save(TagLib::MPEG::File *file, int tags, bool stripOthers, int id3v2Version) {
-#if defined(TAGLIB_MAJOR_VERSION) && (TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 8))
-    return file->save(tags, stripOthers, id3v2Version);
-#else
-    rb_raise(rb_eArgError, "Overloaded method save(int tags, bool stripOthers, int id3v2Version) on TagLib::MPEG::File is only available when compiled against TagLib >= 1.8");
-    return false;
-#endif
-  }
 %}
 
 %extend TagLib::MPEG::File {
   void close() {
     free_taglib_mpeg_file($self);
   }
-
-  bool save(int tags, bool stripOthers, int id3v2Version) {
-    return taglib_ruby_mpeg_file_save($self, tags, stripOthers, id3v2Version);
-  }
 }
-
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

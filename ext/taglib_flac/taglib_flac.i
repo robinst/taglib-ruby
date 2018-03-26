@@ -3,44 +3,40 @@
 #include <taglib/taglib.h>
 #include <taglib/flacfile.h>
 #include <taglib/flacproperties.h>
-#include <taglib/flacpicture.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
 %}
 
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
+%include "../taglib_flac_picture/includes.i"
+%import(module="taglib_flac_picture") "../taglib_flac_picture/taglib_flac_picture.i"
 
-%{
-VALUE taglib_flac_picturelist_to_ruby_array(const TagLib::List<TagLib::FLAC::Picture *> & list) {
-  VALUE ary = rb_ary_new2(list.size());
-  for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = list.begin(); it != list.end(); it++) {
-    TagLib::FLAC::Picture *picture = *it;
-    VALUE p = SWIG_NewPointerObj(picture, SWIGTYPE_p_TagLib__FLAC__Picture, 0);
-    rb_ary_push(ary, p);
-  }
-  return ary;
-}
-%}
+// Deprecated
+%ignore TagLib::FLAC::Properties::length;
+%ignore TagLib::FLAC::Properties::sampleWidth;
 
 %include <taglib/flacproperties.h>
 
-%include <taglib/flacmetadatablock.h>
-%include <taglib/flacpicture.h>
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*, bool, Properties::ReadStyle);
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*, bool);
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*);
 
 %rename(id3v1_tag) TagLib::FLAC::File::ID3v1Tag;
 %rename(id3v2_tag) TagLib::FLAC::File::ID3v2Tag;
 %rename(set_id3v2_frame_factory) TagLib::FLAC::File::setID3v2FrameFactory;
-
-%typemap(out) TagLib::List<TagLib::FLAC::Picture *> {
-  $result = taglib_flac_picturelist_to_ruby_array($1);
-}
 
 %freefunc TagLib::FLAC::File "free_taglib_flac_file";
 
 %apply SWIGTYPE *DISOWN { TagLib::FLAC::Picture *picture };
 // Don't expose second parameter, memory should be freed by TagLib
 %ignore TagLib::FLAC::File::removePicture(Picture *, bool);
+
+%rename("xiph_comment?") TagLib::FLAC::File::hasXiphComment;
+%rename("id3v1_tag?") TagLib::FLAC::File::hasID3v1Tag;
+%rename("id3v2_tag?") TagLib::FLAC::File::hasID3v2Tag;
 
 %include <taglib/flacfile.h>
 

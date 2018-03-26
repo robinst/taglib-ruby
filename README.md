@@ -26,7 +26,7 @@ Contributions for more coverage of the library are very welcome.
 Installation
 ------------
 
-Before you install the gem, make sure to have [taglib][taglib] installed
+Before you install the gem, make sure to have [taglib 1.11.1 or higher][taglib] installed
 with header files (and a C++ compiler of course):
 
 * Debian/Ubuntu: `sudo apt-get install libtag1-dev`
@@ -69,8 +69,7 @@ if you don't have it):
 
     bundle install
 
-Regenerate SWIG wrappers if you made changes in `.i` files (use at least
-version 2.0.5 of SWIG):
+Regenerate SWIG wrappers if you made changes in `.i` files (use version 3.0.7 of SWIG):
 
     rake swig
 
@@ -97,17 +96,17 @@ Build and install gem into system gems:
 
 Build a specific version of Taglib:
 
-    PLATFORM=x86_64-linux TAGLIB_VERSION=1.9.1 rake vendor
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 rake vendor
 
-The above command will automatically download Taglig 1.9.1, build it and install it in `tmp/x86_64-linux/taglib-1.9.1`.
+The above command will automatically download Taglib 1.11.1, build it and install it in `tmp/x86_64-linux/taglib-1.11.1`.
 
-The `swig` and `compile` tasks can then be executed against that specific version of Taglib by setting the `TAGLIB_DIR` environment variable to `$PWD/tmp/x86_64-linux/taglib-1.9.1` (it is assumed that taglib headers are located at `$TAGLIB_DIR/include` and taglib libraries at `$TAGLIB_DIR/lib`).
+The `swig` and `compile` tasks can then be executed against that specific version of Taglib by setting the `TAGLIB_DIR` environment variable to `$PWD/tmp/x86_64-linux/taglib-1.11.1` (it is assumed that taglib headers are located at `$TAGLIB_DIR/include` and taglib libraries at `$TAGLIB_DIR/lib`).
 
-The `test` task can then be run for that version of Taglib by adding `$PWD/tmp/x86_64-linux/taglib-1.9.1/lib` to the `LD_LIBRARY_PATH` environment variable.
+The `test` task can then be run for that version of Taglib by adding `$PWD/tmp/x86_64-linux/taglib-1.11.1/lib` to the `LD_LIBRARY_PATH` environment variable.
 
 To do everything in one command:
 
-    PLATFORM=x86_64-linux TAGLIB_VERSION=1.7.2 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.7.2 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.7.2/lib rake vendor compile test
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.11.1 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.11.1/lib rake vendor compile test
 
 ### Workflow
 

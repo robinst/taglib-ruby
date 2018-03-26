@@ -18,7 +18,7 @@ class WAVExamples < Test::Unit::TestCase
       # Reading WAV-specific audio properties
 
       TagLib::RIFF::WAV::File.open("#{DATA_FILE_PREFIX}sample.wav") do |file|
-        file.audio_properties.sample_width  #=>  8
+        file.audio_properties.sample_rate  #=>  8
       end
 
       # Saving ID3v2 cover-art to disk

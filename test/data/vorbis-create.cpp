@@ -4,17 +4,22 @@
 #include <taglib/taglib.h>
 #include <taglib/vorbisfile.h>
 
+#include "get_picture_data.cpp"
+
 using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file.mp3" << std::endl;
+    std::cout << "usage: " << argv[0] << " file.oga" << std::endl;
     exit(1);
   }
   char *filename = argv[1];
 
   Vorbis::File file(filename);
   Ogg::XiphComment *tag = file.tag();
+
+  tag->removeAllFields();
+  tag->removeAllPictures();
 
   tag->setTitle("Title");
   tag->setArtist("Artist");
@@ -35,6 +40,20 @@ int main(int argc, char **argv) {
 
   tag->addField("MULTIPLE", "A");
   tag->addField("MULTIPLE", "B", false);
+
+  ByteVector pictureData = getPictureData("globe_east_90.jpg");
+
+  FLAC::Picture picture;
+  picture.setType(FLAC::Picture::FrontCover);
+  picture.setMimeType("image/jpeg");
+  picture.setDescription("Globe");
+  picture.setWidth(90);
+  picture.setHeight(90);
+  picture.setColorDepth(24);
+  picture.setNumColors(0);
+  picture.setData(pictureData);
+
+  tag->addField("METADATA_BLOCK_PICTURE", picture.render().toBase64());
 
   file.save();
 }

@@ -10,7 +10,15 @@
 
 %freefunc TagLib::Vorbis::File "free_taglib_vorbis_file";
 
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::Vorbis::File::File(IOStream *, bool, Properties::ReadStyle);
+%ignore TagLib::Vorbis::File::File(IOStream *, bool);
+%ignore TagLib::Vorbis::File::File(IOStream *);
+
+%ignore TagLib::Vorbis::Properties::length; // Deprecated.
 %include <taglib/vorbisproperties.h>
+
 %include <taglib/vorbisfile.h>
 
 %begin %{

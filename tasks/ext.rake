@@ -52,6 +52,9 @@ end
 Rake::ExtensionTask.new("taglib_vorbis", $gemspec) do |ext|
   configure_cross_compile(ext)
 end
+Rake::ExtensionTask.new("taglib_flac_picture", $gemspec) do |ext|
+  configure_cross_compile(ext)
+end
 Rake::ExtensionTask.new("taglib_flac", $gemspec) do |ext|
   configure_cross_compile(ext)
 end

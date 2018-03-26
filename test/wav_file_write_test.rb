@@ -85,4 +85,29 @@ class WAVFileWriteTest < Test::Unit::TestCase
       FileUtils.rm OUTPUT_FILE
     end
   end
+
+  context "TagLib::RIFF::WAV::File.strip" do
+    setup do
+      FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
+      @file = TagLib::RIFF::WAV::File.new(OUTPUT_FILE)
+    end
+
+    should "update the file immediately" do
+      assert @file.id3v2_tag?
+
+      @file.strip(TagLib::RIFF::WAV::File::ID3v2)
+
+      reloaded do |file|
+        refute @file.id3v2_tag?
+      end
+    end
+
+    teardown do
+      if @file
+        @file.close
+        @file = nil
+      end
+      FileUtils.rm OUTPUT_FILE
+    end
+  end
 end

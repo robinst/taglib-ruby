@@ -22,15 +22,8 @@ class TestVorbisFile < Test::Unit::TestCase
       end
 
       should "contain basic information" do
-        assert_equal 0, @properties.length # file is short
-
-        # taglib/taglib#563 changed the way bitrate is calculated.
-        if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 10)
-          assert_equal 222, @properties.bitrate
-        else
-          assert_equal 64, @properties.bitrate
-        end
-
+        assert_equal 0, @properties.length_in_seconds # file is short
+        assert_equal 371, @properties.bitrate
         assert_equal 44100, @properties.sample_rate
         assert_equal 2, @properties.channels
       end

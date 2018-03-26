@@ -4,10 +4,17 @@
 #include <taglib/wavfile.h>
 #include <taglib/wavproperties.h>
 #include <taglib/id3v2tag.h>
+using namespace TagLib::RIFF;
 %}
 
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
+
+// Deprecated
+%ignore TagLib::RIFF::WAV::Properties::Properties(const ByteVector&, ReadStyle);
+%ignore TagLib::RIFF::WAV::Properties::Properties(const ByteVector&, unsigned int, ReadStyle);
+%ignore TagLib::RIFF::WAV::Properties::length;
+%ignore TagLib::RIFF::WAV::Properties::sampleWidth;
 
 %include <taglib/wavproperties.h>
 
@@ -18,6 +25,23 @@ namespace TagLib {
     class Tag;
   }
 }
+
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle);
+%ignore TagLib::RIFF::WAV::File::File(IOStream *, bool);
+%ignore TagLib::RIFF::WAV::File::File(IOStream *);
+
+// Ignore the unified property interface.
+%ignore TagLib::RIFF::WAV::File::properties;
+%ignore TagLib::RIFF::WAV::File::setProperties;
+%ignore TagLib::RIFF::WAV::File::removeUnsupportedProperties;
+
+%ignore TagLib::RIFF::WAV::File::InfoTag;
+
+%rename(id3v2_tag) TagLib::RIFF::WAV::File::ID3v2Tag;
+%rename("id3v2_tag?") TagLib::RIFF::WAV::File::hasID3v2Tag;
+%rename("info_tag?") TagLib::RIFF::WAV::File::hasInfoTag;
 
 %include <taglib/wavfile.h>
 

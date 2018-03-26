@@ -1827,17 +1827,18 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_TagLib__File swig_types[0]
-#define SWIGTYPE_p_TagLib__ID3v1__StringHandler swig_types[1]
-#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[2]
-#define SWIGTYPE_p_TagLib__Tag swig_types[3]
-#define SWIGTYPE_p_char swig_types[4]
-#define SWIGTYPE_p_unsigned_char swig_types[5]
-#define SWIGTYPE_p_unsigned_int swig_types[6]
-#define SWIGTYPE_p_unsigned_long swig_types[7]
-#define SWIGTYPE_p_wchar_t swig_types[8]
-static swig_type_info *swig_types[10];
-static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
+#define SWIGTYPE_p_MapT_TagLib__String_int_t swig_types[0]
+#define SWIGTYPE_p_TagLib__File swig_types[1]
+#define SWIGTYPE_p_TagLib__ID3v1__StringHandler swig_types[2]
+#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[3]
+#define SWIGTYPE_p_TagLib__Tag swig_types[4]
+#define SWIGTYPE_p_char swig_types[5]
+#define SWIGTYPE_p_unsigned_char swig_types[6]
+#define SWIGTYPE_p_unsigned_int swig_types[7]
+#define SWIGTYPE_p_unsigned_long swig_types[8]
+#define SWIGTYPE_p_wchar_t swig_types[9]
+static swig_type_info *swig_types[11];
+static swig_module_info swig_module = {swig_types, 10, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1864,6 +1865,7 @@ static VALUE mID3v1;
 
 
 #include <taglib/id3v1tag.h>
+#include <taglib/id3v1genres.h>
 
 
 #include <taglib/tstring.h>
@@ -2135,7 +2137,74 @@ SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
   return res;
 }
 
+
+SWIGINTERN int
+SWIG_AsVal_int (VALUE obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_int  (int value)
+{    
+  return SWIG_From_long  (value);
+}
+
+
+VALUE taglib_id3v1_genre_map_to_ruby_hash(const TagLib::ID3v1::GenreMap &map) {
+  VALUE hsh = rb_hash_new();
+  for (TagLib::ID3v1::GenreMap::ConstIterator it = map.begin(); it != map.end(); it++) {
+    rb_hash_aset(hsh,
+                 taglib_string_to_ruby_string(it->first),
+                 INT2NUM(it->second));
+  }
+  return hsh;
+}
+
 static swig_class SwigClassStringHandler;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_StringHandler_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_StringHandler_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v1__StringHandler);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_StringHandler(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v1::StringHandler *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (TagLib::ID3v1::StringHandler *)new TagLib::ID3v1::StringHandler();
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
 
 SWIGINTERN VALUE
 _wrap_StringHandler_parse(int argc, VALUE *argv, VALUE self) {
@@ -2196,39 +2265,6 @@ _wrap_StringHandler_render(int argc, VALUE *argv, VALUE self) {
     vresult = taglib_bytevector_to_ruby_string(result);
   }
   return vresult;
-fail:
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_StringHandler_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_StringHandler_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v1__StringHandler);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_StringHandler(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v1::StringHandler *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::ID3v1::StringHandler *)new TagLib::ID3v1::StringHandler();
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
 fail:
   return Qnil;
 }
@@ -2530,7 +2566,7 @@ _wrap_Tag_year(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2541,7 +2577,7 @@ _wrap_Tag_year(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v1::Tag const *","year", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v1::Tag const *)arg1)->year();
+  result = (unsigned int)((TagLib::ID3v1::Tag const *)arg1)->year();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2554,7 +2590,7 @@ _wrap_Tag_track(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2565,7 +2601,7 @@ _wrap_Tag_track(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v1::Tag const *","track", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v1::Tag const *)arg1)->track();
+  result = (unsigned int)((TagLib::ID3v1::Tag const *)arg1)->track();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2711,7 +2747,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Tag_yeare___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2727,9 +2763,9 @@ _wrap_Tag_yeare___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setYear", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setYear", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setYear(arg2);
   return Qnil;
 fail:
@@ -2740,7 +2776,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Tag_tracke___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2756,10 +2792,63 @@ _wrap_Tag_tracke___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setTrack", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setTrack", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setTrack(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Tag_genre_number(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v1__Tag, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v1::Tag const *","genreNumber", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
+  result = (unsigned int)((TagLib::ID3v1::Tag const *)arg1)->genreNumber();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Tag_genre_numbere___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v1::Tag *arg1 = (TagLib::ID3v1::Tag *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v1__Tag, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v1::Tag *","setGenreNumber", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v1::Tag * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setGenreNumber", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  (arg1)->setGenreNumber(arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -2787,12 +2876,97 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_genre_list(int argc, VALUE *argv, VALUE self) {
+  TagLib::StringList result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = TagLib::ID3v1::genreList();
+  {
+    vresult = taglib_string_list_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_genre_map(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v1::GenreMap result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = TagLib::ID3v1::genreMap();
+  {
+    vresult = taglib_id3v1_genre_map_to_ruby_hash(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_genre(int argc, VALUE *argv, VALUE self) {
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib::ID3v1::genre", 1, argv[0] ));
+  } 
+  arg1 = static_cast< int >(val1);
+  result = TagLib::ID3v1::genre(arg1);
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_genre_index(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  TagLib::String tmp1 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (int)TagLib::ID3v1::genreIndex((TagLib::String const &)*arg1);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static void *_p_TagLib__ID3v1__TagTo_p_TagLib__Tag(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::Tag *)  ((TagLib::ID3v1::Tag *) x));
 }
+static swig_type_info _swigt__p_MapT_TagLib__String_int_t = {"_p_MapT_TagLib__String_int_t", "TagLib::ID3v1::GenreMap *|Map< TagLib::String,int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v1__StringHandler = {"_p_TagLib__ID3v1__StringHandler", "TagLib::ID3v1::StringHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "TagLib::ID3v1::Tag *", 0, 0, (void*)0, 0};
@@ -2804,6 +2978,7 @@ static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ul
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_MapT_TagLib__String_int_t,
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__ID3v1__StringHandler,
   &_swigt__p_TagLib__ID3v1__Tag,
@@ -2815,6 +2990,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
+static swig_cast_info _swigc__p_MapT_TagLib__String_int_t[] = {  {&_swigt__p_MapT_TagLib__String_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v1__StringHandler[] = {  {&_swigt__p_TagLib__ID3v1__StringHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID3v1__Tag, 0, 0, 0},{0, 0, 0, 0}};
@@ -2826,6 +3002,7 @@ static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_MapT_TagLib__String_int_t,
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__ID3v1__StringHandler,
   _swigc__p_TagLib__ID3v1__Tag,
@@ -3122,9 +3299,15 @@ SWIGEXPORT void Init_taglib_id3v1(void) {
   rb_define_method(SwigClassTag.klass, "genre=", VALUEFUNC(_wrap_Tag_genree___), -1);
   rb_define_method(SwigClassTag.klass, "year=", VALUEFUNC(_wrap_Tag_yeare___), -1);
   rb_define_method(SwigClassTag.klass, "track=", VALUEFUNC(_wrap_Tag_tracke___), -1);
+  rb_define_method(SwigClassTag.klass, "genre_number", VALUEFUNC(_wrap_Tag_genre_number), -1);
+  rb_define_method(SwigClassTag.klass, "genre_number=", VALUEFUNC(_wrap_Tag_genre_numbere___), -1);
   rb_define_singleton_method(SwigClassTag.klass, "string_handler=", VALUEFUNC(_wrap_Tag_string_handlere___), -1);
   SwigClassTag.mark = 0;
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_ID3v1_Tag;
   SwigClassTag.trackObjects = 1;
+  rb_define_module_function(mID3v1, "genre_list", VALUEFUNC(_wrap_genre_list), -1);
+  rb_define_module_function(mID3v1, "genre_map", VALUEFUNC(_wrap_genre_map), -1);
+  rb_define_module_function(mID3v1, "genre", VALUEFUNC(_wrap_genre), -1);
+  rb_define_module_function(mID3v1, "genre_index", VALUEFUNC(_wrap_genre_index), -1);
 }
 
