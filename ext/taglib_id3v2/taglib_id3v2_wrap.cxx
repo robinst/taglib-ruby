@@ -2495,7 +2495,7 @@ _wrap_Header_major_version(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2506,7 +2506,7 @@ _wrap_Header_major_version(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","majorVersion", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Header const *)arg1)->majorVersion();
+  result = (unsigned int)((TagLib::ID3v2::Header const *)arg1)->majorVersion();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2517,7 +2517,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Header_major_versione___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2533,9 +2533,9 @@ _wrap_Header_major_versione___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setMajorVersion", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setMajorVersion", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setMajorVersion(arg2);
   return Qnil;
 fail:
@@ -2548,7 +2548,7 @@ _wrap_Header_revision_number(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2559,7 +2559,7 @@ _wrap_Header_revision_number(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","revisionNumber", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Header const *)arg1)->revisionNumber();
+  result = (unsigned int)((TagLib::ID3v2::Header const *)arg1)->revisionNumber();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2668,7 +2668,7 @@ _wrap_Header_tag_size(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2679,7 +2679,7 @@ _wrap_Header_tag_size(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","tagSize", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Header const *)arg1)->tagSize();
+  result = (unsigned int)((TagLib::ID3v2::Header const *)arg1)->tagSize();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2692,7 +2692,7 @@ _wrap_Header_complete_tag_size(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2703,7 +2703,7 @@ _wrap_Header_complete_tag_size(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","completeTagSize", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Header const *)arg1)->completeTagSize();
+  result = (unsigned int)((TagLib::ID3v2::Header const *)arg1)->completeTagSize();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2714,7 +2714,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Header_tag_sizee___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -2730,9 +2730,9 @@ _wrap_Header_tag_sizee___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setTagSize", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setTagSize", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setTagSize(arg2);
   return Qnil;
 fail:
@@ -2745,19 +2745,19 @@ fail:
   Document-method: TagLib::ID3v2::Header.size
 
   call-seq:
-    size -> TagLib::uint
+    size -> unsigned int
 
 Size or Length of the Header.
 */
 SWIGINTERN VALUE
 _wrap_Header_size(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = (TagLib::uint)TagLib::ID3v2::Header::size();
+  result = (unsigned int)TagLib::ID3v2::Header::size();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -2875,7 +2875,7 @@ fail:
   Document-method: TagLib::ID3v2::Frame.size
 
   call-seq:
-    size -> TagLib::uint
+    size -> unsigned int
 
 Size or Length of the Frame.
 */
@@ -2884,7 +2884,7 @@ _wrap_Frame_size(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Frame *arg1 = (TagLib::ID3v2::Frame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -2895,83 +2895,10 @@ _wrap_Frame_size(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame const *","size", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Frame * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Frame const *)arg1)->size();
+  result = (unsigned int)((TagLib::ID3v2::Frame const *)arg1)->size();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Frame_header_size__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::uint)TagLib::ID3v2::Frame::headerSize();
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Frame_header_size__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::uint arg1 ;
-  unsigned int val1 ;
-  int ecode1 = 0 ;
-  TagLib::uint result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_unsigned_SS_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::uint","TagLib::ID3v2::Frame::headerSize", 1, argv[0] ));
-  } 
-  arg1 = static_cast< TagLib::uint >(val1);
-  result = (TagLib::uint)TagLib::ID3v2::Frame::headerSize(arg1);
-  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_Frame_header_size(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[1];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 1) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 0) {
-    return _wrap_Frame_header_size__SWIG_0(nargs, args, self);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_unsigned_SS_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_Frame_header_size__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 1, "Frame.header_size", 
-    "    TagLib::uint Frame.header_size()\n"
-    "    TagLib::uint Frame.header_size(TagLib::uint version)\n");
-  
   return Qnil;
 }
 
@@ -3415,7 +3342,7 @@ _wrap_Tag_year(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -3426,7 +3353,7 @@ _wrap_Tag_year(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","year", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Tag const *)arg1)->year();
+  result = (unsigned int)((TagLib::ID3v2::Tag const *)arg1)->year();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -3439,7 +3366,7 @@ _wrap_Tag_track(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -3450,7 +3377,7 @@ _wrap_Tag_track(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","track", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::Tag const *)arg1)->track();
+  result = (unsigned int)((TagLib::ID3v2::Tag const *)arg1)->track();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -3596,7 +3523,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Tag_yeare___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -3612,9 +3539,9 @@ _wrap_Tag_yeare___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setYear", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setYear", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setYear(arg2);
   return Qnil;
 fail:
@@ -3625,7 +3552,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Tag_tracke___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -3641,9 +3568,9 @@ _wrap_Tag_tracke___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setTrack", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setTrack", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setTrack(arg2);
   return Qnil;
 fail:
@@ -3957,32 +3884,6 @@ fail:
 }
 
 
-SWIGINTERN VALUE
-_wrap_Tag_render(int argc, VALUE *argv, VALUE self) {
-  TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","render", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
-  result = ((TagLib::ID3v2::Tag const *)arg1)->render();
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassFrameFactory;
 
 SWIGINTERN VALUE
@@ -4043,7 +3944,7 @@ SWIGINTERN VALUE
 _wrap_FrameFactory_create_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::FrameFactory *arg1 = (TagLib::ID3v2::FrameFactory *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  TagLib::uint arg3 ;
+  unsigned int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
@@ -4066,9 +3967,9 @@ _wrap_FrameFactory_create_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
   }
   ecode3 = SWIG_AsVal_unsigned_SS_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::uint","createFrame", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned int","createFrame", 3, argv[1] ));
   } 
-  arg3 = static_cast< TagLib::uint >(val3);
+  arg3 = static_cast< unsigned int >(val3);
   result = (TagLib::ID3v2::Frame *)((TagLib::ID3v2::FrameFactory const *)arg1)->createFrame((TagLib::ByteVector const &)*arg2,arg3);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__Frame, 0 |  0 );
   return vresult;
@@ -4229,7 +4130,7 @@ SWIGINTERN VALUE _wrap_FrameFactory_create_frame(int nargs, VALUE *args, VALUE s
 fail:
   Ruby_Format_OverloadedError( argc, 4, "FrameFactory.create_frame", 
     "    TagLib::ID3v2::Frame * FrameFactory.create_frame(TagLib::ByteVector const &data, bool synchSafeInts)\n"
-    "    TagLib::ID3v2::Frame * FrameFactory.create_frame(TagLib::ByteVector const &data, TagLib::uint version)\n"
+    "    TagLib::ID3v2::Frame * FrameFactory.create_frame(TagLib::ByteVector const &data, unsigned int version)\n"
     "    TagLib::ID3v2::Frame * FrameFactory.create_frame(TagLib::ByteVector const &data)\n"
     "    TagLib::ID3v2::Frame * FrameFactory.create_frame(TagLib::ByteVector const &data, TagLib::ID3v2::Header *tagHeader)\n");
   
@@ -6777,7 +6678,7 @@ _wrap_PopularimeterFrame_counter(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::PopularimeterFrame *arg1 = (TagLib::ID3v2::PopularimeterFrame *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  TagLib::uint result;
+  unsigned int result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -6788,7 +6689,7 @@ _wrap_PopularimeterFrame_counter(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::PopularimeterFrame const *","counter", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::ID3v2::PopularimeterFrame * >(argp1);
-  result = (TagLib::uint)((TagLib::ID3v2::PopularimeterFrame const *)arg1)->counter();
+  result = (unsigned int)((TagLib::ID3v2::PopularimeterFrame const *)arg1)->counter();
   vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
   return vresult;
 fail:
@@ -6799,7 +6700,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_PopularimeterFrame_countere___(int argc, VALUE *argv, VALUE self) {
   TagLib::ID3v2::PopularimeterFrame *arg1 = (TagLib::ID3v2::PopularimeterFrame *) 0 ;
-  TagLib::uint arg2 ;
+  unsigned int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -6815,9 +6716,9 @@ _wrap_PopularimeterFrame_countere___(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::ID3v2::PopularimeterFrame * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::uint","setCounter", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setCounter", 2, argv[0] ));
   } 
-  arg2 = static_cast< TagLib::uint >(val2);
+  arg2 = static_cast< unsigned int >(val2);
   (arg1)->setCounter(arg2);
   return Qnil;
 fail:
@@ -7346,23 +7247,6 @@ fail:
 }
 
 
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_UserTextIdentificationFrame_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_UserTextIdentificationFrame_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
 SWIGINTERN VALUE
 _wrap_new_UserTextIdentificationFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::ByteVector *arg1 = 0 ;
@@ -7385,13 +7269,94 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_new_UserTextIdentificationFrame__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  TagLib::StringList *arg2 = 0 ;
+  TagLib::String::Type arg3 ;
+  TagLib::String tmp1 ;
+  TagLib::StringList tmp2 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  TagLib::ID3v2::UserTextIdentificationFrame *result = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
+  }
+  {
+    tmp2 = ruby_array_to_taglib_string_list(argv[1]);
+    arg2 = &tmp2;
+  }
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::String::Type","UserTextIdentificationFrame", 3, argv[2] ));
+  } 
+  arg3 = static_cast< TagLib::String::Type >(val3);
+  result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame((TagLib::String const &)*arg1,(TagLib::StringList const &)*arg2,arg3);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_UserTextIdentificationFrame_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_UserTextIdentificationFrame_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_UserTextIdentificationFrame__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  TagLib::StringList *arg2 = 0 ;
+  TagLib::String tmp1 ;
+  TagLib::StringList tmp2 ;
+  TagLib::ID3v2::UserTextIdentificationFrame *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
+  }
+  {
+    tmp2 = ruby_array_to_taglib_string_list(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::UserTextIdentificationFrame *)new TagLib::ID3v2::UserTextIdentificationFrame((TagLib::String const &)*arg1,(TagLib::StringList const &)*arg2);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE _wrap_new_UserTextIdentificationFrame(int nargs, VALUE *args, VALUE self) {
   int argc;
-  VALUE argv[1];
+  VALUE argv[3];
   int ii;
   
   argc = nargs;
-  if (argc > 1) SWIG_fail;
+  if (argc > 3) SWIG_fail;
   for (ii = 0; (ii < argc); ++ii) {
     argv[ii] = args[ii];
   }
@@ -7416,12 +7381,46 @@ SWIGINTERN VALUE _wrap_new_UserTextIdentificationFrame(int nargs, VALUE *args, V
       return _wrap_new_UserTextIdentificationFrame__SWIG_2(nargs, args, self);
     }
   }
+  if (argc == 2) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__StringList, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_UserTextIdentificationFrame__SWIG_4(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__StringList, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_new_UserTextIdentificationFrame__SWIG_3(nargs, args, self);
+        }
+      }
+    }
+  }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 1, "UserTextIdentificationFrame.new", 
+  Ruby_Format_OverloadedError( argc, 3, "UserTextIdentificationFrame.new", 
     "    UserTextIdentificationFrame.new(TagLib::String::Type encoding)\n"
     "    UserTextIdentificationFrame.new()\n"
-    "    UserTextIdentificationFrame.new(TagLib::ByteVector const &data)\n");
+    "    UserTextIdentificationFrame.new(TagLib::ByteVector const &data)\n"
+    "    UserTextIdentificationFrame.new(TagLib::String const &description, TagLib::StringList const &values, TagLib::String::Type encoding)\n"
+    "    UserTextIdentificationFrame.new(TagLib::String const &description, TagLib::StringList const &values)\n");
   
   return Qnil;
 }
@@ -9233,7 +9232,6 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_undef_alloc_func(SwigClassFrame.klass);
   rb_define_method(SwigClassFrame.klass, "frame_id", VALUEFUNC(_wrap_Frame_frame_id), -1);
   rb_define_method(SwigClassFrame.klass, "size", VALUEFUNC(_wrap_Frame_size), -1);
-  rb_define_singleton_method(SwigClassFrame.klass, "header_size", VALUEFUNC(_wrap_Frame_header_size), -1);
   rb_define_method(SwigClassFrame.klass, "data=", VALUEFUNC(_wrap_Frame_datae___), -1);
   rb_define_method(SwigClassFrame.klass, "text=", VALUEFUNC(_wrap_Frame_texte___), -1);
   rb_define_method(SwigClassFrame.klass, "to_string", VALUEFUNC(_wrap_Frame_to_string), -1);
@@ -9270,7 +9268,6 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   rb_define_method(SwigClassTag.klass, "add_frame", VALUEFUNC(_wrap_Tag_add_frame), -1);
   rb_define_method(SwigClassTag.klass, "remove_frame", VALUEFUNC(_wrap_Tag_remove_frame), -1);
   rb_define_method(SwigClassTag.klass, "remove_frames", VALUEFUNC(_wrap_Tag_remove_frames), -1);
-  rb_define_method(SwigClassTag.klass, "render", VALUEFUNC(_wrap_Tag_render), -1);
   SwigClassTag.mark = 0;
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_ID3v2_Tag;
   SwigClassTag.trackObjects = 1;

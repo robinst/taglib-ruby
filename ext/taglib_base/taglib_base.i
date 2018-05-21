@@ -94,14 +94,35 @@ namespace TagLib {
 
 %ignore TagLib::List::operator[];
 %ignore TagLib::List::operator=;
+%ignore TagLib::List::operator!=;
 %include <taglib/tlist.h>
+
+// Ignore the unified property interface.
+%ignore TagLib::Tag::properties;
+%ignore TagLib::Tag::setProperties;
+%ignore TagLib::Tag::removeUnsupportedProperties;
 
 %include <taglib/tag.h>
 
+%ignore TagLib::AudioProperties::length; // Deprecated.
 %include <taglib/audioproperties.h>
 
 %ignore TagLib::FileName;
+
+// Ignore the unified property interface.
+%ignore TagLib::File::properties;
+%ignore TagLib::File::setProperties;
+%ignore TagLib::File::removeUnsupportedProperties;
+
 %include <taglib/tfile.h>
+
+// Ignore IOStream and all the constructors using it.
+%ignore IOStream;
+%ignore TagLib::FileRef::FileRef(IOStream*, bool, AudioProperties::ReadStyle);
+%ignore TagLib::FileRef::FileRef(IOStream*, bool);
+%ignore TagLib::FileRef::FileRef(IOStream*);
+
+%ignore TagLib::FileRef::swap; // Only useful internally.
 
 %ignore TagLib::FileRef::operator=;
 %ignore TagLib::FileRef::operator!=;

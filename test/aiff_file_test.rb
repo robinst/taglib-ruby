@@ -15,7 +15,8 @@ class AIFFFileTest < Test::Unit::TestCase
     end
 
     should "have an ID3v2 tag" do
-      assert_not_nil @tag
+      assert @file.id3v2_tag?
+      refute_nil @tag
       assert_equal TagLib::ID3v2::Tag, @tag.class
     end
 
@@ -64,14 +65,22 @@ class AIFFFileTest < Test::Unit::TestCase
       end
 
       should "contain basic information" do
-        assert_equal 2, @properties.length
+        assert_equal 2, @properties.length_in_seconds
+        assert_equal 2937, @properties.length_in_milliseconds
         assert_equal 256, @properties.bitrate
         assert_equal 8000, @properties.sample_rate
         assert_equal 2, @properties.channels
       end
 
       should "contain AIFF-specific information" do
-        assert_equal 16, @properties.sample_width
+        assert_equal 16, @properties.bits_per_sample
+        assert_equal 23493, @properties.sample_frames
+      end
+
+      should "do not contain AIFF-C information" do
+        refute @properties.aiff_c?
+        assert_equal "", @properties.compression_type
+        assert_equal "", @properties.compression_name
       end
     end
 

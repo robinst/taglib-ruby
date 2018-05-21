@@ -22,10 +22,11 @@ module TagLib::MP4
     end
   end
 
-  class ItemListMap
+  class ItemMap
     alias :clear :_clear
     alias :insert :_insert
     alias :[] :fetch
+    alias :[]= :insert
     remove_method :_clear
     remove_method :_insert
 

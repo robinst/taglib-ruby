@@ -34,22 +34,22 @@ class MP4FileWriteTest < Test::Unit::TestCase
     end
 
     should "be able to add and save new cover art" do
-      item_list_map = @file.tag.item_list_map
-      cover_art_list = item_list_map['covr'].to_cover_art_list
+      item_map = @file.tag.item_map
+      cover_art_list = item_map['covr'].to_cover_art_list
       assert_equal 1, cover_art_list.size
 
       data = File.open(PICTURE_FILE, 'rb') { |f| f.read }
       new_cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, data)
 
       cover_art_list << new_cover_art
-      item_list_map.insert('covr', TagLib::MP4::Item.from_cover_art_list(cover_art_list))
-      assert_equal 2, item_list_map['covr'].to_cover_art_list.size
+      item_map.insert('covr', TagLib::MP4::Item.from_cover_art_list(cover_art_list))
+      assert_equal 2, item_map['covr'].to_cover_art_list.size
 
       success = @file.save
       assert success
 
       reloaded do |file|
-        written_cover_art = file.tag.item_list_map['covr'].to_cover_art_list.last
+        written_cover_art = file.tag.item_map['covr'].to_cover_art_list.last
         assert_equal TagLib::MP4::CoverArt::JPEG, written_cover_art.format
         assert_equal data, written_cover_art.data
       end

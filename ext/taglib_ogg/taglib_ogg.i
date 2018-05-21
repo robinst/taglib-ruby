@@ -2,11 +2,16 @@
 %{
 #include <taglib/taglib.h>
 #include <taglib/oggfile.h>
+#include <taglib/flacpicture.h>
 #include <taglib/xiphcomment.h>
+// Help find FLAC::
+using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"
 %import(module="taglib_base") "../taglib_base/taglib_base.i"
+%include "../taglib_flac_picture/includes.i"
+%import(module="taglib_flac_picture") "../taglib_flac_picture/taglib_flac_picture.i"
 
 %typemap(out) TagLib::Ogg::FieldListMap {
   $result = taglib_ogg_fieldlistmap_to_ruby_hash(*$1);
@@ -14,6 +19,12 @@
 %apply TagLib::Ogg::FieldListMap { const TagLib::Ogg::FieldListMap & };
 
 %include <taglib/oggfile.h>
+
+%apply SWIGTYPE *DISOWN { TagLib::FLAC::Picture *picture };
+// Don't expose second parameter, memory should be freed by TagLib
+%ignore TagLib::Ogg::XiphComment::removePicture(Picture *, bool);
+
+%ignore TagLib::Ogg::XiphComment::removeField;
 
 %rename("contains?") TagLib::Ogg::XiphComment::contains;
 

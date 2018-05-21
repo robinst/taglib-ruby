@@ -34,6 +34,7 @@ task :swig =>
    'ext/taglib_id3v2/taglib_id3v2_wrap.cxx',
    'ext/taglib_ogg/taglib_ogg_wrap.cxx',
    'ext/taglib_vorbis/taglib_vorbis_wrap.cxx',
+   'ext/taglib_flac/taglib_flac_picture_wrap.cxx',
    'ext/taglib_flac/taglib_flac_wrap.cxx',
    'ext/taglib_mp4/taglib_mp4_wrap.cxx',
    'ext/taglib_aiff/taglib_aiff_wrap.cxx',
@@ -66,7 +67,11 @@ file 'ext/taglib_vorbis/taglib_vorbis_wrap.cxx' => ['ext/taglib_vorbis/taglib_vo
   run_swig('taglib_vorbis')
 end
 
-file 'ext/taglib_flac/taglib_flac_wrap.cxx' => ['ext/taglib_flac/taglib_flac.i'] + base_dependencies do
+file 'ext/taglib_flac/taglib_flac_picture_wrap.cxx' => ['ext/taglib_flac_picture/taglib_flac_picture.i'] + base_dependencies do
+  run_swig('taglib_flac_picture')
+end
+
+file 'ext/taglib_flac/taglib_flac_wrap.cxx' => ['ext/taglib_flac/taglib_flac.i', 'ext/taglib_flac_picture/taglib_flac_picture.i'] + base_dependencies do
   run_swig('taglib_flac')
 end
 

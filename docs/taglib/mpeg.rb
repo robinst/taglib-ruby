@@ -103,6 +103,24 @@ module TagLib::MPEG
     # @return [Boolean] whether stripping was successful
     def strip(tags=TagLib::MPEG::File::AllTags)
     end
+
+    # @return [Boolean] Whether or not the file on disk actually has an ID3v1 tag.
+    #
+    # @since 1.0.0
+    def id3v1_tag?
+    end
+
+    # @return [Boolean] Whether or not the file on disk actually has an ID3v2 tag.
+    #
+    # @since 1.0.0
+    def id3v2_tag?
+    end
+
+    # @return [Boolean] Whether or not the file on disk actually has an APE tag.
+    #
+    # @since 1.0.0
+    def ape_tag?
+    end
   end
 
   # Audio properties for MPEG files.
@@ -153,6 +171,11 @@ module TagLib::MPEG
 
   # Xing VBR header.
   class XingHeader
+
+    Invalid = 0
+    Xing    = 1
+    VBRI    = 2
+
     # @return [true] if a valid Xing header is present
     def valid?
     end
@@ -163,6 +186,12 @@ module TagLib::MPEG
 
     # @return [Integer] total size of stream in bytes
     def total_size
+    end
+
+    # @return [Integer] the type of the VBR header.
+    #
+    # @since 1.0.0
+    def type
     end
   end
 end

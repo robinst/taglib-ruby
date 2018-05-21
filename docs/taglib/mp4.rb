@@ -82,12 +82,48 @@ module TagLib::MP4
     # @return [TagLib::MP4::Properties]
     def audio_properties
     end
+
+    # @return [Boolean] Returns whether or not the file actually has an MP4 tag, or the
+    # file has a Metadata Item List (ilst) atom.
+    #
+    # @since 1.0.0
+    def mp4_tag?
+    end
   end
 
   class Tag < TagLib::Tag
-    # Returns the map containing all the items in the tag
-    # @return [TagLib::MP4::ItemListMap]
-    def item_list_map
+    # @return [TagLib::MP4::ItemMap] The map containing all the items in the tag.
+    #
+    # @since 1.0.0
+    def item_map
+    end
+
+    # @return [TagLib::MP4::Item] The Item associated to `key` (will be invalid in `key` does not exists).
+    #
+    # @since 1.0.0
+    def [](key)
+    end
+
+    # Associate the `value` Item to `key`, overwriting any previous value.
+    # @param key [String]
+    # @param value [TagLib::MP4::Item]
+    # @return [nil]
+    #
+    # @since 1.0.0
+    def []=(key, value)
+    end
+
+    # Remove the [TagLib::MP4::Item] associated to `key`.
+    # @return [nil]
+    #
+    # @since 1.0.0
+    def remove_item(key)
+    end
+
+    # @return True if the tag has an entry for `key`, false otherwise.
+    #
+    # @since 1.0.0
+    def contains(key)
     end
   end
 
@@ -109,9 +145,30 @@ module TagLib::MP4
     def self.from_bool(value)
     end
 
+    # @param [Fixnum] value
+    # @return [TagLib::MP4::Item]
+    #
+    # @since 1.0.0
+    def self.from_byte(value)
+    end
+
+    # @param [Boolean] value
+    # @return [TagLib::MP4::Item]
+    #
+    # @since 1.0.0
+    def self.from_uint(value)
+    end
+
     # @param [Fixnum] number
     # @return [TagLib::MP4::Item]
     def self.from_int(number)
+    end
+
+    # @param [Fixnum] number
+    # @return [TagLib::MP4::Item]
+    #
+    # @since 1.0.0
+    def self.from_long_long(number)
     end
 
     # @example
@@ -126,16 +183,41 @@ module TagLib::MP4
     def self.from_string_list(string_array)
     end
 
+    # @param [TagLib::ByteVectorList] list
+    # @return [TagLib::MP4::Item]
+    #
+    # @since 1.0.0
+    def self.from_byte_vector_list(list)
+    end
+
     # @return [Boolean]
     def to_bool
     end
 
-    # @return [Array<TagLib::MP4::CoverArt>]
-    def to_cover_art_list
+    # @return [Fixnum]
+    #
+    # @since 1.0.0
+    def to_byte
+    end
+
+    # @return [Fixnum]
+    #
+    # @since 1.0.0
+    def to_uint
     end
 
     # @return [Fixnum]
     def to_int
+    end
+
+    # @return [Fixnum]
+    #
+    # @since 1.0.0
+    def to_long_long
+    end
+
+    # @return [Array<TagLib::MP4::CoverArt>]
+    def to_cover_art_list
     end
 
     # @return [Array<Fixnum, Fixnum>]
@@ -146,19 +228,25 @@ module TagLib::MP4
     def to_string_list
     end
 
+    # @return [TagLib::ByteVectorList]
+    #
+    # @since 1.0.0
+    def to_byte_vector_list
+    end
+
     # @return [Boolean]
     def valid?
     end
   end
 
-  # The underlying C++-structure of `ItemListMap` inherits from `std::map`.
-  # Consequently, `ItemListMap` behaves differently from a Ruby hash in a few
-  # places: the C++ memory management strategies of ItemListMap can lead to
+  # The underlying C++-structure of `ItemMap` inherits from `std::map`.
+  # Consequently, `ItemMap` behaves differently from a Ruby hash in a few
+  # places: the C++ memory management strategies of ItemMap can lead to
   # a situation where a Ruby object refers to a location in memory that was
   # freed by C++. To prevent Ruby from crashing on us with a segmentation
   # fault, we raise an `ObjectPreviouslyDeleted` exception when we try to access
   # data that is no longer available.
-  class ItemListMap
+  class ItemMap
     # Return the Item under `key`, or `nil` if no Item is present.
     # @param [String] key
     # @return [TagLib::MP4::Item]
@@ -235,10 +323,30 @@ module TagLib::MP4
     # @return [Array<Array<String, TagLib::MP4::Item>>]
     def to_a
     end
+
+    # Convert self into an hash.
+    # @return [Hash<String, TagLib::MP4::Item>]
+    #
+    # @since 1.0.0
+    def to_h
+    end
   end
   #
   class Properties < TagLib::AudioProperties
-    attr_reader :bits_per_sample, :encrypted?
+    Unknown = 0
+    AAC     = 1
+    ALAC    = 2
+
+    # @return [Integer] The number of bits per audio sample.
+    attr_reader :bits_per_sample
+
+    # @return [Boolean] Whether or not the file is encrypted.
+    attr_reader :encrypted?
+
+    # @return [Integer] The codec used in the file.
+    #
+    # @since 1.0.0
+    attr_reader :codec
   end
 
   # The `CoverArt` class is used to embed cover art images in MP4 tags.
@@ -247,8 +355,11 @@ module TagLib::MP4
   #   image_data = File.open('cover_art.jpeg', 'rb') { |f| f.read }
   #   cover_art = TagLib::MP4::CoverArt.new(TagLib::MP4::CoverArt::JPEG, image_data)
   class CoverArt
-    JPEG = 0x0D
-    PNG  = 0x0E
+    Unknown = 0x00
+    JPEG    = 0x0D
+    PNG     = 0x0E
+    BMP     = 0x1B
+    GIF     = 0x0C # Deprecated
 
     # Returns the format of the image data: `JPEG` or `PNG`.
     # @return [Fixnum]

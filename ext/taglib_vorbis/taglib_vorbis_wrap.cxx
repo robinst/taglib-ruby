@@ -1833,17 +1833,18 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_MapT_TagLib__String_TagLib__StringList_t swig_types[0]
 #define SWIGTYPE_p_TagLib__AudioProperties swig_types[1]
 #define SWIGTYPE_p_TagLib__File swig_types[2]
-#define SWIGTYPE_p_TagLib__Ogg__File swig_types[3]
-#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[4]
-#define SWIGTYPE_p_TagLib__Vorbis__File swig_types[5]
-#define SWIGTYPE_p_TagLib__Vorbis__Properties swig_types[6]
-#define SWIGTYPE_p_char swig_types[7]
-#define SWIGTYPE_p_unsigned_char swig_types[8]
-#define SWIGTYPE_p_unsigned_int swig_types[9]
-#define SWIGTYPE_p_unsigned_long swig_types[10]
-#define SWIGTYPE_p_wchar_t swig_types[11]
-static swig_type_info *swig_types[13];
-static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[3]
+#define SWIGTYPE_p_TagLib__Ogg__File swig_types[4]
+#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[5]
+#define SWIGTYPE_p_TagLib__Vorbis__File swig_types[6]
+#define SWIGTYPE_p_TagLib__Vorbis__Properties swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+#define SWIGTYPE_p_unsigned_char swig_types[9]
+#define SWIGTYPE_p_unsigned_int swig_types[10]
+#define SWIGTYPE_p_unsigned_long swig_types[11]
+#define SWIGTYPE_p_wchar_t swig_types[12]
+static swig_type_info *swig_types[14];
+static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2285,7 +2286,7 @@ free_TagLib_Vorbis_Properties(TagLib::Vorbis::Properties *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Properties_length(int argc, VALUE *argv, VALUE self) {
+_wrap_Properties_length_in_seconds(int argc, VALUE *argv, VALUE self) {
   TagLib::Vorbis::Properties *arg1 = (TagLib::Vorbis::Properties *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2297,10 +2298,34 @@ _wrap_Properties_length(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Vorbis__Properties, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties const *","length", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties const *","lengthInSeconds", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::Vorbis::Properties * >(argp1);
-  result = (int)((TagLib::Vorbis::Properties const *)arg1)->length();
+  result = (int)((TagLib::Vorbis::Properties const *)arg1)->lengthInSeconds();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Properties_length_in_milliseconds(int argc, VALUE *argv, VALUE self) {
+  TagLib::Vorbis::Properties *arg1 = (TagLib::Vorbis::Properties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Vorbis__Properties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties const *","lengthInMilliseconds", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::Vorbis::Properties * >(argp1);
+  result = (int)((TagLib::Vorbis::Properties const *)arg1)->lengthInMilliseconds();
   vresult = SWIG_From_int(static_cast< int >(result));
   return vresult;
 fail:
@@ -2480,7 +2505,7 @@ static swig_class SwigClassFile;
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   bool arg2 ;
   TagLib::Vorbis::Properties::ReadStyle arg3 ;
   bool val2 ;
@@ -2519,7 +2544,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   bool arg2 ;
   bool val2 ;
   int ecode2 = 0 ;
@@ -2567,7 +2592,7 @@ _wrap_File_allocate(VALUE self) {
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   TagLib::Vorbis::File *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
@@ -2762,6 +2787,7 @@ static void *_p_TagLib__Vorbis__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPA
 static swig_type_info _swigt__p_MapT_TagLib__String_TagLib__StringList_t = {"_p_MapT_TagLib__String_TagLib__StringList_t", "Map< TagLib::String,TagLib::StringList > *|TagLib::Ogg::FieldListMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *|TagLib::Ogg::Vorbis::AudioProperties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t = {"_p_TagLib__ListT_TagLib__FLAC__Picture_t", "TagLib::List< TagLib::FLAC::Picture > *|TagLib::FLAC::PictureList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__File = {"_p_TagLib__Ogg__File", "TagLib::Ogg::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__XiphComment = {"_p_TagLib__Ogg__XiphComment", "TagLib::Ogg::XiphComment *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Vorbis__File = {"_p_TagLib__Vorbis__File", "TagLib::Vorbis::File *|TagLib::Ogg::Vorbis::File *", 0, 0, (void*)0, 0};
@@ -2776,6 +2802,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MapT_TagLib__String_TagLib__StringList_t,
   &_swigt__p_TagLib__AudioProperties,
   &_swigt__p_TagLib__File,
+  &_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   &_swigt__p_TagLib__Ogg__File,
   &_swigt__p_TagLib__Ogg__XiphComment,
   &_swigt__p_TagLib__Vorbis__File,
@@ -2790,6 +2817,7 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_MapT_TagLib__String_TagLib__StringList_t[] = {  {&_swigt__p_MapT_TagLib__String_TagLib__StringList_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},  {&_swigt__p_TagLib__Vorbis__Properties, _p_TagLib__Vorbis__PropertiesTo_p_TagLib__AudioProperties, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__Ogg__File, _p_TagLib__Ogg__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__Vorbis__File, _p_TagLib__Vorbis__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__File[] = {  {&_swigt__p_TagLib__Ogg__File, 0, 0, 0},  {&_swigt__p_TagLib__Vorbis__File, _p_TagLib__Vorbis__FileTo_p_TagLib__Ogg__File, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__XiphComment[] = {  {&_swigt__p_TagLib__Ogg__XiphComment, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Vorbis__File[] = {  {&_swigt__p_TagLib__Vorbis__File, 0, 0, 0},{0, 0, 0, 0}};
@@ -2804,6 +2832,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MapT_TagLib__String_TagLib__StringList_t,
   _swigc__p_TagLib__AudioProperties,
   _swigc__p_TagLib__File,
+  _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   _swigc__p_TagLib__Ogg__File,
   _swigc__p_TagLib__Ogg__XiphComment,
   _swigc__p_TagLib__Vorbis__File,
@@ -3071,12 +3100,14 @@ SWIGEXPORT void Init_taglib_vorbis(void) {
   SWIG_RubyInitializeTrackings();
   rb_require("taglib_ogg");
   rb_require("taglib_base");
+  rb_require("taglib_flac_picture");
   
   SwigClassProperties.klass = rb_define_class_under(mVorbis, "Properties", ((swig_class *) SWIGTYPE_p_TagLib__AudioProperties->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__Vorbis__Properties, (void *) &SwigClassProperties);
   rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
   rb_define_method(SwigClassProperties.klass, "initialize", VALUEFUNC(_wrap_new_Properties), -1);
-  rb_define_method(SwigClassProperties.klass, "length", VALUEFUNC(_wrap_Properties_length), -1);
+  rb_define_method(SwigClassProperties.klass, "length_in_seconds", VALUEFUNC(_wrap_Properties_length_in_seconds), -1);
+  rb_define_method(SwigClassProperties.klass, "length_in_milliseconds", VALUEFUNC(_wrap_Properties_length_in_milliseconds), -1);
   rb_define_method(SwigClassProperties.klass, "bitrate", VALUEFUNC(_wrap_Properties_bitrate), -1);
   rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);
   rb_define_method(SwigClassProperties.klass, "channels", VALUEFUNC(_wrap_Properties_channels), -1);

@@ -53,11 +53,43 @@ module TagLib::RIFF::AIFF
     def audio_properties
     end
 
+    # @return [Boolean] Whether or not the file on disk actually has an ID3v2 tag.
+    #
+    # @since 1.0.0
+    def id3v2_tag?
+    end
+
   end
 
   class Properties < TagLib::AudioProperties
-    # @return [Integer] Sample width
-    attr_reader :sample_width
+    # @return [Integer] Number of bits per audio sample.
+    #
+    # @since 1.0.0
+    attr_reader :bits_per_sample
+
+    # @return [Integer] Number of sample frames.
+    #
+    # @since 1.0.0
+    attr_reader :sample_frames
+
+    # @return [String] The compression type of the AIFF-C file.
+    # For example, "NONE" for not compressed, "ACE2" for ACE 2-to-1.
+    # If the file is in AIFF format, always returns an empty string.
+    #
+    # @since 1.0.0
+    attr_reader :compression_type
+
+    # @return [String] Returns the concrete compression name of the AIFF-C file.
+    # If the file is in AIFF format, always returns an empty string.
+    #
+    # @since 1.0.0
+    attr_reader :compression_name
+
+    # @return [Boolean] True if the file is in AIFF-C format, false if AIFF format.
+    #
+    # @since 1.0.0
+    def aiff_c?
+    end
   end
 
 end

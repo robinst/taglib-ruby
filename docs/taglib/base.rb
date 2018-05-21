@@ -247,7 +247,14 @@ module TagLib
     Accurate = 2
 
     # @return [Integer] length of the file in seconds
-    attr_reader :length
+    #
+    # @since 1.0.0
+    attr_reader :length_in_seconds
+
+    # @return [Integer] length of the file in milliseconds
+    #
+    # @since 1.0.0
+    attr_reader :length_in_milliseconds
 
     # @return [Integer] bit rate in kb/s (kilobit per second)
     attr_reader :bitrate

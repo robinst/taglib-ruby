@@ -75,7 +75,15 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 
 %include <taglib/id3v2header.h>
 
+// Only useful internally.
+%ignore TagLib::ID3v2::Frame::instrumentPrefix;
+%ignore TagLib::ID3v2::Frame::commentPrefix;
+%ignore TagLib::ID3v2::Frame::lyricsPrefix;
+%ignore TagLib::ID3v2::Frame::urlPrefix;
+
 %ignore TagLib::ID3v2::Frame::Header;
+%ignore TagLib::ID3v2::Frame::headerSize; // Deprecated
+%ignore TagLib::ID3v2::Frame::createTextualFrame;
 %include <taglib/id3v2frame.h>
 
 %typemap(out) TagLib::ID3v2::FrameList & {
@@ -84,27 +92,70 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 %apply TagLib::ID3v2::FrameList & { const TagLib::ID3v2::FrameList & };
 
 %apply SWIGTYPE *DISOWN { TagLib::ID3v2::Frame *frame };
-%ignore TagLib::ID3v2::Tag::removeFrame(Frame *, bool);
+%ignore TagLib::ID3v2::Tag::removeFrame(Frame *, bool); // Dont expose second parameter.
+%ignore TagLib::ID3v2::Tag::render; // Only useful internally.
+%ignore TagLib::ID3v2::Latin1StringHandler;
+%ignore TagLib::ID3v2::Tag::latin1StringHandler;
+%ignore TagLib::ID3v2::Tag::setLatin1StringHandler;
 %include <taglib/id3v2tag.h>
 %clear TagLib::ID3v2::Frame *;
 
+// Deprecated
+%ignore TagLib::ID3v2::FrameFactory::createFrame(const ByteVector &, bool);
+%ignore TagLib::ID3v2::FrameFactory::createFrame(const ByteVector &, unsigned int version);
+%ignore TagLib::ID3v2::FrameFactory::createFrame(const ByteVector &);
+
+%ignore TagLib::ID3v2::FrameFactory::rebuildAggregateFrames; // Only useful internally
 %include <taglib/id3v2framefactory.h>
 
 // Resolve overloading conflict with setText(String)
 %rename("field_list=") TagLib::ID3v2::TextIdentificationFrame::setText(const StringList &);
 %rename("from_data") TagLib::ID3v2::TextIdentificationFrame::TextIdentificationFrame(const ByteVector &);
+// Appear to be only useful internally.
+%ignore TagLib::ID3v2::TextIdentificationFrame::involvedPeopleMap;
+
+// Ignore the unified property interface.
+%ignore TagLib::ID3v2::TextIdentificationFrame::asProperties;
+
+%ignore TagLib::ID3v2::TextIdentificationFrame::createTIPLFrame;
+%ignore TagLib::ID3v2::TextIdentificationFrame::createTMCLFrame;
+%ignore TagLib::ID3v2::KeyConversionMap;
 
 %include "relativevolumeframe.i"
 
 %include <taglib/attachedpictureframe.h>
+
+// Ignore the unified property interface.
+%ignore TagLib::ID3v2::CommentsFrame::asProperties;
+
 %include <taglib/commentsframe.h>
 %include <taglib/generalencapsulatedobjectframe.h>
 %include <taglib/popularimeterframe.h>
 %include <taglib/privateframe.h>
 %include <taglib/textidentificationframe.h>
+
+// Ignore the unified property interface.
+%ignore TagLib::ID3v2::UniqueFileIdentifierFrame::asProperties;
+
+%ignore TagLib::ID3v2::UniqueFileIdentifierFrame::findByOwner;
+
 %include <taglib/uniquefileidentifierframe.h>
+
 %include <taglib/unknownframe.h>
+
+// Ignore the unified property interface.
+%ignore TagLib::ID3v2::UnsynchronizedLyricsFrame::asProperties;
+
+%ignore TagLib::ID3v2::UnsynchronizedLyricsFrame::findByDescription;
+
 %include <taglib/unsynchronizedlyricsframe.h>
+
+// Ignore the unified property interface.
+%ignore TagLib::ID3v2::UrlLinkFrame::asProperties;
+%ignore TagLib::ID3v2::UserUrlLinkFrame::asProperties;
+
+%ignore TagLib::ID3v2::UserUrlLinkFrame::find;
+
 %include <taglib/urllinkframe.h>
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

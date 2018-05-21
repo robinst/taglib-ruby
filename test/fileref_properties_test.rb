@@ -12,7 +12,7 @@ class TestFileRefProperties < Test::Unit::TestCase
     end
 
     should "contain basic information" do
-      assert_equal 2, @properties.length
+      assert_equal 2, @properties.length_in_seconds
       assert_equal 157, @properties.bitrate
       assert_equal 44100, @properties.sample_rate
       assert_equal 2, @properties.channels

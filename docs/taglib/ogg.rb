@@ -29,10 +29,9 @@ module TagLib::Ogg
     def contains?(name)
     end
 
-    # Count the number of fields.
+    # Count the number of fields (including the pictures).
     #
-    # @return [Integer] the number of fields in the comment (name-value
-    #   pairs)
+    # @return [Integer] the number of fields in the comment (name-value pairs)
     def field_count
     end
 
@@ -44,7 +43,7 @@ module TagLib::Ogg
     #       'GENRE' => ["Rock", "Pop"] }
     #
     # Note that the returned hash is read-only. Changing it will have no
-    # effect on the comment; use {#add_field} and {#remove_field} for
+    # effect on the comment; use {#add_field} and {#remove_fields} for
     # that.
     #
     # @return [Hash<String, Array<String>>] a hash from field names to
@@ -66,7 +65,50 @@ module TagLib::Ogg
     #   @param [String] value field value
     #
     # @return [void]
-    def remove_field
+    #
+    # @since 1.0.0
+    def remove_fields
+    end
+
+    # Remove all the fields.
+    #
+    # @since 1.0.0
+    def remove_all_fields
+    end
+
+    # @return [Boolean] True if the specified string is a valid Xiph comment key.
+    #
+    # @since 1.0.0
+    def self.check_key(key)
+    end
+
+    # @return [Array<TagLib::FLAC::Picture>] The list of the pictures associated to this comment.
+    #
+    # @since 1.0.0
+    def picture_list
+    end
+
+    # Add a picture.
+    # @param [TagLib::FLAC::Picture] picture
+    # @return [void]
+    #
+    # @since 1.0.0
+    def add_picture(picture)
+    end
+
+    # Remove a picture.
+    # @param [TagLib::FLAC::Picture] picture
+    # @return [void]
+    #
+    # @since 1.0.0
+    def remove_picture(picture)
+    end
+
+    # Remove all the pictures.
+    # @return [void]
+    #
+    # @since 1.0.0
+    def remove_all_pictures
     end
 
     # @return [String] vendor ID of the encoder used

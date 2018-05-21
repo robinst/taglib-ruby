@@ -43,21 +43,12 @@ class TestID3v2Tag < Test::Unit::TestCase
       assert @tag.empty?
     end
 
-    should "have nil for string attributes" do
-      # taglib/taglib/8c6fe45: return an empty string instead of NULL
-      if TagLib::TAGLIB_MAJOR_VERSION > 1 || (TagLib::TAGLIB_MAJOR_VERSION == 1 && TagLib::TAGLIB_MINOR_VERSION >= 11)
-        assert_equal "", @tag.title
-        assert_equal "", @tag.artist
-        assert_equal "", @tag.album
-        assert_equal "", @tag.comment
-        assert_equal "", @tag.genre
-      else
-        assert_nil @tag.title
-        assert_nil @tag.artist
-        assert_nil @tag.album
-        assert_nil @tag.comment
-        assert_nil @tag.genre
-      end
+    should "have empty string attributes" do
+      assert_equal "", @tag.title
+      assert_equal "", @tag.artist
+      assert_equal "", @tag.album
+      assert_equal "", @tag.comment
+      assert_equal "", @tag.genre
     end
 
     should "have 0 for numeric attributes" do

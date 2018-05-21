@@ -1833,23 +1833,22 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__AudioProperties swig_types[0]
 #define SWIGTYPE_p_TagLib__ByteVector swig_types[1]
 #define SWIGTYPE_p_TagLib__FLAC__File swig_types[2]
-#define SWIGTYPE_p_TagLib__FLAC__MetadataBlock swig_types[3]
-#define SWIGTYPE_p_TagLib__FLAC__Picture swig_types[4]
-#define SWIGTYPE_p_TagLib__FLAC__Properties swig_types[5]
-#define SWIGTYPE_p_TagLib__File swig_types[6]
-#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[7]
-#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[8]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[9]
-#define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[10]
-#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[11]
-#define SWIGTYPE_p_TagLib__Tag swig_types[12]
-#define SWIGTYPE_p_char swig_types[13]
-#define SWIGTYPE_p_unsigned_char swig_types[14]
-#define SWIGTYPE_p_unsigned_int swig_types[15]
-#define SWIGTYPE_p_unsigned_long swig_types[16]
-#define SWIGTYPE_p_wchar_t swig_types[17]
-static swig_type_info *swig_types[19];
-static swig_module_info swig_module = {swig_types, 18, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__FLAC__Picture swig_types[3]
+#define SWIGTYPE_p_TagLib__FLAC__Properties swig_types[4]
+#define SWIGTYPE_p_TagLib__File swig_types[5]
+#define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[6]
+#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[7]
+#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[8]
+#define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[9]
+#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[10]
+#define SWIGTYPE_p_TagLib__Tag swig_types[11]
+#define SWIGTYPE_p_char swig_types[12]
+#define SWIGTYPE_p_unsigned_char swig_types[13]
+#define SWIGTYPE_p_unsigned_int swig_types[14]
+#define SWIGTYPE_p_unsigned_long swig_types[15]
+#define SWIGTYPE_p_wchar_t swig_types[16]
+static swig_type_info *swig_types[18];
+static swig_module_info swig_module = {swig_types, 17, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1878,7 +1877,6 @@ static VALUE mFLAC;
 #include <taglib/taglib.h>
 #include <taglib/flacfile.h>
 #include <taglib/flacproperties.h>
-#include <taglib/flacpicture.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
 
@@ -2078,6 +2076,40 @@ SWIG_From_int  (int value)
 }
 
 
+SWIGINTERNINLINE VALUE 
+SWIG_From_long_SS_long  (long long value)
+{
+  return LL2NUM(value);
+}
+
+
+SWIGINTERNINLINE VALUE 
+SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
+{
+  return ULL2NUM(value);
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_bool (VALUE obj, bool *val)
+{
+  if (obj == Qtrue) {
+    if (val) *val = true;
+    return SWIG_OK;
+  } else if (obj == Qfalse) {
+    if (val) *val = false;
+    return SWIG_OK;
+  } else {
+    int res = 0;
+    if (SWIG_AsVal_int (obj, &res) == SWIG_OK) {    
+      if (val) *val = res ? true : false;
+      return SWIG_OK;
+    }
+  }  
+  return SWIG_TypeError;
+}
+
+
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -2132,26 +2164,6 @@ SWIGINTERNINLINE VALUE
 SWIG_From_bool  (bool value)
 {
   return value ? Qtrue : Qfalse;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_bool (VALUE obj, bool *val)
-{
-  if (obj == Qtrue) {
-    if (val) *val = true;
-    return SWIG_OK;
-  } else if (obj == Qfalse) {
-    if (val) *val = false;
-    return SWIG_OK;
-  } else {
-    int res = 0;
-    if (SWIG_AsVal_int (obj, &res) == SWIG_OK) {    
-      if (val) *val = res ? true : false;
-      return SWIG_OK;
-    }
-  }  
-  return SWIG_TypeError;
 }
 
 SWIGINTERN void TagLib_FLAC_File_close(TagLib::FLAC::File *self){
@@ -2452,7 +2464,7 @@ free_TagLib_FLAC_Properties(TagLib::FLAC::Properties *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_Properties_length(int argc, VALUE *argv, VALUE self) {
+_wrap_Properties_length_in_seconds(int argc, VALUE *argv, VALUE self) {
   TagLib::FLAC::Properties *arg1 = (TagLib::FLAC::Properties *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2464,10 +2476,34 @@ _wrap_Properties_length(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Properties, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","length", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","lengthInSeconds", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::FLAC::Properties * >(argp1);
-  result = (int)((TagLib::FLAC::Properties const *)arg1)->length();
+  result = (int)((TagLib::FLAC::Properties const *)arg1)->lengthInSeconds();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Properties_length_in_milliseconds(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::Properties *arg1 = (TagLib::FLAC::Properties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Properties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","lengthInMilliseconds", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::Properties * >(argp1);
+  result = (int)((TagLib::FLAC::Properties const *)arg1)->lengthInMilliseconds();
   vresult = SWIG_From_int(static_cast< int >(result));
   return vresult;
 fail:
@@ -2548,7 +2584,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Properties_sample_width(int argc, VALUE *argv, VALUE self) {
+_wrap_Properties_bits_per_sample(int argc, VALUE *argv, VALUE self) {
   TagLib::FLAC::Properties *arg1 = (TagLib::FLAC::Properties *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2560,11 +2596,35 @@ _wrap_Properties_sample_width(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Properties, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","sampleWidth", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","bitsPerSample", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::FLAC::Properties * >(argp1);
-  result = (int)((TagLib::FLAC::Properties const *)arg1)->sampleWidth();
+  result = (int)((TagLib::FLAC::Properties const *)arg1)->bitsPerSample();
   vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Properties_sample_frames(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::Properties *arg1 = (TagLib::FLAC::Properties *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned long long result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Properties, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Properties const *","sampleFrames", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::Properties * >(argp1);
+  result = (unsigned long long)((TagLib::FLAC::Properties const *)arg1)->sampleFrames();
+  vresult = SWIG_From_unsigned_SS_long_SS_long(static_cast< unsigned long long >(result));
   return vresult;
 fail:
   return Qnil;
@@ -2597,667 +2657,11 @@ fail:
 }
 
 
-static swig_class SwigClassMetadataBlock;
-
-SWIGINTERN void
-free_TagLib_FLAC_MetadataBlock(TagLib::FLAC::MetadataBlock *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
-SWIGINTERN VALUE
-_wrap_MetadataBlock_code(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::MetadataBlock *arg1 = (TagLib::FLAC::MetadataBlock *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__MetadataBlock, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::MetadataBlock const *","code", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::MetadataBlock * >(argp1);
-  result = (int)((TagLib::FLAC::MetadataBlock const *)arg1)->code();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_MetadataBlock_render(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::MetadataBlock *arg1 = (TagLib::FLAC::MetadataBlock *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__MetadataBlock, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::MetadataBlock const *","render", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::MetadataBlock * >(argp1);
-  result = ((TagLib::FLAC::MetadataBlock const *)arg1)->render();
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-static swig_class SwigClassPicture;
-
-SWIGINTERN VALUE
-_wrap_new_Picture__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *result = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (TagLib::FLAC::Picture *)new TagLib::FLAC::Picture();
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-SWIGINTERN VALUE
-_wrap_Picture_allocate(VALUE self) {
-#else
-  SWIGINTERN VALUE
-  _wrap_Picture_allocate(int argc, VALUE *argv, VALUE self) {
-#endif
-    
-    
-    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__FLAC__Picture);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-    rb_obj_call_init(vresult, argc, argv);
-#endif
-    return vresult;
-  }
-  
-
-SWIGINTERN VALUE
-_wrap_new_Picture__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::ByteVector *arg1 = 0 ;
-  TagLib::ByteVector tmp1 ;
-  TagLib::FLAC::Picture *result = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg1 = &tmp1;
-  }
-  result = (TagLib::FLAC::Picture *)new TagLib::FLAC::Picture((TagLib::ByteVector const &)*arg1);
-  DATA_PTR(self) = result;
-  SWIG_RubyAddTracking(result, self);
-  return self;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_new_Picture(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[1];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 1) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 0) {
-    return _wrap_new_Picture__SWIG_0(nargs, args, self);
-  }
-  if (argc == 1) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Picture__SWIG_1(nargs, args, self);
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 1, "Picture.new", 
-    "    Picture.new()\n"
-    "    Picture.new(TagLib::ByteVector const &data)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN void
-free_TagLib_FLAC_Picture(TagLib::FLAC::Picture *arg1) {
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
-SWIGINTERN VALUE
-_wrap_Picture_type(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::FLAC::Picture::Type result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","type", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (TagLib::FLAC::Picture::Type)((TagLib::FLAC::Picture const *)arg1)->type();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_typee___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  TagLib::FLAC::Picture::Type arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setType", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture::Type","setType", 2, argv[0] ));
-  } 
-  arg2 = static_cast< TagLib::FLAC::Picture::Type >(val2);
-  (arg1)->setType(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_mime_type(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","mimeType", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = ((TagLib::FLAC::Picture const *)arg1)->mimeType();
-  {
-    vresult = taglib_string_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_mime_typee___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setMimeType", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->setMimeType((TagLib::String const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_description(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","description", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = ((TagLib::FLAC::Picture const *)arg1)->description();
-  {
-    vresult = taglib_string_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_descriptione___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setDescription", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->setDescription((TagLib::String const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_width(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","width", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (int)((TagLib::FLAC::Picture const *)arg1)->width();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_widthe___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setWidth", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","setWidth", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  (arg1)->setWidth(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_height(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","height", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (int)((TagLib::FLAC::Picture const *)arg1)->height();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_heighte___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setHeight", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","setHeight", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  (arg1)->setHeight(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_color_depth(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","colorDepth", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (int)((TagLib::FLAC::Picture const *)arg1)->colorDepth();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_color_depthe___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setColorDepth", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","setColorDepth", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  (arg1)->setColorDepth(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_num_colors(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","numColors", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (int)((TagLib::FLAC::Picture const *)arg1)->numColors();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_num_colorse___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setNumColors", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  ecode2 = SWIG_AsVal_int(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","setNumColors", 2, argv[0] ));
-  } 
-  arg2 = static_cast< int >(val2);
-  (arg1)->setNumColors(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_data(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","data", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = ((TagLib::FLAC::Picture const *)arg1)->data();
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_datae___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","setData", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->setData((TagLib::ByteVector const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_code(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","code", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = (int)((TagLib::FLAC::Picture const *)arg1)->code();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_render(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture const *","render", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  result = ((TagLib::FLAC::Picture const *)arg1)->render();
-  {
-    vresult = taglib_bytevector_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_Picture_parse(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::Picture *arg1 = (TagLib::FLAC::Picture *) 0 ;
-  TagLib::ByteVector *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::ByteVector tmp2 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__Picture, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","parse", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::Picture * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = (bool)(arg1)->parse((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassFile;
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   bool arg2 ;
   TagLib::FLAC::Properties::ReadStyle arg3 ;
   bool val2 ;
@@ -3296,7 +2700,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   bool arg2 ;
   bool val2 ;
   int ecode2 = 0 ;
@@ -3327,7 +2731,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   TagLib::FLAC::File *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
@@ -3350,7 +2754,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_3(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
   bool arg3 ;
   TagLib::FLAC::Properties::ReadStyle arg4 ;
@@ -3397,7 +2801,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_4(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
   bool arg3 ;
   void *argp2 = 0 ;
@@ -3453,7 +2857,7 @@ _wrap_File_allocate(VALUE self) {
 
 SWIGINTERN VALUE
 _wrap_new_File__SWIG_5(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< TagLib::FileName > arg1 ;
+  TagLib::FileName arg1 ;
   TagLib::ID3v2::FrameFactory *arg2 = (TagLib::ID3v2::FrameFactory *) 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
@@ -4086,6 +3490,35 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_File_remove_picture(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  TagLib::FLAC::Picture *arg2 = (TagLib::FLAC::Picture *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File *","removePicture", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__FLAC__Picture, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture *","removePicture", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->removePicture(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_File_remove_pictures(int argc, VALUE *argv, VALUE self) {
   TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
   void *argp1 = 0 ;
@@ -4136,6 +3569,173 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_File_strip__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File *","strip", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  ecode2 = SWIG_AsVal_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","strip", 2, argv[0] ));
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->strip(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_strip__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File *","strip", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  (arg1)->strip();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_File_strip(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__FLAC__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_File_strip__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__FLAC__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_File_strip__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "File.strip", 
+    "    void File.strip(int tags)\n"
+    "    void File.strip()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_xiph_commentq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File const *","hasXiphComment", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  result = (bool)((TagLib::FLAC::File const *)arg1)->hasXiphComment();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_id3v1_tagq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File const *","hasID3v1Tag", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  result = (bool)((TagLib::FLAC::File const *)arg1)->hasID3v1Tag();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_id3v2_tagq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File const *","hasID3v2Tag", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
+  result = (bool)((TagLib::FLAC::File const *)arg1)->hasID3v2Tag();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_File_close(int argc, VALUE *argv, VALUE self) {
   TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
   void *argp1 = 0 ;
@@ -4165,13 +3765,9 @@ static void *_p_TagLib__FLAC__FileTo_p_TagLib__File(void *x, int *SWIGUNUSEDPARM
 static void *_p_TagLib__FLAC__PropertiesTo_p_TagLib__AudioProperties(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::AudioProperties *)  ((TagLib::FLAC::Properties *) x));
 }
-static void *_p_TagLib__FLAC__PictureTo_p_TagLib__FLAC__MetadataBlock(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((TagLib::FLAC::MetadataBlock *)  ((TagLib::FLAC::Picture *) x));
-}
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ByteVector = {"_p_TagLib__ByteVector", "TagLib::ByteVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FLAC__File = {"_p_TagLib__FLAC__File", "TagLib::FLAC::File *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__FLAC__MetadataBlock = {"_p_TagLib__FLAC__MetadataBlock", "TagLib::FLAC::MetadataBlock *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FLAC__Picture = {"_p_TagLib__FLAC__Picture", "TagLib::FLAC::Picture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FLAC__Properties = {"_p_TagLib__FLAC__Properties", "TagLib::FLAC::Properties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
@@ -4191,7 +3787,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__AudioProperties,
   &_swigt__p_TagLib__ByteVector,
   &_swigt__p_TagLib__FLAC__File,
-  &_swigt__p_TagLib__FLAC__MetadataBlock,
   &_swigt__p_TagLib__FLAC__Picture,
   &_swigt__p_TagLib__FLAC__Properties,
   &_swigt__p_TagLib__File,
@@ -4211,7 +3806,6 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},  {&_swigt__p_TagLib__FLAC__Properties, _p_TagLib__FLAC__PropertiesTo_p_TagLib__AudioProperties, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ByteVector[] = {  {&_swigt__p_TagLib__ByteVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FLAC__File[] = {  {&_swigt__p_TagLib__FLAC__File, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__FLAC__MetadataBlock[] = {  {&_swigt__p_TagLib__FLAC__MetadataBlock, 0, 0, 0},  {&_swigt__p_TagLib__FLAC__Picture, _p_TagLib__FLAC__PictureTo_p_TagLib__FLAC__MetadataBlock, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FLAC__Picture[] = {  {&_swigt__p_TagLib__FLAC__Picture, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FLAC__Properties[] = {  {&_swigt__p_TagLib__FLAC__Properties, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__FLAC__File, _p_TagLib__FLAC__FileTo_p_TagLib__File, 0, 0},  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
@@ -4231,7 +3825,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__AudioProperties,
   _swigc__p_TagLib__ByteVector,
   _swigc__p_TagLib__FLAC__File,
-  _swigc__p_TagLib__FLAC__MetadataBlock,
   _swigc__p_TagLib__FLAC__Picture,
   _swigc__p_TagLib__FLAC__Properties,
   _swigc__p_TagLib__File,
@@ -4502,89 +4095,33 @@ SWIGEXPORT void Init_taglib_flac(void) {
   
   SWIG_RubyInitializeTrackings();
   rb_require("taglib_base");
+  rb_require("taglib_flac_picture");
   
   SwigClassProperties.klass = rb_define_class_under(mFLAC, "Properties", ((swig_class *) SWIGTYPE_p_TagLib__AudioProperties->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__FLAC__Properties, (void *) &SwigClassProperties);
   rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
   rb_define_method(SwigClassProperties.klass, "initialize", VALUEFUNC(_wrap_new_Properties), -1);
-  rb_define_method(SwigClassProperties.klass, "length", VALUEFUNC(_wrap_Properties_length), -1);
+  rb_define_method(SwigClassProperties.klass, "length_in_seconds", VALUEFUNC(_wrap_Properties_length_in_seconds), -1);
+  rb_define_method(SwigClassProperties.klass, "length_in_milliseconds", VALUEFUNC(_wrap_Properties_length_in_milliseconds), -1);
   rb_define_method(SwigClassProperties.klass, "bitrate", VALUEFUNC(_wrap_Properties_bitrate), -1);
   rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);
   rb_define_method(SwigClassProperties.klass, "channels", VALUEFUNC(_wrap_Properties_channels), -1);
-  rb_define_method(SwigClassProperties.klass, "sample_width", VALUEFUNC(_wrap_Properties_sample_width), -1);
+  rb_define_method(SwigClassProperties.klass, "bits_per_sample", VALUEFUNC(_wrap_Properties_bits_per_sample), -1);
+  rb_define_method(SwigClassProperties.klass, "sample_frames", VALUEFUNC(_wrap_Properties_sample_frames), -1);
   rb_define_method(SwigClassProperties.klass, "signature", VALUEFUNC(_wrap_Properties_signature), -1);
   SwigClassProperties.mark = 0;
   SwigClassProperties.destroy = (void (*)(void *)) free_TagLib_FLAC_Properties;
   SwigClassProperties.trackObjects = 1;
   
-  SwigClassMetadataBlock.klass = rb_define_class_under(mFLAC, "MetadataBlock", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__FLAC__MetadataBlock, (void *) &SwigClassMetadataBlock);
-  rb_undef_alloc_func(SwigClassMetadataBlock.klass);
-  rb_define_const(SwigClassMetadataBlock.klass, "StreamInfo", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::StreamInfo)));
-  rb_define_const(SwigClassMetadataBlock.klass, "Padding", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::Padding)));
-  rb_define_const(SwigClassMetadataBlock.klass, "Application", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::Application)));
-  rb_define_const(SwigClassMetadataBlock.klass, "SeekTable", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::SeekTable)));
-  rb_define_const(SwigClassMetadataBlock.klass, "VorbisComment", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::VorbisComment)));
-  rb_define_const(SwigClassMetadataBlock.klass, "CueSheet", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::CueSheet)));
-  rb_define_const(SwigClassMetadataBlock.klass, "Picture", SWIG_From_int(static_cast< int >(TagLib::FLAC::MetadataBlock::Picture)));
-  rb_define_method(SwigClassMetadataBlock.klass, "code", VALUEFUNC(_wrap_MetadataBlock_code), -1);
-  rb_define_method(SwigClassMetadataBlock.klass, "render", VALUEFUNC(_wrap_MetadataBlock_render), -1);
-  SwigClassMetadataBlock.mark = 0;
-  SwigClassMetadataBlock.destroy = (void (*)(void *)) free_TagLib_FLAC_MetadataBlock;
-  SwigClassMetadataBlock.trackObjects = 1;
-  
-  SwigClassPicture.klass = rb_define_class_under(mFLAC, "Picture", ((swig_class *) SWIGTYPE_p_TagLib__FLAC__MetadataBlock->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_TagLib__FLAC__Picture, (void *) &SwigClassPicture);
-  rb_define_alloc_func(SwigClassPicture.klass, _wrap_Picture_allocate);
-  rb_define_method(SwigClassPicture.klass, "initialize", VALUEFUNC(_wrap_new_Picture), -1);
-  rb_define_const(SwigClassPicture.klass, "Other", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Other)));
-  rb_define_const(SwigClassPicture.klass, "FileIcon", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::FileIcon)));
-  rb_define_const(SwigClassPicture.klass, "OtherFileIcon", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::OtherFileIcon)));
-  rb_define_const(SwigClassPicture.klass, "FrontCover", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::FrontCover)));
-  rb_define_const(SwigClassPicture.klass, "BackCover", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::BackCover)));
-  rb_define_const(SwigClassPicture.klass, "LeafletPage", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::LeafletPage)));
-  rb_define_const(SwigClassPicture.klass, "Media", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Media)));
-  rb_define_const(SwigClassPicture.klass, "LeadArtist", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::LeadArtist)));
-  rb_define_const(SwigClassPicture.klass, "Artist", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Artist)));
-  rb_define_const(SwigClassPicture.klass, "Conductor", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Conductor)));
-  rb_define_const(SwigClassPicture.klass, "Band", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Band)));
-  rb_define_const(SwigClassPicture.klass, "Composer", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Composer)));
-  rb_define_const(SwigClassPicture.klass, "Lyricist", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Lyricist)));
-  rb_define_const(SwigClassPicture.klass, "RecordingLocation", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::RecordingLocation)));
-  rb_define_const(SwigClassPicture.klass, "DuringRecording", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::DuringRecording)));
-  rb_define_const(SwigClassPicture.klass, "DuringPerformance", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::DuringPerformance)));
-  rb_define_const(SwigClassPicture.klass, "MovieScreenCapture", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::MovieScreenCapture)));
-  rb_define_const(SwigClassPicture.klass, "ColouredFish", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::ColouredFish)));
-  rb_define_const(SwigClassPicture.klass, "Illustration", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Illustration)));
-  rb_define_const(SwigClassPicture.klass, "BandLogo", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::BandLogo)));
-  rb_define_const(SwigClassPicture.klass, "PublisherLogo", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::PublisherLogo)));
-  rb_define_method(SwigClassPicture.klass, "type", VALUEFUNC(_wrap_Picture_type), -1);
-  rb_define_method(SwigClassPicture.klass, "type=", VALUEFUNC(_wrap_Picture_typee___), -1);
-  rb_define_method(SwigClassPicture.klass, "mime_type", VALUEFUNC(_wrap_Picture_mime_type), -1);
-  rb_define_method(SwigClassPicture.klass, "mime_type=", VALUEFUNC(_wrap_Picture_mime_typee___), -1);
-  rb_define_method(SwigClassPicture.klass, "description", VALUEFUNC(_wrap_Picture_description), -1);
-  rb_define_method(SwigClassPicture.klass, "description=", VALUEFUNC(_wrap_Picture_descriptione___), -1);
-  rb_define_method(SwigClassPicture.klass, "width", VALUEFUNC(_wrap_Picture_width), -1);
-  rb_define_method(SwigClassPicture.klass, "width=", VALUEFUNC(_wrap_Picture_widthe___), -1);
-  rb_define_method(SwigClassPicture.klass, "height", VALUEFUNC(_wrap_Picture_height), -1);
-  rb_define_method(SwigClassPicture.klass, "height=", VALUEFUNC(_wrap_Picture_heighte___), -1);
-  rb_define_method(SwigClassPicture.klass, "color_depth", VALUEFUNC(_wrap_Picture_color_depth), -1);
-  rb_define_method(SwigClassPicture.klass, "color_depth=", VALUEFUNC(_wrap_Picture_color_depthe___), -1);
-  rb_define_method(SwigClassPicture.klass, "num_colors", VALUEFUNC(_wrap_Picture_num_colors), -1);
-  rb_define_method(SwigClassPicture.klass, "num_colors=", VALUEFUNC(_wrap_Picture_num_colorse___), -1);
-  rb_define_method(SwigClassPicture.klass, "data", VALUEFUNC(_wrap_Picture_data), -1);
-  rb_define_method(SwigClassPicture.klass, "data=", VALUEFUNC(_wrap_Picture_datae___), -1);
-  rb_define_method(SwigClassPicture.klass, "code", VALUEFUNC(_wrap_Picture_code), -1);
-  rb_define_method(SwigClassPicture.klass, "render", VALUEFUNC(_wrap_Picture_render), -1);
-  rb_define_method(SwigClassPicture.klass, "parse", VALUEFUNC(_wrap_Picture_parse), -1);
-  SwigClassPicture.mark = 0;
-  SwigClassPicture.destroy = (void (*)(void *)) free_TagLib_FLAC_Picture;
-  SwigClassPicture.trackObjects = 1;
-  
   SwigClassFile.klass = rb_define_class_under(mFLAC, "File", ((swig_class *) SWIGTYPE_p_TagLib__File->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__FLAC__File, (void *) &SwigClassFile);
   rb_define_alloc_func(SwigClassFile.klass, _wrap_File_allocate);
   rb_define_method(SwigClassFile.klass, "initialize", VALUEFUNC(_wrap_new_File), -1);
+  rb_define_const(SwigClassFile.klass, "NoTags", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::NoTags)));
+  rb_define_const(SwigClassFile.klass, "XiphComment", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::XiphComment)));
+  rb_define_const(SwigClassFile.klass, "ID3v1", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::ID3v1)));
+  rb_define_const(SwigClassFile.klass, "ID3v2", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::ID3v2)));
+  rb_define_const(SwigClassFile.klass, "AllTags", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::AllTags)));
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
@@ -4595,8 +4132,13 @@ SWIGEXPORT void Init_taglib_flac(void) {
   rb_define_method(SwigClassFile.klass, "stream_info_data", VALUEFUNC(_wrap_File_stream_info_data), -1);
   rb_define_method(SwigClassFile.klass, "stream_length", VALUEFUNC(_wrap_File_stream_length), -1);
   rb_define_method(SwigClassFile.klass, "picture_list", VALUEFUNC(_wrap_File_picture_list), -1);
+  rb_define_method(SwigClassFile.klass, "remove_picture", VALUEFUNC(_wrap_File_remove_picture), -1);
   rb_define_method(SwigClassFile.klass, "remove_pictures", VALUEFUNC(_wrap_File_remove_pictures), -1);
   rb_define_method(SwigClassFile.klass, "add_picture", VALUEFUNC(_wrap_File_add_picture), -1);
+  rb_define_method(SwigClassFile.klass, "strip", VALUEFUNC(_wrap_File_strip), -1);
+  rb_define_method(SwigClassFile.klass, "xiph_comment?", VALUEFUNC(_wrap_File_xiph_commentq___), -1);
+  rb_define_method(SwigClassFile.klass, "id3v1_tag?", VALUEFUNC(_wrap_File_id3v1_tagq___), -1);
+  rb_define_method(SwigClassFile.klass, "id3v2_tag?", VALUEFUNC(_wrap_File_id3v2_tagq___), -1);
   rb_define_method(SwigClassFile.klass, "close", VALUEFUNC(_wrap_File_close), -1);
   SwigClassFile.mark = 0;
   SwigClassFile.destroy = (void (*)(void *)) free_taglib_flac_file;
