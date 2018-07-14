@@ -1,6 +1,10 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 1.0.0 (2018-07-14)
+
+* Support for TagLib-1.11.1 (drop support for previous versions) (#83)
+
 ## 0.7.1 (2015-12-28)
 
 * Fix compile error during gem installation on Ruby 2.3 (MRI) (#67)
