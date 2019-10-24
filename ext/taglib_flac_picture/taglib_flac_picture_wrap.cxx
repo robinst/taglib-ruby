@@ -2060,7 +2060,7 @@ SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 
 
 SWIGINTERN VALUE
-SWIG_ruby_failed(void)
+SWIG_ruby_failed(VALUE, VALUE)
 {
   return Qnil;
 } 

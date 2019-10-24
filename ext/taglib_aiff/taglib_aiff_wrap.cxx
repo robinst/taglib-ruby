@@ -1995,7 +1995,7 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 
 
 SWIGINTERN VALUE
-SWIG_ruby_failed(void)
+SWIG_ruby_failed(VALUE, VALUE)
 {
   return Qnil;
 } 

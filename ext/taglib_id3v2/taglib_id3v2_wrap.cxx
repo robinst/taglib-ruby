@@ -2139,7 +2139,7 @@ SWIG_From_unsigned_SS_int  (unsigned int value)
 
 
 SWIGINTERN VALUE
-SWIG_ruby_failed(void)
+SWIG_ruby_failed(VALUE, VALUE)
 {
   return Qnil;
 } 

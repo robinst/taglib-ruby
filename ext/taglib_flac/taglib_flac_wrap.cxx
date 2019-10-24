@@ -2005,7 +2005,7 @@ VALUE taglib_flac_picturelist_to_ruby_array(const TagLib::List<TagLib::FLAC::Pic
 
 
 SWIGINTERN VALUE
-SWIG_ruby_failed(void)
+SWIG_ruby_failed(VALUE, VALUE)
 {
   return Qnil;
 } 
