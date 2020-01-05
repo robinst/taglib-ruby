@@ -1900,7 +1900,7 @@ VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
   if (byteVector.isNull()) {
     return Qnil;
   } else {
-    return rb_tainted_str_new(byteVector.data(), byteVector.size());
+    return rb_str_new(byteVector.data(), byteVector.size());
   }
 }
 
@@ -1916,7 +1916,7 @@ VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
   if (string.isNull()) {
     return Qnil;
   } else {
-    VALUE result = rb_tainted_str_new2(string.toCString(true));
+    VALUE result = rb_str_new2(string.toCString(true));
     ASSOCIATE_UTF8_ENCODING(result);
     return result;
   }
@@ -1956,9 +1956,9 @@ VALUE taglib_filename_to_ruby_string(TagLib::FileName filename) {
   VALUE result;
 #ifdef _WIN32
   const char *s = (const char *) filename;
-  result = rb_tainted_str_new2(s);
+  result = rb_str_new2(s);
 #else
-  result = rb_tainted_str_new2(filename);
+  result = rb_str_new2(filename);
 #endif
   ASSOCIATE_FILESYSTEM_ENCODING(result);
   return result;
