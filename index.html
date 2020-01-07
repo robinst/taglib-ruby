@@ -98,7 +98,7 @@ TagLib::FileRef.open("wake_up.flac") do |fileref|
     tag.comment #=> nil
 
     properties = fileref.audio_properties
-    properties.length  #=> 335 (song length in seconds)
+    properties.length_in_seconds  #=> 335 (song length)
   end
 end  # File is automatically closed at block end
 {% endhighlight %}
