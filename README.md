@@ -21,8 +21,6 @@ Contributions for more coverage of the library are very welcome.
 [![Gem version][gem-img]][gem-link]
 [![Build status][travis-img]][travis-link]
 
-[![flattr this project][flattr-img]][flattr-link]
-
 Installation
 ------------
 
@@ -42,7 +40,7 @@ Then do:
 
 Not all versions of TagLib get along with `clang++`, the default C++ compiler
 on OS X. To compile taglib-ruby's C++ extensions with a different compiler
-during installation, set the `TAGLIB_RUBY_CXX` environement variable.
+during installation, set the `TAGLIB_RUBY_CXX` environment variable.
 
     TAGLIB_RUBY_CXX=g++-4.2 gem install taglib-ruby
 
@@ -127,7 +125,7 @@ To do everything in one command:
 License
 -------
 
-Copyright (c) 2010-2014 Robin Stocker and others, see Git history.
+Copyright (c) 2010-2020 Robin Stocker and others, see Git history.
 
 taglib-ruby is distributed under the MIT License,
 see LICENSE.txt for details.
@@ -141,5 +139,3 @@ version 2.1 (LGPL) and Mozilla Public License (MPL).
 [gem-link]: https://rubygems.org/gems/taglib-ruby
 [travis-img]: https://api.travis-ci.org/robinst/taglib-ruby.png
 [travis-link]: https://travis-ci.org/robinst/taglib-ruby
-[flattr-img]: https://api.flattr.com/button/flattr-badge-large.png
-[flattr-link]: https://flattr.com/submit/auto?user_id=robinst&url=https://github.com/robinst/taglib-ruby&title=taglib-ruby&tags=github&category=software
