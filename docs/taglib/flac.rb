@@ -223,7 +223,7 @@ module TagLib::FLAC
     attr_accessor :data
 
     # Parse the picture data in the FLAC picture block format.
-    # @return [Boolean] True if the data have been successfully been parsed, false otherwise.
+    # @return [Boolean] True if the data has been parsed successfully, false otherwise.
     #
     # @since 1.0.0
     def parse(rawdata)

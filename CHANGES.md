@@ -1,6 +1,13 @@
 Changes in Releases of taglib-ruby
 ==================================
 
+## 1.0.0 (2020-01-07)
+
+* Support for TagLib >= 1.11.1 (drop support for earlier versions) (#83)
+  * This includes a lot of new APIs and some changed APIs, see
+    `@since 1.0.0` in the docs
+* Stop using tainted strings to fix warnings with Ruby 2.7 (#86)
+
 ## 0.7.1 (2015-12-28)
 
 * Fix compile error during gem installation on Ruby 2.3 (MRI) (#67)
