@@ -1,2 +1,2 @@
 auto: true
-pygments: true
+highlighter: rouge
