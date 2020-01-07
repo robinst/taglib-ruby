@@ -28,7 +28,7 @@ Before you install the gem, make sure to have [taglib 1.11.1 or higher][taglib] 
 with header files (and a C++ compiler of course):
 
 * Debian/Ubuntu: `sudo apt-get install libtag1-dev`
-* Fedora/RHEL: `sudo yum install taglib-devel`
+* Fedora/RHEL: `sudo dnf install taglib-devel`
 * Brew: `brew install taglib`
 * MacPorts: `sudo port install taglib`
 
@@ -59,6 +59,12 @@ See {file:CHANGES.md}.
 
 Contributing
 ------------
+
+### Dependencies
+
+Fedora:
+
+    sudo dnf install taglib-devel ruby-devel gcc-c++ redhat-rpm-config swig
 
 ### Building
 

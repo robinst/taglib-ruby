@@ -42,7 +42,7 @@ if not have_library('tag')
 You must have taglib installed in order to use taglib-ruby.
 
 Debian/Ubuntu: sudo apt-get install libtag1-dev
-Fedora/RHEL: sudo yum install taglib-devel
+Fedora/RHEL: sudo dnf install taglib-devel
 Brew: brew install taglib
 MacPorts: sudo port install taglib
 DESC
