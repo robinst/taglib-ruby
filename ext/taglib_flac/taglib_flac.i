@@ -86,6 +86,13 @@
       SWIG_RubyRemoveTracking(properties);
     }
 
+    TagLib::List<TagLib::FLAC::Picture *> list = file->pictureList();
+      for (TagLib::List<TagLib::FLAC::Picture *>::ConstIterator it = list.begin(); it != list.end(); it++) {
+        TagLib::FLAC::Picture *picture = (*it);
+        SWIG_RubyUnlinkObjects(picture);
+        SWIG_RubyRemoveTracking(picture);
+      }
+
     SWIG_RubyUnlinkObjects(ptr);
     SWIG_RubyRemoveTracking(ptr);
 
