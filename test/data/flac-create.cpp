@@ -10,12 +10,8 @@
 using namespace TagLib;
 
 int main(int argc, char **argv) {
-  if ( 
-      ((argc < 2) || (argc > 3)) 
-    || 
-      ((argc == 3) && (argv[2] != "nopic")) 
-    ) {
-    std::cout << "usage: " << argv[0] << " file [nopic]" << std::endl;
+  if (argc != 2) {
+    std::cout << "usage: " << argv[0] << " file" << std::endl;
     exit(1);
   }
   char *filename = argv[1];
@@ -43,23 +39,20 @@ int main(int argc, char **argv) {
   tag->addField("MULTIPLE", "A");
   tag->addField("MULTIPLE", "B", false);
 
+  FLAC::Picture *picture = new FLAC::Picture();
 
-  if (argc == 2) {
-    FLAC::Picture *picture = new FLAC::Picture();
+  picture->setType(FLAC::Picture::FrontCover);
+  picture->setMimeType("image/jpeg");
+  picture->setDescription("Globe");
+  picture->setWidth(90);
+  picture->setHeight(90);
+  picture->setColorDepth(8);
+  picture->setNumColors(0);
 
-    picture->setType(FLAC::Picture::FrontCover);
-    picture->setMimeType("image/jpeg");
-    picture->setDescription("Globe");
-    picture->setWidth(90);
-    picture->setHeight(90);
-    picture->setColorDepth(8);
-    picture->setNumColors(0);
+  ByteVector data = getPictureData("globe_east_90.jpg");
+  picture->setData(data);
 
-    ByteVector data = getPictureData("globe_east_90.jpg");
-    picture->setData(data);
-
-    file.addPicture(picture);
-  }
+  file.addPicture(picture);
 
   file.save();
 }
