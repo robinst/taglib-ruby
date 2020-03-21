@@ -73,7 +73,7 @@ if you don't have it):
 
     bundle install
 
-Regenerate SWIG wrappers if you made changes in `.i` files (use version 3.0.7 of SWIG):
+Regenerate SWIG wrappers if you made changes in `.i` files (use version 3.0.7 of SWIG - 3.0.8 through 3.0.12 will not work):
 
     rake swig
 
