@@ -55,7 +55,7 @@ Begin with the {TagLib} namespace.
 Release Notes
 -------------
 
-See {file:CHANGES.md}.
+See {file:CHANGELOG.md}.
 
 Contributing
 ------------

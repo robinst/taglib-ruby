@@ -1,18 +1,29 @@
 Changes in Releases of taglib-ruby
 ==================================
 
-## 1.0.0 (2020-01-07)
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## 1.0.1 - 2020-03-25
+
+### Fixed
+- Fix segmentation fault with TagLib::FLAC picture lists (#91), thanks
+  @jameswyper!
+
+## 1.0.0 - 2020-01-07
 
 * Support for TagLib >= 1.11.1 (drop support for earlier versions) (#83)
   * This includes a lot of new APIs and some changed APIs, see
     `@since 1.0.0` in the docs
 * Stop using tainted strings to fix warnings with Ruby 2.7 (#86)
 
-## 0.7.1 (2015-12-28)
+## 0.7.1 - 2015-12-28
 
 * Fix compile error during gem installation on Ruby 2.3 (MRI) (#67)
 
-## 0.7.0 (2014-08-21)
+## 0.7.0 - 2014-08-21
 
 * Add support for TagLib::RIFF::AIFF (#52, by @tchev)
 * Add support for TagLib::RIFF::WAV (#57, by @tchev)
@@ -21,7 +32,7 @@ Changes in Releases of taglib-ruby
 * Try to detect location of vendor/taglib on Heroku (#28)
 * Documentation updates
 
-## 0.6.0 (2013-04-26)
+## 0.6.0 - 2013-04-26
 
 * Add support for TagLib::MP4 (#3, by @jacobvosmaer)
 * Add support for TagLib::ID3v2::Header (#19, by @kaethorn)
@@ -32,24 +43,24 @@ Changes in Releases of taglib-ruby
 * Fix segfault when passing a non-String to a String argument
 * Documentation updates
 
-## 0.5.2 (2012-10-06)
+## 0.5.2 - 2012-10-06
 
 * Fix memory bug with TagLib::MPEG::File#tag and TagLib::FLAC::File#tag
   which could cause crashes (#14)
 * Update TagLib of binary gem for Windows to 1.8
 
-## 0.5.1 (2012-06-16)
+## 0.5.1 - 2012-06-16
 
 * Fix crashes (segfault) with nil arguments, e.g. with `tag.title = nil`
 * Document TagLib::MPEG::File#save and TagLib::MPEG::File#strip (#11)
 * Update TagLib of binary gem for Windows to 1.7.2
 
-## 0.5.0 (2012-04-15)
+## 0.5.0 - 2012-04-15
 
 * Add support for FLAC
 * Fix problem in SWIG causing compilation error on MacRuby (#10)
 
-## 0.4.0 (2012-03-18)
+## 0.4.0 - 2012-03-18
 
 * Pre-compiled binary gem for Windows (Ruby 1.9) with TagLib 1.7.1
 * Unicode filename support on Windows
@@ -63,35 +74,35 @@ title = TagLib::FileRef.open("file.mp3") do |file|
 end
 ```
 
-## 0.3.1 (2012-01-22)
+## 0.3.1 - 2012-01-22
 
 * Fix ObjectPreviouslyDeleted exception after calling
   TagLib::ID3v2::Tag#add_frame (#8)
 * Make installation under MacPorts work out of the box (#7)
 
-## 0.3.0 (2012-01-02)
+## 0.3.0 - 2012-01-02
 
 * Add support for Ogg Vorbis
 * Add support for ID3v1 (#2)
 * Add #close to File classes for explicitly releasing resources
 * Fix compilation on Windows
 
-## 0.2.1 (2011-11-05)
+## 0.2.1 - 2011-11-05
 
 * Fix compilation error due to missing typedef on some systems (#5)
 
-## 0.2.0 (2011-10-22)
+## 0.2.0 - 2011-10-22
 
 * API documentation
 * Add support for:
   * TagLib::AudioProperties and TagLib::MPEG::Properties (#4)
   * TagLib::ID3v2::RelativeVolumeFrame
 
-## 0.1.1 (2011-09-17)
+## 0.1.1 - 2011-09-17
 
 * Add installation instructions and clean up description
 
-## 0.1.0 (2011-09-17)
+## 0.1.0 - 2011-09-17
 
 * Initial release
 * Coverage of the following API:

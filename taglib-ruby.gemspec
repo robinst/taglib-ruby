@@ -44,13 +44,13 @@ DESC
     "ext/taglib_wav/extconf.rb",
   ]
   s.extra_rdoc_files = [
-    "CHANGES.md",
+    "CHANGELOG.md",
     "LICENSE.txt",
     "README.md",
   ]
   s.files = [
     ".yardopts",
-    "CHANGES.md",
+    "CHANGELOG.md",
     "Gemfile",
     "Guardfile",
     "LICENSE.txt",
