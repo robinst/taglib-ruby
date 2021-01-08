@@ -92,6 +92,63 @@ class TestID3v2Frames < Test::Unit::TestCase
       end
     end
 
+    context 'CTOC and CHAP frames' do
+      setup do
+        @chapters = [
+          { id: 'CH1', start_time: 100, end_time: 200 },
+          { id: 'CH2', start_time: 201, end_time: 300 },
+          { id: 'CH3', start_time: 301, end_time: 400 }
+        ]
+      end
+
+      should 'not have a CTOC frame' do
+        assert_equal [], @tag.frame_list('CTOC')
+      end
+
+      should 'not have a CHAP frame' do
+        assert_equal [], @tag.frame_list('CHAP')
+      end
+
+      should 'have one CTOC frame (only one Table of Contents)' do
+        toc = TagLib::ID3v2::TableOfContentsFrame.new('TOC')
+        toc.is_top_level = true
+        toc.is_ordered = true
+
+        @chapters.each do |chapter|
+          toc.add_child_element(chapter[:id])
+        end
+
+        @tag.add_frame(toc)
+
+        assert_equal TagLib::ID3v2::TableOfContentsFrame, @tag.frame_list('CTOC').first.class
+        assert_equal 1, @tag.frame_list('CTOC').size
+        assert_equal 'TOC', @tag.frame_list('CTOC').first.element_id
+        assert_equal 3, @tag.frame_list('CTOC').first.child_elements.size
+        assert_equal %w[CH1 CH2 CH3], @tag.frame_list('CTOC').first.child_elements
+      end
+
+      should 'have CHAP frames (multiple chapters)' do
+        start_offset = 0xFFFFFFFF
+        end_offset = 0xFFFFFFFF
+
+        @chapters.each do |chapter|
+          chapter_frame = TagLib::ID3v2::ChapterFrame.new(
+            chapter[:id],
+            chapter[:start_time].to_i,
+            chapter[:end_time].to_i,
+            start_offset,
+            end_offset
+          )
+
+          @tag.add_frame(chapter_frame)
+        end
+
+        assert_equal TagLib::ID3v2::ChapterFrame, @tag.frame_list('CHAP').first.class
+        assert_equal 3, @tag.frame_list('CHAP').size
+        assert_equal 'CH1', @tag.frame_list('CHAP').first.element_id
+      end
+    end
+
     context "TXXX frame" do
       setup do
         @txxx_frame = @tag.frame_list('TXXX').first

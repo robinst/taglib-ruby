@@ -19,6 +19,8 @@
 %{
 #include <taglib/tstring.h>
 #include <taglib/tstringlist.h>
+#include <taglib/tbytevector.h>
+#include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
@@ -83,6 +85,28 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
   for (long i = 0; i < RARRAY_LEN(ary); i++) {
     VALUE e = rb_ary_entry(ary, i);
     TagLib::String s = ruby_string_to_taglib_string(e);
+    result.append(s);
+  }
+  return result;
+}
+
+VALUE taglib_bytevectorlist_to_ruby_array(const TagLib::ByteVectorList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::ByteVectorList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_bytevector_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::ByteVectorList ruby_array_to_taglib_bytevectorlist(VALUE ary) {
+  TagLib::ByteVectorList result = TagLib::ByteVectorList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = rb_ary_entry(ary, i);
+    TagLib::ByteVector s = ruby_string_to_taglib_bytevector(e);
     result.append(s);
   }
   return result;
