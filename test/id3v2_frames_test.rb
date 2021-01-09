@@ -99,6 +99,9 @@ class TestID3v2Frames < Test::Unit::TestCase
           { id: 'CH2', start_time: 201, end_time: 300 },
           { id: 'CH3', start_time: 301, end_time: 400 }
         ]
+
+        @default_ctoc = TagLib::ID3v2::TableOfContentsFrame.new('Test')
+        @default_chap = TagLib::ID3v2::ChapterFrame.new('Test', 0, 1, 0xFFFFFFFF, 0xFFFFFFFF)
       end
 
       should 'not have a CTOC frame' do
@@ -121,7 +124,7 @@ class TestID3v2Frames < Test::Unit::TestCase
         @tag.add_frame(toc)
 
         ctoc_frame_list = @tag.frame_list('CTOC')
-        assert_equal TagLib::ID3v2::TableOfContentsFrame, ctoc_frame_list.first.class
+        assert_equal @default_ctoc.class, ctoc_frame_list.first.class
         assert_equal 1, ctoc_frame_list.size
         assert_equal 'TOC', ctoc_frame_list.first.element_id
         assert_equal 3, ctoc_frame_list.first.child_elements.size
@@ -145,7 +148,7 @@ class TestID3v2Frames < Test::Unit::TestCase
         end
 
         chap_frame_list = @tag.frame_list('CHAP')
-        assert_equal TagLib::ID3v2::ChapterFrame, chap_frame_list.first.class
+        assert_equal @default_chap.class, chap_frame_list.first.class
         assert_equal 3, chap_frame_list.size
         assert_equal 'CH1', chap_frame_list[0].element_id
         assert_equal 'CH2', chap_frame_list[1].element_id
