@@ -120,11 +120,12 @@ class TestID3v2Frames < Test::Unit::TestCase
 
         @tag.add_frame(toc)
 
-        assert_equal TagLib::ID3v2::TableOfContentsFrame, @tag.frame_list('CTOC').first.class
-        assert_equal 1, @tag.frame_list('CTOC').size
-        assert_equal 'TOC', @tag.frame_list('CTOC').first.element_id
-        assert_equal 3, @tag.frame_list('CTOC').first.child_elements.size
-        assert_equal %w[CH1 CH2 CH3], @tag.frame_list('CTOC').first.child_elements
+        ctoc_frame_list = @tag.frame_list('CTOC')
+        assert_equal TagLib::ID3v2::TableOfContentsFrame, ctoc_frame_list.first.class
+        assert_equal 1, ctoc_frame_list.size
+        assert_equal 'TOC', ctoc_frame_list.first.element_id
+        assert_equal 3, ctoc_frame_list.first.child_elements.size
+        assert_equal %w[CH1 CH2 CH3], ctoc_frame_list.first.child_elements
       end
 
       should 'have CHAP frames (multiple chapters)' do
@@ -143,9 +144,12 @@ class TestID3v2Frames < Test::Unit::TestCase
           @tag.add_frame(chapter_frame)
         end
 
-        assert_equal TagLib::ID3v2::ChapterFrame, @tag.frame_list('CHAP').first.class
-        assert_equal 3, @tag.frame_list('CHAP').size
-        assert_equal 'CH1', @tag.frame_list('CHAP').first.element_id
+        chap_frame_list = @tag.frame_list('CHAP')
+        assert_equal TagLib::ID3v2::ChapterFrame, chap_frame_list.first.class
+        assert_equal 3, chap_frame_list.size
+        assert_equal 'CH1', chap_frame_list[0].element_id
+        assert_equal 'CH2', chap_frame_list[1].element_id
+        assert_equal 'CH3', chap_frame_list[2].element_id
       end
     end
 
