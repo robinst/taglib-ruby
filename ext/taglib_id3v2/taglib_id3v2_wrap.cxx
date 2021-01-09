@@ -1829,38 +1829,41 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 #define SWIGTYPE_p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t swig_types[0]
 #define SWIGTYPE_p_TagLib__ByteVector swig_types[1]
-#define SWIGTYPE_p_TagLib__File swig_types[2]
-#define SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame swig_types[3]
-#define SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrameV22 swig_types[4]
-#define SWIGTYPE_p_TagLib__ID3v2__CommentsFrame swig_types[5]
-#define SWIGTYPE_p_TagLib__ID3v2__ExtendedHeader swig_types[6]
-#define SWIGTYPE_p_TagLib__ID3v2__Footer swig_types[7]
-#define SWIGTYPE_p_TagLib__ID3v2__Frame swig_types[8]
-#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[9]
-#define SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame swig_types[10]
-#define SWIGTYPE_p_TagLib__ID3v2__Header swig_types[11]
-#define SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame swig_types[12]
-#define SWIGTYPE_p_TagLib__ID3v2__PrivateFrame swig_types[13]
-#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame swig_types[14]
-#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume swig_types[15]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[16]
-#define SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame swig_types[17]
-#define SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame swig_types[18]
-#define SWIGTYPE_p_TagLib__ID3v2__UnknownFrame swig_types[19]
-#define SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame swig_types[20]
-#define SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame swig_types[21]
-#define SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame swig_types[22]
-#define SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame swig_types[23]
-#define SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t swig_types[24]
-#define SWIGTYPE_p_TagLib__StringList swig_types[25]
-#define SWIGTYPE_p_TagLib__Tag swig_types[26]
-#define SWIGTYPE_p_char swig_types[27]
-#define SWIGTYPE_p_unsigned_char swig_types[28]
-#define SWIGTYPE_p_unsigned_int swig_types[29]
-#define SWIGTYPE_p_unsigned_long swig_types[30]
-#define SWIGTYPE_p_wchar_t swig_types[31]
-static swig_type_info *swig_types[33];
-static swig_module_info swig_module = {swig_types, 32, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__ByteVectorList swig_types[2]
+#define SWIGTYPE_p_TagLib__File swig_types[3]
+#define SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame swig_types[4]
+#define SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrameV22 swig_types[5]
+#define SWIGTYPE_p_TagLib__ID3v2__ChapterFrame swig_types[6]
+#define SWIGTYPE_p_TagLib__ID3v2__CommentsFrame swig_types[7]
+#define SWIGTYPE_p_TagLib__ID3v2__ExtendedHeader swig_types[8]
+#define SWIGTYPE_p_TagLib__ID3v2__Footer swig_types[9]
+#define SWIGTYPE_p_TagLib__ID3v2__Frame swig_types[10]
+#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[11]
+#define SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame swig_types[12]
+#define SWIGTYPE_p_TagLib__ID3v2__Header swig_types[13]
+#define SWIGTYPE_p_TagLib__ID3v2__PopularimeterFrame swig_types[14]
+#define SWIGTYPE_p_TagLib__ID3v2__PrivateFrame swig_types[15]
+#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame swig_types[16]
+#define SWIGTYPE_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume swig_types[17]
+#define SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame swig_types[18]
+#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[19]
+#define SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame swig_types[20]
+#define SWIGTYPE_p_TagLib__ID3v2__UniqueFileIdentifierFrame swig_types[21]
+#define SWIGTYPE_p_TagLib__ID3v2__UnknownFrame swig_types[22]
+#define SWIGTYPE_p_TagLib__ID3v2__UnsynchronizedLyricsFrame swig_types[23]
+#define SWIGTYPE_p_TagLib__ID3v2__UrlLinkFrame swig_types[24]
+#define SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame swig_types[25]
+#define SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame swig_types[26]
+#define SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t swig_types[27]
+#define SWIGTYPE_p_TagLib__StringList swig_types[28]
+#define SWIGTYPE_p_TagLib__Tag swig_types[29]
+#define SWIGTYPE_p_char swig_types[30]
+#define SWIGTYPE_p_unsigned_char swig_types[31]
+#define SWIGTYPE_p_unsigned_int swig_types[32]
+#define SWIGTYPE_p_unsigned_long swig_types[33]
+#define SWIGTYPE_p_wchar_t swig_types[34]
+static swig_type_info *swig_types[36];
+static swig_module_info swig_module = {swig_types, 35, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1891,12 +1894,16 @@ static VALUE mID3v2;
 #include <taglib/id3v2tag.h>
 #include <taglib/id3v2header.h>
 
+#include <taglib/tbytevectorlist.h>
+
 #include <taglib/attachedpictureframe.h>
+#include <taglib/chapterframe.h>
 #include <taglib/commentsframe.h>
 #include <taglib/generalencapsulatedobjectframe.h>
 #include <taglib/popularimeterframe.h>
 #include <taglib/privateframe.h>
 #include <taglib/relativevolumeframe.h>
+#include <taglib/tableofcontentsframe.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/uniquefileidentifierframe.h>
 #include <taglib/unknownframe.h>
@@ -1906,6 +1913,8 @@ static VALUE mID3v2;
 
 #include <taglib/tstring.h>
 #include <taglib/tstringlist.h>
+#include <taglib/tbytevector.h>
+#include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
@@ -1975,6 +1984,28 @@ TagLib::StringList ruby_array_to_taglib_string_list(VALUE ary) {
   return result;
 }
 
+VALUE taglib_bytevectorlist_to_ruby_array(const TagLib::ByteVectorList & list) {
+  VALUE ary = rb_ary_new2(list.size());
+  for (TagLib::ByteVectorList::ConstIterator it = list.begin(); it != list.end(); it++) {
+    VALUE s = taglib_bytevector_to_ruby_string(*it);
+    rb_ary_push(ary, s);
+  }
+  return ary;
+}
+
+TagLib::ByteVectorList ruby_array_to_taglib_bytevectorlist(VALUE ary) {
+  TagLib::ByteVectorList result = TagLib::ByteVectorList();
+  if (NIL_P(ary)) {
+    return result;
+  }
+  for (long i = 0; i < RARRAY_LEN(ary); i++) {
+    VALUE e = rb_ary_entry(ary, i);
+    TagLib::ByteVector s = ruby_string_to_taglib_bytevector(e);
+    result.append(s);
+  }
+  return result;
+}
+
 VALUE taglib_filename_to_ruby_string(TagLib::FileName filename) {
   VALUE result;
 #ifdef _WIN32
@@ -2024,8 +2055,12 @@ VALUE taglib_id3v2_frame_to_ruby_object(const TagLib::ID3v2::Frame *frame) {
     ti = SWIGTYPE_p_TagLib__ID3v2__UnknownFrame;
   else if (id == "APIC")
     ti = SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame;
+  else if (id == "CHAP")
+    ti = SWIGTYPE_p_TagLib__ID3v2__ChapterFrame;
   else if (id == "COMM")
     ti = SWIGTYPE_p_TagLib__ID3v2__CommentsFrame;
+  else if (id == "CTOC")
+    ti = SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame;
   else if (id == "GEOB")
     ti = SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame;
   else if (id == "POPM")
@@ -5665,6 +5700,914 @@ free_TagLib_ID3v2_AttachedPictureFrameV22(TagLib::ID3v2::AttachedPictureFrameV22
     delete arg1;
 }
 
+static swig_class SwigClassChapterFrame;
+
+SWIGINTERN VALUE
+_wrap_new_ChapterFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::ChapterFrame *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__ID3v2__Header, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","ChapterFrame", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::ChapterFrame *)new TagLib::ID3v2::ChapterFrame((TagLib::ID3v2::Header const *)arg1,(TagLib::ByteVector const &)*arg2);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ChapterFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  unsigned int arg2 ;
+  unsigned int arg3 ;
+  unsigned int arg4 ;
+  unsigned int arg5 ;
+  TagLib::ID3v2::FrameList *arg6 = 0 ;
+  TagLib::ByteVector tmp1 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  unsigned int val4 ;
+  int ecode4 = 0 ;
+  unsigned int val5 ;
+  int ecode5 = 0 ;
+  void *argp6 ;
+  int res6 = 0 ;
+  TagLib::ID3v2::ChapterFrame *result = 0 ;
+  
+  if ((argc < 6) || (argc > 6)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 6)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
+  }
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 2, argv[1] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 3, argv[2] ));
+  } 
+  arg3 = static_cast< unsigned int >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_int(argv[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 4, argv[3] ));
+  } 
+  arg4 = static_cast< unsigned int >(val4);
+  ecode5 = SWIG_AsVal_unsigned_SS_int(argv[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 5, argv[4] ));
+  } 
+  arg5 = static_cast< unsigned int >(val5);
+  res6 = SWIG_ConvertPtr(argv[5], &argp6, SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t,  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameList const &","ChapterFrame", 6, argv[5] )); 
+  }
+  if (!argp6) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ID3v2::FrameList const &","ChapterFrame", 6, argv[5])); 
+  }
+  arg6 = reinterpret_cast< TagLib::ID3v2::FrameList * >(argp6);
+  result = (TagLib::ID3v2::ChapterFrame *)new TagLib::ID3v2::ChapterFrame((TagLib::ByteVector const &)*arg1,arg2,arg3,arg4,arg5,(TagLib::ID3v2::FrameList const &)*arg6);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_ChapterFrame_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_ChapterFrame_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__ChapterFrame);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_ChapterFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  unsigned int arg2 ;
+  unsigned int arg3 ;
+  unsigned int arg4 ;
+  unsigned int arg5 ;
+  TagLib::ByteVector tmp1 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  unsigned int val3 ;
+  int ecode3 = 0 ;
+  unsigned int val4 ;
+  int ecode4 = 0 ;
+  unsigned int val5 ;
+  int ecode5 = 0 ;
+  TagLib::ID3v2::ChapterFrame *result = 0 ;
+  
+  if ((argc < 5) || (argc > 5)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 5)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
+  }
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 2, argv[1] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  ecode3 = SWIG_AsVal_unsigned_SS_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 3, argv[2] ));
+  } 
+  arg3 = static_cast< unsigned int >(val3);
+  ecode4 = SWIG_AsVal_unsigned_SS_int(argv[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 4, argv[3] ));
+  } 
+  arg4 = static_cast< unsigned int >(val4);
+  ecode5 = SWIG_AsVal_unsigned_SS_int(argv[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), Ruby_Format_TypeError( "", "unsigned int","ChapterFrame", 5, argv[4] ));
+  } 
+  arg5 = static_cast< unsigned int >(val5);
+  result = (TagLib::ID3v2::ChapterFrame *)new TagLib::ID3v2::ChapterFrame((TagLib::ByteVector const &)*arg1,arg2,arg3,arg4,arg5);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_ChapterFrame(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[6];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 6) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__Header, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_ChapterFrame__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_new_ChapterFrame__SWIG_2(nargs, args, self);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              void *vptr = 0;
+              int res = SWIG_ConvertPtr(argv[5], &vptr, SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t, 0);
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                return _wrap_new_ChapterFrame__SWIG_1(nargs, args, self);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 6, "ChapterFrame.new", 
+    "    ChapterFrame.new(TagLib::ID3v2::Header const *tagHeader, TagLib::ByteVector const &data)\n"
+    "    ChapterFrame.new(TagLib::ByteVector const &elementID, unsigned int startTime, unsigned int endTime, unsigned int startOffset, unsigned int endOffset, TagLib::ID3v2::FrameList const &embeddedFrames)\n"
+    "    ChapterFrame.new(TagLib::ByteVector const &elementID, unsigned int startTime, unsigned int endTime, unsigned int startOffset, unsigned int endOffset)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_TagLib_ID3v2_ChapterFrame(TagLib::ID3v2::ChapterFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_element_id(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","elementID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = ((TagLib::ID3v2::ChapterFrame const *)arg1)->elementID();
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_start_time(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","startTime", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (unsigned int)((TagLib::ID3v2::ChapterFrame const *)arg1)->startTime();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_end_time(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","endTime", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (unsigned int)((TagLib::ID3v2::ChapterFrame const *)arg1)->endTime();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_start_offset(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","startOffset", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (unsigned int)((TagLib::ID3v2::ChapterFrame const *)arg1)->startOffset();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_end_offset(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","endOffset", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (unsigned int)((TagLib::ID3v2::ChapterFrame const *)arg1)->endOffset();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_element_ide___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","setElementID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setElementID((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_start_timee___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  unsigned int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int temp2 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","setStartTime", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setStartTime", 2, argv[0] ));
+  } 
+  temp2 = static_cast< unsigned int >(val2);
+  arg2 = &temp2;
+  (arg1)->setStartTime((unsigned int const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_end_timee___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  unsigned int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int temp2 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","setEndTime", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setEndTime", 2, argv[0] ));
+  } 
+  temp2 = static_cast< unsigned int >(val2);
+  arg2 = &temp2;
+  (arg1)->setEndTime((unsigned int const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_start_offsete___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  unsigned int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int temp2 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","setStartOffset", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setStartOffset", 2, argv[0] ));
+  } 
+  temp2 = static_cast< unsigned int >(val2);
+  arg2 = &temp2;
+  (arg1)->setStartOffset((unsigned int const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_end_offsete___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  unsigned int *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int temp2 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","setEndOffset", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","setEndOffset", 2, argv[0] ));
+  } 
+  temp2 = static_cast< unsigned int >(val2);
+  arg2 = &temp2;
+  (arg1)->setEndOffset((unsigned int const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_embedded_frame_list_map(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ID3v2::FrameListMap *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","embeddedFrameListMap", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (TagLib::ID3v2::FrameListMap *) &((TagLib::ID3v2::ChapterFrame const *)arg1)->embeddedFrameListMap();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_embedded_frame_list__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ID3v2::FrameList *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","embeddedFrameList", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = (TagLib::ID3v2::FrameList *) &((TagLib::ID3v2::ChapterFrame const *)arg1)->embeddedFrameList();
+  {
+    vresult = taglib_id3v2_framelist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_embedded_frame_list__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::FrameList *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","embeddedFrameList", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::FrameList *) &((TagLib::ID3v2::ChapterFrame const *)arg1)->embeddedFrameList((TagLib::ByteVector const &)*arg2);
+  {
+    vresult = taglib_id3v2_framelist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ChapterFrame_embedded_frame_list(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_ChapterFrame_embedded_frame_list__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ChapterFrame_embedded_frame_list__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "ChapterFrame.embedded_frame_list", 
+    "    TagLib::ID3v2::FrameList const & ChapterFrame.embedded_frame_list()\n"
+    "    TagLib::ID3v2::FrameList const & ChapterFrame.embedded_frame_list(TagLib::ByteVector const &frameID)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_add_embedded_frame(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","addEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","addEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->addEmbeddedFrame(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_remove_embedded_frame__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  bool arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","removeEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","removeEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","removeEmbeddedFrame", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  (arg1)->removeEmbeddedFrame(arg2,arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_remove_embedded_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","removeEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","removeEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->removeEmbeddedFrame(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ChapterFrame_remove_embedded_frame(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__Frame, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ChapterFrame_remove_embedded_frame__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__Frame, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_ChapterFrame_remove_embedded_frame__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "ChapterFrame.remove_embedded_frame", 
+    "    void ChapterFrame.remove_embedded_frame(TagLib::ID3v2::Frame *frame, bool del)\n"
+    "    void ChapterFrame.remove_embedded_frame(TagLib::ID3v2::Frame *frame)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_remove_embedded_frames(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame *","removeEmbeddedFrames", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->removeEmbeddedFrames((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_to_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::ChapterFrame *arg1 = (TagLib::ID3v2::ChapterFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::ChapterFrame const *","toString", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::ChapterFrame * >(argp1);
+  result = ((TagLib::ID3v2::ChapterFrame const *)arg1)->toString();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ChapterFrame_find_by_element_id(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::ChapterFrame *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","TagLib::ID3v2::ChapterFrame::findByElementID", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::ChapterFrame *)TagLib::ID3v2::ChapterFrame::findByElementID((TagLib::ID3v2::Tag const *)arg1,(TagLib::ByteVector const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 static swig_class SwigClassCommentsFrame;
 
 SWIGINTERN VALUE
@@ -6947,6 +7890,900 @@ _wrap_PrivateFrame_datae___(int argc, VALUE *argv, VALUE self) {
   }
   (arg1)->setData((TagLib::ByteVector const &)*arg2);
   return Qnil;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassTableOfContentsFrame;
+
+SWIGINTERN VALUE
+_wrap_new_TableOfContentsFrame__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::Header *arg1 = (TagLib::ID3v2::Header *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__ID3v2__Header, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Header const *","TableOfContentsFrame", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::Header * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::TableOfContentsFrame *)new TagLib::ID3v2::TableOfContentsFrame((TagLib::ID3v2::Header const *)arg1,(TagLib::ByteVector const &)*arg2);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_TableOfContentsFrame__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVectorList *arg2 = 0 ;
+  TagLib::ID3v2::FrameList *arg3 = 0 ;
+  TagLib::ByteVector tmp1 ;
+  TagLib::ByteVectorList tmp2 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
+  }
+  {
+    tmp2 = ruby_array_to_taglib_bytevectorlist(argv[1]);
+    arg2 = &tmp2;
+  }
+  res3 = SWIG_ConvertPtr(argv[2], &argp3, SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameList const &","TableOfContentsFrame", 3, argv[2] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ID3v2::FrameList const &","TableOfContentsFrame", 3, argv[2])); 
+  }
+  arg3 = reinterpret_cast< TagLib::ID3v2::FrameList * >(argp3);
+  result = (TagLib::ID3v2::TableOfContentsFrame *)new TagLib::ID3v2::TableOfContentsFrame((TagLib::ByteVector const &)*arg1,(TagLib::ByteVectorList const &)*arg2,(TagLib::ID3v2::FrameList const &)*arg3);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_TableOfContentsFrame__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVectorList *arg2 = 0 ;
+  TagLib::ByteVector tmp1 ;
+  TagLib::ByteVectorList tmp2 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
+  }
+  {
+    tmp2 = ruby_array_to_taglib_bytevectorlist(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::TableOfContentsFrame *)new TagLib::ID3v2::TableOfContentsFrame((TagLib::ByteVector const &)*arg1,(TagLib::ByteVectorList const &)*arg2);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TableOfContentsFrame_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TableOfContentsFrame__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  TagLib::ByteVector *arg1 = 0 ;
+  TagLib::ByteVector tmp1 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (TagLib::ID3v2::TableOfContentsFrame *)new TagLib::ID3v2::TableOfContentsFrame((TagLib::ByteVector const &)*arg1);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_TableOfContentsFrame(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 3) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_TableOfContentsFrame__SWIG_3(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__Header, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_TableOfContentsFrame__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVectorList, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_TableOfContentsFrame__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ByteVectorList, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_new_TableOfContentsFrame__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "TableOfContentsFrame.new", 
+    "    TableOfContentsFrame.new(TagLib::ID3v2::Header const *tagHeader, TagLib::ByteVector const &data)\n"
+    "    TableOfContentsFrame.new(TagLib::ByteVector const &elementID, TagLib::ByteVectorList const &children, TagLib::ID3v2::FrameList const &embeddedFrames)\n"
+    "    TableOfContentsFrame.new(TagLib::ByteVector const &elementID, TagLib::ByteVectorList const &children)\n"
+    "    TableOfContentsFrame.new(TagLib::ByteVector const &elementID)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_TagLib_ID3v2_TableOfContentsFrame(TagLib::ID3v2::TableOfContentsFrame *arg1) {
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_element_id(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","elementID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = ((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->elementID();
+  {
+    vresult = taglib_bytevector_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_top_levelq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","isTopLevel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = (bool)((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->isTopLevel();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_orderedq___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","isOrdered", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = (bool)((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->isOrdered();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_entry_count(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","entryCount", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = (unsigned int)((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->entryCount();
+  vresult = SWIG_From_unsigned_SS_int(static_cast< unsigned int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_child_elements(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVectorList result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","childElements", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = ((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->childElements();
+  {
+    vresult = taglib_bytevectorlist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_element_ide___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","setElementID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setElementID((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_is_top_levele___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  bool *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool temp2 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","setIsTopLevel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","setIsTopLevel", 2, argv[0] ));
+  } 
+  temp2 = static_cast< bool >(val2);
+  arg2 = &temp2;
+  (arg1)->setIsTopLevel((bool const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_is_orderede___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  bool *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool temp2 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","setIsOrdered", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","setIsOrdered", 2, argv[0] ));
+  } 
+  temp2 = static_cast< bool >(val2);
+  arg2 = &temp2;
+  (arg1)->setIsOrdered((bool const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_child_elementse___(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVectorList *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVectorList tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","setChildElements", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_array_to_taglib_bytevectorlist(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->setChildElements((TagLib::ByteVectorList const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_add_child_element(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","addChildElement", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->addChildElement((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_remove_child_element(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","removeChildElement", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->removeChildElement((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_embedded_frame_list_map(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ID3v2::FrameListMap *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","embeddedFrameListMap", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = (TagLib::ID3v2::FrameListMap *) &((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->embeddedFrameListMap();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_embedded_frame_list__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ID3v2::FrameList *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","embeddedFrameList", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = (TagLib::ID3v2::FrameList *) &((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->embeddedFrameList();
+  {
+    vresult = taglib_id3v2_framelist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_embedded_frame_list__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::FrameList *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","embeddedFrameList", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::FrameList *) &((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->embeddedFrameList((TagLib::ByteVector const &)*arg2);
+  {
+    vresult = taglib_id3v2_framelist_to_ruby_array(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_TableOfContentsFrame_embedded_frame_list(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_TableOfContentsFrame_embedded_frame_list__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TableOfContentsFrame_embedded_frame_list__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "TableOfContentsFrame.embedded_frame_list", 
+    "    TagLib::ID3v2::FrameList const & TableOfContentsFrame.embedded_frame_list()\n"
+    "    TagLib::ID3v2::FrameList const & TableOfContentsFrame.embedded_frame_list(TagLib::ByteVector const &frameID)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_add_embedded_frame(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","addEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","addEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->addEmbeddedFrame(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_remove_embedded_frame__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  bool arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","removeEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","removeEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","removeEmbeddedFrame", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  (arg1)->removeEmbeddedFrame(arg2,arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_remove_embedded_frame__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ID3v2::Frame *arg2 = (TagLib::ID3v2::Frame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","removeEmbeddedFrame", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&arg2), SWIGTYPE_p_TagLib__ID3v2__Frame, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Frame *","removeEmbeddedFrame", 2, argv[0] ));
+  }
+  SWIG_RubyUnlinkObjects(arg2);
+  SWIG_RubyRemoveTracking(arg2);
+  (arg1)->removeEmbeddedFrame(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_TableOfContentsFrame_remove_embedded_frame(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__Frame, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TableOfContentsFrame_remove_embedded_frame__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__Frame, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_TableOfContentsFrame_remove_embedded_frame__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "TableOfContentsFrame.remove_embedded_frame", 
+    "    void TableOfContentsFrame.remove_embedded_frame(TagLib::ID3v2::Frame *frame, bool del)\n"
+    "    void TableOfContentsFrame.remove_embedded_frame(TagLib::ID3v2::Frame *frame)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_remove_embedded_frames(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame *","removeEmbeddedFrames", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
+    arg2 = &tmp2;
+  }
+  (arg1)->removeEmbeddedFrames((TagLib::ByteVector const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_to_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::TableOfContentsFrame *arg1 = (TagLib::ID3v2::TableOfContentsFrame *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::TableOfContentsFrame const *","toString", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::TableOfContentsFrame * >(argp1);
+  result = ((TagLib::ID3v2::TableOfContentsFrame const *)arg1)->toString();
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_find_by_element_id(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
+  TagLib::ByteVector *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ByteVector tmp2 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","TagLib::ID3v2::TableOfContentsFrame::findByElementID", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
+  {
+    tmp2 = ruby_string_to_taglib_bytevector(argv[1]);
+    arg2 = &tmp2;
+  }
+  result = (TagLib::ID3v2::TableOfContentsFrame *)TagLib::ID3v2::TableOfContentsFrame::findByElementID((TagLib::ID3v2::Tag const *)arg1,(TagLib::ByteVector const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TableOfContentsFrame_find_top_level(int argc, VALUE *argv, VALUE self) {
+  TagLib::ID3v2::Tag *arg1 = (TagLib::ID3v2::Tag *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  TagLib::ID3v2::TableOfContentsFrame *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_TagLib__ID3v2__Tag, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::ID3v2::Tag const *","TagLib::ID3v2::TableOfContentsFrame::findTopLevel", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< TagLib::ID3v2::Tag * >(argp1);
+  result = (TagLib::ID3v2::TableOfContentsFrame *)TagLib::ID3v2::TableOfContentsFrame::findTopLevel((TagLib::ID3v2::Tag const *)arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, 0 |  0 );
+  return vresult;
 fail:
   return Qnil;
 }
@@ -8763,23 +10600,29 @@ fail:
 static void *_p_TagLib__ID3v2__UserUrlLinkFrameTo_p_TagLib__ID3v2__UrlLinkFrame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::UrlLinkFrame *)  ((TagLib::ID3v2::UserUrlLinkFrame *) x));
 }
+static void *_p_TagLib__ID3v2__TableOfContentsFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::TableOfContentsFrame *) x));
+}
 static void *_p_TagLib__ID3v2__CommentsFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::CommentsFrame *) x));
 }
 static void *_p_TagLib__ID3v2__AttachedPictureFrameV22To_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *) (TagLib::ID3v2::AttachedPictureFrame *) ((TagLib::ID3v2::AttachedPictureFrameV22 *) x));
 }
-static void *_p_TagLib__ID3v2__UserUrlLinkFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((TagLib::ID3v2::Frame *) (TagLib::ID3v2::UrlLinkFrame *) ((TagLib::ID3v2::UserUrlLinkFrame *) x));
-}
 static void *_p_TagLib__ID3v2__UrlLinkFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::UrlLinkFrame *) x));
+}
+static void *_p_TagLib__ID3v2__UserUrlLinkFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::ID3v2::Frame *) (TagLib::ID3v2::UrlLinkFrame *) ((TagLib::ID3v2::UserUrlLinkFrame *) x));
 }
 static void *_p_TagLib__ID3v2__UniqueFileIdentifierFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::UniqueFileIdentifierFrame *) x));
 }
 static void *_p_TagLib__ID3v2__PopularimeterFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::PopularimeterFrame *) x));
+}
+static void *_p_TagLib__ID3v2__ChapterFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::ChapterFrame *) x));
 }
 static void *_p_TagLib__ID3v2__UnsynchronizedLyricsFrameTo_p_TagLib__ID3v2__Frame(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::ID3v2::Frame *)  ((TagLib::ID3v2::UnsynchronizedLyricsFrame *) x));
@@ -8816,9 +10659,11 @@ static void *_p_TagLib__ID3v2__AttachedPictureFrameV22To_p_TagLib__ID3v2__Attach
 }
 static swig_type_info _swigt__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t = {"_p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t", "Map< TagLib::ByteVector,TagLib::List< TagLib::ID3v2::Frame * > > *|TagLib::ID3v2::FrameListMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ByteVector = {"_p_TagLib__ByteVector", "TagLib::ByteVector *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ByteVectorList = {"_p_TagLib__ByteVectorList", "TagLib::ByteVectorList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__AttachedPictureFrame = {"_p_TagLib__ID3v2__AttachedPictureFrame", "TagLib::ID3v2::AttachedPictureFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__AttachedPictureFrameV22 = {"_p_TagLib__ID3v2__AttachedPictureFrameV22", "TagLib::ID3v2::AttachedPictureFrameV22 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ID3v2__ChapterFrame = {"_p_TagLib__ID3v2__ChapterFrame", "TagLib::ID3v2::ChapterFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__CommentsFrame = {"_p_TagLib__ID3v2__CommentsFrame", "TagLib::ID3v2::CommentsFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__ExtendedHeader = {"_p_TagLib__ID3v2__ExtendedHeader", "TagLib::ID3v2::ExtendedHeader *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Footer = {"_p_TagLib__ID3v2__Footer", "TagLib::ID3v2::Footer *", 0, 0, (void*)0, 0};
@@ -8830,6 +10675,7 @@ static swig_type_info _swigt__p_TagLib__ID3v2__PopularimeterFrame = {"_p_TagLib_
 static swig_type_info _swigt__p_TagLib__ID3v2__PrivateFrame = {"_p_TagLib__ID3v2__PrivateFrame", "TagLib::ID3v2::PrivateFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__RelativeVolumeFrame = {"_p_TagLib__ID3v2__RelativeVolumeFrame", "TagLib::ID3v2::RelativeVolumeFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume = {"_p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume", "TagLib::ID3v2::RelativeVolumeFrame::PeakVolume *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ID3v2__TableOfContentsFrame = {"_p_TagLib__ID3v2__TableOfContentsFrame", "TagLib::ID3v2::TableOfContentsFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__TextIdentificationFrame = {"_p_TagLib__ID3v2__TextIdentificationFrame", "TagLib::ID3v2::TextIdentificationFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__UniqueFileIdentifierFrame = {"_p_TagLib__ID3v2__UniqueFileIdentifierFrame", "TagLib::ID3v2::UniqueFileIdentifierFrame *", 0, 0, (void*)0, 0};
@@ -8850,9 +10696,11 @@ static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t,
   &_swigt__p_TagLib__ByteVector,
+  &_swigt__p_TagLib__ByteVectorList,
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__ID3v2__AttachedPictureFrame,
   &_swigt__p_TagLib__ID3v2__AttachedPictureFrameV22,
+  &_swigt__p_TagLib__ID3v2__ChapterFrame,
   &_swigt__p_TagLib__ID3v2__CommentsFrame,
   &_swigt__p_TagLib__ID3v2__ExtendedHeader,
   &_swigt__p_TagLib__ID3v2__Footer,
@@ -8864,6 +10712,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v2__PrivateFrame,
   &_swigt__p_TagLib__ID3v2__RelativeVolumeFrame,
   &_swigt__p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume,
+  &_swigt__p_TagLib__ID3v2__TableOfContentsFrame,
   &_swigt__p_TagLib__ID3v2__Tag,
   &_swigt__p_TagLib__ID3v2__TextIdentificationFrame,
   &_swigt__p_TagLib__ID3v2__UniqueFileIdentifierFrame,
@@ -8884,13 +10733,15 @@ static swig_type_info *swig_type_initial[] = {
 
 static swig_cast_info _swigc__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t[] = {  {&_swigt__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ByteVector[] = {  {&_swigt__p_TagLib__ByteVector, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ByteVectorList[] = {  {&_swigt__p_TagLib__ByteVectorList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__AttachedPictureFrame[] = {  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrame, 0, 0, 0},  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrameV22, _p_TagLib__ID3v2__AttachedPictureFrameV22To_p_TagLib__ID3v2__AttachedPictureFrame, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__AttachedPictureFrameV22[] = {  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrameV22, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ID3v2__ChapterFrame[] = {  {&_swigt__p_TagLib__ID3v2__ChapterFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__CommentsFrame[] = {  {&_swigt__p_TagLib__ID3v2__CommentsFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__ExtendedHeader[] = {  {&_swigt__p_TagLib__ID3v2__ExtendedHeader, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Footer[] = {  {&_swigt__p_TagLib__ID3v2__Footer, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v2__Frame[] = {  {&_swigt__p_TagLib__ID3v2__Frame, 0, 0, 0},  {&_swigt__p_TagLib__ID3v2__CommentsFrame, _p_TagLib__ID3v2__CommentsFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrameV22, _p_TagLib__ID3v2__AttachedPictureFrameV22To_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UserUrlLinkFrame, _p_TagLib__ID3v2__UserUrlLinkFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UrlLinkFrame, _p_TagLib__ID3v2__UrlLinkFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UniqueFileIdentifierFrame, _p_TagLib__ID3v2__UniqueFileIdentifierFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__PopularimeterFrame, _p_TagLib__ID3v2__PopularimeterFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UnsynchronizedLyricsFrame, _p_TagLib__ID3v2__UnsynchronizedLyricsFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame, _p_TagLib__ID3v2__GeneralEncapsulatedObjectFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__PrivateFrame, _p_TagLib__ID3v2__PrivateFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrame, _p_TagLib__ID3v2__AttachedPictureFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__RelativeVolumeFrame, _p_TagLib__ID3v2__RelativeVolumeFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UnknownFrame, _p_TagLib__ID3v2__UnknownFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UserTextIdentificationFrame, _p_TagLib__ID3v2__UserTextIdentificationFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__TextIdentificationFrame, _p_TagLib__ID3v2__TextIdentificationFrameTo_p_TagLib__ID3v2__Frame, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ID3v2__Frame[] = {  {&_swigt__p_TagLib__ID3v2__Frame, 0, 0, 0},  {&_swigt__p_TagLib__ID3v2__TableOfContentsFrame, _p_TagLib__ID3v2__TableOfContentsFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__CommentsFrame, _p_TagLib__ID3v2__CommentsFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrameV22, _p_TagLib__ID3v2__AttachedPictureFrameV22To_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UrlLinkFrame, _p_TagLib__ID3v2__UrlLinkFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UserUrlLinkFrame, _p_TagLib__ID3v2__UserUrlLinkFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UniqueFileIdentifierFrame, _p_TagLib__ID3v2__UniqueFileIdentifierFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__PopularimeterFrame, _p_TagLib__ID3v2__PopularimeterFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__ChapterFrame, _p_TagLib__ID3v2__ChapterFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UnsynchronizedLyricsFrame, _p_TagLib__ID3v2__UnsynchronizedLyricsFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame, _p_TagLib__ID3v2__GeneralEncapsulatedObjectFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__PrivateFrame, _p_TagLib__ID3v2__PrivateFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__AttachedPictureFrame, _p_TagLib__ID3v2__AttachedPictureFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__RelativeVolumeFrame, _p_TagLib__ID3v2__RelativeVolumeFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UnknownFrame, _p_TagLib__ID3v2__UnknownFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__UserTextIdentificationFrame, _p_TagLib__ID3v2__UserTextIdentificationFrameTo_p_TagLib__ID3v2__Frame, 0, 0},  {&_swigt__p_TagLib__ID3v2__TextIdentificationFrame, _p_TagLib__ID3v2__TextIdentificationFrameTo_p_TagLib__ID3v2__Frame, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame[] = {  {&_swigt__p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Header[] = {  {&_swigt__p_TagLib__ID3v2__Header, 0, 0, 0},{0, 0, 0, 0}};
@@ -8898,6 +10749,7 @@ static swig_cast_info _swigc__p_TagLib__ID3v2__PopularimeterFrame[] = {  {&_swig
 static swig_cast_info _swigc__p_TagLib__ID3v2__PrivateFrame[] = {  {&_swigt__p_TagLib__ID3v2__PrivateFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__RelativeVolumeFrame[] = {  {&_swigt__p_TagLib__ID3v2__RelativeVolumeFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume[] = {  {&_swigt__p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ID3v2__TableOfContentsFrame[] = {  {&_swigt__p_TagLib__ID3v2__TableOfContentsFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__TextIdentificationFrame[] = {  {&_swigt__p_TagLib__ID3v2__TextIdentificationFrame, 0, 0, 0},  {&_swigt__p_TagLib__ID3v2__UserTextIdentificationFrame, _p_TagLib__ID3v2__UserTextIdentificationFrameTo_p_TagLib__ID3v2__TextIdentificationFrame, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__UniqueFileIdentifierFrame[] = {  {&_swigt__p_TagLib__ID3v2__UniqueFileIdentifierFrame, 0, 0, 0},{0, 0, 0, 0}};
@@ -8918,9 +10770,11 @@ static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0,
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MapT_TagLib__ByteVector_TagLib__ListT_TagLib__ID3v2__Frame_p_t_t,
   _swigc__p_TagLib__ByteVector,
+  _swigc__p_TagLib__ByteVectorList,
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__ID3v2__AttachedPictureFrame,
   _swigc__p_TagLib__ID3v2__AttachedPictureFrameV22,
+  _swigc__p_TagLib__ID3v2__ChapterFrame,
   _swigc__p_TagLib__ID3v2__CommentsFrame,
   _swigc__p_TagLib__ID3v2__ExtendedHeader,
   _swigc__p_TagLib__ID3v2__Footer,
@@ -8932,6 +10786,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v2__PrivateFrame,
   _swigc__p_TagLib__ID3v2__RelativeVolumeFrame,
   _swigc__p_TagLib__ID3v2__RelativeVolumeFrame__PeakVolume,
+  _swigc__p_TagLib__ID3v2__TableOfContentsFrame,
   _swigc__p_TagLib__ID3v2__Tag,
   _swigc__p_TagLib__ID3v2__TextIdentificationFrame,
   _swigc__p_TagLib__ID3v2__UniqueFileIdentifierFrame,
@@ -9370,6 +11225,31 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   SwigClassAttachedPictureFrameV22.destroy = (void (*)(void *)) free_TagLib_ID3v2_AttachedPictureFrameV22;
   SwigClassAttachedPictureFrameV22.trackObjects = 1;
   
+  SwigClassChapterFrame.klass = rb_define_class_under(mID3v2, "ChapterFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__ChapterFrame, (void *) &SwigClassChapterFrame);
+  rb_define_alloc_func(SwigClassChapterFrame.klass, _wrap_ChapterFrame_allocate);
+  rb_define_method(SwigClassChapterFrame.klass, "initialize", VALUEFUNC(_wrap_new_ChapterFrame), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "element_id", VALUEFUNC(_wrap_ChapterFrame_element_id), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "start_time", VALUEFUNC(_wrap_ChapterFrame_start_time), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "end_time", VALUEFUNC(_wrap_ChapterFrame_end_time), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "start_offset", VALUEFUNC(_wrap_ChapterFrame_start_offset), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "end_offset", VALUEFUNC(_wrap_ChapterFrame_end_offset), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "element_id=", VALUEFUNC(_wrap_ChapterFrame_element_ide___), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "start_time=", VALUEFUNC(_wrap_ChapterFrame_start_timee___), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "end_time=", VALUEFUNC(_wrap_ChapterFrame_end_timee___), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "start_offset=", VALUEFUNC(_wrap_ChapterFrame_start_offsete___), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "end_offset=", VALUEFUNC(_wrap_ChapterFrame_end_offsete___), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "embedded_frame_list_map", VALUEFUNC(_wrap_ChapterFrame_embedded_frame_list_map), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "embedded_frame_list", VALUEFUNC(_wrap_ChapterFrame_embedded_frame_list), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "add_embedded_frame", VALUEFUNC(_wrap_ChapterFrame_add_embedded_frame), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "remove_embedded_frame", VALUEFUNC(_wrap_ChapterFrame_remove_embedded_frame), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "remove_embedded_frames", VALUEFUNC(_wrap_ChapterFrame_remove_embedded_frames), -1);
+  rb_define_method(SwigClassChapterFrame.klass, "to_string", VALUEFUNC(_wrap_ChapterFrame_to_string), -1);
+  rb_define_singleton_method(SwigClassChapterFrame.klass, "find_by_element_id", VALUEFUNC(_wrap_ChapterFrame_find_by_element_id), -1);
+  SwigClassChapterFrame.mark = 0;
+  SwigClassChapterFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_ChapterFrame;
+  SwigClassChapterFrame.trackObjects = 1;
+  
   SwigClassCommentsFrame.klass = rb_define_class_under(mID3v2, "CommentsFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__CommentsFrame, (void *) &SwigClassCommentsFrame);
   rb_define_alloc_func(SwigClassCommentsFrame.klass, _wrap_CommentsFrame_allocate);
@@ -9434,6 +11314,33 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   SwigClassPrivateFrame.mark = 0;
   SwigClassPrivateFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_PrivateFrame;
   SwigClassPrivateFrame.trackObjects = 1;
+  
+  SwigClassTableOfContentsFrame.klass = rb_define_class_under(mID3v2, "TableOfContentsFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame, (void *) &SwigClassTableOfContentsFrame);
+  rb_define_alloc_func(SwigClassTableOfContentsFrame.klass, _wrap_TableOfContentsFrame_allocate);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "initialize", VALUEFUNC(_wrap_new_TableOfContentsFrame), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "element_id", VALUEFUNC(_wrap_TableOfContentsFrame_element_id), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "top_level?", VALUEFUNC(_wrap_TableOfContentsFrame_top_levelq___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "ordered?", VALUEFUNC(_wrap_TableOfContentsFrame_orderedq___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "entry_count", VALUEFUNC(_wrap_TableOfContentsFrame_entry_count), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "child_elements", VALUEFUNC(_wrap_TableOfContentsFrame_child_elements), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "element_id=", VALUEFUNC(_wrap_TableOfContentsFrame_element_ide___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "is_top_level=", VALUEFUNC(_wrap_TableOfContentsFrame_is_top_levele___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "is_ordered=", VALUEFUNC(_wrap_TableOfContentsFrame_is_orderede___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "child_elements=", VALUEFUNC(_wrap_TableOfContentsFrame_child_elementse___), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "add_child_element", VALUEFUNC(_wrap_TableOfContentsFrame_add_child_element), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "remove_child_element", VALUEFUNC(_wrap_TableOfContentsFrame_remove_child_element), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "embedded_frame_list_map", VALUEFUNC(_wrap_TableOfContentsFrame_embedded_frame_list_map), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "embedded_frame_list", VALUEFUNC(_wrap_TableOfContentsFrame_embedded_frame_list), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "add_embedded_frame", VALUEFUNC(_wrap_TableOfContentsFrame_add_embedded_frame), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "remove_embedded_frame", VALUEFUNC(_wrap_TableOfContentsFrame_remove_embedded_frame), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "remove_embedded_frames", VALUEFUNC(_wrap_TableOfContentsFrame_remove_embedded_frames), -1);
+  rb_define_method(SwigClassTableOfContentsFrame.klass, "to_string", VALUEFUNC(_wrap_TableOfContentsFrame_to_string), -1);
+  rb_define_singleton_method(SwigClassTableOfContentsFrame.klass, "find_by_element_id", VALUEFUNC(_wrap_TableOfContentsFrame_find_by_element_id), -1);
+  rb_define_singleton_method(SwigClassTableOfContentsFrame.klass, "find_top_level", VALUEFUNC(_wrap_TableOfContentsFrame_find_top_level), -1);
+  SwigClassTableOfContentsFrame.mark = 0;
+  SwigClassTableOfContentsFrame.destroy = (void (*)(void *)) free_TagLib_ID3v2_TableOfContentsFrame;
+  SwigClassTableOfContentsFrame.trackObjects = 1;
   
   SwigClassTextIdentificationFrame.klass = rb_define_class_under(mID3v2, "TextIdentificationFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__TextIdentificationFrame, (void *) &SwigClassTextIdentificationFrame);
