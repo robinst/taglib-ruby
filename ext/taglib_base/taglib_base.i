@@ -2,6 +2,7 @@
 %{
 #include <taglib/taglib.h>
 #include <taglib/tbytevector.h>
+#include <taglib/tbytevectorlist.h>
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
@@ -12,6 +13,7 @@
 namespace TagLib {
   class StringList;
   class ByteVector;
+  class ByteVectorList;
 
   class String {
     public:
@@ -56,6 +58,22 @@ namespace TagLib {
   $1 = &tmp;
 }
 %typemap(typecheck) const TagLib::ByteVector & = char *;
+
+// ByteVectorList
+%typemap(out) TagLib::ByteVectorList {
+  $result = taglib_bytevectorlist_to_ruby_array($1);
+}
+%typemap(out) TagLib::ByteVectorList * {
+  $result = taglib_bytevectorlist_to_ruby_array(*($1));
+}
+%typemap(in) TagLib::ByteVectorList & (TagLib::ByteVectorList tmp) {
+  tmp = ruby_array_to_taglib_bytevectorlist($input);
+  $1 = &tmp;
+}
+%typemap(in) TagLib::ByteVectorList * (TagLib::ByteVectorList tmp) {
+  tmp = ruby_array_to_taglib_bytevectorlist($input);
+  $1 = &tmp;
+}
 
 // String
 %typemap(out) TagLib::String {

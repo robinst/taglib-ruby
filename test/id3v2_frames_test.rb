@@ -92,6 +92,70 @@ class TestID3v2Frames < Test::Unit::TestCase
       end
     end
 
+    context 'CTOC and CHAP frames' do
+      setup do
+        @chapters = [
+          { id: 'CH1', start_time: 100, end_time: 200 },
+          { id: 'CH2', start_time: 201, end_time: 300 },
+          { id: 'CH3', start_time: 301, end_time: 400 }
+        ]
+
+        @default_ctoc = TagLib::ID3v2::TableOfContentsFrame.new('Test')
+        @default_chap = TagLib::ID3v2::ChapterFrame.new('Test', 0, 1, 0xFFFFFFFF, 0xFFFFFFFF)
+      end
+
+      should 'not have a CTOC frame' do
+        assert_equal [], @tag.frame_list('CTOC')
+      end
+
+      should 'not have a CHAP frame' do
+        assert_equal [], @tag.frame_list('CHAP')
+      end
+
+      should 'have one CTOC frame (only one Table of Contents)' do
+        toc = TagLib::ID3v2::TableOfContentsFrame.new('TOC')
+        toc.is_top_level = true
+        toc.is_ordered = true
+
+        @chapters.each do |chapter|
+          toc.add_child_element(chapter[:id])
+        end
+
+        @tag.add_frame(toc)
+
+        ctoc_frame_list = @tag.frame_list('CTOC')
+        assert_equal @default_ctoc.class, ctoc_frame_list.first.class
+        assert_equal 1, ctoc_frame_list.size
+        assert_equal 'TOC', ctoc_frame_list.first.element_id
+        assert_equal 3, ctoc_frame_list.first.child_elements.size
+        assert_equal %w[CH1 CH2 CH3], ctoc_frame_list.first.child_elements
+      end
+
+      should 'have CHAP frames (multiple chapters)' do
+        start_offset = 0xFFFFFFFF
+        end_offset = 0xFFFFFFFF
+
+        @chapters.each do |chapter|
+          chapter_frame = TagLib::ID3v2::ChapterFrame.new(
+            chapter[:id],
+            chapter[:start_time].to_i,
+            chapter[:end_time].to_i,
+            start_offset,
+            end_offset
+          )
+
+          @tag.add_frame(chapter_frame)
+        end
+
+        chap_frame_list = @tag.frame_list('CHAP')
+        assert_equal @default_chap.class, chap_frame_list.first.class
+        assert_equal 3, chap_frame_list.size
+        assert_equal 'CH1', chap_frame_list[0].element_id
+        assert_equal 'CH2', chap_frame_list[1].element_id
+        assert_equal 'CH3', chap_frame_list[2].element_id
+      end
+    end
+
     context "TXXX frame" do
       setup do
         @txxx_frame = @tag.frame_list('TXXX').first

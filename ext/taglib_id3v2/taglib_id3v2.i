@@ -5,12 +5,16 @@
 #include <taglib/id3v2tag.h>
 #include <taglib/id3v2header.h>
 
+#include <taglib/tbytevectorlist.h>
+
 #include <taglib/attachedpictureframe.h>
+#include <taglib/chapterframe.h>
 #include <taglib/commentsframe.h>
 #include <taglib/generalencapsulatedobjectframe.h>
 #include <taglib/popularimeterframe.h>
 #include <taglib/privateframe.h>
 #include <taglib/relativevolumeframe.h>
+#include <taglib/tableofcontentsframe.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/uniquefileidentifierframe.h>
 #include <taglib/unknownframe.h>
@@ -36,8 +40,12 @@ VALUE taglib_id3v2_frame_to_ruby_object(const TagLib::ID3v2::Frame *frame) {
     ti = SWIGTYPE_p_TagLib__ID3v2__UnknownFrame;
   else if (id == "APIC")
     ti = SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame;
+  else if (id == "CHAP")
+    ti = SWIGTYPE_p_TagLib__ID3v2__ChapterFrame;
   else if (id == "COMM")
     ti = SWIGTYPE_p_TagLib__ID3v2__CommentsFrame;
+  else if (id == "CTOC")
+    ti = SWIGTYPE_p_TagLib__ID3v2__TableOfContentsFrame;
   else if (id == "GEOB")
     ti = SWIGTYPE_p_TagLib__ID3v2__GeneralEncapsulatedObjectFrame;
   else if (id == "POPM")
@@ -126,12 +134,21 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 %include <taglib/attachedpictureframe.h>
 
 // Ignore the unified property interface.
+%ignore TagLib::ID3v2::ChapterFrame::asProperties;
 %ignore TagLib::ID3v2::CommentsFrame::asProperties;
+%ignore TagLib::ID3v2::TableOfContentsFrame::asProperties;
+
+%rename("element_id=") TagLib::ID3v2::ChapterFrame::setElementID(const ByteVector &eID);
+%include <taglib/chapterframe.h>
 
 %include <taglib/commentsframe.h>
 %include <taglib/generalencapsulatedobjectframe.h>
 %include <taglib/popularimeterframe.h>
 %include <taglib/privateframe.h>
+
+%rename("element_id=") TagLib::ID3v2::TableOfContentsFrame::setElementID(const ByteVector &eID);
+%include <taglib/tableofcontentsframe.h>
+
 %include <taglib/textidentificationframe.h>
 
 // Ignore the unified property interface.
