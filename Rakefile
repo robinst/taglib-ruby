@@ -33,6 +33,6 @@ import 'tasks/gemspec_check.rake'
 # by Swig. Since the ExtensionTasks depend on the *_wrap.cxx files,
 # compiling the extensions will trigger Swig, which is not desired as
 # those files have already been generated and there's no reason to make
-# Swig a variable of the CI. To prevent those dependencies, do not import
-# swig.rake when running in Travis.
-import 'tasks/swig.rake' unless ENV['TRAVIS'] == 'true'
+# Swig a variable of the CI. The environment variable can be set to
+# prevent running swig.
+import 'tasks/swig.rake' unless ENV['SKIP_SWIG'] == 'true'

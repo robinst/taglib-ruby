@@ -11,6 +11,7 @@ jobs:
     env:
       PLATFORM: x86_64-linux
       TAGLIB_VERSION: 1.11.1
+      SKIP_SWIG: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-ruby@v1
