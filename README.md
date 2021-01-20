@@ -114,7 +114,7 @@ To do everything in one command:
 
 ### Workflow
 
-* Check out the latest master to make sure the feature hasn't been
+* Check out the latest main branch to make sure the feature hasn't been
   implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't
   requested it and/or contributed it
