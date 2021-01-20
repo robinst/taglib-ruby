@@ -24,3 +24,4 @@ Makefile
 /test/data/mp4-create
 /test/data/wav-create
 /test/data/wav-dump
+/vendor
