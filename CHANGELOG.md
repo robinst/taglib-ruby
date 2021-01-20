@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.0 - 2021-01-20
+### Added
+- Added support for CTOC and CHAP frames for ID3v2
+
 ## 1.0.1 - 2020-03-25
 
 ### Fixed
