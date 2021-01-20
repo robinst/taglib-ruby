@@ -19,7 +19,7 @@ taglib-ruby currently supports the following:
 Contributions for more coverage of the library are very welcome.
 
 [![Gem version][gem-img]][gem-link]
-[![Build status][travis-img]][travis-link]
+[![ci](https://github.com/robinst/taglib-ruby/workflows/ci/badge.svg)](https://github.com/robinst/taglib-ruby/actions?query=workflow%3Aci)
 
 Installation
 ------------
@@ -143,5 +143,3 @@ version 2.1 (LGPL) and Mozilla Public License (MPL).
 [taglib]: http://taglib.github.io/
 [gem-img]: https://badge.fury.io/rb/taglib-ruby.svg
 [gem-link]: https://rubygems.org/gems/taglib-ruby
-[travis-img]: https://api.travis-ci.org/robinst/taglib-ruby.png
-[travis-link]: https://travis-ci.org/robinst/taglib-ruby

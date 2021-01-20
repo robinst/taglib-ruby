@@ -9,6 +9,7 @@ Makefile
 # Editor
 .*.swp
 .redcar
+.idea
 
 # Build
 /.yardoc

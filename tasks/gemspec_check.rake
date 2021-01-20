@@ -1,6 +1,6 @@
 desc "Checks file list in .gemspec against files tracked in Git"
 task :gemspec_check do |t|
-  exclude = ['.gitignore', '.travis.yml']
+  exclude = ['.gitignore', '.github/workflows/ci.yml']
   git_files = `git ls-files`.split("\n") - exclude
   gemspec_files = $gemspec.files
 
