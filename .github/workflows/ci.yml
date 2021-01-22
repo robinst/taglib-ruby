@@ -23,6 +23,17 @@ jobs:
           bundle install
       - name: Install taglib
         run: bundle exec rake vendor
+      - name: Install SWIG v3.0.7
+        run: |
+          sudo apt install yodl
+          git clone --depth 1 --branch v3.0.7 https://github.com/swig/swig.git
+          cd swig
+          ./autogen.sh
+          ./configure
+          make
+          sudo make install
+      - name: Generate SWIG wrappers
+        run: TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake swig
       - name: Compile
         run: TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake compile
       - name: Test
