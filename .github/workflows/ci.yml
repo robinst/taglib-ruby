@@ -5,37 +5,57 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         ruby: [2.4, 2.7]
+
     env:
       PLATFORM: x86_64-linux
       TAGLIB_VERSION: 1.11.1
+      SWIG_INSTALL_DIR: .swig-v3.0.7
+
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Bundle install
+
+      - name: Bundle Install Gem Depedencies
         run: |
           gem install bundler
           bundle install
-      - name: Install taglib
+
+      - name: Install TagLib
         run: bundle exec rake vendor
+
+      # Download and install SWIG v3.0.7 for Ruby.
       - name: Install SWIG v3.0.7
         run: |
           sudo apt install yodl
           git clone --depth 1 --branch v3.0.7 https://github.com/swig/swig.git
           cd swig
           ./autogen.sh
-          ./configure
-          make
-          sudo make install
+          ./configure --prefix=$HOME/$SWIG_INSTALL_DIR --with-ruby=$(which ruby) --without-alllang
+          make && make install
+
+      # The precedence of SWIG v3.0.7 must be higher than the default ones i.e.:
+      # - Ubuntu 18.04 (SWIG v3.0.12) (https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md)
+      # - Ubuntu 20.04 (SWIG v4.0.1)  (https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md)
+      # Because `which swig` is being used in the `swig.rake` file. The one with the higher precendence will be found first in PATH.
+      # As of now, the `ubuntu-latest` is Ubuntu 18.04 which will be switched to Ubuntu 20.04 in the future.
+      # So, it makes sense to cater to these changes.
+      # In addition, `SWIG_LIB` environment variable needs to be set accordingly.
       - name: Generate SWIG wrappers
         run: |
+          export PATH=$HOME/$SWIG_INSTALL_DIR/bin:$PATH
+          export SWIG_LIB=$HOME/$SWIG_INSTALL_DIR/share/swig/3.0.7
           touch ext/*/*.i
           TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake swig
-      - name: Compile
+
+      - name: Compile taglib-ruby
         run: TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake compile
-      - name: Test
+
+      - name: Run tests
         run: bundle exec rake test
