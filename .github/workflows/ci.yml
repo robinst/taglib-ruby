@@ -21,7 +21,6 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
 
       - name: Bundle Install Gem Depedencies
         run: |
