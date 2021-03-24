@@ -1,13 +1,15 @@
+# frozen-string-literal: true
+
 require File.join(File.dirname(__FILE__), 'helper')
 
 class TestTag < Test::Unit::TestCase
-  context "The sample.mp3 file" do
+  context 'The sample.mp3 file' do
     setup do
-      @fileref = TagLib::FileRef.new("test/data/sample.mp3", false)
+      @fileref = TagLib::FileRef.new('test/data/sample.mp3', false)
       @tag = @fileref.tag
     end
 
-    should "have basic tag information" do
+    should 'have basic tag information' do
       assert_equal 'Dummy Title', @tag.title
       assert_equal 'Dummy Artist', @tag.artist
       assert_equal 'Dummy Album', @tag.album

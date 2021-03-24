@@ -45,7 +45,6 @@
 #   tag.title
 #   # => "Title of the song"
 module TagLib
-
   # Major version of TagLib the extensions were compiled against
   # (major.minor.patch). Note that the value is not actually 0, but
   # depends on the version of the installed library.
@@ -88,7 +87,6 @@ module TagLib
   #   end
   #
   class FileRef
-
     # Creates a new file and passes it to the provided block,
     # closing the file automatically at the end of the block.
     #
@@ -165,7 +163,6 @@ module TagLib
 
   # @abstract Base class for files, see subclasses.
   class File
-
     # Save the file and the associated tags.
     #
     # See subclasses, as some provide more control over what is saved.
@@ -241,7 +238,6 @@ module TagLib
 
   # @abstract Base class for audio properties.
   class AudioProperties
-
     Fast = 0
     Average = 1
     Accurate = 2

@@ -1,9 +1,11 @@
+# frozen-string-literal: true
+
 require 'taglib_base'
 
 module TagLib
   module FileOpenable
     def open(*args)
-      file = self.new(*args)
+      file = new(*args)
       begin
         result = yield file
       ensure

@@ -171,7 +171,6 @@ module TagLib::MPEG
 
   # Xing VBR header.
   class XingHeader
-
     Invalid = 0
     Xing    = 1
     VBRI    = 2

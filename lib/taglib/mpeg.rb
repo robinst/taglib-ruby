@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 require 'taglib_mpeg'
 
 module TagLib::MPEG

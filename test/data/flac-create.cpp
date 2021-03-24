@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <taglib/taglib.h>
 #include <taglib/flacfile.h>
@@ -11,9 +11,10 @@ using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file" << std::endl;
-    exit(1);
+    std::cerr << "usage: " << argv[0] << " file" << std::endl;
+    return EXIT_FAILURE;
   }
+
   char *filename = argv[1];
 
   FLAC::File file(filename);
@@ -49,12 +50,21 @@ int main(int argc, char **argv) {
   picture->setColorDepth(8);
   picture->setNumColors(0);
 
-  ByteVector data = getPictureData("globe_east_90.jpg");
+  const ByteVector data = getPictureData("globe_east_90.jpg");
+  if (data.isEmpty()) {
+    std::cerr << "failed to get picture data" << std::endl;
+    delete picture;
+    return EXIT_FAILURE;
+  }
+
   picture->setData(data);
 
   file.addPicture(picture);
-
   file.save();
+
+  delete picture;
+
+  return EXIT_SUCCESS;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

@@ -1,8 +1,9 @@
-platform = RUBY_PLATFORM.split("-")[1]
+# frozen-string-literal: true
+
+platform = RUBY_PLATFORM.split('-')[1]
 if platform == 'mingw32'
   # Enable loading of pre-compiled libtag.dll
-  lib = File.expand_path(File.dirname(__FILE__))
-  ENV['PATH'] += (File::PATH_SEPARATOR + lib)
+  ENV['PATH'] += (File::PATH_SEPARATOR + __dir__)
 end
 
 require 'taglib/version'

@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 require 'taglib_aiff'
 
 module TagLib::RIFF::AIFF

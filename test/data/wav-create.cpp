@@ -1,3 +1,6 @@
+#include <iostream>
+#include <cstdlib>
+
 #include <taglib/taglib.h>
 #include <taglib/wavfile.h>
 #include <taglib/wavproperties.h>
@@ -7,12 +10,12 @@
 
 using namespace TagLib;
 
-
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file.wav" << std::endl;
-    exit(1);
+    std::cerr << "usage: " << argv[0] << " file.wav" << std::endl;
+    return EXIT_FAILURE;
   }
+
   char *filename = argv[1];
 
   RIFF::WAV::File file(filename);
@@ -32,6 +35,11 @@ int main(int argc, char **argv) {
   ID3v2::AttachedPictureFrame *apic;
 
   picture_data = getPictureData("globe_east_540.jpg");
+  if (picture_data.isEmpty()) {
+    std::cerr << "failed to get picture data" << std::endl;
+    return EXIT_FAILURE;
+  }
+
   apic = new ID3v2::AttachedPictureFrame();
   apic->setPicture(picture_data);
   apic->setMimeType("image/jpeg");
@@ -41,6 +49,11 @@ int main(int argc, char **argv) {
   tag->addFrame(apic);
 
   picture_data = getPictureData("globe_east_90.jpg");
+  if (picture_data.isEmpty()) {
+    std::cerr << "failed to get picture data" << std::endl;
+    return EXIT_FAILURE;
+  }
+
   apic = new ID3v2::AttachedPictureFrame();
   apic->setPicture(picture_data);
   apic->setMimeType("image/jpeg");
@@ -50,6 +63,8 @@ int main(int argc, char **argv) {
   tag->addFrame(apic);
 
   file.save();
+
+  return EXIT_SUCCESS;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

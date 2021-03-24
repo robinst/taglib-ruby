@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <taglib/taglib.h>
 #include <taglib/mp4file.h>
@@ -10,9 +10,10 @@ using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file.m4a" << std::endl;
-    exit(1);
+    std::cerr << "usage: " << argv[0] << " file.m4a" << std::endl;
+    return EXIT_FAILURE;
   }
+
   char *filename = argv[1];
 
   MP4::File file(filename);
@@ -26,13 +27,20 @@ int main(int argc, char **argv) {
   tag->setYear(2011);
   tag->setTrack(7);
 
-  ByteVector data = getPictureData("globe_east_90.jpg");
+  const ByteVector data = getPictureData("globe_east_90.jpg");
+  if (data.isEmpty()) {
+    std::cerr << "failed to get picture data" << std::endl;
+    return EXIT_FAILURE;
+  }
+
   MP4::CoverArt cover_art = MP4::CoverArt(MP4::CoverArt::JPEG, data);
   MP4::CoverArtList cover_art_list = MP4::CoverArtList();
   cover_art_list.append(cover_art);
   tag->itemListMap().insert("covr", MP4::Item(cover_art_list));
 
   file.save();
+
+  return EXIT_SUCCESS;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

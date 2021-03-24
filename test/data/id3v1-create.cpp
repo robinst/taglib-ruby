@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <taglib/taglib.h>
 #include <taglib/mpegfile.h>
@@ -9,9 +9,10 @@ using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file.mp3" << std::endl;
-    exit(1);
+    std::cerr << "usage: " << argv[0] << " file.mp3" << std::endl;
+    return EXIT_FAILURE;
   }
+
   char *filename = argv[1];
 
   MPEG::File file(filename);
@@ -26,6 +27,8 @@ int main(int argc, char **argv) {
   tag->setTrack(7);
 
   file.save(MPEG::File::ID3v1);
+
+  return EXIT_SUCCESS;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

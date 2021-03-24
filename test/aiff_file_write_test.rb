@@ -1,27 +1,26 @@
+# frozen-string-literal: true
+
 require File.join(File.dirname(__FILE__), 'helper')
 
 class AIFFFileWriteTest < Test::Unit::TestCase
+  SAMPLE_FILE = 'test/data/aiff-sample.aiff'
+  OUTPUT_FILE = 'test/data/_output.aiff'
+  PICTURE_FILE = 'test/data/globe_east_90.jpg'
 
-  SAMPLE_FILE = "test/data/aiff-sample.aiff"
-  OUTPUT_FILE = "test/data/_output.aiff"
-  PICTURE_FILE = "test/data/globe_east_90.jpg"
-
-  def reloaded
-    TagLib::RIFF::AIFF::File.open(OUTPUT_FILE, false) do |file|
-      yield file
-    end
+  def reloaded(&block)
+    TagLib::RIFF::AIFF::File.open(OUTPUT_FILE, false, &block)
   end
 
-  context "TagLib::RIFF::AIFF::File" do
+  context 'TagLib::RIFF::AIFF::File' do
     setup do
       FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
       @file = TagLib::RIFF::AIFF::File.new(OUTPUT_FILE, false)
     end
 
-    should "be able to save the title" do
+    should 'be able to save the title' do
       tag = @file.tag
       assert_not_nil tag
-      tag.title = "New Title"
+      tag.title = 'New Title'
       success = @file.save
       assert success
       @file.close
@@ -30,14 +29,14 @@ class AIFFFileWriteTest < Test::Unit::TestCase
       written_title = reloaded do |file|
         file.tag.title
       end
-      assert_equal "New Title", written_title
+      assert_equal 'New Title', written_title
     end
 
-    should "have one picture frame" do
+    should 'have one picture frame' do
       assert_equal 1, @file.tag.frame_list('APIC').size
     end
 
-    should "be able to remove all picture frames" do
+    should 'be able to remove all picture frames' do
       @file.tag.remove_frames('APIC')
       success = @file.save
       assert success
@@ -49,12 +48,12 @@ class AIFFFileWriteTest < Test::Unit::TestCase
       end
     end
 
-    should "be able to add a picture frame" do
+    should 'be able to add a picture frame' do
       picture_data = File.open(PICTURE_FILE, 'rb') { |f| f.read }
 
       apic = TagLib::ID3v2::AttachedPictureFrame.new
-      apic.mime_type = "image/jpeg"
-      apic.description = "desc"
+      apic.mime_type = 'image/jpeg'
+      apic.description = 'desc'
       apic.text_encoding = TagLib::String::UTF8
       apic.picture = picture_data
       apic.type = TagLib::ID3v2::AttachedPictureFrame::BackCover
@@ -70,9 +69,9 @@ class AIFFFileWriteTest < Test::Unit::TestCase
       end
 
       reloaded do |file|
-        written_apic = file.tag.frame_list("APIC")[1]
-        assert_equal "image/jpeg", written_apic.mime_type
-        assert_equal "desc", written_apic.description
+        written_apic = file.tag.frame_list('APIC')[1]
+        assert_equal 'image/jpeg', written_apic.mime_type
+        assert_equal 'desc', written_apic.description
         assert_equal picture_data, written_apic.picture
       end
     end
