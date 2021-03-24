@@ -1,40 +1,79 @@
 name: ci
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+      - 'docs/**'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [2.4, 2.7]
+        os: [ubuntu-20.04]
+        ruby: [2.5, 2.6, 2.7]
+
+    runs-on: ${{ matrix.os }}
+
     env:
+      MAKEFLAGS: -j2
       PLATFORM: x86_64-linux
       TAGLIB_VERSION: 1.11.1
-      SKIP_SWIG: true
+      SWIG_DIR: .swig-v3.0.7
+
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install
-      - name: Install taglib
-        run: bundle exec rake vendor
+
+      - name: Cache SWIG v3.0.7
+        id: cache-swig
+        uses: actions/cache@v2
+        with:
+          path: ~/${{ env.SWIG_DIR }}
+          key: swig-${{ matrix.os }}-v3.0.7
+
       - name: Install SWIG v3.0.7
         run: |
           sudo apt install yodl
           git clone --depth 1 --branch v3.0.7 https://github.com/swig/swig.git
           cd swig
           ./autogen.sh
-          ./configure
-          make
-          sudo make install
-      - name: Generate SWIG wrappers
-        run: TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake swig
-      - name: Compile
-        run: TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-$TAGLIB_VERSION/lib bundle exec rake compile
-      - name: Test
-        run: bundle exec rake test
+          ./configure --prefix=$HOME/$SWIG_DIR --with-ruby=$(which ruby) --without-alllang
+          make && make install
+
+      - name: Bundle Install
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Cache TagLib (C++)
+        id: cache-taglib
+        uses: actions/cache@v2
+        with:
+          path: tmp/${{ env.PLATFORM }}/taglib-${{ env.TAGLIB_VERSION }}
+          key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}
+
+      - name: Install TagLib (C++)
+        run: bundle exec rake vendor
+
+      - name: Generate SWIG Wrappers
+        run: |
+          touch ext/*/*.i
+          export PATH=$HOME/$SWIG_DIR/bin:$PATH
+          TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake swig
+
+      - name: Compile (taglib-ruby)
+        run: TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake compile
+
+      - name: Run Tests (taglib-ruby)
+        run: LD_LIBRARY_PATH=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION/lib bundle exec rake test
