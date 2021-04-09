@@ -32,9 +32,7 @@ installed with header files (and a C++ compiler of course):
 
 Then do:
 
-```shell
-gem install taglib-ruby
-```
+    gem install taglib-ruby
 
 ### OS X C++ compiler override
 
@@ -42,9 +40,7 @@ Not all versions of TagLib get along with `clang++`, the default C++ compiler
 on OS X. To compile taglib-ruby's C++ extensions with a different compiler
 during installation, set the `TAGLIB_RUBY_CXX` environment variable.
 
-```shell
-TAGLIB_RUBY_CXX=g++-4.2 gem install taglib-ruby
-```
+    TAGLIB_RUBY_CXX=g++-4.2 gem install taglib-ruby
 
 ## Usage
 
@@ -63,62 +59,44 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 Fedora:
 
-```shell
-sudo dnf install taglib-devel ruby-devel gcc-c++ redhat-rpm-config swig
-```
+    sudo dnf install taglib-devel ruby-devel gcc-c++ redhat-rpm-config swig
 
 ### Building
 
 Install dependencies (uses bundler, install it via `gem install bundler`
 if you don't have it):
 
-```shell
-bundle install
-```
+    bundle install
 
 Regenerate SWIG wrappers if you made changes in `.i` files (use version 3.0.7 of
 SWIG - 3.0.8 through 3.0.12 will not work):
 
-```shell
-rake swig
-```
+    rake swig
 
 Force regeneration of all SWIG wrappers:
 
-```shell
-touch ext/*/*.i
-rake swig
-```
+    touch ext/*/*.i
+    rake swig
 
 Compile extensions:
 
-```shell
-rake clean compile
-```
+    rake clean compile
 
 Run tests:
 
-```shell
-rake test
-```
+    rake test
 
 Run irb with library:
 
-```shell
-irb -Ilib -rtaglib
-```
+    irb -Ilib -rtaglib
 
 Build and install gem into system gems:
 
-```shell
-rake install
-```
+    rake install
 
 Build a specific version of Taglib:
 
-```shell
-PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 rake vendor
-```
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 rake vendor
 
 The above command will automatically download Taglib 1.11.1, build it and
 install it in `tmp/x86_64-linux/taglib-1.11.1`.
@@ -134,9 +112,7 @@ variable.
 
 To do everything in one command:
 
-```shell
-PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.11.1 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.11.1/lib rake vendor compile test
-```
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.11.1 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.11.1/lib rake vendor compile test
 
 ### Workflow
 
