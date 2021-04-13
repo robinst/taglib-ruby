@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 module TagLib
   module Version
     MAJOR = 1

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <taglib/taglib.h>
 #include <taglib/vorbisfile.h>
@@ -10,9 +10,10 @@ using namespace TagLib;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cout << "usage: " << argv[0] << " file.oga" << std::endl;
-    exit(1);
+    std::cerr << "usage: " << argv[0] << " file.oga" << std::endl;
+    return EXIT_FAILURE;
   }
+
   char *filename = argv[1];
 
   Vorbis::File file(filename);
@@ -41,7 +42,11 @@ int main(int argc, char **argv) {
   tag->addField("MULTIPLE", "A");
   tag->addField("MULTIPLE", "B", false);
 
-  ByteVector pictureData = getPictureData("globe_east_90.jpg");
+  const ByteVector data = getPictureData("globe_east_90.jpg");
+  if (data.isEmpty()) {
+    std::cerr << "failed to get picture data" << std::endl;
+    return EXIT_FAILURE;
+  }
 
   FLAC::Picture picture;
   picture.setType(FLAC::Picture::FrontCover);
@@ -51,11 +56,13 @@ int main(int argc, char **argv) {
   picture.setHeight(90);
   picture.setColorDepth(24);
   picture.setNumColors(0);
-  picture.setData(pictureData);
+  picture.setData(data);
 
   tag->addField("METADATA_BLOCK_PICTURE", picture.render().toBase64());
 
   file.save();
+
+  return EXIT_SUCCESS;
 }
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

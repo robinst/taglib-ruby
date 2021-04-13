@@ -1,5 +1,4 @@
 module TagLib::Ogg
-
   # @abstract Base class for Ogg files, see subclasses.
   class File < TagLib::File
   end
@@ -11,7 +10,6 @@ module TagLib::Ogg
   # name and a value. Multiple fields with the same name are allowed, so
   # you can also view it as a map from names to a list of values.
   class XiphComment < TagLib::Tag
-
     # Add a name-value pair to the comment.
     #
     # @param [String] name field name
@@ -113,7 +111,5 @@ module TagLib::Ogg
 
     # @return [String] vendor ID of the encoder used
     attr_reader :vendor_id
-
   end
-
 end

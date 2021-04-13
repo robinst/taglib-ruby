@@ -1,5 +1,4 @@
 module TagLib::Ogg::Vorbis
-
   # The file class for `.ogg` and other `.oga` files.
   #
   # @example Reading Vorbis comments

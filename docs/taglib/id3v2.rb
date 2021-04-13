@@ -223,7 +223,7 @@ module TagLib::ID3v2
     BandLogo           = 0x13
     PublisherLogo      = 0x14
 
-    def initialize()
+    def initialize
     end
 
     # @return [String]

@@ -1,6 +1,5 @@
 # @since 0.5.0
 module TagLib::FLAC
-
   # The file class for `.flac` files.
   #
   # Note that Xiph comments is the primary tagging format for FLAC files. When
@@ -30,7 +29,6 @@ module TagLib::FLAC
   #     file.save
   #   end
   class File < TagLib::File
-
     NoTags      = 0x0000
     XiphComment = 0x0001
     ID3v1       = 0x0002
@@ -183,7 +181,7 @@ module TagLib::FLAC
     BandLogo           = 0x13
     PublisherLogo      = 0x14
 
-    def initialize()
+    def initialize
     end
 
     # Type of the picture, see constants.

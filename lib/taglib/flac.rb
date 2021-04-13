@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 require 'taglib_flac'
 
 module TagLib::FLAC

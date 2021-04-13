@@ -1,6 +1,5 @@
 # @since 0.7.0
 module TagLib::RIFF::WAV
-
   FORMAT_UNKNOWN = 0x0000 # @since 1.0.0
   FORMAT_PCM     = 0x0001 # @since 1.0.0
 
@@ -27,7 +26,6 @@ module TagLib::RIFF::WAV
   # @see ID3v2::Tag ID3v2 examples.
   #
   class File < TagLib::File
-
     NoTags  = 0x0000
     ID3v1   = 0x0001
     ID3v2   = 0x0002
@@ -79,7 +77,6 @@ module TagLib::RIFF::WAV
     # @since 1.0.0
     def strip(tags=TagLib::RIFF::WAV::File::AllTags)
     end
-
   end
 
   class Properties < TagLib::AudioProperties
@@ -112,5 +109,4 @@ module TagLib::RIFF::WAV
     # @since 1.0.0
     attr_reader :format
   end
-
 end

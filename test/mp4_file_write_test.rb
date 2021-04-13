@@ -1,27 +1,26 @@
+# frozen-string-literal: true
+
 require File.join(File.dirname(__FILE__), 'helper')
 
 class MP4FileWriteTest < Test::Unit::TestCase
+  SAMPLE_FILE = 'test/data/mp4.m4a'
+  OUTPUT_FILE = 'test/data/output.m4a'
+  PICTURE_FILE = 'test/data/globe_east_540.jpg'
 
-  SAMPLE_FILE = "test/data/mp4.m4a"
-  OUTPUT_FILE = "test/data/output.m4a"
-  PICTURE_FILE = "test/data/globe_east_540.jpg"
-
-  def reloaded
-    TagLib::MP4::File.open(OUTPUT_FILE, false) do |file|
-      yield file
-    end
+  def reloaded(&block)
+    TagLib::MP4::File.open(OUTPUT_FILE, false, &block)
   end
 
-  context "TagLib::MP4::File" do
+  context 'TagLib::MP4::File' do
     setup do
       FileUtils.cp SAMPLE_FILE, OUTPUT_FILE
       @file = TagLib::MP4::File.new(OUTPUT_FILE, false)
     end
 
-    should "be able to save the title" do
+    should 'be able to save the title' do
       tag = @file.tag
       assert_not_nil tag
-      tag.title = "New Title"
+      tag.title = 'New Title'
       success = @file.save
       assert success
       @file.close
@@ -30,10 +29,10 @@ class MP4FileWriteTest < Test::Unit::TestCase
       written_title = reloaded do |file|
         file.tag.title
       end
-      assert_equal "New Title", written_title
+      assert_equal 'New Title', written_title
     end
 
-    should "be able to add and save new cover art" do
+    should 'be able to add and save new cover art' do
       item_map = @file.tag.item_map
       cover_art_list = item_map['covr'].to_cover_art_list
       assert_equal 1, cover_art_list.size

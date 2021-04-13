@@ -1,23 +1,24 @@
+# frozen-string-literal: true
+
 require File.join(File.dirname(__FILE__), 'helper')
 
 class TestID3v2Memory < Test::Unit::TestCase
-
   N = 1000
 
-  context "TagLib::ID3v2" do
+  context 'TagLib::ID3v2' do
     setup do
-      @file = TagLib::MPEG::File.new("test/data/sample.mp3", false)
+      @file = TagLib::MPEG::File.new('test/data/sample.mp3', false)
       @tag = @file.id3v2_tag
-      @apic = @tag.frame_list("APIC").first
+      @apic = @tag.frame_list('APIC').first
     end
 
-    should "not corrupt memory with FrameList" do
+    should 'not corrupt memory with FrameList' do
       N.times do
         @tag.frame_list
       end
     end
 
-    should "not corrupt memory with ByteVector" do
+    should 'not corrupt memory with ByteVector' do
       data = nil
       N.times do
         data = @apic.picture
@@ -27,32 +28,32 @@ class TestID3v2Memory < Test::Unit::TestCase
       end
     end
 
-    should "not corrupt memory with StringList" do
+    should 'not corrupt memory with StringList' do
       txxx = @tag.frame_list('TXXX').first
       N.times do
         txxx.field_list
       end
       N.times do
-        txxx.field_list = ["one", "two", "three"]
+        txxx.field_list = %w[one two three]
       end
     end
 
-    should "not segfault when tag is deleted along with file" do
+    should 'not segfault when tag is deleted along with file' do
       @file = nil
       begin
         N.times do
           GC.start
           @tag.title
         end
-      rescue => e
-        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      rescue StandardError => e
+        assert_equal 'ObjectPreviouslyDeleted', e.class.to_s
       else
-        raise "GC did not delete file, unsure if test was successful."
+        raise 'GC did not delete file, unsure if test was successful.'
       end
     end
 
-    should "not segfault when audio properties are deleted along with file" do
-      file = TagLib::MPEG::File.new("test/data/crash.mp3", true)
+    should 'not segfault when audio properties are deleted along with file' do
+      file = TagLib::MPEG::File.new('test/data/crash.mp3', true)
       properties = file.audio_properties
       file.close
       begin
@@ -60,20 +61,20 @@ class TestID3v2Memory < Test::Unit::TestCase
           GC.start
           properties.bitrate
         end
-      rescue => e
-        assert_equal "ObjectPreviouslyDeleted", e.class.to_s
+      rescue StandardError => e
+        assert_equal 'ObjectPreviouslyDeleted', e.class.to_s
       else
-        raise "GC did not delete file, unsure if test was successful."
+        raise 'GC did not delete file, unsure if test was successful.'
       end
     end
 
-    should "not throw when adding frame via Tag.add_frame" do
+    should 'not throw when adding frame via Tag.add_frame' do
       tcom = TagLib::ID3v2::TextIdentificationFrame.new('TCOM', TagLib::String::Latin1)
-      tcom.text = "Some composer"
+      tcom.text = 'Some composer'
       @tag.add_frame tcom
       # the following leads to an ObjectPreviouslyDeleted error (see Issue #8)
       assert_nothing_raised do
-        @tag.frame_list.find { |fr| 'TCOM' == fr.frame_id }
+        @tag.frame_list.find { |fr| fr.frame_id == 'TCOM' }
       end
     end
 

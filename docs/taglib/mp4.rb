@@ -1,5 +1,4 @@
 module TagLib::MP4
-
   # The file class for '.m4a' files.
   #
   # @example Finding an MP4 item by field name
@@ -53,7 +52,6 @@ module TagLib::MP4
   #   #  ["©too",
   #   #   #<TagLib::MP4::Item:0x007f9bab61d818 @__swigtype__="_p_TagLib__MP4__Item">]]
   class File < TagLib::File
-
     # {include:::TagLib::FileRef.open}
     #
     # @param (see #initialize)
@@ -331,7 +329,7 @@ module TagLib::MP4
     def to_h
     end
   end
-  #
+
   class Properties < TagLib::AudioProperties
     Unknown = 0
     AAC     = 1
@@ -367,7 +365,7 @@ module TagLib::MP4
 
     # Returns the raw image data
     # @return [String]
-   attr_reader :data
+    attr_reader :data
 
     # @param [Fixnum] format
     # @param [String] data

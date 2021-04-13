@@ -1,3 +1,5 @@
+# frozen-string-literal: true
+
 require 'taglib_vorbis'
 
 module TagLib::Ogg::Vorbis

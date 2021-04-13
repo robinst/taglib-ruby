@@ -1,6 +1,5 @@
 # @since 0.7.0
 module TagLib::RIFF::AIFF
-
   # The file class for `.aiff` files.
   #
   # @example Reading the title
@@ -58,7 +57,6 @@ module TagLib::RIFF::AIFF
     # @since 1.0.0
     def id3v2_tag?
     end
-
   end
 
   class Properties < TagLib::AudioProperties
@@ -91,5 +89,4 @@ module TagLib::RIFF::AIFF
     def aiff_c?
     end
   end
-
 end

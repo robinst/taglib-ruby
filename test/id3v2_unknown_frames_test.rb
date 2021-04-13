@@ -1,18 +1,20 @@
+# frozen-string-literal: true
+
 require File.join(File.dirname(__FILE__), 'helper')
 
 class TestID3v2UnknownFrames < Test::Unit::TestCase
-  context "UnknownFrame" do
+  context 'UnknownFrame' do
     setup do
       read_properties = false
-      @file = TagLib::MPEG::File.new("test/data/sample.mp3", read_properties)
+      @file = TagLib::MPEG::File.new('test/data/sample.mp3', read_properties)
       @tag = @file.id3v2_tag
     end
 
-    should "should be returned with correct class" do
-      f = TagLib::ID3v2::UnknownFrame.new("TDAT")
+    should 'should be returned with correct class' do
+      f = TagLib::ID3v2::UnknownFrame.new('TDAT')
       assert_not_nil f
       @tag.add_frame(f)
-      frames = @tag.frame_list("TDAT")
+      frames = @tag.frame_list('TDAT')
       tdat = frames.first
       assert_not_nil tdat
       # By looking at ID alone, it would have returned a
