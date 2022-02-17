@@ -19,16 +19,19 @@ class FlacFileTest < Test::Unit::TestCase
       tag = @file.xiph_comment
       assert_not_nil tag
       assert_equal TagLib::Ogg::XiphComment, tag.class
+      assert_not_nil @file.xiph_comment(true)
     end
 
     should 'have method for ID3v1 tag' do
       refute @file.id3v1_tag?
       assert_nil @file.id3v1_tag
+      assert_not_nil @file.id3v1_tag(true)
     end
 
     should 'have method for ID3v2 tag' do
       refute @file.id3v2_tag?
       assert_nil @file.id3v2_tag
+      assert_not_nil @file.id3v2_tag(true)
     end
 
     should 'support stripping tags by type' do
