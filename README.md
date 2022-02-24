@@ -34,11 +34,26 @@ Then do:
 
     gem install taglib-ruby
 
-### OS X C++ compiler override
+### MacOS
 
-Not all versions of TagLib get along with `clang++`, the default C++ compiler
-on OS X. To compile taglib-ruby's C++ extensions with a different compiler
-during installation, set the `TAGLIB_RUBY_CXX` environment variable.
+Depending on your brew setup, TagLib might be installed in different locations,
+which makes it hard for taglib-ruby to find it. To get the library location, run:
+
+    $ brew info taglib
+    taglib: stable 1.12 (bottled), HEAD
+    Audio metadata library
+    https://taglib.org/
+    /usr/local/Cellar/taglib/1.12 (122 files, 1.5MB) *
+    ...
+
+Note the line with the path at the end. Provide that using the `TAGLIB_DIR`
+environment variable when installing, like this:
+
+    TAGLIB_DIR=/usr/local/Cellar/taglib/1.12 gem install taglib-ruby
+
+Another problem might be that `clang++` doesn't work with a specific version
+of TagLib. In that case, try compiling taglib-ruby's C++ extensions with a
+different compiler:
 
     TAGLIB_RUBY_CXX=g++-4.2 gem install taglib-ruby
 
