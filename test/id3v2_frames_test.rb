@@ -166,8 +166,8 @@ class TestID3v2Frames < Test::Unit::TestCase
       end
 
       should 'have to_s' do
-        expected = '[MusicBrainz Album Id] MusicBrainz Album Id 992dc19a-5631-40f5-b252-fbfedbc328a9'
-        assert_equal expected, @txxx_frame.to_string
+        expected = /\[MusicBrainz Album Id\].* 992dc19a-5631-40f5-b252-fbfedbc328a9/
+        assert_match expected, @txxx_frame.to_string
       end
 
       should 'have field_list' do

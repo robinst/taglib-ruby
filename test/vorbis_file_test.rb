@@ -25,7 +25,7 @@ class TestVorbisFile < Test::Unit::TestCase
 
       should 'contain basic information' do
         assert_equal 0, @properties.length_in_seconds # file is short
-        assert_equal 371, @properties.bitrate
+        assert_includes [371, 76], @properties.bitrate
         assert_equal 44100, @properties.sample_rate
         assert_equal 2, @properties.channels
       end
