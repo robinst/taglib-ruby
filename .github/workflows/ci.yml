@@ -25,7 +25,7 @@ jobs:
       MAKEFLAGS: -j2
       PLATFORM: x86_64-linux
       TAGLIB_VERSION: 1.11.1
-      SWIG_DIR: .swig-v3.0.7
+      SWIG_DIR: .swig-v4.0.2
 
     steps:
       - uses: actions/checkout@v2
@@ -34,17 +34,17 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Cache SWIG v3.0.7
+      - name: Cache SWIG v4.0.2
         id: cache-swig
         uses: actions/cache@v2
         with:
           path: ~/${{ env.SWIG_DIR }}
-          key: swig-${{ matrix.os }}-v3.0.7
+          key: swig-${{ matrix.os }}-v4.0.2
 
-      - name: Install SWIG v3.0.7
+      - name: Install SWIG v4.0.2
         run: |
           sudo apt install yodl
-          git clone --depth 1 --branch v3.0.7 https://github.com/swig/swig.git
+          git clone --depth 1 --branch v4.0.2 https://github.com/swig/swig.git
           cd swig
           ./autogen.sh
           ./configure --prefix=$HOME/$SWIG_DIR --with-ruby=$(which ruby) --without-alllang
