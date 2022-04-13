@@ -1872,15 +1872,14 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ID3v2__UserTextIdentificationFrame swig_types[25]
 #define SWIGTYPE_p_TagLib__ID3v2__UserUrlLinkFrame swig_types[26]
 #define SWIGTYPE_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t swig_types[27]
-#define SWIGTYPE_p_TagLib__StringList swig_types[28]
-#define SWIGTYPE_p_TagLib__Tag swig_types[29]
-#define SWIGTYPE_p_char swig_types[30]
-#define SWIGTYPE_p_unsigned_char swig_types[31]
-#define SWIGTYPE_p_unsigned_int swig_types[32]
-#define SWIGTYPE_p_unsigned_long swig_types[33]
-#define SWIGTYPE_p_wchar_t swig_types[34]
-static swig_type_info *swig_types[36];
-static swig_module_info swig_module = {swig_types, 35, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__Tag swig_types[28]
+#define SWIGTYPE_p_char swig_types[29]
+#define SWIGTYPE_p_unsigned_char swig_types[30]
+#define SWIGTYPE_p_unsigned_int swig_types[31]
+#define SWIGTYPE_p_unsigned_long swig_types[32]
+#define SWIGTYPE_p_wchar_t swig_types[33]
+static swig_type_info *swig_types[35];
+static swig_module_info swig_module = {swig_types, 34, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -9250,9 +9249,9 @@ SWIGINTERN VALUE _wrap_new_UserTextIdentificationFrame(int nargs, VALUE *args, V
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__StringList, SWIG_POINTER_NO_NULL);
-      _v = SWIG_CheckState(res);
+      {
+        _v = TYPE(argv[1]) == T_ARRAY ? 1 : 0;
+      }
       if (_v) {
         return _wrap_new_UserTextIdentificationFrame__SWIG_4(nargs, args, self);
       }
@@ -9263,9 +9262,9 @@ SWIGINTERN VALUE _wrap_new_UserTextIdentificationFrame(int nargs, VALUE *args, V
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__StringList, SWIG_POINTER_NO_NULL);
-      _v = SWIG_CheckState(res);
+      {
+        _v = TYPE(argv[1]) == T_ARRAY ? 1 : 0;
+      }
       if (_v) {
         {
           int res = SWIG_AsVal_int(argv[2], NULL);
@@ -10707,7 +10706,6 @@ static swig_type_info _swigt__p_TagLib__ID3v2__UrlLinkFrame = {"_p_TagLib__ID3v2
 static swig_type_info _swigt__p_TagLib__ID3v2__UserTextIdentificationFrame = {"_p_TagLib__ID3v2__UserTextIdentificationFrame", "TagLib::ID3v2::UserTextIdentificationFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__UserUrlLinkFrame = {"_p_TagLib__ID3v2__UserUrlLinkFrame", "TagLib::ID3v2::UserUrlLinkFrame *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__ID3v2__Frame_p_t = {"_p_TagLib__ListT_TagLib__ID3v2__Frame_p_t", "TagLib::ID3v2::FrameList *|TagLib::List< TagLib::ID3v2::Frame * > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__StringList = {"_p_TagLib__StringList", "TagLib::StringList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
@@ -10744,7 +10742,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v2__UserTextIdentificationFrame,
   &_swigt__p_TagLib__ID3v2__UserUrlLinkFrame,
   &_swigt__p_TagLib__ListT_TagLib__ID3v2__Frame_p_t,
-  &_swigt__p_TagLib__StringList,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
   &_swigt__p_unsigned_char,
@@ -10781,7 +10778,6 @@ static swig_cast_info _swigc__p_TagLib__ID3v2__UrlLinkFrame[] = {  {&_swigt__p_T
 static swig_cast_info _swigc__p_TagLib__ID3v2__UserTextIdentificationFrame[] = {  {&_swigt__p_TagLib__ID3v2__UserTextIdentificationFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__UserUrlLinkFrame[] = {  {&_swigt__p_TagLib__ID3v2__UserUrlLinkFrame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ListT_TagLib__ID3v2__Frame_p_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__ID3v2__Frame_p_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__StringList[] = {  {&_swigt__p_TagLib__StringList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, _p_TagLib__ID3v2__TagTo_p_TagLib__Tag, 0, 0},  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
@@ -10818,7 +10814,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v2__UserTextIdentificationFrame,
   _swigc__p_TagLib__ID3v2__UserUrlLinkFrame,
   _swigc__p_TagLib__ListT_TagLib__ID3v2__Frame_p_t,
-  _swigc__p_TagLib__StringList,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
   _swigc__p_unsigned_char,

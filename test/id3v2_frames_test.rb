@@ -173,6 +173,11 @@ class TestID3v2Frames < Test::Unit::TestCase
       should 'have field_list' do
         assert_equal ['MusicBrainz Album Id', '992dc19a-5631-40f5-b252-fbfedbc328a9'], @txxx_frame.field_list
       end
+
+      should 'constructor with all arguments should work' do
+        frame = TagLib::ID3v2::UserTextIdentificationFrame.new("UserFrame", ["Some User Text"], TagLib::String::UTF8)
+        assert_equal ["UserFrame", "Some User Text"], frame.field_list
+      end
     end
 
     teardown do

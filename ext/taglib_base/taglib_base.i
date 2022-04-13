@@ -96,6 +96,9 @@ namespace TagLib {
   tmp = ruby_array_to_taglib_string_list($input);
   $1 = &tmp;
 }
+%typemap(typecheck, precedence=SWIG_TYPECHECK_LIST) TagLib::StringList {
+  $1 = TYPE($input) == T_ARRAY ? 1 : 0;
+}
 %apply TagLib::StringList { TagLib::StringList &, const TagLib::StringList & };
 
 %typemap(out) TagLib::FileName {
