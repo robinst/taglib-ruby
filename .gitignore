@@ -10,6 +10,7 @@ Makefile
 .*.swp
 .redcar
 .idea
+.vscode
 
 # Build
 /.yardoc
