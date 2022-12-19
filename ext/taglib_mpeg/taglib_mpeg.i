@@ -30,6 +30,7 @@
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool, Properties::ReadStyle);
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool);
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *);
+%ignore TagLib::MPEG::File::isSupported(IOStream *);
 %rename("id3v1_tag?") TagLib::MPEG::File::hasID3v1Tag;
 %rename("id3v2_tag?") TagLib::MPEG::File::hasID3v2Tag;
 %rename("ape_tag?") TagLib::MPEG::File::hasAPETag;

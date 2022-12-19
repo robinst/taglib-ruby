@@ -126,6 +126,7 @@ namespace TagLib {
 %ignore TagLib::MP4::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::MP4::File::File(IOStream *, bool);
 %ignore TagLib::MP4::File::File(IOStream *);
+%ignore TagLib::MP4::File::isSupported(IOStream *);
 
 // Ignore the unified property interface.
 %ignore TagLib::MP4::File::properties;
