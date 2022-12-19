@@ -34,13 +34,25 @@ namespace TagLib {
 
 // Rename setters to Ruby convention (combining SWIG rename functions
 // does not seem to be possible, thus resort to some magic)
+// We used to do this with one "command" filter, but support for that was
+// removed in SWIG 4.1.0. This is a bit uglier because we need one filter for
+// setOne, one for setOneTwo, and one for setOneTwoThree. Looks like we don't
+// need one for 4 yet.
 // setFoo -> foo=
-%rename("%(command: perl -e \"print lc(join('_', split(/(?=[A-Z])/, substr(@ARGV[0], 3)))), '='\" )s",
-        regexmatch$name="^set[A-Z]") "";
+%rename("%(regex:/set([A-Z][a-z]*)([A-Z][a-z]*)([A-Z][a-z]*)/\\L\\1_\\2_\\3=/)s",
+        regexmatch$name="^set([A-Z][a-z]*){3}$") "";
+%rename("%(regex:/set([A-Z][a-z]*)([A-Z][a-z]*)/\\L\\1_\\2=/)s",
+        regexmatch$name="^set([A-Z][a-z]*){2}$") "";
+%rename("%(regex:/set([A-Z][a-z]*)/\\L\\1=/)s",
+        regexmatch$name="^set([A-Z][a-z]*)$") "";
 
 // isFoo -> foo?
-%rename("%(command: perl -e \"print lc(join('_', split(/(?=[A-Z])/, substr(@ARGV[0], 2)))), '?'\" )s",
-        regexmatch$name="^is[A-Z]") "";
+%rename("%(regex:/is([A-Z][a-z]*)([A-Z][a-z]*)([A-Z][a-z]*)/\\L\\1_\\2_\\3?/)s",
+        regexmatch$name="^is([A-Z][a-z]*){3}$") "";
+%rename("%(regex:/is([A-Z][a-z]*)([A-Z][a-z]*)/\\L\\1_\\2?/)s",
+        regexmatch$name="^is([A-Z][a-z]*){2}$") "";
+%rename("%(regex:/is([A-Z][a-z]*)/\\L\\1?/)s",
+        regexmatch$name="^is([A-Z][a-z]*)$") "";
 
 // ByteVector
 %typemap(out) TagLib::ByteVector {
