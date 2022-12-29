@@ -110,7 +110,7 @@ file "#{tmp}/#{taglib}.tar.gz" => [tmp] do |t|
   puts "Downloading #{taglib_url}"
 
   File.open(t.name, 'wb') do |f|
-    IO.copy_stream(open(taglib_url), f)
+    IO.copy_stream(URI.open(taglib_url), f)
   end
 end
 
