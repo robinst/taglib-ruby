@@ -15,6 +15,7 @@
 %ignore TagLib::Vorbis::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::Vorbis::File::File(IOStream *, bool);
 %ignore TagLib::Vorbis::File::File(IOStream *);
+%ignore TagLib::Vorbis::File::isSupported(IOStream *);
 
 %ignore TagLib::Vorbis::Properties::length; // Deprecated.
 %include <taglib/vorbisproperties.h>

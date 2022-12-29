@@ -23,6 +23,7 @@
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *);
+%ignore TagLib::RIFF::AIFF::File::isSupported(IOStream *);
 
 // Ignore the unified property interface.
 %ignore TagLib::RIFF::AIFF::File::properties;

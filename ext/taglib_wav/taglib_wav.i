@@ -31,6 +31,7 @@ namespace TagLib {
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *);
+%ignore TagLib::RIFF::WAV::File::isSupported(IOStream *);
 
 // Ignore the unified property interface.
 %ignore TagLib::RIFF::WAV::File::properties;
