@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.3 - 2022-12-29
+### Changed
+- Fix warning `warning: undefining the allocator of T_DATA class
+  swig_runtime_data` on Ruby 3.2
+- Upgraded to SWIG 4.1.1
+
 ## 1.1.2 - 2022-04-13
 ### Fixed
 - Fix UserTextIdentificationFrame's constructor so that overloaded

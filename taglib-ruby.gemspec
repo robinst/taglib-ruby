@@ -49,6 +49,7 @@ Gem::Specification.new do |s|
     'README.md'
   ]
   s.files = [
+    '.github/FUNDING.yml',
     '.rubocop.yml',
     '.yardopts',
     'CHANGELOG.md',

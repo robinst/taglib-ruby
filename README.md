@@ -151,7 +151,7 @@ To do everything in one command:
 
 ## License
 
-Copyright (c) 2010-2020 Robin Stocker and others, see Git history.
+Copyright (c) 2010-2022 Robin Stocker and others, see Git history.
 
 `taglib-ruby` is distributed under the MIT License, see
 [LICENSE.txt](LICENSE.txt) for details.
