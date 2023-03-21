@@ -40,16 +40,20 @@ Depending on your brew setup, TagLib might be installed in different locations,
 which makes it hard for taglib-ruby to find it. To get the library location, run:
 
     $ brew info taglib
-    taglib: stable 1.12 (bottled), HEAD
+    taglib: stable 1.13 (bottled), HEAD
     Audio metadata library
     https://taglib.org/
-    /usr/local/Cellar/taglib/1.12 (122 files, 1.5MB) *
+    /opt/homebrew/Cellar/taglib/1.13 (122 files, 1.6MB) *
     ...
 
 Note the line with the path at the end. Provide that using the `TAGLIB_DIR`
 environment variable when installing, like this:
 
-    TAGLIB_DIR=/usr/local/Cellar/taglib/1.12 gem install taglib-ruby
+    TAGLIB_DIR=/opt/homebrew/Cellar/taglib/1.13 gem install taglib-ruby
+
+If you're using bundler, like this:
+
+    TAGLIB_DIR=/opt/homebrew/Cellar/taglib/1.13 bundle install
 
 Another problem might be that `clang++` doesn't work with a specific version
 of TagLib. In that case, try compiling taglib-ruby's C++ extensions with a
