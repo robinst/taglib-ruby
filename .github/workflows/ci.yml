@@ -64,7 +64,9 @@ jobs:
           key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}
 
       - name: Install TagLib (C++)
-        run: bundle exec rake vendor
+        run: |
+          sudo apt install libutfcpp-dev
+          bundle exec rake vendor
 
       - name: Generate SWIG Wrappers
         run: |
