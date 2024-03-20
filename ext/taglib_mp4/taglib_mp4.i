@@ -5,8 +5,10 @@
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
 #include <taglib/mp4atom.h>
+#include <taglib/tpicturetype.h>
 // To resolve some symbols, like AtomDataType in Item.
 using namespace TagLib::MP4;
+using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"

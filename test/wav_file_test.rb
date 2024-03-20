@@ -40,7 +40,7 @@ class WAVFileTest < Test::Unit::TestCase
 
     context 'ID3V2 tag' do
       setup do
-        @tag = @file.tag
+        @tag = @file.id3v2_tag
       end
 
       should 'exist' do

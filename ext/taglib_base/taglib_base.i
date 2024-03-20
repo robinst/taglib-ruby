@@ -6,6 +6,10 @@
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
+#include <taglib/tpropertymap.h>
+#include <taglib/tvariant.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
 %}
 
 %include "includes.i"

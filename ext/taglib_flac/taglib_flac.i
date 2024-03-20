@@ -5,6 +5,7 @@
 #include <taglib/flacproperties.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
+using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"

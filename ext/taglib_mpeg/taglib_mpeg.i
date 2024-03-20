@@ -6,6 +6,8 @@
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"
