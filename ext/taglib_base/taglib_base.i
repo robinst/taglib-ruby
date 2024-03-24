@@ -6,8 +6,6 @@
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
-#include <taglib/tpropertymap.h>
-#include <taglib/tvariant.h>
 #include <taglib/tpicturetype.h>
 using namespace TagLib;
 %}
@@ -155,7 +153,19 @@ namespace TagLib {
 %ignore TagLib::File::setProperties;
 %ignore TagLib::File::removeUnsupportedProperties;
 
+%ignore TagLib::File::complexProperties;
+%ignore TagLib::File::setComplexProperties;
+%ignore TagLib::File::complexPropertyKeys;
+
 %include <taglib/tfile.h>
+
+%ignore TagLib::FileRef::properties;
+%ignore TagLib::FileRef::setProperties;
+%ignore TagLib::FileRef::removeUnsupportedProperties;
+
+%ignore TagLib::FileRef::complexProperties;
+%ignore TagLib::FileRef::setComplexProperties;
+%ignore TagLib::FileRef::complexPropertyKeys;
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;

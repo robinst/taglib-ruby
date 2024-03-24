@@ -2031,7 +2031,6 @@ SWIG_From_int  (int value)
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
-#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -4347,7 +4346,7 @@ SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
- 
+  
   argc = nargs + 1;
   argv[0] = self;
   if (argc > 6) SWIG_fail;

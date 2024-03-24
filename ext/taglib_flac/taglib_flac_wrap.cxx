@@ -1863,18 +1863,17 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[7]
 #define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[8]
 #define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[9]
-#define SWIGTYPE_p_TagLib__ListT_VariantMap_t swig_types[10]
-#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[11]
-#define SWIGTYPE_p_TagLib__String swig_types[12]
-#define SWIGTYPE_p_TagLib__Tag swig_types[13]
-#define SWIGTYPE_p_char swig_types[14]
-#define SWIGTYPE_p_offset_t swig_types[15]
-#define SWIGTYPE_p_unsigned_char swig_types[16]
-#define SWIGTYPE_p_unsigned_int swig_types[17]
-#define SWIGTYPE_p_unsigned_long swig_types[18]
-#define SWIGTYPE_p_wchar_t swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__Ogg__XiphComment swig_types[10]
+#define SWIGTYPE_p_TagLib__String swig_types[11]
+#define SWIGTYPE_p_TagLib__Tag swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+#define SWIGTYPE_p_offset_t swig_types[14]
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2030,7 +2029,6 @@ SWIG_From_int  (int value)
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
-#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -3356,103 +3354,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_complex_property_keys(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::StringList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File const *","complexPropertyKeys", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
-  result = ((TagLib::FLAC::File const *)arg1)->complexPropertyKeys();
-  {
-    vresult = taglib_string_list_to_ruby_array(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_complex_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  SwigValueWrapper< TagLib::List< VariantMap > > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File const *","complexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = ((TagLib::FLAC::File const *)arg1)->complexProperties((TagLib::String const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::List< VariantMap >(result)), SWIGTYPE_p_TagLib__ListT_VariantMap_t, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_complex_propertiese___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::List< VariantMap > *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FLAC__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FLAC::File *","setComplexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FLAC::File * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__ListT_VariantMap_t,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< TagLib::List< VariantMap > * >(argp3);
-  result = (bool)(arg1)->setComplexProperties((TagLib::String const &)*arg2,(TagLib::List< VariantMap > const &)*arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_File_audio_properties(int argc, VALUE *argv, VALUE self) {
   TagLib::FLAC::File *arg1 = (TagLib::FLAC::File *) 0 ;
   void *argp1 = 0 ;
@@ -4115,7 +4016,6 @@ static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "
 static swig_type_info _swigt__p_TagLib__ID3v2__FrameFactory = {"_p_TagLib__ID3v2__FrameFactory", "TagLib::ID3v2::FrameFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t = {"_p_TagLib__ListT_TagLib__FLAC__Picture_t", "TagLib::FLAC::PictureList *|TagLib::List< TagLib::FLAC::Picture > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ListT_VariantMap_t = {"_p_TagLib__ListT_VariantMap_t", "TagLib::List< VariantMap > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__XiphComment = {"_p_TagLib__Ogg__XiphComment", "TagLib::Ogg::XiphComment *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
@@ -4137,7 +4037,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v2__FrameFactory,
   &_swigt__p_TagLib__ID3v2__Tag,
   &_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t,
-  &_swigt__p_TagLib__ListT_VariantMap_t,
   &_swigt__p_TagLib__Ogg__XiphComment,
   &_swigt__p_TagLib__String,
   &_swigt__p_TagLib__Tag,
@@ -4159,7 +4058,6 @@ static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID
 static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ListT_VariantMap_t[] = {  {&_swigt__p_TagLib__ListT_VariantMap_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Ogg__XiphComment[] = {  {&_swigt__p_TagLib__Ogg__XiphComment, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
@@ -4181,7 +4079,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v2__FrameFactory,
   _swigc__p_TagLib__ID3v2__Tag,
   _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t,
-  _swigc__p_TagLib__ListT_VariantMap_t,
   _swigc__p_TagLib__Ogg__XiphComment,
   _swigc__p_TagLib__String,
   _swigc__p_TagLib__Tag,
@@ -4479,9 +4376,6 @@ SWIGEXPORT void Init_taglib_flac(void) {
   rb_define_const(SwigClassFile.klass, "ID3v2", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::ID3v2)));
   rb_define_const(SwigClassFile.klass, "AllTags", SWIG_From_int(static_cast< int >(TagLib::FLAC::File::AllTags)));
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
-  rb_define_method(SwigClassFile.klass, "complex_property_keys", VALUEFUNC(_wrap_File_complex_property_keys), -1);
-  rb_define_method(SwigClassFile.klass, "complex_properties", VALUEFUNC(_wrap_File_complex_properties), -1);
-  rb_define_method(SwigClassFile.klass, "complex_properties=", VALUEFUNC(_wrap_File_complex_propertiese___), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
   rb_define_method(SwigClassFile.klass, "id3v2_tag", VALUEFUNC(_wrap_File_id3v2_tag), -1);

@@ -1857,18 +1857,16 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__File swig_types[1]
 #define SWIGTYPE_p_TagLib__FileRef swig_types[2]
 #define SWIGTYPE_p_TagLib__FileRef__FileTypeResolver swig_types[3]
-#define SWIGTYPE_p_TagLib__ListT_VariantMap_t swig_types[4]
-#define SWIGTYPE_p_TagLib__PropertyMap swig_types[5]
-#define SWIGTYPE_p_TagLib__String swig_types[6]
-#define SWIGTYPE_p_TagLib__Tag swig_types[7]
-#define SWIGTYPE_p_char swig_types[8]
-#define SWIGTYPE_p_offset_t swig_types[9]
-#define SWIGTYPE_p_unsigned_char swig_types[10]
-#define SWIGTYPE_p_unsigned_int swig_types[11]
-#define SWIGTYPE_p_unsigned_long swig_types[12]
-#define SWIGTYPE_p_wchar_t swig_types[13]
-static swig_type_info *swig_types[15];
-static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__String swig_types[4]
+#define SWIGTYPE_p_TagLib__Tag swig_types[5]
+#define SWIGTYPE_p_char swig_types[6]
+#define SWIGTYPE_p_offset_t swig_types[7]
+#define SWIGTYPE_p_unsigned_char swig_types[8]
+#define SWIGTYPE_p_unsigned_int swig_types[9]
+#define SWIGTYPE_p_unsigned_long swig_types[10]
+#define SWIGTYPE_p_wchar_t swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1944,8 +1942,6 @@ template <typename T> T SwigValueInit() {
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
-#include <taglib/tpropertymap.h>
-#include <taglib/tvariant.h>
 #include <taglib/tpicturetype.h>
 using namespace TagLib;
 
@@ -2028,7 +2024,6 @@ SWIG_From_int  (int value)
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
-#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -3192,103 +3187,6 @@ _wrap_File_tag(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
   result = (TagLib::Tag *)((TagLib::File const *)arg1)->tag();
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__Tag, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_complex_property_keys(int argc, VALUE *argv, VALUE self) {
-  TagLib::File *arg1 = (TagLib::File *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::StringList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File const *","complexPropertyKeys", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  result = ((TagLib::File const *)arg1)->complexPropertyKeys();
-  {
-    vresult = taglib_string_list_to_ruby_array(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_complex_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::File *arg1 = (TagLib::File *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  SwigValueWrapper< TagLib::List< VariantMap > > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File const *","complexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = ((TagLib::File const *)arg1)->complexProperties((TagLib::String const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::List< VariantMap >(result)), SWIGTYPE_p_TagLib__ListT_VariantMap_t, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_complex_propertiese___(int argc, VALUE *argv, VALUE self) {
-  TagLib::File *arg1 = (TagLib::File *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::List< VariantMap > *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__File, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","setComplexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__ListT_VariantMap_t,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< TagLib::List< VariantMap > * >(argp3);
-  result = (bool)(arg1)->setComplexProperties((TagLib::String const &)*arg2,(TagLib::List< VariantMap > const &)*arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
   return Qnil;
@@ -4750,189 +4648,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_FileRef_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::PropertyMap result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef const *","properties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  result = ((TagLib::FileRef const *)arg1)->properties();
-  vresult = SWIG_NewPointerObj((new TagLib::PropertyMap(result)), SWIGTYPE_p_TagLib__PropertyMap, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_remove_unsupported_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  TagLib::StringList *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::StringList tmp2 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef *","removeUnsupportedProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  {
-    tmp2 = ruby_array_to_taglib_string_list(argv[0]);
-    arg2 = &tmp2;
-  }
-  (arg1)->removeUnsupportedProperties((TagLib::StringList const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_propertiese___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  TagLib::PropertyMap *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  TagLib::PropertyMap result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef *","setProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__PropertyMap,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::PropertyMap const &","setProperties", 2, argv[0] )); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::PropertyMap const &","setProperties", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< TagLib::PropertyMap * >(argp2);
-  result = (arg1)->setProperties((TagLib::PropertyMap const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::PropertyMap(result)), SWIGTYPE_p_TagLib__PropertyMap, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_complex_property_keys(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::StringList result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef const *","complexPropertyKeys", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  result = ((TagLib::FileRef const *)arg1)->complexPropertyKeys();
-  {
-    vresult = taglib_string_list_to_ruby_array(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_complex_properties(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  SwigValueWrapper< TagLib::List< VariantMap > > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef const *","complexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  result = ((TagLib::FileRef const *)arg1)->complexProperties((TagLib::String const &)*arg2);
-  vresult = SWIG_NewPointerObj((new TagLib::List< VariantMap >(result)), SWIGTYPE_p_TagLib__ListT_VariantMap_t, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_complex_propertiese___(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
-  TagLib::String *arg2 = 0 ;
-  TagLib::List< VariantMap > *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  TagLib::String tmp2 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__FileRef, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::FileRef *","setComplexProperties", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::FileRef * >(argp1);
-  {
-    tmp2 = ruby_string_to_taglib_string(argv[0]);
-    arg2 = &tmp2;
-  }
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_TagLib__ListT_VariantMap_t,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::List< VariantMap > const &","setComplexProperties", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< TagLib::List< VariantMap > * >(argp3);
-  result = (bool)(arg1)->setComplexProperties((TagLib::String const &)*arg2,(TagLib::List< VariantMap > const &)*arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_FileRef_audio_properties(int argc, VALUE *argv, VALUE self) {
   TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
   void *argp1 = 0 ;
@@ -5153,8 +4868,6 @@ static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProp
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FileRef = {"_p_TagLib__FileRef", "TagLib::FileRef *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__FileRef__FileTypeResolver = {"_p_TagLib__FileRef__FileTypeResolver", "TagLib::FileRef::FileTypeResolver *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ListT_VariantMap_t = {"_p_TagLib__ListT_VariantMap_t", "TagLib::List< VariantMap > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__PropertyMap = {"_p_TagLib__PropertyMap", "TagLib::PropertyMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
@@ -5169,8 +4882,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__FileRef,
   &_swigt__p_TagLib__FileRef__FileTypeResolver,
-  &_swigt__p_TagLib__ListT_VariantMap_t,
-  &_swigt__p_TagLib__PropertyMap,
   &_swigt__p_TagLib__String,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
@@ -5185,8 +4896,6 @@ static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLi
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FileRef[] = {  {&_swigt__p_TagLib__FileRef, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__FileRef__FileTypeResolver[] = {  {&_swigt__p_TagLib__FileRef__FileTypeResolver, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ListT_VariantMap_t[] = {  {&_swigt__p_TagLib__ListT_VariantMap_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__PropertyMap[] = {  {&_swigt__p_TagLib__PropertyMap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
@@ -5201,8 +4910,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__FileRef,
   _swigc__p_TagLib__FileRef__FileTypeResolver,
-  _swigc__p_TagLib__ListT_VariantMap_t,
-  _swigc__p_TagLib__PropertyMap,
   _swigc__p_TagLib__String,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
@@ -5538,9 +5245,6 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_const(SwigClassFile.klass, "DoNotDuplicate", SWIG_From_int(static_cast< int >(TagLib::File::DoNotDuplicate)));
   rb_define_method(SwigClassFile.klass, "name", VALUEFUNC(_wrap_File_name), -1);
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
-  rb_define_method(SwigClassFile.klass, "complex_property_keys", VALUEFUNC(_wrap_File_complex_property_keys), -1);
-  rb_define_method(SwigClassFile.klass, "complex_properties", VALUEFUNC(_wrap_File_complex_properties), -1);
-  rb_define_method(SwigClassFile.klass, "complex_properties=", VALUEFUNC(_wrap_File_complex_propertiese___), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
   rb_define_method(SwigClassFile.klass, "save", VALUEFUNC(_wrap_File_save), -1);
   rb_define_method(SwigClassFile.klass, "read_block", VALUEFUNC(_wrap_File_read_block), -1);
@@ -5565,12 +5269,6 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_alloc_func(SwigClassFileRef.klass, _wrap_FileRef_allocate);
   rb_define_method(SwigClassFileRef.klass, "initialize", VALUEFUNC(_wrap_new_FileRef), -1);
   rb_define_method(SwigClassFileRef.klass, "tag", VALUEFUNC(_wrap_FileRef_tag), -1);
-  rb_define_method(SwigClassFileRef.klass, "properties", VALUEFUNC(_wrap_FileRef_properties), -1);
-  rb_define_method(SwigClassFileRef.klass, "remove_unsupported_properties", VALUEFUNC(_wrap_FileRef_remove_unsupported_properties), -1);
-  rb_define_method(SwigClassFileRef.klass, "properties=", VALUEFUNC(_wrap_FileRef_propertiese___), -1);
-  rb_define_method(SwigClassFileRef.klass, "complex_property_keys", VALUEFUNC(_wrap_FileRef_complex_property_keys), -1);
-  rb_define_method(SwigClassFileRef.klass, "complex_properties", VALUEFUNC(_wrap_FileRef_complex_properties), -1);
-  rb_define_method(SwigClassFileRef.klass, "complex_properties=", VALUEFUNC(_wrap_FileRef_complex_propertiese___), -1);
   rb_define_method(SwigClassFileRef.klass, "audio_properties", VALUEFUNC(_wrap_FileRef_audio_properties), -1);
   rb_define_method(SwigClassFileRef.klass, "file", VALUEFUNC(_wrap_FileRef_file), -1);
   rb_define_method(SwigClassFileRef.klass, "save", VALUEFUNC(_wrap_FileRef_save), -1);
