@@ -1,16 +1,5 @@
 # frozen-string-literal: true
 
-# Default opt dirs to help mkmf find taglib
-opt_dirs = ['/usr/local', '/opt/local', '/sw']
-
-# Heroku vendor dir
-vendor = ENV.fetch('GEM_HOME', '')[/^[^ ]*\/vendor\//]
-opt_dirs << "#{vendor}taglib" if vendor
-opt_dirs_joined = opt_dirs.join(':')
-
-configure_args = "--with-opt-dir=#{opt_dirs_joined} "
-ENV['CONFIGURE_ARGS'] = configure_args + ENV.fetch('CONFIGURE_ARGS', '')
-
 require 'mkmf'
 
 def error(msg)
@@ -45,6 +34,7 @@ unless have_library('tag')
 end
 
 $CFLAGS << ' -DSWIG_TYPE_TABLE=taglib'
+$CXXFLAGS += ' -std=c++17'
 
 # Allow users to override the Ruby runtime's preferred CXX
 RbConfig::MAKEFILE_CONFIG['CXX'] = ENV['TAGLIB_RUBY_CXX'] if ENV['TAGLIB_RUBY_CXX']

@@ -20,6 +20,7 @@ taglib_url = "https://github.com/taglib/taglib/archive/v#{taglib_version}.tar.gz
 taglib_options = ['-DCMAKE_BUILD_TYPE=Release',
                   '-DBUILD_EXAMPLES=OFF',
                   '-DBUILD_TESTS=OFF',
+                  '-DBUILD_TESTING=OFF', # used since 1.13 instead of BUILD_TESTS
                   '-DBUILD_BINDINGS=OFF', # 1.11 builds bindings by default
                   '-DBUILD_SHARED_LIBS=ON', # 1.11 builds static by default
                   '-DWITH_MP4=ON', # WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8

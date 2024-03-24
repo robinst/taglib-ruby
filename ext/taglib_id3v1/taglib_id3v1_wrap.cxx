@@ -1854,14 +1854,16 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__File swig_types[1]
 #define SWIGTYPE_p_TagLib__ID3v1__StringHandler swig_types[2]
 #define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[3]
-#define SWIGTYPE_p_TagLib__Tag swig_types[4]
-#define SWIGTYPE_p_char swig_types[5]
-#define SWIGTYPE_p_unsigned_char swig_types[6]
-#define SWIGTYPE_p_unsigned_int swig_types[7]
-#define SWIGTYPE_p_unsigned_long swig_types[8]
-#define SWIGTYPE_p_wchar_t swig_types[9]
-static swig_type_info *swig_types[11];
-static swig_module_info swig_module = {swig_types, 10, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__String swig_types[4]
+#define SWIGTYPE_p_TagLib__Tag swig_types[5]
+#define SWIGTYPE_p_char swig_types[6]
+#define SWIGTYPE_p_offset_t swig_types[7]
+#define SWIGTYPE_p_unsigned_char swig_types[8]
+#define SWIGTYPE_p_unsigned_int swig_types[9]
+#define SWIGTYPE_p_unsigned_long swig_types[10]
+#define SWIGTYPE_p_wchar_t swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1933,6 +1935,81 @@ template <typename T> T SwigValueInit() {
 
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v1genres.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
+
+
+#include <limits.h>
+#if !defined(SWIG_NO_LLONG_MAX)
+# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#   define LLONG_MAX __LONG_LONG_MAX__
+#   define LLONG_MIN (-LLONG_MAX - 1LL)
+#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+# endif
+#endif
+
+
+SWIGINTERN VALUE
+SWIG_ruby_failed(VALUE SWIGUNUSEDPARM(arg1), VALUE SWIGUNUSEDPARM(arg2))
+{
+  return Qnil;
+} 
+
+
+/*@SWIG:/opt/local/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE arg)
+{
+  VALUE *args = (VALUE *)arg;
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long *res = (long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_long (VALUE obj, long* val)
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2LONG), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_int (VALUE obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+  #define SWIG_From_long   LONG2NUM 
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_int  (int value)
+{    
+  return SWIG_From_long  (value);
+}
 
 
 #include <taglib/tstring.h>
@@ -1940,6 +2017,7 @@ template <typename T> T SwigValueInit() {
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
+#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -1953,34 +2031,26 @@ template <typename T> T SwigValueInit() {
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -2121,56 +2191,6 @@ SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 
 
 
-SWIGINTERN VALUE
-SWIG_ruby_failed(VALUE SWIGUNUSEDPARM(arg1), VALUE SWIGUNUSEDPARM(arg2))
-{
-  return Qnil;
-} 
-
-
-/*@SWIG:/usr/local/Cellar/swig/4.1.1/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE arg)
-{
-  VALUE *args = (VALUE *)arg;
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  long *res = (long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_long (VALUE obj, long* val)
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2LONG), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
-
-
-  #define SWIG_From_long   LONG2NUM 
-
-
 SWIGINTERNINLINE VALUE
 SWIG_From_unsigned_SS_long  (unsigned long value)
 {
@@ -2185,7 +2205,7 @@ SWIG_From_unsigned_SS_int  (unsigned int value)
 }
 
 
-/*@SWIG:/usr/local/Cellar/swig/4.1.1/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/opt/local/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE arg)
 {
   VALUE *args = (VALUE *)arg;
@@ -2231,29 +2251,6 @@ SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
 }
 
 
-SWIGINTERN int
-SWIG_AsVal_int (VALUE obj, int *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< int >(v);
-    }
-  }  
-  return res;
-}
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_int  (int value)
-{    
-  return SWIG_From_long  (value);
-}
-
-
 VALUE taglib_id3v1_genre_map_to_ruby_hash(const TagLib::ID3v1::GenreMap &map) {
   VALUE hsh = rb_hash_new();
   for (TagLib::ID3v1::GenreMap::ConstIterator it = map.begin(); it != map.end(); it++) {
@@ -2263,6 +2260,57 @@ VALUE taglib_id3v1_genre_map_to_ruby_hash(const TagLib::ID3v1::GenreMap &map) {
   }
   return hsh;
 }
+
+SWIGINTERN VALUE
+_wrap_picture_type_to_string(int argc, VALUE *argv, VALUE self) {
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib::Utils::pictureTypeToString", 1, argv[0] ));
+  } 
+  arg1 = static_cast< int >(val1);
+  result = TagLib::Utils::pictureTypeToString(arg1);
+  vresult = SWIG_NewPointerObj((new TagLib::String(result)), SWIGTYPE_p_TagLib__String, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_picture_type_from_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__String,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::String const &","TagLib::Utils::pictureTypeFromString", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","TagLib::Utils::pictureTypeFromString", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< TagLib::String * >(argp1);
+  result = (int)TagLib::Utils::pictureTypeFromString((TagLib::String const &)*arg1);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
 
 static swig_class SwigClassStringHandler;
 
@@ -2296,6 +2344,13 @@ fail:
   return Qnil;
 }
 
+
+SWIGINTERN void
+free_TagLib_ID3v1_StringHandler(void *self) {
+    TagLib::ID3v1::StringHandler *arg1 = (TagLib::ID3v1::StringHandler *)self;
+    SWIG_RubyRemoveTracking(arg1);
+    delete arg1;
+}
 
 SWIGINTERN VALUE
 _wrap_StringHandler_parse(int argc, VALUE *argv, VALUE self) {
@@ -2361,13 +2416,6 @@ fail:
 }
 
 
-SWIGINTERN void
-free_TagLib_ID3v1_StringHandler(void *self) {
-    TagLib::ID3v1::StringHandler *arg1 = (TagLib::ID3v1::StringHandler *)self;
-    SWIG_RubyRemoveTracking(arg1);
-    delete arg1;
-}
-
 static swig_class SwigClassTag;
 
 SWIGINTERN VALUE
@@ -2404,11 +2452,11 @@ _wrap_Tag_allocate(int argc, VALUE *argv, VALUE self)
 SWIGINTERN VALUE
 _wrap_new_Tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  long arg2 ;
+  offset_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long val2 ;
-  int ecode2 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
   TagLib::ID3v1::Tag *result = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
@@ -2419,11 +2467,17 @@ _wrap_new_Tag__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","Tag", 1, argv[0] )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_long(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","Tag", 2, argv[1] ));
-  } 
-  arg2 = static_cast< long >(val2);
+  {
+    res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_offset_t,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "offset_t","Tag", 2, argv[1] )); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "offset_t","Tag", 2, argv[1]));
+    } else {
+      arg2 = *(reinterpret_cast< offset_t * >(argp2));
+    }
+  }
   result = (TagLib::ID3v1::Tag *)new TagLib::ID3v1::Tag(arg1,arg2);
   DATA_PTR(self) = result;
   SWIG_RubyAddTracking(result, self);
@@ -2452,10 +2506,9 @@ SWIGINTERN VALUE _wrap_new_Tag(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__File, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      {
-        int res = SWIG_AsVal_long(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_offset_t, SWIG_POINTER_NO_NULL);
+      _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_new_Tag__SWIG_1(nargs, args, self);
       }
@@ -2465,7 +2518,7 @@ SWIGINTERN VALUE _wrap_new_Tag(int nargs, VALUE *args, VALUE self) {
 fail:
   Ruby_Format_OverloadedError( argc, 2, "Tag.new", 
     "    Tag.new()\n"
-    "    Tag.new(TagLib::File *file, long tagOffset)\n");
+    "    Tag.new(TagLib::File *file, offset_t tagOffset)\n");
   
   return Qnil;
 }
@@ -3061,8 +3114,10 @@ static swig_type_info _swigt__p_MapT_TagLib__String_int_t = {"_p_MapT_TagLib__St
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v1__StringHandler = {"_p_TagLib__ID3v1__StringHandler", "TagLib::ID3v1::StringHandler *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "TagLib::ID3v1::Tag *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_offset_t = {"_p_offset_t", "offset_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -3073,8 +3128,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__File,
   &_swigt__p_TagLib__ID3v1__StringHandler,
   &_swigt__p_TagLib__ID3v1__Tag,
+  &_swigt__p_TagLib__String,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
+  &_swigt__p_offset_t,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -3085,8 +3142,10 @@ static swig_cast_info _swigc__p_MapT_TagLib__String_int_t[] = {  {&_swigt__p_Map
 static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v1__StringHandler[] = {  {&_swigt__p_TagLib__ID3v1__StringHandler, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID3v1__Tag, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},  {&_swigt__p_TagLib__ID3v1__Tag, _p_TagLib__ID3v1__TagTo_p_TagLib__Tag, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_offset_t[] = {  {&_swigt__p_offset_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -3097,8 +3156,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__File,
   _swigc__p_TagLib__ID3v1__StringHandler,
   _swigc__p_TagLib__ID3v1__Tag,
+  _swigc__p_TagLib__String,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
+  _swigc__p_offset_t,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -3361,6 +3422,8 @@ SWIGEXPORT void Init_taglib_id3v1(void) {
   }
   
   SWIG_RubyInitializeTrackings();
+  rb_define_module_function(mID3v1, "picture_type_to_string", VALUEFUNC(_wrap_picture_type_to_string), -1);
+  rb_define_module_function(mID3v1, "picture_type_from_string", VALUEFUNC(_wrap_picture_type_from_string), -1);
   rb_require("taglib_base");
   
   SwigClassStringHandler.klass = rb_define_class_under(mID3v1, "StringHandler", rb_cObject);

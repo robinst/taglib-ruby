@@ -4,6 +4,8 @@
 #include <taglib/aifffile.h>
 #include <taglib/aiffproperties.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"

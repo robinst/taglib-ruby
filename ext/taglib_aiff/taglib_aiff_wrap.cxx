@@ -1853,17 +1853,21 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_TagLib__AudioProperties swig_types[0]
-#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[1]
-#define SWIGTYPE_p_TagLib__RIFF__AIFF__File swig_types[2]
-#define SWIGTYPE_p_TagLib__RIFF__AIFF__Properties swig_types[3]
-#define SWIGTYPE_p_char swig_types[4]
-#define SWIGTYPE_p_unsigned_char swig_types[5]
-#define SWIGTYPE_p_unsigned_int swig_types[6]
-#define SWIGTYPE_p_unsigned_long swig_types[7]
-#define SWIGTYPE_p_wchar_t swig_types[8]
-static swig_type_info *swig_types[10];
-static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
+#define SWIGTYPE_p_IOStream swig_types[0]
+#define SWIGTYPE_p_TagLib__AudioProperties swig_types[1]
+#define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[2]
+#define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[3]
+#define SWIGTYPE_p_TagLib__ID3v2__Version swig_types[4]
+#define SWIGTYPE_p_TagLib__RIFF__AIFF__File swig_types[5]
+#define SWIGTYPE_p_TagLib__RIFF__AIFF__Properties swig_types[6]
+#define SWIGTYPE_p_TagLib__String swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+#define SWIGTYPE_p_unsigned_char swig_types[9]
+#define SWIGTYPE_p_unsigned_int swig_types[10]
+#define SWIGTYPE_p_unsigned_long swig_types[11]
+#define SWIGTYPE_p_wchar_t swig_types[12]
+static swig_type_info *swig_types[14];
+static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1937,6 +1941,81 @@ template <typename T> T SwigValueInit() {
 #include <taglib/aifffile.h>
 #include <taglib/aiffproperties.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
+
+
+#include <limits.h>
+#if !defined(SWIG_NO_LLONG_MAX)
+# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#   define LLONG_MAX __LONG_LONG_MAX__
+#   define LLONG_MIN (-LLONG_MAX - 1LL)
+#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+# endif
+#endif
+
+
+SWIGINTERN VALUE
+SWIG_ruby_failed(VALUE SWIGUNUSEDPARM(arg1), VALUE SWIGUNUSEDPARM(arg2))
+{
+  return Qnil;
+} 
+
+
+/*@SWIG:/opt/local/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE arg)
+{
+  VALUE *args = (VALUE *)arg;
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long *res = (long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_long (VALUE obj, long* val)
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2LONG), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_int (VALUE obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+  #define SWIG_From_long   LONG2NUM 
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_int  (int value)
+{    
+  return SWIG_From_long  (value);
+}
 
 
 #include <taglib/tstring.h>
@@ -1944,6 +2023,7 @@ template <typename T> T SwigValueInit() {
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
+#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -1957,34 +2037,26 @@ template <typename T> T SwigValueInit() {
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -2073,79 +2145,6 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
-
-
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
-
-
-SWIGINTERN VALUE
-SWIG_ruby_failed(VALUE SWIGUNUSEDPARM(arg1), VALUE SWIGUNUSEDPARM(arg2))
-{
-  return Qnil;
-} 
-
-
-/*@SWIG:/usr/local/Cellar/swig/4.1.1/share/swig/4.1.1/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE arg)
-{
-  VALUE *args = (VALUE *)arg;
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  long *res = (long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_long (VALUE obj, long* val)
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2LONG), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_int (VALUE obj, int *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = static_cast< int >(v);
-    }
-  }  
-  return res;
-}
-
-
-  #define SWIG_From_long   LONG2NUM 
-
-
-SWIGINTERNINLINE VALUE
-SWIG_From_int  (int value)
-{    
-  return SWIG_From_long  (value);
-}
 
 
 SWIGINTERNINLINE VALUE
@@ -2270,6 +2269,57 @@ SWIGINTERN void TagLib_RIFF_AIFF_File_close(TagLib::RIFF::AIFF::File *self){
     delete file;
   }
 
+SWIGINTERN VALUE
+_wrap_picture_type_to_string(int argc, VALUE *argv, VALUE self) {
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib::Utils::pictureTypeToString", 1, argv[0] ));
+  } 
+  arg1 = static_cast< int >(val1);
+  result = TagLib::Utils::pictureTypeToString(arg1);
+  vresult = SWIG_NewPointerObj((new TagLib::String(result)), SWIGTYPE_p_TagLib__String, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_picture_type_from_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_TagLib__String,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::String const &","TagLib::Utils::pictureTypeFromString", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::String const &","TagLib::Utils::pictureTypeFromString", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< TagLib::String * >(argp1);
+  result = (int)TagLib::Utils::pictureTypeFromString((TagLib::String const &)*arg1);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 static swig_class SwigClassProperties;
 
 SWIGINTERN VALUE
@@ -2325,30 +2375,6 @@ free_TagLib_RIFF_AIFF_Properties(void *self) {
     SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
-
-SWIGINTERN VALUE
-_wrap_Properties_length_in_seconds(int argc, VALUE *argv, VALUE self) {
-  TagLib::RIFF::AIFF::Properties *arg1 = (TagLib::RIFF::AIFF::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__RIFF__AIFF__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::Properties const *","lengthInSeconds", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::RIFF::AIFF::Properties * >(argp1);
-  result = (int)((TagLib::RIFF::AIFF::Properties const *)arg1)->lengthInSeconds();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
 
 SWIGINTERN VALUE
 _wrap_Properties_length_in_milliseconds(int argc, VALUE *argv, VALUE self) {
@@ -2577,6 +2603,53 @@ _wrap_new_File__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::FileName arg1 ;
   bool arg2 ;
   TagLib::RIFF::AIFF::Properties::ReadStyle arg3 ;
+  TagLib::ID3v2::FrameFactory *arg4 = (TagLib::ID3v2::FrameFactory *) 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  TagLib::RIFF::AIFF::File *result = 0 ;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  {
+    arg1 = ruby_string_to_taglib_filename(argv[0]);
+    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
+      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
+    }
+  }
+  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","File", 2, argv[1] ));
+  } 
+  arg2 = static_cast< bool >(val2);
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::Properties::ReadStyle","File", 3, argv[2] ));
+  } 
+  arg3 = static_cast< TagLib::RIFF::AIFF::Properties::ReadStyle >(val3);
+  res4 = SWIG_ConvertPtr(argv[3], &argp4,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory *","File", 4, argv[3] )); 
+  }
+  arg4 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp4);
+  result = (TagLib::RIFF::AIFF::File *)new TagLib::RIFF::AIFF::File(arg1,arg2,arg3,arg4);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::FileName arg1 ;
+  bool arg2 ;
+  TagLib::RIFF::AIFF::Properties::ReadStyle arg3 ;
   bool val2 ;
   int ecode2 = 0 ;
   int val3 ;
@@ -2612,7 +2685,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_File__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
   TagLib::FileName arg1 ;
   bool arg2 ;
   bool val2 ;
@@ -2643,22 +2716,7 @@ fail:
 
 
 SWIGINTERN VALUE
-#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
-_wrap_File_allocate(VALUE self)
-#else
-_wrap_File_allocate(int argc, VALUE *argv, VALUE self)
-#endif
-{
-  VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__RIFF__AIFF__File);
-#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
-  rb_obj_call_init(vresult, argc, argv);
-#endif
-  return vresult;
-}
-
-
-SWIGINTERN VALUE
-_wrap_new_File__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_new_File__SWIG_3(int argc, VALUE *argv, VALUE self) {
   TagLib::FileName arg1 ;
   TagLib::RIFF::AIFF::File *result = 0 ;
   
@@ -2680,13 +2738,76 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+_wrap_File_allocate(VALUE self)
+#else
+_wrap_File_allocate(int argc, VALUE *argv, VALUE self)
+#endif
+{
+  VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_TagLib__RIFF__AIFF__File);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+  rb_obj_call_init(vresult, argc, argv);
+#endif
+  return vresult;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_File__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  IOStream *arg1 = (IOStream *) 0 ;
+  bool arg2 ;
+  TagLib::RIFF::AIFF::Properties::ReadStyle arg3 ;
+  TagLib::ID3v2::FrameFactory *arg4 = (TagLib::ID3v2::FrameFactory *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  TagLib::RIFF::AIFF::File *result = 0 ;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1,SWIGTYPE_p_IOStream, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "IOStream *","File", 1, argv[0] )); 
+  }
+  arg1 = reinterpret_cast< IOStream * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","File", 2, argv[1] ));
+  } 
+  arg2 = static_cast< bool >(val2);
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::Properties::ReadStyle","File", 3, argv[2] ));
+  } 
+  arg3 = static_cast< TagLib::RIFF::AIFF::Properties::ReadStyle >(val3);
+  res4 = SWIG_ConvertPtr(argv[3], &argp4,SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ID3v2::FrameFactory *","File", 4, argv[3] )); 
+  }
+  arg4 = reinterpret_cast< TagLib::ID3v2::FrameFactory * >(argp4);
+  result = (TagLib::RIFF::AIFF::File *)new TagLib::RIFF::AIFF::File(arg1,arg2,arg3,arg4);
+  DATA_PTR(self) = result;
+  SWIG_RubyAddTracking(result, self);
+  return self;
+fail:
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
   int argc;
-  VALUE argv[3];
+  VALUE argv[4];
   int ii;
   
   argc = nargs;
-  if (argc > 3) SWIG_fail;
+  if (argc > 4) SWIG_fail;
   for (ii = 0; (ii < argc); ++ii) {
     argv[ii] = args[ii];
   }
@@ -2695,7 +2816,7 @@ SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_File__SWIG_2(nargs, args, self);
+      return _wrap_new_File__SWIG_3(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -2708,7 +2829,7 @@ SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_new_File__SWIG_1(nargs, args, self);
+        return _wrap_new_File__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -2727,17 +2848,70 @@ SWIGINTERN VALUE _wrap_new_File(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_File__SWIG_0(nargs, args, self);
+          return _wrap_new_File__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_IOStream, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_new_File__SWIG_4(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v = 0;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_TagLib__ID3v2__FrameFactory, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_new_File__SWIG_0(nargs, args, self);
+          }
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "File.new", 
+  Ruby_Format_OverloadedError( argc, 4, "File.new", 
+    "    File.new(TagLib::FileName file, bool readProperties, TagLib::RIFF::AIFF::Properties::ReadStyle propertiesStyle, TagLib::ID3v2::FrameFactory *frameFactory)\n"
     "    File.new(TagLib::FileName file, bool readProperties, TagLib::RIFF::AIFF::Properties::ReadStyle propertiesStyle)\n"
     "    File.new(TagLib::FileName file, bool readProperties)\n"
-    "    File.new(TagLib::FileName file)\n");
+    "    File.new(TagLib::FileName file)\n"
+    "    File.new(IOStream *stream, bool readProperties, TagLib::RIFF::AIFF::Properties::ReadStyle propertiesStyle, TagLib::ID3v2::FrameFactory *frameFactory)\n");
   
   return Qnil;
 }
@@ -2792,7 +2966,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_File_save(int argc, VALUE *argv, VALUE self) {
+_wrap_File_save__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::RIFF::AIFF::File *arg1 = (TagLib::RIFF::AIFF::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2811,6 +2985,88 @@ _wrap_File_save(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_File_save__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  TagLib::RIFF::AIFF::File *arg1 = (TagLib::RIFF::AIFF::File *) 0 ;
+  TagLib::ID3v2::Version arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__RIFF__AIFF__File, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::RIFF::AIFF::File *","save", 1, self )); 
+  }
+  arg1 = reinterpret_cast< TagLib::RIFF::AIFF::File * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_TagLib__ID3v2__Version,  0 );
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "TagLib::ID3v2::Version","save", 2, argv[0] )); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ID3v2::Version","save", 2, argv[0]));
+    } else {
+      arg2 = *(reinterpret_cast< TagLib::ID3v2::Version * >(argp2));
+    }
+  }
+  result = (bool)(arg1)->save(arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__RIFF__AIFF__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_File_save__SWIG_0(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TagLib__RIFF__AIFF__File, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_TagLib__ID3v2__Version, SWIG_POINTER_NO_NULL);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_File_save__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "File.save", 
+    "    bool File.save()\n"
+    "    bool File.save(TagLib::ID3v2::Version version)\n");
+  
   return Qnil;
 }
 
@@ -2866,10 +3122,14 @@ fail:
 static void *_p_TagLib__RIFF__AIFF__PropertiesTo_p_TagLib__AudioProperties(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((TagLib::AudioProperties *)  ((TagLib::RIFF::AIFF::Properties *) x));
 }
+static swig_type_info _swigt__p_IOStream = {"_p_IOStream", "IOStream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ID3v2__FrameFactory = {"_p_TagLib__ID3v2__FrameFactory", "TagLib::ID3v2::FrameFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__ID3v2__Version = {"_p_TagLib__ID3v2__Version", "TagLib::ID3v2::Version *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__RIFF__AIFF__File = {"_p_TagLib__RIFF__AIFF__File", "TagLib::RIFF::AIFF::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__RIFF__AIFF__Properties = {"_p_TagLib__RIFF__AIFF__Properties", "TagLib::RIFF::AIFF::Properties *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
@@ -2877,10 +3137,14 @@ static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ul
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "TagLib::wchar *|wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_IOStream,
   &_swigt__p_TagLib__AudioProperties,
+  &_swigt__p_TagLib__ID3v2__FrameFactory,
   &_swigt__p_TagLib__ID3v2__Tag,
+  &_swigt__p_TagLib__ID3v2__Version,
   &_swigt__p_TagLib__RIFF__AIFF__File,
   &_swigt__p_TagLib__RIFF__AIFF__Properties,
+  &_swigt__p_TagLib__String,
   &_swigt__p_char,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
@@ -2888,10 +3152,14 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
+static swig_cast_info _swigc__p_IOStream[] = {  {&_swigt__p_IOStream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__AudioProperties[] = {  {&_swigt__p_TagLib__AudioProperties, 0, 0, 0},  {&_swigt__p_TagLib__RIFF__AIFF__Properties, _p_TagLib__RIFF__AIFF__PropertiesTo_p_TagLib__AudioProperties, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__ID3v2__Version[] = {  {&_swigt__p_TagLib__ID3v2__Version, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__RIFF__AIFF__File[] = {  {&_swigt__p_TagLib__RIFF__AIFF__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__RIFF__AIFF__Properties[] = {  {&_swigt__p_TagLib__RIFF__AIFF__Properties, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -2899,10 +3167,14 @@ static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_IOStream,
   _swigc__p_TagLib__AudioProperties,
+  _swigc__p_TagLib__ID3v2__FrameFactory,
   _swigc__p_TagLib__ID3v2__Tag,
+  _swigc__p_TagLib__ID3v2__Version,
   _swigc__p_TagLib__RIFF__AIFF__File,
   _swigc__p_TagLib__RIFF__AIFF__Properties,
+  _swigc__p_TagLib__String,
   _swigc__p_char,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
@@ -3167,13 +3439,14 @@ SWIGEXPORT void Init_taglib_aiff(void) {
   }
   
   SWIG_RubyInitializeTrackings();
+  rb_define_module_function(mAIFF, "picture_type_to_string", VALUEFUNC(_wrap_picture_type_to_string), -1);
+  rb_define_module_function(mAIFF, "picture_type_from_string", VALUEFUNC(_wrap_picture_type_from_string), -1);
   rb_require("taglib_base");
   
   SwigClassProperties.klass = rb_define_class_under(mAIFF, "Properties", ((swig_class *) SWIGTYPE_p_TagLib__AudioProperties->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__RIFF__AIFF__Properties, (void *) &SwigClassProperties);
   rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
   rb_define_method(SwigClassProperties.klass, "initialize", VALUEFUNC(_wrap_new_Properties), -1);
-  rb_define_method(SwigClassProperties.klass, "length_in_seconds", VALUEFUNC(_wrap_Properties_length_in_seconds), -1);
   rb_define_method(SwigClassProperties.klass, "length_in_milliseconds", VALUEFUNC(_wrap_Properties_length_in_milliseconds), -1);
   rb_define_method(SwigClassProperties.klass, "bitrate", VALUEFUNC(_wrap_Properties_bitrate), -1);
   rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);

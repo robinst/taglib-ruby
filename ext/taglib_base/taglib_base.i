@@ -6,6 +6,10 @@
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
+#include <taglib/tpropertymap.h>
+#include <taglib/tvariant.h>
+#include <taglib/tpicturetype.h>
+using namespace TagLib;
 %}
 
 %include "includes.i"
@@ -134,6 +138,10 @@ namespace TagLib {
 %ignore TagLib::Tag::properties;
 %ignore TagLib::Tag::setProperties;
 %ignore TagLib::Tag::removeUnsupportedProperties;
+
+%ignore TagLib::Tag::complexProperties;
+%ignore TagLib::Tag::setComplexProperties;
+%ignore TagLib::Tag::complexPropertyKeys;
 
 %include <taglib/tag.h>
 

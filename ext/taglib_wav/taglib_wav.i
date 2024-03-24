@@ -4,7 +4,10 @@
 #include <taglib/wavfile.h>
 #include <taglib/wavproperties.h>
 #include <taglib/id3v2tag.h>
+#include <taglib/tpicturetype.h>
 using namespace TagLib::RIFF;
+using namespace TagLib;
+using StripTags = TagLib::File::StripTags;
 %}
 
 %include "../taglib_base/includes.i"
@@ -55,7 +58,11 @@ namespace TagLib {
   static void free_taglib_riff_wav_file(void *ptr) {
     TagLib::RIFF::WAV::File *file = (TagLib::RIFF::WAV::File *) ptr;
 
+#if TAGLIB_MAJOR_VERSION >= 2
+    TagLib::ID3v2::Tag *id3v2tag = file->ID3v2Tag();
+#else
     TagLib::ID3v2::Tag *id3v2tag = file->tag();
+#endif
     if (id3v2tag) {
       TagLib::ID3v2::FrameList frames = id3v2tag->frameList();
       for (TagLib::ID3v2::FrameList::ConstIterator it = frames.begin(); it != frames.end(); it++) {
