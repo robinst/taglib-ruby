@@ -31,6 +31,7 @@ namespace TagLib {
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
+%ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle, ID3v2::FrameFactory *f);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *);

@@ -21,9 +21,13 @@ using namespace TagLib;
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
-%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*, bool, Properties::ReadStyle);
-%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*, bool);
-%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory*);
+%ignore TagLib::FLAC::File::File(IOStream*, bool, Properties::ReadStyle, ID3v2::FrameFactory *);
+%ignore TagLib::FLAC::File::File(IOStream*, bool, Properties::ReadStyle);
+%ignore TagLib::FLAC::File::File(IOStream*, bool);
+%ignore TagLib::FLAC::File::File(IOStream*);
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory *, bool, Properties::ReadStyle);
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory *, bool);
+%ignore TagLib::FLAC::File::File(IOStream*, ID3v2::FrameFactory *);
 %ignore TagLib::FLAC::File::isSupported(IOStream *);
 
 %rename(id3v1_tag) TagLib::FLAC::File::ID3v1Tag;

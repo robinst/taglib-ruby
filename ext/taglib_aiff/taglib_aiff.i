@@ -22,6 +22,7 @@ using namespace TagLib;
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
+%ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle, ID3v2::FrameFactory *);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *);
