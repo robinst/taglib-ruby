@@ -1,15 +1,19 @@
 # frozen-string-literal: true
 
-# Default opt dirs to help mkmf find taglib
-opt_dirs = ['/usr/local', '/opt/local', '/sw']
+taglib_dir = ENV['TAGLIB_DIR']
 
-# Heroku vendor dir
-vendor = ENV.fetch('GEM_HOME', '')[/^[^ ]*\/vendor\//]
-opt_dirs << "#{vendor}taglib" if vendor
-opt_dirs_joined = opt_dirs.join(':')
-
-configure_args = "--with-opt-dir=#{opt_dirs_joined} "
-ENV['CONFIGURE_ARGS'] = configure_args + ENV.fetch('CONFIGURE_ARGS', '')
+unless taglib_dir
+  # Default opt dirs to help mkmf find taglib
+  opt_dirs = ['/usr/local', '/opt/local', '/sw']
+  
+  # Heroku vendor dir
+  vendor = ENV.fetch('GEM_HOME', '')[/^[^ ]*\/vendor\//]
+  opt_dirs << "#{vendor}taglib" if vendor
+  opt_dirs_joined = opt_dirs.join(':')
+  
+  configure_args = "--with-opt-dir=#{opt_dirs_joined} "
+  ENV['CONFIGURE_ARGS'] = configure_args + ENV.fetch('CONFIGURE_ARGS', '')
+end
 
 require 'mkmf'
 
@@ -18,14 +22,14 @@ def error(msg)
   abort
 end
 
-if ENV.key?('TAGLIB_DIR') && !File.directory?(ENV['TAGLIB_DIR'])
+if taglib_dir && !File.directory?(taglib_dir)
   error 'When defined, the TAGLIB_DIR environment variable must point to a valid directory.'
 end
 
 # If specified, use the TAGLIB_DIR environment variable as the prefix
 # for finding taglib headers and libs. See MakeMakefile#dir_config
 # for more details.
-dir_config('tag', (ENV['TAGLIB_DIR'] if ENV.key?('TAGLIB_DIR')))
+dir_config('tag', taglib_dir)
 
 # When compiling statically, -lstdc++ would make the resulting .so to
 # have a dependency on an external libstdc++ instead of the static one.
