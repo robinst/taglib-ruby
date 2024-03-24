@@ -1860,21 +1860,20 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__ID3v1__Tag swig_types[4]
 #define SWIGTYPE_p_TagLib__ID3v2__FrameFactory swig_types[5]
 #define SWIGTYPE_p_TagLib__ID3v2__Tag swig_types[6]
-#define SWIGTYPE_p_TagLib__ID3v2__Version swig_types[7]
-#define SWIGTYPE_p_TagLib__MPEG__File swig_types[8]
-#define SWIGTYPE_p_TagLib__MPEG__Header swig_types[9]
-#define SWIGTYPE_p_TagLib__MPEG__Properties swig_types[10]
-#define SWIGTYPE_p_TagLib__MPEG__XingHeader swig_types[11]
-#define SWIGTYPE_p_TagLib__String swig_types[12]
-#define SWIGTYPE_p_TagLib__Tag swig_types[13]
-#define SWIGTYPE_p_char swig_types[14]
-#define SWIGTYPE_p_offset_t swig_types[15]
-#define SWIGTYPE_p_unsigned_char swig_types[16]
-#define SWIGTYPE_p_unsigned_int swig_types[17]
-#define SWIGTYPE_p_unsigned_long swig_types[18]
-#define SWIGTYPE_p_wchar_t swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_TagLib__MPEG__File swig_types[7]
+#define SWIGTYPE_p_TagLib__MPEG__Header swig_types[8]
+#define SWIGTYPE_p_TagLib__MPEG__Properties swig_types[9]
+#define SWIGTYPE_p_TagLib__MPEG__XingHeader swig_types[10]
+#define SWIGTYPE_p_TagLib__String swig_types[11]
+#define SWIGTYPE_p_TagLib__Tag swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+#define SWIGTYPE_p_offset_t swig_types[14]
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4181,8 +4180,8 @@ _wrap_File_save__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
   int val5 ;
   int ecode5 = 0 ;
   bool result;
@@ -4206,17 +4205,11 @@ _wrap_File_save__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::File::StripTags","save", 3, argv[1] ));
   } 
   arg3 = static_cast< TagLib::File::StripTags >(val3);
-  {
-    res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_TagLib__ID3v2__Version,  0 );
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ID3v2::Version","save", 4, argv[2] )); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ID3v2::Version","save", 4, argv[2]));
-    } else {
-      arg4 = *(reinterpret_cast< TagLib::ID3v2::Version * >(argp4));
-    }
-  }
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::ID3v2::Version","save", 4, argv[2] ));
+  } 
+  arg4 = static_cast< TagLib::ID3v2::Version >(val4);
   ecode5 = SWIG_AsVal_int(argv[3], &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), Ruby_Format_TypeError( "", "TagLib::File::DuplicateTags","save", 5, argv[3] ));
@@ -4242,8 +4235,8 @@ _wrap_File_save__SWIG_2(int argc, VALUE *argv, VALUE self) {
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
   bool result;
   VALUE vresult = Qnil;
   
@@ -4265,17 +4258,11 @@ _wrap_File_save__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::File::StripTags","save", 3, argv[1] ));
   } 
   arg3 = static_cast< TagLib::File::StripTags >(val3);
-  {
-    res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_TagLib__ID3v2__Version,  0 );
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "TagLib::ID3v2::Version","save", 4, argv[2] )); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "TagLib::ID3v2::Version","save", 4, argv[2]));
-    } else {
-      arg4 = *(reinterpret_cast< TagLib::ID3v2::Version * >(argp4));
-    }
-  }
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "TagLib::ID3v2::Version","save", 4, argv[2] ));
+  } 
+  arg4 = static_cast< TagLib::ID3v2::Version >(val4);
   result = (bool)(arg1)->save(arg2,arg3,arg4);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
@@ -4360,7 +4347,7 @@ SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
-  
+ 
   argc = nargs + 1;
   argv[0] = self;
   if (argc > 6) SWIG_fail;
@@ -4428,9 +4415,10 @@ SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_TagLib__ID3v2__Version, SWIG_POINTER_NO_NULL);
-          _v = SWIG_CheckState(res);
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
           if (_v) {
             return _wrap_File_save__SWIG_2(nargs, args, self);
           }
@@ -4454,9 +4442,10 @@ SWIGINTERN VALUE _wrap_File_save(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          void *vptr = 0;
-          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_TagLib__ID3v2__Version, SWIG_POINTER_NO_NULL);
-          _v = SWIG_CheckState(res);
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
           if (_v) {
             {
               int res = SWIG_AsVal_int(argv[4], NULL);
@@ -5182,7 +5171,6 @@ static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File
 static swig_type_info _swigt__p_TagLib__ID3v1__Tag = {"_p_TagLib__ID3v1__Tag", "TagLib::ID3v1::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__FrameFactory = {"_p_TagLib__ID3v2__FrameFactory", "TagLib::ID3v2::FrameFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ID3v2__Tag = {"_p_TagLib__ID3v2__Tag", "TagLib::ID3v2::Tag *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__ID3v2__Version = {"_p_TagLib__ID3v2__Version", "TagLib::ID3v2::Version *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MPEG__File = {"_p_TagLib__MPEG__File", "TagLib::MPEG::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MPEG__Header = {"_p_TagLib__MPEG__Header", "TagLib::MPEG::Header *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__MPEG__Properties = {"_p_TagLib__MPEG__Properties", "TagLib::MPEG::Properties *", 0, 0, (void*)0, 0};
@@ -5204,7 +5192,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__ID3v1__Tag,
   &_swigt__p_TagLib__ID3v2__FrameFactory,
   &_swigt__p_TagLib__ID3v2__Tag,
-  &_swigt__p_TagLib__ID3v2__Version,
   &_swigt__p_TagLib__MPEG__File,
   &_swigt__p_TagLib__MPEG__Header,
   &_swigt__p_TagLib__MPEG__Properties,
@@ -5226,7 +5213,6 @@ static swig_cast_info _swigc__p_TagLib__File[] = {  {&_swigt__p_TagLib__File, 0,
 static swig_cast_info _swigc__p_TagLib__ID3v1__Tag[] = {  {&_swigt__p_TagLib__ID3v1__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__FrameFactory[] = {  {&_swigt__p_TagLib__ID3v2__FrameFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ID3v2__Tag[] = {  {&_swigt__p_TagLib__ID3v2__Tag, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_TagLib__ID3v2__Version[] = {  {&_swigt__p_TagLib__ID3v2__Version, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MPEG__File[] = {  {&_swigt__p_TagLib__MPEG__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MPEG__Header[] = {  {&_swigt__p_TagLib__MPEG__Header, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__MPEG__Properties[] = {  {&_swigt__p_TagLib__MPEG__Properties, 0, 0, 0},{0, 0, 0, 0}};
@@ -5248,7 +5234,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__ID3v1__Tag,
   _swigc__p_TagLib__ID3v2__FrameFactory,
   _swigc__p_TagLib__ID3v2__Tag,
-  _swigc__p_TagLib__ID3v2__Version,
   _swigc__p_TagLib__MPEG__File,
   _swigc__p_TagLib__MPEG__Header,
   _swigc__p_TagLib__MPEG__Properties,
@@ -5537,6 +5522,8 @@ SWIGEXPORT void Init_taglib_mpeg(void) {
   SwigClassXingHeader.mark = 0;
   SwigClassXingHeader.destroy = (void (*)(void *)) free_TagLib_MPEG_XingHeader;
   SwigClassXingHeader.trackObjects = 1;
+  rb_define_const(mMPEG, "V3", SWIG_From_int(static_cast< int >(TagLib::ID3v2::v3)));
+  rb_define_const(mMPEG, "V4", SWIG_From_int(static_cast< int >(TagLib::ID3v2::v4)));
   
   SwigClassHeader.klass = rb_define_class_under(mMPEG, "Header", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__MPEG__Header, (void *) &SwigClassHeader);

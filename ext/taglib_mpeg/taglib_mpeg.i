@@ -16,6 +16,7 @@ using namespace TagLib;
 %ignore TagLib::MPEG::Header::operator=;
 %include <taglib/xingheader.h>
 
+%include <taglib/id3v2.h>
 %include <taglib/mpegheader.h>
 
 %ignore TagLib::MPEG::length; // Deprecated.
