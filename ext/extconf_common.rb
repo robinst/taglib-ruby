@@ -46,5 +46,10 @@ end
 
 $CFLAGS << ' -DSWIG_TYPE_TABLE=taglib'
 
+# TagLib 2.0 requires C++17. Some compilers default to an older standard
+# so we add this '-std=' option to make sure the compiler accepts C++17
+# code.
+$CXXFLAGS << ' -std=c++17'
+
 # Allow users to override the Ruby runtime's preferred CXX
 RbConfig::MAKEFILE_CONFIG['CXX'] = ENV['TAGLIB_RUBY_CXX'] if ENV['TAGLIB_RUBY_CXX']
