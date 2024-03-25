@@ -3,7 +3,7 @@
 Ruby interface for the [TagLib C++ library][taglib], for reading and
 writing meta-data (tags) of many audio formats.
 
-In contrast to other libraries, this one wraps the full C++ API, not
+In contrast to other libraries, this one wraps the C++ API, not
 only the minimal C API. This means that all tag data can be accessed,
 e.g. cover art of ID3v2 or custom fields of Ogg Vorbis comments.
 
@@ -15,17 +15,21 @@ e.g. cover art of ID3v2 or custom fields of Ogg Vorbis comments.
 * Reading/writing MP4 tags (.m4a)
 * Reading audio properties (e.g. bitrate) of the above formats
 
-Contributions for more coverage of the library are very welcome.
+Requirements:
+* Ruby >= 3.0
+* TagLib >= 2.0
+
+Contributions, e.g. for more coverage of the library are very welcome.
 
 [![Gem version][gem-img]][gem-link]
 [![ci](https://github.com/robinst/taglib-ruby/workflows/ci/badge.svg)](https://github.com/robinst/taglib-ruby/actions?query=workflow%3Aci)
 
 ## Installation
 
-Before you install the gem, make sure to have [taglib 1.11.1 or higher][taglib]
+Before you install the gem, make sure to have [taglib 2.0 or higher][taglib]
 installed with header files (and a C++ compiler of course):
 
-* Debian/Ubuntu: `sudo apt-get install libtag1-dev`
+* Debian/Ubuntu: `sudo apt-get install libtag-dev`
 * Fedora/RHEL: `sudo dnf install taglib-devel`
 * Brew: `brew install taglib`
 * MacPorts: `sudo port install taglib`
