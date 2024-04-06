@@ -4,6 +4,7 @@
 #define TAGLIB_EXPORT
 #define TAGLIB_IGNORE_MISSING_DESTRUCTOR
 #define TAGLIB_DEPRECATED
+#define TAGLIB_MSVC_SUPPRESS_WARNING_NEEDS_TO_HAVE_DLL_INTERFACE
 
 // Replaces the typemap from swigtype.swg and just adds the line
 // SWIG_RubyUnlinkObjects. This is done to be safe in the case when a
