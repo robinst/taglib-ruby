@@ -1,5 +1,7 @@
 # frozen-string-literal: true
 
+require_relative 'build'
+
 # Tasks for generating SWIG wrappers in ext
 
 # Execute SWIG for the specified extension.
@@ -11,9 +13,11 @@
 def run_swig(mod)
   swig = `which swig`.chomp
   swig = `which swig2.0`.chomp if swig.empty?
+  swiglib = `swig -swiglib`.chomp
+  abort 'swig failed' unless $?.success?
 
   # Standard search location for headers
-  include_args = %w[-I/usr/local/include -I/usr/include]
+  include_args = "-I#{Build.install_dir}/include"
 
   if ENV.key?('TAGLIB_DIR')
     unless File.directory?(ENV['TAGLIB_DIR'])
@@ -21,14 +25,20 @@ def run_swig(mod)
     end
 
     # Push it in front to get it searched first.
-    include_args.unshift("-I#{ENV['TAGLIB_DIR']}/include")
+    include_args = "-I#{ENV['TAGLIB_DIR']}/include"
   end
 
-  sh "cd ext/#{mod} && #{swig} -c++ -ruby -autorename -initname #{mod} #{include_args.join(' ')} #{mod}.i"
+  Dir.chdir("ext/#{mod}") do
+    sh "#{swig} -c++ -ruby -autorename -initname #{mod} #{include_args} #{mod}.i"
+    wrap = "#{mod}_wrap.cxx"
+    wrapdata = File.read(wrap)
+    File.write(wrap, wrapdata.gsub(swiglib, '/swig'))
+  end
 end
 
 task swig:
-  ['ext/taglib_base/taglib_base_wrap.cxx',
+  [Build.library,
+   'ext/taglib_base/taglib_base_wrap.cxx',
    'ext/taglib_mpeg/taglib_mpeg_wrap.cxx',
    'ext/taglib_id3v1/taglib_id3v1_wrap.cxx',
    'ext/taglib_id3v2/taglib_id3v2_wrap.cxx',
