@@ -71,6 +71,8 @@ jobs:
           touch ext/*/*.i
           export PATH=$HOME/$SWIG_DIR/bin:$PATH
           TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake swig
+          echo 'Checking for changes (there should be none)'
+          git diff --exit-code
 
       - name: Compile (taglib-ruby)
         run: TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake compile
