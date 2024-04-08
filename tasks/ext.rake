@@ -1,22 +1,15 @@
 # frozen-string-literal: true
 
+require_relative 'build'
+
 # Extension tasks and cross-compiling
 
 host = 'i686-w64-mingw32'
-$plat = ENV['PLATFORM'] || 'i386-mingw32'
-
-taglib_version = ENV['TAGLIB_VERSION'] || '1.9.1'
-taglib = "taglib-#{taglib_version}"
-
-tmp = "#{Dir.pwd}/tmp"
-tmp_arch = "#{tmp}/#{$plat}"
 toolchain_file = "#{Dir.pwd}/ext/win.cmake"
-install_dir = "#{tmp_arch}/#{taglib}"
-install_dll = "#{install_dir}/bin/libtag.dll"
-install_so = "#{install_dir}/lib/libtag.so"
-$cross_config_options = ["--with-opt-dir=#{install_dir}"]
+install_dll = "#{Build.install_dir}/bin/libtag.dll"
+$cross_config_options = ["--with-opt-dir=#{Build.install_dir}"]
 
-taglib_url = "https://github.com/taglib/taglib/archive/v#{taglib_version}.tar.gz"
+taglib_url = "https://github.com/taglib/taglib/archive/v#{Build.version}.tar.gz"
 taglib_options = ['-DCMAKE_BUILD_TYPE=Release',
                   '-DBUILD_EXAMPLES=OFF',
                   '-DBUILD_TESTS=OFF',
@@ -27,7 +20,7 @@ taglib_options = ['-DCMAKE_BUILD_TYPE=Release',
 
 def configure_cross_compile(ext)
   ext.cross_compile = true
-  ext.cross_platform = $plat
+  ext.cross_platform = Build.plat
   ext.cross_config_options.concat($cross_config_options)
   ext.cross_compiling do |gem|
     gem.files << 'lib/libtag.dll'
@@ -75,37 +68,38 @@ task :cross do
   ENV['CXX'] = "#{host}-g++"
 end
 
-file "#{tmp_arch}/stage/lib/libtag.dll" => [install_dll] do |f|
+file "#{Build.tmp_arch}/stage/lib/libtag.dll" => [install_dll] do |f|
   install install_dll, f
 end
 
-file install_dll => ["#{tmp}/#{taglib}"] do
-  chdir "#{tmp}/#{taglib}" do
-    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file} #{taglib_options})
+file install_dll => [Build.source] do
+  chdir Build.source do
+    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{Build.install_dir} -DCMAKE_TOOLCHAIN_FILE=#{toolchain_file} #{taglib_options})
     sh 'make VERBOSE=1'
     sh 'make install'
   end
 end
 
-task vendor: [install_so]
+task vendor: [Build.library]
 
-file install_so => ["#{tmp_arch}/#{taglib}", "#{tmp_arch}/#{taglib}-build", "#{tmp}/#{taglib}"] do
-  chdir "#{tmp_arch}/#{taglib}-build" do
-    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{install_dir} #{taglib_options} #{tmp}/#{taglib})
-    sh 'make install VERBOSE=1'
+file Build.library => [Build.install_dir, Build.build_dir, Build.source] do
+  chdir Build.build_dir do
+    sh %(cmake -DCMAKE_INSTALL_PREFIX=#{Build.install_dir} #{taglib_options} #{Build.source})
+    sh 'make install -j 4 VERBOSE=1'
   end
 end
 
-directory "#{tmp_arch}/#{taglib}"
-directory "#{tmp_arch}/#{taglib}-build"
+directory Build.install_dir
+directory Build.build_dir
+directory Build.tmp
 
-file "#{tmp}/#{taglib}" => ["#{tmp}/#{taglib}.tar.gz"] do
-  chdir tmp do
-    sh "tar xzf #{taglib}.tar.gz"
+file Build.source => [Build.tarball] do
+  chdir Build.tmp do
+    sh "tar xzf #{Build.tarball}"
   end
 end
 
-file "#{tmp}/#{taglib}.tar.gz" => [tmp] do |t|
+file Build.tarball => [Build.tmp] do |t|
   require 'open-uri'
   puts "Downloading #{taglib_url}"
 
@@ -113,5 +107,3 @@ file "#{tmp}/#{taglib}.tar.gz" => [tmp] do |t|
     IO.copy_stream(URI.open(taglib_url), f)
   end
 end
-
-directory tmp
