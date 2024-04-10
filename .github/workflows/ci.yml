@@ -42,6 +42,7 @@ jobs:
           key: swig-${{ matrix.os }}-v4.1.1
 
       - name: Install SWIG v4.1.1
+        if: steps.cache-swig.outputs.cache-hit != 'true'
         run: |
           sudo apt install yodl
           git clone --depth 1 --branch v4.1.1 https://github.com/swig/swig.git
@@ -60,10 +61,13 @@ jobs:
         id: cache-taglib
         uses: actions/cache@v2
         with:
-          path: tmp/${{ env.PLATFORM }}/taglib-${{ env.TAGLIB_VERSION }}
-          key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}
+          path: |
+            tmp/${{ env.PLATFORM }}/taglib-${{ env.TAGLIB_VERSION }}
+            tmp/taglib-${{ env.TAGLIB_VERSION }}.tar.gz
+          key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}-cache.v3
 
       - name: Install TagLib (C++)
+        if: steps.cache-taglib.outputs.cache-hit != 'true'
         run: bundle exec rake vendor
 
       - name: Generate SWIG Wrappers
