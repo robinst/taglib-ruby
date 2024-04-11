@@ -4,8 +4,6 @@
 #include <taglib/aifffile.h>
 #include <taglib/aiffproperties.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/tpicturetype.h>
-using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"
@@ -16,12 +14,16 @@ using namespace TagLib;
 %ignore TagLib::RIFF::AIFF::Properties::length;
 %ignore TagLib::RIFF::AIFF::Properties::sampleWidth;
 
+%ignore TagLib::RIFF::File;
+%include <taglib/rifffile.h>
+
 %include <taglib/aiffproperties.h>
 
 %freefunc TagLib::RIFF::AIFF::File "free_taglib_riff_aiff_file";
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
+%ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle, ID3v2::FrameFactory *);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::AIFF::File::File(IOStream *);

@@ -5,7 +5,6 @@
 #define TAGLIB_IGNORE_MISSING_DESTRUCTOR
 #define TAGLIB_DEPRECATED
 #define TAGLIB_MSVC_SUPPRESS_WARNING_NEEDS_TO_HAVE_DLL_INTERFACE
-%include <taglib/tpicturetype.h>
 
 // Replaces the typemap from swigtype.swg and just adds the line
 // SWIG_RubyUnlinkObjects. This is done to be safe in the case when a
@@ -25,7 +24,6 @@
 #include <taglib/tbytevector.h>
 #include <taglib/tbytevectorlist.h>
 #include <taglib/tfile.h>
-#include <taglib/tvariant.h>
 
 #if defined(HAVE_RUBY_ENCODING_H) && HAVE_RUBY_ENCODING_H
 # include <ruby/encoding.h>
@@ -147,6 +145,13 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+VALUE taglib_offset_t_to_ruby_int(TagLib::offset_t off) {
+#ifdef _WIN32
+  return LL2NUM(off);
+#else
+  return OFFT2NUM(off);
+#endif
+}
 %}
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:

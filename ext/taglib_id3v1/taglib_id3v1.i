@@ -2,8 +2,6 @@
 %{
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v1genres.h>
-#include <taglib/tpicturetype.h>
-using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"

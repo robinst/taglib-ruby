@@ -20,7 +20,6 @@
 #include <taglib/unknownframe.h>
 #include <taglib/unsynchronizedlyricsframe.h>
 #include <taglib/urllinkframe.h>
-using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"
@@ -133,6 +132,7 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 
 %include "relativevolumeframe.i"
 
+%include <taglib/tpicturetype.h>
 %include <taglib/attachedpictureframe.h>
 
 // Ignore the unified property interface.

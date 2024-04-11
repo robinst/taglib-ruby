@@ -4,10 +4,6 @@
 #include <taglib/wavfile.h>
 #include <taglib/wavproperties.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/tpicturetype.h>
-using namespace TagLib::RIFF;
-using namespace TagLib;
-using StripTags = TagLib::File::StripTags;
 %}
 
 %include "../taglib_base/includes.i"
@@ -18,6 +14,9 @@ using StripTags = TagLib::File::StripTags;
 %ignore TagLib::RIFF::WAV::Properties::Properties(const ByteVector&, unsigned int, ReadStyle);
 %ignore TagLib::RIFF::WAV::Properties::length;
 %ignore TagLib::RIFF::WAV::Properties::sampleWidth;
+
+%ignore TagLib::RIFF::File;
+%include <taglib/rifffile.h>
 
 %include <taglib/wavproperties.h>
 
@@ -31,6 +30,7 @@ namespace TagLib {
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
+%ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle, ID3v2::FrameFactory *f);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool, Properties::ReadStyle);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *, bool);
 %ignore TagLib::RIFF::WAV::File::File(IOStream *);
@@ -58,11 +58,7 @@ namespace TagLib {
   static void free_taglib_riff_wav_file(void *ptr) {
     TagLib::RIFF::WAV::File *file = (TagLib::RIFF::WAV::File *) ptr;
 
-#if TAGLIB_MAJOR_VERSION >= 2
     TagLib::ID3v2::Tag *id3v2tag = file->ID3v2Tag();
-#else
-    TagLib::ID3v2::Tag *id3v2tag = file->tag();
-#endif
     if (id3v2tag) {
       TagLib::ID3v2::FrameList frames = id3v2tag->frameList();
       for (TagLib::ID3v2::FrameList::ConstIterator it = frames.begin(); it != frames.end(); it++) {

@@ -6,8 +6,6 @@
 #include <taglib/mpegproperties.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/tpicturetype.h>
-using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"
@@ -16,6 +14,7 @@ using namespace TagLib;
 %ignore TagLib::MPEG::Header::operator=;
 %include <taglib/xingheader.h>
 
+%include <taglib/id3v2.h>
 %include <taglib/mpegheader.h>
 
 %ignore TagLib::MPEG::length; // Deprecated.
@@ -32,6 +31,10 @@ using namespace TagLib;
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool, Properties::ReadStyle);
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *, bool);
 %ignore TagLib::MPEG::File::File(IOStream *, ID3v2::FrameFactory *);
+%ignore TagLib::MPEG::File::File(IOStream *, bool, Properties::ReadStyle, ID3v2::FrameFactory *);
+%ignore TagLib::MPEG::File::File(IOStream *, bool, Properties::ReadStyle);
+%ignore TagLib::MPEG::File::File(IOStream *, bool);
+%ignore TagLib::MPEG::File::File(IOStream *);
 %ignore TagLib::MPEG::File::isSupported(IOStream *);
 %rename("id3v1_tag?") TagLib::MPEG::File::hasID3v1Tag;
 %rename("id3v2_tag?") TagLib::MPEG::File::hasID3v2Tag;

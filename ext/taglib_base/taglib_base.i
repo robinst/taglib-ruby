@@ -6,10 +6,6 @@
 #include <taglib/tlist.h>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
-#include <taglib/tpropertymap.h>
-#include <taglib/tvariant.h>
-#include <taglib/tpicturetype.h>
-using namespace TagLib;
 %}
 
 %include "includes.i"
@@ -30,6 +26,7 @@ namespace TagLib {
   typedef unsigned char uchar;
   typedef unsigned int  uint;
   typedef unsigned long ulong;
+  using offset_t = long long;
 }
 
 %constant int TAGLIB_MAJOR_VERSION = TAGLIB_MAJOR_VERSION;
@@ -129,6 +126,10 @@ namespace TagLib {
 %typemap(typecheck) TagLib::FileName = char *;
 %feature("valuewrapper") TagLib::FileName;
 
+%typemap(out) TagLib::offset_t {
+  $result = taglib_offset_t_to_ruby_int($1);
+}
+
 %ignore TagLib::List::operator[];
 %ignore TagLib::List::operator=;
 %ignore TagLib::List::operator!=;
@@ -138,6 +139,10 @@ namespace TagLib {
 %ignore TagLib::Tag::properties;
 %ignore TagLib::Tag::setProperties;
 %ignore TagLib::Tag::removeUnsupportedProperties;
+
+%ignore TagLib::Tag::complexProperties;
+%ignore TagLib::Tag::setComplexProperties;
+%ignore TagLib::Tag::complexPropertyKeys;
 
 %include <taglib/tag.h>
 
@@ -151,7 +156,19 @@ namespace TagLib {
 %ignore TagLib::File::setProperties;
 %ignore TagLib::File::removeUnsupportedProperties;
 
+%ignore TagLib::File::complexProperties;
+%ignore TagLib::File::setComplexProperties;
+%ignore TagLib::File::complexPropertyKeys;
+
 %include <taglib/tfile.h>
+
+%ignore TagLib::FileRef::properties;
+%ignore TagLib::FileRef::setProperties;
+%ignore TagLib::FileRef::removeUnsupportedProperties;
+
+%ignore TagLib::FileRef::complexProperties;
+%ignore TagLib::FileRef::setComplexProperties;
+%ignore TagLib::FileRef::complexPropertyKeys;
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
