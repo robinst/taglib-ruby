@@ -22,10 +22,6 @@ class Build
       "#{tmp}/#{dir}"
     end
 
-    def tarball
-      "#{source}.tar.gz"
-    end
-
     def tmp_arch
       "#{tmp}/#{plat}"
     end

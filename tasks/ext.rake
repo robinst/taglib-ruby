@@ -93,17 +93,8 @@ directory Build.install_dir
 directory Build.build_dir
 directory Build.tmp
 
-file Build.source => [Build.tarball] do
-  chdir Build.tmp do
-    sh "tar xzf #{Build.tarball}"
-  end
-end
-
-file Build.tarball => [Build.tmp] do |t|
-  require 'open-uri'
-  puts "Downloading #{taglib_url}"
-
-  File.open(t.name, 'wb') do |f|
-    IO.copy_stream(URI.open(taglib_url), f)
-  end
+file Build.source do
+  sh "git clone --depth=1 --branch=v#{Build.version} https://github.com/taglib/taglib.git #{Build.source}"
+  sh "git -C #{Build.source} submodule init"
+  sh "git -C #{Build.source} submodule update --depth=1"
 end
