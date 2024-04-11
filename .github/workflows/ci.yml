@@ -42,6 +42,7 @@ jobs:
           key: swig-${{ matrix.os }}-v4.1.1
 
       - name: Install SWIG v4.1.1
+        if: steps.cache-swig.outputs.cache-hit != 'true'
         run: |
           sudo apt install yodl
           git clone --depth 1 --branch v4.1.1 https://github.com/swig/swig.git
@@ -52,7 +53,7 @@ jobs:
 
       - name: Bundle Install
         run: |
-          gem install bundler
+          gem install bundler -v 2.4.22
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
@@ -60,10 +61,13 @@ jobs:
         id: cache-taglib
         uses: actions/cache@v2
         with:
-          path: tmp/${{ env.PLATFORM }}/taglib-${{ env.TAGLIB_VERSION }}
-          key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}
+          path: |
+            tmp/${{ env.PLATFORM }}/taglib-${{ env.TAGLIB_VERSION }}
+            tmp/taglib-${{ env.TAGLIB_VERSION }}.tar.gz
+          key: taglib-${{ matrix.os }}-v${{ env.TAGLIB_VERSION }}-cache.v3
 
       - name: Install TagLib (C++)
+        if: steps.cache-taglib.outputs.cache-hit != 'true'
         run: bundle exec rake vendor
 
       - name: Generate SWIG Wrappers
@@ -71,6 +75,8 @@ jobs:
           touch ext/*/*.i
           export PATH=$HOME/$SWIG_DIR/bin:$PATH
           TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake swig
+          echo 'Checking for changes (there should be none)'
+          git diff --exit-code
 
       - name: Compile (taglib-ruby)
         run: TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake compile
