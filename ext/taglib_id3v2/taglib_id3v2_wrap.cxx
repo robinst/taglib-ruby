@@ -5310,54 +5310,6 @@ free_TagLib_ID3v2_RelativeVolumeFrame_PeakVolume(void *self) {
     delete arg1;
 }
 
-SWIGINTERN VALUE
-_wrap_picture_type_to_string(int argc, VALUE *argv, VALUE self) {
-  int arg1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  TagLib::String result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib::Utils::pictureTypeToString", 1, argv[0] ));
-  } 
-  arg1 = static_cast< int >(val1);
-  result = TagLib::Utils::pictureTypeToString(arg1);
-  {
-    vresult = taglib_string_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_picture_type_from_string(int argc, VALUE *argv, VALUE self) {
-  TagLib::String *arg1 = 0 ;
-  TagLib::String tmp1 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_string(argv[0]);
-    arg1 = &tmp1;
-  }
-  result = (int)TagLib::Utils::pictureTypeFromString((TagLib::String const &)*arg1);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassAttachedPictureFrame;
 
 SWIGINTERN VALUE
@@ -11394,8 +11346,6 @@ SWIGEXPORT void Init_taglib_id3v2(void) {
   SwigClassPeakVolume.mark = 0;
   SwigClassPeakVolume.destroy = (void (*)(void *)) free_TagLib_ID3v2_RelativeVolumeFrame_PeakVolume;
   SwigClassPeakVolume.trackObjects = 1;
-  rb_define_module_function(mID3v2, "picture_type_to_string", VALUEFUNC(_wrap_picture_type_to_string), -1);
-  rb_define_module_function(mID3v2, "picture_type_from_string", VALUEFUNC(_wrap_picture_type_from_string), -1);
   
   SwigClassAttachedPictureFrame.klass = rb_define_class_under(mID3v2, "AttachedPictureFrame", ((swig_class *) SWIGTYPE_p_TagLib__ID3v2__Frame->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__ID3v2__AttachedPictureFrame, (void *) &SwigClassAttachedPictureFrame);

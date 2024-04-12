@@ -2242,54 +2242,6 @@ fail:
 }
 
 
-SWIGINTERN VALUE
-_wrap_picture_type_to_string(int argc, VALUE *argv, VALUE self) {
-  int arg1 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  TagLib::String result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  ecode1 = SWIG_AsVal_int(argv[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","TagLib::Utils::pictureTypeToString", 1, argv[0] ));
-  } 
-  arg1 = static_cast< int >(val1);
-  result = TagLib::Utils::pictureTypeToString(arg1);
-  {
-    vresult = taglib_string_to_ruby_string(result);
-  }
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_picture_type_from_string(int argc, VALUE *argv, VALUE self) {
-  TagLib::String *arg1 = 0 ;
-  TagLib::String tmp1 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    tmp1 = ruby_string_to_taglib_string(argv[0]);
-    arg1 = &tmp1;
-  }
-  result = (int)TagLib::Utils::pictureTypeFromString((TagLib::String const &)*arg1);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassPicture;
 
 SWIGINTERN VALUE
@@ -3231,8 +3183,6 @@ SWIGEXPORT void Init_taglib_flac_picture(void) {
   SwigClassMetadataBlock.mark = 0;
   SwigClassMetadataBlock.destroy = (void (*)(void *)) free_TagLib_FLAC_MetadataBlock;
   SwigClassMetadataBlock.trackObjects = 1;
-  rb_define_module_function(mFLAC, "picture_type_to_string", VALUEFUNC(_wrap_picture_type_to_string), -1);
-  rb_define_module_function(mFLAC, "picture_type_from_string", VALUEFUNC(_wrap_picture_type_from_string), -1);
   
   SwigClassPicture.klass = rb_define_class_under(mFLAC, "Picture", ((swig_class *) SWIGTYPE_p_TagLib__FLAC__MetadataBlock->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__FLAC__Picture, (void *) &SwigClassPicture);

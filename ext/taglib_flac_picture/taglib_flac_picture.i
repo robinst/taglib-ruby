@@ -11,6 +11,9 @@
 %ignore TagLib::FLAC::MetadataBlock::render; // Only useful internally.
 %include <taglib/flacmetadatablock.h>
 
+%ignore TagLib::Utils::pictureTypeToString;
+%ignore TagLib::Utils::pictureTypeFromString;
 %include <taglib/tpicturetype.h>
+
 %ignore TagLib::FLAC::Picture::render; // Only useful internally.
 %include <taglib/flacpicture.h>
