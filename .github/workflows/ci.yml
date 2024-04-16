@@ -82,4 +82,4 @@ jobs:
         run: TAGLIB_DIR=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION bundle exec rake compile
 
       - name: Run Tests (taglib-ruby)
-        run: LD_LIBRARY_PATH=$PWD/tmp/$PLATFORM/taglib-$TAGLIB_VERSION/lib bundle exec rake test
+        run: bundle exec rake test

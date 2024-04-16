@@ -120,18 +120,14 @@ Build a specific version of Taglib:
 The above command will automatically download Taglib 1.11.1, build it and
 install it in `tmp/x86_64-linux/taglib-1.11.1`.
 
-The `swig` and `compile` tasks can then be executed against that specific
+The `swig`, `compile` and `test` tasks can then be executed against that specific
 version of Taglib by setting the `TAGLIB_DIR` environment variable to
 `$PWD/tmp/x86_64-linux/taglib-1.11.1` (it is assumed that taglib headers are
 located at `$TAGLIB_DIR/include` and taglib libraries at `$TAGLIB_DIR/lib`).
 
-The `test` task can then be run for that version of Taglib by adding
-`$PWD/tmp/x86_64-linux/taglib-1.11.1/lib` to the `LD_LIBRARY_PATH` environment
-variable.
-
 To do everything in one command:
 
-    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.11.1 LD_LIBRARY_PATH=$PWD/tmp/x86_64-linux/taglib-1.11.1/lib rake vendor compile test
+    PLATFORM=x86_64-linux TAGLIB_VERSION=1.11.1 TAGLIB_DIR=$PWD/tmp/x86_64-linux/taglib-1.11.1 rake vendor compile test
 
 ### Workflow
 
