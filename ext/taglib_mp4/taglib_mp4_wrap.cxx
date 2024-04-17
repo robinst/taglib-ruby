@@ -1868,13 +1868,12 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__Tag swig_types[12]
 #define SWIGTYPE_p_char swig_types[13]
 #define SWIGTYPE_p_long_long swig_types[14]
-#define SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator swig_types[15]
-#define SWIGTYPE_p_unsigned_char swig_types[16]
-#define SWIGTYPE_p_unsigned_int swig_types[17]
-#define SWIGTYPE_p_unsigned_long swig_types[18]
-#define SWIGTYPE_p_wchar_t swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_unsigned_char swig_types[15]
+#define SWIGTYPE_p_unsigned_int swig_types[16]
+#define SWIGTYPE_p_unsigned_long swig_types[17]
+#define SWIGTYPE_p_wchar_t swig_types[18]
+static swig_type_info *swig_types[20];
+static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4113,54 +4112,6 @@ free_TagLib_Map_Sl_TagLib_String_Sc_TagLib_MP4_Item_Sg_(void *self) {
     delete arg1;
 }
 
-SWIGINTERN VALUE
-_wrap_ItemMap_cbegin(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::const_iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > const *","cbegin", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = ((TagLib::Map< TagLib::String,TagLib::MP4::Item > const *)arg1)->cbegin();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator(result)), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ItemMap_cend(int argc, VALUE *argv, VALUE self) {
-  TagLib::Map< TagLib::String,TagLib::MP4::Item > *arg1 = (TagLib::Map< TagLib::String,TagLib::MP4::Item > *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  SwigValueWrapper< std::map< TagLib::String,TagLib::MP4::Item >::const_iterator > result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Map< TagLib::String,TagLib::MP4::Item > const *","cend", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Map< TagLib::String,TagLib::MP4::Item > * >(argp1);
-  result = ((TagLib::Map< TagLib::String,TagLib::MP4::Item > const *)arg1)->cend();
-  vresult = SWIG_NewPointerObj((new TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator(result)), SWIGTYPE_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, SWIG_POINTER_OWN |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
 /*
   Document-method: TagLib::MP4::ItemMap.size
 
@@ -5892,7 +5843,6 @@ static swig_type_info _swigt__p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t 
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "TagLib::offset_t *|long long *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator = {"_p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator", "TagLib::Map< TagLib::String,TagLib::MP4::Item >::ConstIterator *|std::map< TagLib::String,TagLib::MP4::Item >::const_iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -5914,7 +5864,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
   &_swigt__p_long_long,
-  &_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -5936,7 +5885,6 @@ static swig_cast_info _swigc__p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t[
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},  {&_swigt__p_TagLib__MP4__Tag, _p_TagLib__MP4__TagTo_p_TagLib__Tag, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator[] = {  {&_swigt__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -5958,7 +5906,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
   _swigc__p_long_long,
-  _swigc__p_std__mapT_TagLib__String_TagLib__MP4__Item_t__const_iterator,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -6299,8 +6246,6 @@ SWIGEXPORT void Init_taglib_mp4(void) {
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__MapT_TagLib__String_TagLib__MP4__Item_t, (void *) &SwigClassItemMap);
   rb_define_alloc_func(SwigClassItemMap.klass, _wrap_ItemMap_allocate);
   rb_define_method(SwigClassItemMap.klass, "initialize", VALUEFUNC(_wrap_new_ItemMap), -1);
-  rb_define_method(SwigClassItemMap.klass, "cbegin", VALUEFUNC(_wrap_ItemMap_cbegin), -1);
-  rb_define_method(SwigClassItemMap.klass, "cend", VALUEFUNC(_wrap_ItemMap_cend), -1);
   rb_define_method(SwigClassItemMap.klass, "size", VALUEFUNC(_wrap_ItemMap_size), -1);
   rb_define_method(SwigClassItemMap.klass, "empty?", VALUEFUNC(_wrap_ItemMap_emptyq___), -1);
   rb_define_method(SwigClassItemMap.klass, "contains", VALUEFUNC(_wrap_ItemMap_contains), -1);
