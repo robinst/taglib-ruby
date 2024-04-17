@@ -54,7 +54,7 @@ class TestID3v2Write < Test::Unit::TestCase
     end
 
     should 'be able to save ID3v2.3' do
-      success = @file.save(TagLib::MPEG::File::ID3v2, true, 3)
+      success = @file.save(TagLib::MPEG::File::ID3v2, TagLib::File::StripOthers, TagLib::ID3v2::V3)
       assert_equal true, success
       @file.close
       @file = nil

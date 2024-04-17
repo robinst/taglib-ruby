@@ -4,8 +4,6 @@
 #include <taglib/oggfile.h>
 #include <taglib/flacpicture.h>
 #include <taglib/xiphcomment.h>
-// Help find FLAC::
-using namespace TagLib;
 %}
 
 %include "../taglib_base/includes.i"

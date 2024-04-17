@@ -13,6 +13,7 @@ taglib_url = "https://github.com/taglib/taglib/archive/v#{Build.version}.tar.gz"
 taglib_options = ['-DCMAKE_BUILD_TYPE=Release',
                   '-DBUILD_EXAMPLES=OFF',
                   '-DBUILD_TESTS=OFF',
+                  '-DBUILD_TESTING=OFF', # used since 1.13 instead of BUILD_TESTS
                   '-DBUILD_BINDINGS=OFF', # 1.11 builds bindings by default
                   '-DBUILD_SHARED_LIBS=ON', # 1.11 builds static by default
                   '-DWITH_MP4=ON', # WITH_MP4, WITH_ASF only needed with taglib 1.7, will be default in 1.8
@@ -93,17 +94,8 @@ directory Build.install_dir
 directory Build.build_dir
 directory Build.tmp
 
-file Build.source => [Build.tarball] do
-  chdir Build.tmp do
-    sh "tar xzf #{Build.tarball}"
-  end
-end
-
-file Build.tarball => [Build.tmp] do |t|
-  require 'open-uri'
-  puts "Downloading #{taglib_url}"
-
-  File.open(t.name, 'wb') do |f|
-    IO.copy_stream(URI.open(taglib_url), f)
-  end
+file Build.source do
+  sh "git clone --depth=1 --branch=v#{Build.version} https://github.com/taglib/taglib.git #{Build.source}"
+  sh "git -C #{Build.source} submodule init"
+  sh "git -C #{Build.source} submodule update --depth=1"
 end

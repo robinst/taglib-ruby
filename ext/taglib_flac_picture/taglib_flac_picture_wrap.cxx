@@ -1854,12 +1854,13 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__FLAC__Picture swig_types[1]
 #define SWIGTYPE_p_TagLib__ListT_TagLib__FLAC__Picture_t swig_types[2]
 #define SWIGTYPE_p_char swig_types[3]
-#define SWIGTYPE_p_unsigned_char swig_types[4]
-#define SWIGTYPE_p_unsigned_int swig_types[5]
-#define SWIGTYPE_p_unsigned_long swig_types[6]
-#define SWIGTYPE_p_wchar_t swig_types[7]
-static swig_type_info *swig_types[9];
-static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
+#define SWIGTYPE_p_long_long swig_types[4]
+#define SWIGTYPE_p_unsigned_char swig_types[5]
+#define SWIGTYPE_p_unsigned_int swig_types[6]
+#define SWIGTYPE_p_unsigned_long swig_types[7]
+#define SWIGTYPE_p_wchar_t swig_types[8]
+static swig_type_info *swig_types[10];
+static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1951,34 +1952,26 @@ template <typename T> T SwigValueInit() {
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -2067,6 +2060,13 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+VALUE taglib_offset_t_to_ruby_int(TagLib::offset_t off) {
+#ifdef _WIN32
+  return LL2NUM(off);
+#else
+  return OFFT2NUM(off);
+#endif
+}
 
 
 VALUE taglib_flac_picturelist_to_ruby_array(const TagLib::List<TagLib::FLAC::Picture *> & list) {
@@ -2098,56 +2098,6 @@ SWIG_From_int  (int value)
 {    
   return SWIG_From_long  (value);
 }
-
-
-SWIGINTERN swig_type_info*
-SWIG_pchar_descriptor(void)
-{
-  static int init = 0;
-  static swig_type_info* info = 0;
-  if (!init) {
-    info = SWIG_TypeQuery("_p_char");
-    init = 1;
-  }
-  return info;
-}
-
-
-SWIGINTERN int
-SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
-{
-  if (TYPE(obj) == T_STRING) {
-    char *cstr = StringValuePtr(obj); 
-    size_t size = RSTRING_LEN(obj) + 1;
-    if (cptr)  {
-      if (alloc) {
-	if (*alloc == SWIG_NEWOBJ) {
-	  *cptr = reinterpret_cast< char* >(memcpy(new char[size], cstr, sizeof(char)*(size)));
-	} else {
-	  *cptr = cstr;
-	  *alloc = SWIG_OLDOBJ;
-	}
-      }
-    }
-    if (psize) *psize = size;
-    return SWIG_OK;
-  } else {
-    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-    if (pchar_descriptor) {
-      void* vptr = 0;
-      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
-	if (cptr) *cptr = (char *)vptr;
-	if (psize) *psize = vptr ? (strlen((char*)vptr) + 1) : 0;
-	if (alloc) *alloc = SWIG_OLDOBJ;
-	return SWIG_OK;
-      }
-    }
-  }  
-  return SWIG_TypeError;
-}
-
-
-
 
 
 SWIGINTERN VALUE
@@ -2203,6 +2153,56 @@ SWIG_AsVal_int (VALUE obj, int *val)
 }
 
 
+SWIGINTERN swig_type_info*
+SWIG_pchar_descriptor(void)
+{
+  static int init = 0;
+  static swig_type_info* info = 0;
+  if (!init) {
+    info = SWIG_TypeQuery("_p_char");
+    init = 1;
+  }
+  return info;
+}
+
+
+SWIGINTERN int
+SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
+{
+  if (TYPE(obj) == T_STRING) {
+    char *cstr = StringValuePtr(obj); 
+    size_t size = RSTRING_LEN(obj) + 1;
+    if (cptr)  {
+      if (alloc) {
+	if (*alloc == SWIG_NEWOBJ) {
+	  *cptr = reinterpret_cast< char* >(memcpy(new char[size], cstr, sizeof(char)*(size)));
+	} else {
+	  *cptr = cstr;
+	  *alloc = SWIG_OLDOBJ;
+	}
+      }
+    }
+    if (psize) *psize = size;
+    return SWIG_OK;
+  } else {
+    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+    if (pchar_descriptor) {
+      void* vptr = 0;
+      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
+	if (cptr) *cptr = (char *)vptr;
+	if (psize) *psize = vptr ? (strlen((char*)vptr) + 1) : 0;
+	if (alloc) *alloc = SWIG_OLDOBJ;
+	return SWIG_OK;
+      }
+    }
+  }  
+  return SWIG_TypeError;
+}
+
+
+
+
+
 SWIGINTERNINLINE VALUE
 SWIG_From_bool  (bool value)
 {
@@ -2243,6 +2243,54 @@ fail:
 
 
 static swig_class SwigClassPicture;
+
+SWIGINTERN VALUE
+_wrap_Picture_type_to_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::FLAC::Picture::Type arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_int(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "TagLib::FLAC::Picture::Type","TagLib::FLAC::Picture::typeToString", 1, argv[0] ));
+  } 
+  arg1 = static_cast< TagLib::FLAC::Picture::Type >(val1);
+  result = TagLib::FLAC::Picture::typeToString(arg1);
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Picture_type_from_string(int argc, VALUE *argv, VALUE self) {
+  TagLib::String *arg1 = 0 ;
+  TagLib::String tmp1 ;
+  TagLib::FLAC::Picture::Type result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_string_to_taglib_string(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = (TagLib::FLAC::Picture::Type)TagLib::FLAC::Picture::typeFromString((TagLib::String const &)*arg1);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
 
 SWIGINTERN VALUE
 _wrap_new_Picture__SWIG_0(int argc, VALUE *argv, VALUE self) {
@@ -2823,6 +2871,7 @@ static swig_type_info _swigt__p_TagLib__FLAC__MetadataBlock = {"_p_TagLib__FLAC_
 static swig_type_info _swigt__p_TagLib__FLAC__Picture = {"_p_TagLib__FLAC__Picture", "TagLib::FLAC::Picture *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t = {"_p_TagLib__ListT_TagLib__FLAC__Picture_t", "TagLib::FLAC::PictureList *|TagLib::List< TagLib::FLAC::Picture > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_long_long = {"_p_long_long", "TagLib::offset_t *|long long *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -2833,6 +2882,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__FLAC__Picture,
   &_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   &_swigt__p_char,
+  &_swigt__p_long_long,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -2843,6 +2893,7 @@ static swig_cast_info _swigc__p_TagLib__FLAC__MetadataBlock[] = {  {&_swigt__p_T
 static swig_cast_info _swigc__p_TagLib__FLAC__Picture[] = {  {&_swigt__p_TagLib__FLAC__Picture, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t[] = {  {&_swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -2853,6 +2904,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__FLAC__Picture,
   _swigc__p_TagLib__ListT_TagLib__FLAC__Picture_t,
   _swigc__p_char,
+  _swigc__p_long_long,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -3157,6 +3209,8 @@ SWIGEXPORT void Init_taglib_flac_picture(void) {
   rb_define_const(SwigClassPicture.klass, "Illustration", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::Illustration)));
   rb_define_const(SwigClassPicture.klass, "BandLogo", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::BandLogo)));
   rb_define_const(SwigClassPicture.klass, "PublisherLogo", SWIG_From_int(static_cast< int >(TagLib::FLAC::Picture::PublisherLogo)));
+  rb_define_singleton_method(SwigClassPicture.klass, "type_to_string", VALUEFUNC(_wrap_Picture_type_to_string), -1);
+  rb_define_singleton_method(SwigClassPicture.klass, "type_from_string", VALUEFUNC(_wrap_Picture_type_from_string), -1);
   rb_define_method(SwigClassPicture.klass, "type", VALUEFUNC(_wrap_Picture_type), -1);
   rb_define_method(SwigClassPicture.klass, "type=", VALUEFUNC(_wrap_Picture_typee___), -1);
   rb_define_method(SwigClassPicture.klass, "mime_type", VALUEFUNC(_wrap_Picture_mime_type), -1);

@@ -5,8 +5,6 @@
 #include <taglib/mp4properties.h>
 #include <taglib/mp4tag.h>
 #include <taglib/mp4atom.h>
-// To resolve some symbols, like AtomDataType in Item.
-using namespace TagLib::MP4;
 %}
 
 %include "../taglib_base/includes.i"
@@ -84,16 +82,6 @@ namespace TagLib {
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(Iterator);
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::erase(const TagLib::String &);
 
-%ignore TagLib::MP4::Tag::itemListMap; // Deprecated.
-
-%rename("__getitem__") TagLib::MP4::Tag::item;
-
-// We will create a safe version of these below in an %extend
-// TagLib::MP4::Tag::item does not need to be reimplemented as it return an Item by value.
-%ignore TagLib::MP4::Tag::setItem;
-%ignore TagLib::MP4::Tag::removeItem;
-
-%include <taglib/mp4tag.h>
 
 %typemap(out) TagLib::MP4::CoverArtList {
   $result = taglib_cover_art_list_to_ruby_array($1);
@@ -117,13 +105,32 @@ namespace TagLib {
 %ignore TagLib::MP4::Item::setAtomDataType;
 
 %warnfilter(SWIGWARN_PARSE_NAMED_NESTED_CLASS) IntPair;
+%ignore ItemMap;
 %include <taglib/mp4item.h>
+
+namespace TagLib {
+  namespace MP4 {
+    %template(ItemMap) ::TagLib::Map<String, Item>;
+  }
+}
+
+%ignore TagLib::MP4::Tag::itemListMap; // Deprecated.
+
+%rename("__getitem__") TagLib::MP4::Tag::item;
+
+// We will create a safe version of these below in an %extend
+// TagLib::MP4::Tag::item does not need to be reimplemented as it return an Item by value.
+%ignore TagLib::MP4::Tag::setItem;
+%ignore TagLib::MP4::Tag::removeItem;
+
+%include <taglib/mp4tag.h>
 
 %freefunc TagLib::MP4::File "free_taglib_mp4_file";
 
 // Ignore IOStream and all the constructors using it.
 %ignore IOStream;
 %ignore TagLib::MP4::File::File(IOStream *, bool, Properties::ReadStyle);
+%ignore TagLib::MP4::File::File(IOStream *, bool, Properties::ReadStyle, ItemFactory *);
 %ignore TagLib::MP4::File::File(IOStream *, bool);
 %ignore TagLib::MP4::File::File(IOStream *);
 %ignore TagLib::MP4::File::isSupported(IOStream *);
@@ -135,12 +142,6 @@ namespace TagLib {
 
 %rename("mp4_tag?") TagLib::MP4::File::hasMP4Tag;
 %include <taglib/mp4file.h>
-
-namespace TagLib {
-  namespace MP4 {
-    %template(ItemMap) ::TagLib::Map<String, Item>;
-  }
-}
 
 // Unlink Ruby objects from the deleted C++ objects. Otherwise Ruby code
 // that calls a method on a tag after the file is deleted segfaults.

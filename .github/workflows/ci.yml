@@ -24,7 +24,7 @@ jobs:
     env:
       MAKEFLAGS: -j2
       PLATFORM: x86_64-linux
-      TAGLIB_VERSION: 1.11.1
+      TAGLIB_VERSION: 2.0.1
       SWIG_DIR: .swig-v4.1.1
 
     steps:

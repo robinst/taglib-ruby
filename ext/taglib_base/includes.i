@@ -4,6 +4,7 @@
 #define TAGLIB_EXPORT
 #define TAGLIB_IGNORE_MISSING_DESTRUCTOR
 #define TAGLIB_DEPRECATED
+#define TAGLIB_MSVC_SUPPRESS_WARNING_NEEDS_TO_HAVE_DLL_INTERFACE
 
 // Replaces the typemap from swigtype.swg and just adds the line
 // SWIG_RubyUnlinkObjects. This is done to be safe in the case when a
@@ -36,34 +37,26 @@
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -152,6 +145,13 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+VALUE taglib_offset_t_to_ruby_int(TagLib::offset_t off) {
+#ifdef _WIN32
+  return LL2NUM(off);
+#else
+  return OFFT2NUM(off);
+#endif
+}
 %}
 
 // vim: set filetype=cpp sw=2 ts=2 expandtab:
