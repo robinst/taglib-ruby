@@ -75,6 +75,8 @@ namespace TagLib {
 
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::begin;
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::end;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::cbegin;
+%ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::cend;
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::insert;
 %ignore TagLib::Map<TagLib::String, TagLib::MP4::Item>::find;
 // We will create a safe version of these below in an %extend
