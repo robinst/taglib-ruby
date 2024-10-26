@@ -1862,12 +1862,13 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__Vorbis__File swig_types[6]
 #define SWIGTYPE_p_TagLib__Vorbis__Properties swig_types[7]
 #define SWIGTYPE_p_char swig_types[8]
-#define SWIGTYPE_p_unsigned_char swig_types[9]
-#define SWIGTYPE_p_unsigned_int swig_types[10]
-#define SWIGTYPE_p_unsigned_long swig_types[11]
-#define SWIGTYPE_p_wchar_t swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_long_long swig_types[9]
+#define SWIGTYPE_p_unsigned_char swig_types[10]
+#define SWIGTYPE_p_unsigned_int swig_types[11]
+#define SWIGTYPE_p_unsigned_long swig_types[12]
+#define SWIGTYPE_p_wchar_t swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1960,34 +1961,26 @@ template <typename T> T SwigValueInit() {
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -2076,6 +2069,13 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+VALUE taglib_offset_t_to_ruby_int(TagLib::offset_t off) {
+#ifdef _WIN32
+  return LL2NUM(off);
+#else
+  return OFFT2NUM(off);
+#endif
+}
 
 
 #include <limits.h>
@@ -2375,30 +2375,6 @@ free_TagLib_Vorbis_Properties(void *self) {
     SWIG_RubyRemoveTracking(arg1);
     delete arg1;
 }
-
-SWIGINTERN VALUE
-_wrap_Properties_length_in_seconds(int argc, VALUE *argv, VALUE self) {
-  TagLib::Vorbis::Properties *arg1 = (TagLib::Vorbis::Properties *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_TagLib__Vorbis__Properties, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::Vorbis::Properties const *","lengthInSeconds", 1, self )); 
-  }
-  arg1 = reinterpret_cast< TagLib::Vorbis::Properties * >(argp1);
-  result = (int)((TagLib::Vorbis::Properties const *)arg1)->lengthInSeconds();
-  vresult = SWIG_From_int(static_cast< int >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
 
 SWIGINTERN VALUE
 _wrap_Properties_length_in_milliseconds(int argc, VALUE *argv, VALUE self) {
@@ -2874,14 +2850,15 @@ static void *_p_TagLib__Vorbis__FileTo_p_TagLib__Ogg__File(void *x, int *SWIGUNU
     return (void *)((TagLib::Ogg::File *)  ((TagLib::Vorbis::File *) x));
 }
 static swig_type_info _swigt__p_MapT_TagLib__String_TagLib__StringList_t = {"_p_MapT_TagLib__String_TagLib__StringList_t", "TagLib::Ogg::FieldListMap *|Map< TagLib::String,TagLib::StringList > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::Ogg::Vorbis::AudioProperties *|TagLib::AudioProperties *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__AudioProperties = {"_p_TagLib__AudioProperties", "TagLib::AudioProperties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__File = {"_p_TagLib__File", "TagLib::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__ListT_TagLib__FLAC__Picture_t = {"_p_TagLib__ListT_TagLib__FLAC__Picture_t", "TagLib::FLAC::PictureList *|TagLib::List< TagLib::FLAC::Picture > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__File = {"_p_TagLib__Ogg__File", "TagLib::Ogg::File *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Ogg__XiphComment = {"_p_TagLib__Ogg__XiphComment", "TagLib::Ogg::XiphComment *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Vorbis__File = {"_p_TagLib__Vorbis__File", "TagLib::Ogg::Vorbis::File *|TagLib::Vorbis::File *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_TagLib__Vorbis__Properties = {"_p_TagLib__Vorbis__Properties", "TagLib::Vorbis::Properties *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TagLib__Vorbis__Properties = {"_p_TagLib__Vorbis__Properties", "TagLib::Ogg::Vorbis::Properties *|TagLib::Vorbis::Properties *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_long_long = {"_p_long_long", "TagLib::offset_t *|long long *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -2897,6 +2874,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__Vorbis__File,
   &_swigt__p_TagLib__Vorbis__Properties,
   &_swigt__p_char,
+  &_swigt__p_long_long,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -2912,6 +2890,7 @@ static swig_cast_info _swigc__p_TagLib__Ogg__XiphComment[] = {  {&_swigt__p_TagL
 static swig_cast_info _swigc__p_TagLib__Vorbis__File[] = {  {&_swigt__p_TagLib__Vorbis__File, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Vorbis__Properties[] = {  {&_swigt__p_TagLib__Vorbis__Properties, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -2927,6 +2906,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__Vorbis__File,
   _swigc__p_TagLib__Vorbis__Properties,
   _swigc__p_char,
+  _swigc__p_long_long,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -3198,7 +3178,6 @@ SWIGEXPORT void Init_taglib_vorbis(void) {
   SWIG_TypeClientData(SWIGTYPE_p_TagLib__Vorbis__Properties, (void *) &SwigClassProperties);
   rb_define_alloc_func(SwigClassProperties.klass, _wrap_Properties_allocate);
   rb_define_method(SwigClassProperties.klass, "initialize", VALUEFUNC(_wrap_new_Properties), -1);
-  rb_define_method(SwigClassProperties.klass, "length_in_seconds", VALUEFUNC(_wrap_Properties_length_in_seconds), -1);
   rb_define_method(SwigClassProperties.klass, "length_in_milliseconds", VALUEFUNC(_wrap_Properties_length_in_milliseconds), -1);
   rb_define_method(SwigClassProperties.klass, "bitrate", VALUEFUNC(_wrap_Properties_bitrate), -1);
   rb_define_method(SwigClassProperties.klass, "sample_rate", VALUEFUNC(_wrap_Properties_sample_rate), -1);

@@ -7,7 +7,7 @@ class Build
     end
 
     def version
-      ENV['TAGLIB_VERSION'] || '1.11.1'
+      ENV['TAGLIB_VERSION'] || '2.0.1'
     end
 
     def dir

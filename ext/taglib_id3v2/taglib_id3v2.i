@@ -81,6 +81,7 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 }
 %}
 
+%include <taglib/id3v2.h>
 %include <taglib/id3v2header.h>
 
 // Only useful internally.
@@ -130,6 +131,10 @@ VALUE taglib_id3v2_framelist_to_ruby_array(TagLib::ID3v2::FrameList *list) {
 %ignore TagLib::ID3v2::KeyConversionMap;
 
 %include "relativevolumeframe.i"
+
+%ignore TagLib::Utils::pictureTypeToString;
+%ignore TagLib::Utils::pictureTypeFromString;
+%include <taglib/tpicturetype.h>
 
 %include <taglib/attachedpictureframe.h>
 

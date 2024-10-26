@@ -1860,12 +1860,13 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_TagLib__String swig_types[4]
 #define SWIGTYPE_p_TagLib__Tag swig_types[5]
 #define SWIGTYPE_p_char swig_types[6]
-#define SWIGTYPE_p_unsigned_char swig_types[7]
-#define SWIGTYPE_p_unsigned_int swig_types[8]
-#define SWIGTYPE_p_unsigned_long swig_types[9]
-#define SWIGTYPE_p_wchar_t swig_types[10]
-static swig_type_info *swig_types[12];
-static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
+#define SWIGTYPE_p_long_long swig_types[7]
+#define SWIGTYPE_p_unsigned_char swig_types[8]
+#define SWIGTYPE_p_unsigned_int swig_types[9]
+#define SWIGTYPE_p_unsigned_long swig_types[10]
+#define SWIGTYPE_p_wchar_t swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1961,34 +1962,26 @@ template <typename T> T SwigValueInit() {
 #endif
 
 VALUE taglib_bytevector_to_ruby_string(const TagLib::ByteVector &byteVector) {
-  if (byteVector.isNull()) {
-    return Qnil;
-  } else {
-    return rb_str_new(byteVector.data(), byteVector.size());
-  }
+  return rb_str_new(byteVector.data(), byteVector.size());
 }
 
 TagLib::ByteVector ruby_string_to_taglib_bytevector(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::ByteVector::null;
+    return TagLib::ByteVector();
   } else {
     return TagLib::ByteVector(RSTRING_PTR(StringValue(s)), RSTRING_LEN(s));
   }
 }
 
 VALUE taglib_string_to_ruby_string(const TagLib::String & string) {
-  if (string.isNull()) {
-    return Qnil;
-  } else {
-    VALUE result = rb_str_new2(string.toCString(true));
-    ASSOCIATE_UTF8_ENCODING(result);
-    return result;
-  }
+  VALUE result = rb_str_new2(string.toCString(true));
+  ASSOCIATE_UTF8_ENCODING(result);
+  return result;
 }
 
 TagLib::String ruby_string_to_taglib_string(VALUE s) {
   if (NIL_P(s)) {
-    return TagLib::String::null;
+    return TagLib::String();
   } else {
     return TagLib::String(RSTRING_PTR(CONVERT_TO_UTF8(StringValue(s))), TagLib::String::UTF8);
   }
@@ -2077,6 +2070,13 @@ TagLib::FileName ruby_string_to_taglib_filename(VALUE s) {
 #endif
 }
 
+VALUE taglib_offset_t_to_ruby_int(TagLib::offset_t off) {
+#ifdef _WIN32
+  return LL2NUM(off);
+#else
+  return OFFT2NUM(off);
+#endif
+}
 
 
 #include <limits.h>
@@ -2287,6 +2287,96 @@ SWIG_AsVal_bool (VALUE obj, bool *val)
   }  
   return SWIG_TypeError;
 }
+
+
+#if defined(LLONG_MAX) && !defined(SWIG_LONG_LONG_AVAILABLE)
+#  define SWIG_LONG_LONG_AVAILABLE
+#endif
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+/*@SWIG:/swig/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2ULL(VALUE arg)
+{
+  VALUE *args = (VALUE *)arg;
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long long *res = (long long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2ULL(obj) : rb_big2ull(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long_SS_long (VALUE obj, unsigned long long *val)
+{ 
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    unsigned long long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2ULL), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+#endif
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_size_t (VALUE obj, size_t *val)
+{
+  int res = SWIG_TypeError;
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  if (sizeof(size_t) <= sizeof(unsigned long)) {
+#endif
+    unsigned long v;
+    res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  } else if (sizeof(size_t) <= sizeof(unsigned long long)) {
+    unsigned long long v;
+    res = SWIG_AsVal_unsigned_SS_long_SS_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+  }
+#endif
+  return res;
+}
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+/*@SWIG:/swig/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2LL(VALUE arg)
+{
+  VALUE *args = (VALUE *)arg;
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long long *res = (long long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2LL(obj) : rb_big2ll(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_long_SS_long (VALUE obj, long long *val)
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    long long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(VALUEFUNC(SWIG_AUX_NUM2LL), (VALUE)a, VALUEFUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+#endif
 
 SWIGINTERN void TagLib_FileRef_close(TagLib::FileRef *self){
     free_taglib_fileref(self);
@@ -2877,6 +2967,30 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_Tag_join_tag_values(int argc, VALUE *argv, VALUE self) {
+  TagLib::StringList *arg1 = 0 ;
+  TagLib::StringList tmp1 ;
+  TagLib::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    tmp1 = ruby_array_to_taglib_string_list(argv[0]);
+    arg1 = &tmp1;
+  }
+  result = TagLib::Tag::joinTagValues((TagLib::StringList const &)*arg1);
+  {
+    vresult = taglib_string_to_ruby_string(result);
+  }
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 static swig_class SwigClassAudioProperties;
 
 SWIGINTERN void
@@ -3116,10 +3230,10 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  unsigned long arg2 ;
+  size_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned long val2 ;
+  size_t val2 ;
   int ecode2 = 0 ;
   TagLib::ByteVector result;
   VALUE vresult = Qnil;
@@ -3132,11 +3246,11 @@ _wrap_File_read_block(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","readBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned long","readBlock", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "size_t","readBlock", 2, argv[0] ));
   } 
-  arg2 = static_cast< unsigned long >(val2);
+  arg2 = static_cast< size_t >(val2);
   result = (arg1)->readBlock(arg2);
   {
     vresult = taglib_bytevector_to_ruby_string(result);
@@ -3178,9 +3292,9 @@ fail:
   Document-method: TagLib::File.find
 
   call-seq:
-    find(pattern, fromOffset=0, before=TagLib::ByteVector()) -> long
-    find(pattern, fromOffset=0) -> long
-    find(pattern) -> long
+    find(pattern, fromOffset=0, before=TagLib::ByteVector()) -> TagLib::offset_t
+    find(pattern, fromOffset=0) -> TagLib::offset_t
+    find(pattern) -> TagLib::offset_t
 
 Find an element in the class.
 */
@@ -3188,15 +3302,15 @@ SWIGINTERN VALUE
 _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  long arg3 ;
+  TagLib::offset_t arg3 ;
   TagLib::ByteVector *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
   TagLib::ByteVector tmp4 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 3) || (argc > 3)) {
@@ -3211,17 +3325,19 @@ _wrap_File_find__SWIG_0(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","find", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","find", 3, argv[1] ));
   } 
-  arg3 = static_cast< long >(val3);
+  arg3 = static_cast< TagLib::offset_t >(val3);
   {
     tmp4 = ruby_string_to_taglib_bytevector(argv[2]);
     arg4 = &tmp4;
   }
-  result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3232,13 +3348,13 @@ SWIGINTERN VALUE
 _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  long arg3 ;
+  TagLib::offset_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -3253,13 +3369,15 @@ _wrap_File_find__SWIG_1(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","find", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","find", 3, argv[1] ));
   } 
-  arg3 = static_cast< long >(val3);
-  result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  arg3 = static_cast< TagLib::offset_t >(val3);
+  result = (TagLib::offset_t)(arg1)->find((TagLib::ByteVector const &)*arg2,arg3);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3273,7 +3391,7 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -3288,8 +3406,10 @@ _wrap_File_find__SWIG_2(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  result = (long)(arg1)->find((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)(arg1)->find((TagLib::ByteVector const &)*arg2);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3330,7 +3450,7 @@ SWIGINTERN VALUE _wrap_File_find(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3349,7 +3469,7 @@ SWIGINTERN VALUE _wrap_File_find(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3365,9 +3485,9 @@ SWIGINTERN VALUE _wrap_File_find(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "File.find", 
-    "    long File.find(TagLib::ByteVector const &pattern, long fromOffset, TagLib::ByteVector const &before)\n"
-    "    long File.find(TagLib::ByteVector const &pattern, long fromOffset)\n"
-    "    long File.find(TagLib::ByteVector const &pattern)\n");
+    "    TagLib::offset_t File.find(TagLib::ByteVector const &pattern, TagLib::offset_t fromOffset, TagLib::ByteVector const &before)\n"
+    "    TagLib::offset_t File.find(TagLib::ByteVector const &pattern, TagLib::offset_t fromOffset)\n"
+    "    TagLib::offset_t File.find(TagLib::ByteVector const &pattern)\n");
   
   return Qnil;
 }
@@ -3377,15 +3497,15 @@ SWIGINTERN VALUE
 _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  long arg3 ;
+  TagLib::offset_t arg3 ;
   TagLib::ByteVector *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
   TagLib::ByteVector tmp4 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 3) || (argc > 3)) {
@@ -3400,17 +3520,19 @@ _wrap_File_rfind__SWIG_0(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","rfind", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","rfind", 3, argv[1] ));
   } 
-  arg3 = static_cast< long >(val3);
+  arg3 = static_cast< TagLib::offset_t >(val3);
   {
     tmp4 = ruby_string_to_taglib_bytevector(argv[2]);
     arg4 = &tmp4;
   }
-  result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3,(TagLib::ByteVector const &)*arg4);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3421,13 +3543,13 @@ SWIGINTERN VALUE
 _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  long arg3 ;
+  TagLib::offset_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -3442,13 +3564,15 @@ _wrap_File_rfind__SWIG_1(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "long","rfind", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","rfind", 3, argv[1] ));
   } 
-  arg3 = static_cast< long >(val3);
-  result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  arg3 = static_cast< TagLib::offset_t >(val3);
+  result = (TagLib::offset_t)(arg1)->rfind((TagLib::ByteVector const &)*arg2,arg3);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3462,7 +3586,7 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -3477,8 +3601,10 @@ _wrap_File_rfind__SWIG_2(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  result = (long)(arg1)->rfind((TagLib::ByteVector const &)*arg2);
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)(arg1)->rfind((TagLib::ByteVector const &)*arg2);
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -3519,7 +3645,7 @@ SWIGINTERN VALUE _wrap_File_rfind(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3538,7 +3664,7 @@ SWIGINTERN VALUE _wrap_File_rfind(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3554,9 +3680,9 @@ SWIGINTERN VALUE _wrap_File_rfind(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "File.rfind", 
-    "    long File.rfind(TagLib::ByteVector const &pattern, long fromOffset, TagLib::ByteVector const &before)\n"
-    "    long File.rfind(TagLib::ByteVector const &pattern, long fromOffset)\n"
-    "    long File.rfind(TagLib::ByteVector const &pattern)\n");
+    "    TagLib::offset_t File.rfind(TagLib::ByteVector const &pattern, TagLib::offset_t fromOffset, TagLib::ByteVector const &before)\n"
+    "    TagLib::offset_t File.rfind(TagLib::ByteVector const &pattern, TagLib::offset_t fromOffset)\n"
+    "    TagLib::offset_t File.rfind(TagLib::ByteVector const &pattern)\n");
   
   return Qnil;
 }
@@ -3576,14 +3702,14 @@ SWIGINTERN VALUE
 _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  unsigned long arg3 ;
-  unsigned long arg4 ;
+  TagLib::offset_t arg3 ;
+  size_t arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  unsigned long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
-  unsigned long val4 ;
+  size_t val4 ;
   int ecode4 = 0 ;
   
   if ((argc < 3) || (argc > 3)) {
@@ -3598,16 +3724,16 @@ _wrap_File_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned long","insert", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","insert", 3, argv[1] ));
   } 
-  arg3 = static_cast< unsigned long >(val3);
-  ecode4 = SWIG_AsVal_unsigned_SS_long(argv[2], &val4);
+  arg3 = static_cast< TagLib::offset_t >(val3);
+  ecode4 = SWIG_AsVal_size_t(argv[2], &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "unsigned long","insert", 4, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "size_t","insert", 4, argv[2] ));
   } 
-  arg4 = static_cast< unsigned long >(val4);
+  arg4 = static_cast< size_t >(val4);
   (arg1)->insert((TagLib::ByteVector const &)*arg2,arg3,arg4);
   return Qnil;
 fail:
@@ -3619,11 +3745,11 @@ SWIGINTERN VALUE
 _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   TagLib::ByteVector *arg2 = 0 ;
-  unsigned long arg3 ;
+  TagLib::offset_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   TagLib::ByteVector tmp2 ;
-  unsigned long val3 ;
+  long long val3 ;
   int ecode3 = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
@@ -3638,11 +3764,11 @@ _wrap_File_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
     tmp2 = ruby_string_to_taglib_bytevector(argv[0]);
     arg2 = &tmp2;
   }
-  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  ecode3 = SWIG_AsVal_long_SS_long(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned long","insert", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::offset_t","insert", 3, argv[1] ));
   } 
-  arg3 = static_cast< unsigned long >(val3);
+  arg3 = static_cast< TagLib::offset_t >(val3);
   (arg1)->insert((TagLib::ByteVector const &)*arg2,arg3);
   return Qnil;
 fail:
@@ -3711,7 +3837,7 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3730,12 +3856,12 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
       _v = SWIG_CheckState(res);
       if (_v) {
         {
-          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
+          int res = SWIG_AsVal_long_SS_long(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
           {
-            int res = SWIG_AsVal_unsigned_SS_long(argv[3], NULL);
+            int res = SWIG_AsVal_size_t(argv[3], NULL);
             _v = SWIG_CheckState(res);
           }
           if (_v) {
@@ -3748,8 +3874,8 @@ SWIGINTERN VALUE _wrap_File_insert(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "File.insert", 
-    "    void File.insert(TagLib::ByteVector const &data, unsigned long start, unsigned long replace)\n"
-    "    void File.insert(TagLib::ByteVector const &data, unsigned long start)\n"
+    "    void File.insert(TagLib::ByteVector const &data, TagLib::offset_t start, size_t replace)\n"
+    "    void File.insert(TagLib::ByteVector const &data, TagLib::offset_t start)\n"
     "    void File.insert(TagLib::ByteVector const &data)\n");
   
   return Qnil;
@@ -3759,13 +3885,13 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_remove_block__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  unsigned long arg2 ;
-  unsigned long arg3 ;
+  TagLib::offset_t arg2 ;
+  size_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned long val2 ;
+  long long val2 ;
   int ecode2 = 0 ;
-  unsigned long val3 ;
+  size_t val3 ;
   int ecode3 = 0 ;
   
   if ((argc < 2) || (argc > 2)) {
@@ -3776,16 +3902,16 @@ _wrap_File_remove_block__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","removeBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  ecode2 = SWIG_AsVal_long_SS_long(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned long","removeBlock", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::offset_t","removeBlock", 2, argv[0] ));
   } 
-  arg2 = static_cast< unsigned long >(val2);
-  ecode3 = SWIG_AsVal_unsigned_SS_long(argv[1], &val3);
+  arg2 = static_cast< TagLib::offset_t >(val2);
+  ecode3 = SWIG_AsVal_size_t(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "unsigned long","removeBlock", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "size_t","removeBlock", 3, argv[1] ));
   } 
-  arg3 = static_cast< unsigned long >(val3);
+  arg3 = static_cast< size_t >(val3);
   (arg1)->removeBlock(arg2,arg3);
   return Qnil;
 fail:
@@ -3796,10 +3922,10 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_remove_block__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  unsigned long arg2 ;
+  TagLib::offset_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  unsigned long val2 ;
+  long long val2 ;
   int ecode2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
@@ -3810,11 +3936,11 @@ _wrap_File_remove_block__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","removeBlock", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
+  ecode2 = SWIG_AsVal_long_SS_long(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned long","removeBlock", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::offset_t","removeBlock", 2, argv[0] ));
   } 
-  arg2 = static_cast< unsigned long >(val2);
+  arg2 = static_cast< TagLib::offset_t >(val2);
   (arg1)->removeBlock(arg2);
   return Qnil;
 fail:
@@ -3870,7 +3996,7 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        int res = SWIG_AsVal_long_SS_long(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -3885,12 +4011,12 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
+        int res = SWIG_AsVal_long_SS_long(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
         {
-          int res = SWIG_AsVal_unsigned_SS_long(argv[2], NULL);
+          int res = SWIG_AsVal_size_t(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -3902,8 +4028,8 @@ SWIGINTERN VALUE _wrap_File_remove_block(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "File.remove_block", 
-    "    void File.remove_block(unsigned long start, unsigned long length)\n"
-    "    void File.remove_block(unsigned long start)\n"
+    "    void File.remove_block(TagLib::offset_t start, size_t length)\n"
+    "    void File.remove_block(TagLib::offset_t start)\n"
     "    void File.remove_block()\n");
   
   return Qnil;
@@ -3985,11 +4111,11 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_seek__SWIG_0(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  long arg2 ;
+  TagLib::offset_t arg2 ;
   TagLib::File::Position arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long val2 ;
+  long long val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
@@ -4002,11 +4128,11 @@ _wrap_File_seek__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","seek", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_long(argv[0], &val2);
+  ecode2 = SWIG_AsVal_long_SS_long(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","seek", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::offset_t","seek", 2, argv[0] ));
   } 
-  arg2 = static_cast< long >(val2);
+  arg2 = static_cast< TagLib::offset_t >(val2);
   ecode3 = SWIG_AsVal_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::File::Position","seek", 3, argv[1] ));
@@ -4022,10 +4148,10 @@ fail:
 SWIGINTERN VALUE
 _wrap_File_seek__SWIG_1(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
-  long arg2 ;
+  TagLib::offset_t arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long val2 ;
+  long long val2 ;
   int ecode2 = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
@@ -4036,11 +4162,11 @@ _wrap_File_seek__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","seek", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  ecode2 = SWIG_AsVal_long(argv[0], &val2);
+  ecode2 = SWIG_AsVal_long_SS_long(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "long","seek", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "TagLib::offset_t","seek", 2, argv[0] ));
   } 
-  arg2 = static_cast< long >(val2);
+  arg2 = static_cast< TagLib::offset_t >(val2);
   (arg1)->seek(arg2);
   return Qnil;
 fail:
@@ -4066,7 +4192,7 @@ SWIGINTERN VALUE _wrap_File_seek(int nargs, VALUE *args, VALUE self) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_long(argv[1], NULL);
+        int res = SWIG_AsVal_long_SS_long(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -4081,7 +4207,7 @@ SWIGINTERN VALUE _wrap_File_seek(int nargs, VALUE *args, VALUE self) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_long(argv[1], NULL);
+        int res = SWIG_AsVal_long_SS_long(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -4098,8 +4224,8 @@ SWIGINTERN VALUE _wrap_File_seek(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "File.seek", 
-    "    void File.seek(long offset, TagLib::File::Position p)\n"
-    "    void File.seek(long offset)\n");
+    "    void File.seek(TagLib::offset_t offset, TagLib::File::Position p)\n"
+    "    void File.seek(TagLib::offset_t offset)\n");
   
   return Qnil;
 }
@@ -4131,7 +4257,7 @@ _wrap_File_tell(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -4142,8 +4268,10 @@ _wrap_File_tell(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File const *","tell", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  result = (long)((TagLib::File const *)arg1)->tell();
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)((TagLib::File const *)arg1)->tell();
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
   return Qnil;
@@ -4155,7 +4283,7 @@ _wrap_File_length(int argc, VALUE *argv, VALUE self) {
   TagLib::File *arg1 = (TagLib::File *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long result;
+  TagLib::offset_t result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -4166,64 +4294,12 @@ _wrap_File_length(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "TagLib::File *","length", 1, self )); 
   }
   arg1 = reinterpret_cast< TagLib::File * >(argp1);
-  result = (long)(arg1)->length();
-  vresult = SWIG_From_long(static_cast< long >(result));
+  result = (TagLib::offset_t)(arg1)->length();
+  {
+    vresult = taglib_offset_t_to_ruby_int(result);
+  }
   return vresult;
 fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_readableq___(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::File::isReadable", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = (bool)TagLib::File::isReadable((char const *)arg1);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return vresult;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_File_writableq___(int argc, VALUE *argv, VALUE self) {
-  char *arg1 = (char *) 0 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_AsCharPtrAndSize(argv[0], &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "char const *","TagLib::File::isWritable", 1, argv[0] ));
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  result = (bool)TagLib::File::isWritable((char const *)arg1);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return vresult;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return Qnil;
 }
 
@@ -4620,6 +4696,18 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_FileRef_clear_file_type_resolvers(int argc, VALUE *argv, VALUE self) {
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  TagLib::FileRef::clearFileTypeResolvers();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_FileRef_default_file_extensions(int argc, VALUE *argv, VALUE self) {
   TagLib::StringList result;
   VALUE vresult = Qnil;
@@ -4705,162 +4793,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_FileRef_create__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
-  bool arg2 ;
-  TagLib::AudioProperties::ReadStyle arg3 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  TagLib::File *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
-    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
-      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
-    }
-  }
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef::create", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  ecode3 = SWIG_AsVal_int(argv[2], &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "TagLib::AudioProperties::ReadStyle","TagLib::FileRef::create", 3, argv[2] ));
-  } 
-  arg3 = static_cast< TagLib::AudioProperties::ReadStyle >(val3);
-  result = (TagLib::File *)TagLib::FileRef::create(SWIG_STD_MOVE(arg1),arg2,arg3);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__File, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_create__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
-  bool arg2 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  TagLib::File *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
-    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
-      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
-    }
-  }
-  ecode2 = SWIG_AsVal_bool(argv[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","TagLib::FileRef::create", 2, argv[1] ));
-  } 
-  arg2 = static_cast< bool >(val2);
-  result = (TagLib::File *)TagLib::FileRef::create(SWIG_STD_MOVE(arg1),arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__File, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_FileRef_create__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  TagLib::FileName arg1 ;
-  TagLib::File *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    arg1 = ruby_string_to_taglib_filename(argv[0]);
-    if ((const char *)(TagLib::FileName)(arg1) == NULL) {
-      SWIG_exception_fail(SWIG_MemoryError, "Failed to allocate memory for file name.");
-    }
-  }
-  result = (TagLib::File *)TagLib::FileRef::create(SWIG_STD_MOVE(arg1));
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TagLib__File, 0 |  0 );
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_FileRef_create(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs;
-  if (argc > 3) SWIG_fail;
-  for (ii = 0; (ii < argc); ++ii) {
-    argv[ii] = args[ii];
-  }
-  if (argc == 1) {
-    int _v = 0;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_FileRef_create__SWIG_2(nargs, args, self);
-    }
-  }
-  if (argc == 2) {
-    int _v = 0;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_FileRef_create__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v = 0;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_bool(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_FileRef_create__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "FileRef.create", 
-    "    TagLib::File FileRef.create(TagLib::FileName fileName, bool readAudioProperties, TagLib::AudioProperties::ReadStyle audioPropertiesStyle)\n"
-    "    TagLib::File FileRef.create(TagLib::FileName fileName, bool readAudioProperties)\n"
-    "    TagLib::File * FileRef.create(TagLib::FileName fileName)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_FileRef_close(int argc, VALUE *argv, VALUE self) {
   TagLib::FileRef *arg1 = (TagLib::FileRef *) 0 ;
   void *argp1 = 0 ;
@@ -4891,6 +4823,7 @@ static swig_type_info _swigt__p_TagLib__FileRef__FileTypeResolver = {"_p_TagLib_
 static swig_type_info _swigt__p_TagLib__String = {"_p_TagLib__String", "TagLib::String *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_TagLib__Tag = {"_p_TagLib__Tag", "TagLib::Tag *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_long_long = {"_p_long_long", "TagLib::offset_t *|long long *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "TagLib::uchar *|unsigned char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "TagLib::uint *|unsigned int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "TagLib::ulong *|unsigned long *", 0, 0, (void*)0, 0};
@@ -4904,6 +4837,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_TagLib__String,
   &_swigt__p_TagLib__Tag,
   &_swigt__p_char,
+  &_swigt__p_long_long,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long,
@@ -4917,6 +4851,7 @@ static swig_cast_info _swigc__p_TagLib__FileRef__FileTypeResolver[] = {  {&_swig
 static swig_cast_info _swigc__p_TagLib__String[] = {  {&_swigt__p_TagLib__String, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TagLib__Tag[] = {  {&_swigt__p_TagLib__Tag, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -4930,6 +4865,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_TagLib__String,
   _swigc__p_TagLib__Tag,
   _swigc__p_char,
+  _swigc__p_long_long,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long,
@@ -5227,6 +5163,7 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassTag.klass, "track=", VALUEFUNC(_wrap_Tag_tracke___), -1);
   rb_define_method(SwigClassTag.klass, "empty?", VALUEFUNC(_wrap_Tag_emptyq___), -1);
   rb_define_singleton_method(SwigClassTag.klass, "duplicate", VALUEFUNC(_wrap_Tag_duplicate), -1);
+  rb_define_singleton_method(SwigClassTag.klass, "join_tag_values", VALUEFUNC(_wrap_Tag_join_tag_values), -1);
   SwigClassTag.mark = 0;
   SwigClassTag.destroy = (void (*)(void *)) free_TagLib_Tag;
   SwigClassTag.trackObjects = 1;
@@ -5252,6 +5189,10 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_const(SwigClassFile.klass, "Beginning", SWIG_From_int(static_cast< int >(TagLib::File::Beginning)));
   rb_define_const(SwigClassFile.klass, "Current", SWIG_From_int(static_cast< int >(TagLib::File::Current)));
   rb_define_const(SwigClassFile.klass, "End", SWIG_From_int(static_cast< int >(TagLib::File::End)));
+  rb_define_const(SwigClassFile.klass, "StripNone", SWIG_From_int(static_cast< int >(TagLib::File::StripNone)));
+  rb_define_const(SwigClassFile.klass, "StripOthers", SWIG_From_int(static_cast< int >(TagLib::File::StripOthers)));
+  rb_define_const(SwigClassFile.klass, "Duplicate", SWIG_From_int(static_cast< int >(TagLib::File::Duplicate)));
+  rb_define_const(SwigClassFile.klass, "DoNotDuplicate", SWIG_From_int(static_cast< int >(TagLib::File::DoNotDuplicate)));
   rb_define_method(SwigClassFile.klass, "name", VALUEFUNC(_wrap_File_name), -1);
   rb_define_method(SwigClassFile.klass, "tag", VALUEFUNC(_wrap_File_tag), -1);
   rb_define_method(SwigClassFile.klass, "audio_properties", VALUEFUNC(_wrap_File_audio_properties), -1);
@@ -5269,8 +5210,6 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassFile.klass, "clear", VALUEFUNC(_wrap_File_clear), -1);
   rb_define_method(SwigClassFile.klass, "tell", VALUEFUNC(_wrap_File_tell), -1);
   rb_define_method(SwigClassFile.klass, "length", VALUEFUNC(_wrap_File_length), -1);
-  rb_define_singleton_method(SwigClassFile.klass, "readable?", VALUEFUNC(_wrap_File_readableq___), -1);
-  rb_define_singleton_method(SwigClassFile.klass, "writable?", VALUEFUNC(_wrap_File_writableq___), -1);
   SwigClassFile.mark = 0;
   SwigClassFile.destroy = (void (*)(void *)) free_TagLib_File;
   SwigClassFile.trackObjects = 1;
@@ -5284,10 +5223,10 @@ SWIGEXPORT void Init_taglib_base(void) {
   rb_define_method(SwigClassFileRef.klass, "file", VALUEFUNC(_wrap_FileRef_file), -1);
   rb_define_method(SwigClassFileRef.klass, "save", VALUEFUNC(_wrap_FileRef_save), -1);
   rb_define_singleton_method(SwigClassFileRef.klass, "add_file_type_resolver", VALUEFUNC(_wrap_FileRef_add_file_type_resolver), -1);
+  rb_define_singleton_method(SwigClassFileRef.klass, "clear_file_type_resolvers", VALUEFUNC(_wrap_FileRef_clear_file_type_resolvers), -1);
   rb_define_singleton_method(SwigClassFileRef.klass, "default_file_extensions", VALUEFUNC(_wrap_FileRef_default_file_extensions), -1);
   rb_define_method(SwigClassFileRef.klass, "null?", VALUEFUNC(_wrap_FileRef_nullq___), -1);
   rb_define_method(SwigClassFileRef.klass, "==", VALUEFUNC(_wrap_FileRef___eq__), -1);
-  rb_define_singleton_method(SwigClassFileRef.klass, "create", VALUEFUNC(_wrap_FileRef_create), -1);
   rb_define_method(SwigClassFileRef.klass, "close", VALUEFUNC(_wrap_FileRef_close), -1);
   SwigClassFileRef.mark = 0;
   SwigClassFileRef.destroy = (void (*)(void *)) free_TagLib_FileRef;

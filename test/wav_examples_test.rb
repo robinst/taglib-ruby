@@ -19,7 +19,7 @@ class WAVExamples < Test::Unit::TestCase
 
       # Saving ID3v2 cover-art to disk
       TagLib::RIFF::WAV::File.open("#{DATA_FILE_PREFIX}sample.wav") do |file|
-        id3v2_tag = file.tag
+        id3v2_tag = file.id3v2_tag
         cover = id3v2_tag.frame_list('APIC').first
         ext = cover.mime_type.rpartition('/')[2]
         File.open("#{DATA_FILE_PREFIX}cover-art.#{ext}", 'wb') { |f| f.write cover.picture }
