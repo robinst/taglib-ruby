@@ -30,9 +30,13 @@ installed with header files (and a C++ compiler of course):
 * Brew: `brew install taglib`
 * MacPorts: `sudo port install taglib`
 
-Then do:
+Then install the latest taglib-ruby 1.x by running:
 
-    gem install taglib-ruby
+    gem install taglib-ruby --version '< 2'
+
+If you are using TagLib 2.0.1 or higher, you need to install taglib-ruby 2.x instead:
+
+    gem install taglib-ruby --version '>= 2'
 
 ### MacOS
 
