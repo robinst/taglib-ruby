@@ -6,6 +6,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.0
+### Changed
+- Regenerate SWIG wrapper code against TagLib 2.0.1. This breaks
+  compatibility with TagLib 1.x. You will get a compiler error if you
+  try to install taglib-ruby 2.x on a system that has TagLib 1.x.
+  Please use taglib-ruby 1.x if your system has TagLib 1.x, and
+  taglib-ruby 2.x if your system has TagLib 2.x.
+- The optional `strip_others` argument to `TagLib::MPEG::File#save` no
+  longer takes a boolean value. It now uses the constants
+  `TagLib::File::StripOthers` and `TagLib::File::StripNone`.
+
+### Removed
+- `TagLib::MPEG::File#tag` has been removed because it no longer
+  exists in TagLib 2.x. Please use `TagLib::MPEG::File#id3v2_tag` or
+  `TagLib::MPEG::File#id3v1_tag`.
+
 ## 1.1.3 - 2022-12-29
 ### Changed
 - Fix warning `warning: undefining the allocator of T_DATA class

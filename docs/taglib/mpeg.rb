@@ -32,14 +32,6 @@ module TagLib::MPEG
     def initialize(filename, read_properties=true)
     end
 
-    # Returns a tag that contains attributes from both the ID3v2 and
-    # ID3v1 tag, with ID3v2 attributes having precendence.
-    #
-    # @return [TagLib::Tag]
-    # @return [nil] if not present
-    def tag
-    end
-
     # Returns the ID3v1 tag.
     #
     # @param create if a new tag should be created when none exists
@@ -88,7 +80,7 @@ module TagLib::MPEG
     #   ArgumentError.
     #
     # @return [Boolean] whether saving was successful
-    def save(tags=TagLib::MPEG::File::AllTags, strip_others=true)
+    def save(tags=TagLib::MPEG::File::AllTags, strip_others=TagLib::File::StripOthers)
     end
 
     # Strip the specified tags from the file. Note that this directly
